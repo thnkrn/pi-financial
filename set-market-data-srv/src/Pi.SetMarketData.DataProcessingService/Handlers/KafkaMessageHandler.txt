@@ -1,0 +1,876 @@
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using Confluent.Kafka;
+using MongoDB.Bson;
+using Newtonsoft.Json;
+using Pi.SetMarketData.Application.Constants;
+using Pi.SetMarketData.Application.Helper;
+using Pi.SetMarketData.Application.Interfaces.ItchMapper;
+using Pi.SetMarketData.Application.Models.ItchMessageWrapper;
+using Pi.SetMarketData.DataProcessingService.Interface;
+using Pi.SetMarketData.Domain.ConstantConfigurations;
+using Pi.SetMarketData.Domain.Entities;
+using Pi.SetMarketData.Domain.Models.DataProcessing;
+using Pi.SetMarketData.Infrastructure.Converters;
+using Pi.SetMarketData.Infrastructure.Helpers;
+using Pi.SetMarketData.Infrastructure.Interfaces.Kafka;
+using Pi.SetMarketData.Infrastructure.Interfaces.Mongo;
+using Pi.SetMarketData.Infrastructure.Interfaces.Redis;
+using Pi.SetMarketData.Infrastructure.Interfaces.TimescaleEf;
+using Pi.SetMarketData.Infrastructure.Models.Kafka;
+
+namespace Pi.SetMarketData.DataProcessingService.Handlers;
+
+public class KafkaMessageHandler : IKafkaMessageV2Handler<Message<string, string>>
+{
+    private const string RealtimeTableName = "realtime_market_data";
+    private const string ErrorFormat = "{ErrorMsg} {Message}";
+    private const string ErrorMsg = "Error processing message:";
+    private readonly TimeSpan _cacheMinute = new(0, 0, 1, 0);
+    private readonly IRedisV2Publisher _cacheService;
+    private readonly ICacheServiceHelper _cacheServiceHelper;
+    private readonly IMongoService<CorporateAction> _corporateActionService;
+    private readonly string _exchangeServer;
+    private readonly IMongoService<InstrumentDetail> _instrumentDetailService;
+    private readonly IMongoService<Instrument> _instrumentService;
+    private readonly IItchMapperService _itchMapperService;
+    private readonly JsonSerializerSettings _jsonSettings = new() { Converters = [new ObjectIdConverter()] };
+    private readonly ILogger<KafkaMessageHandler> _logger;
+    private readonly IMongoService<MorningStarFlag> _morningStarFlagService;
+    private readonly IMongoService<OrderBook> _orderBookService;
+    private readonly IMongoService<PriceInfo> _priceInfoService;
+    private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IMongoService<TradingSign> _tradingSignService;
+    private readonly IMongoService<WhiteList> _whiteListService;
+
+    /// <summary>
+    /// </summary>
+    /// <param name="configuration"></param>
+    /// <param name="itchMapperService"></param>
+    /// <param name="dependencies"></param>
+    /// <param name="moreDependencies"></param>
+    /// <param name="logger"></param>
+    /// <exception cref="ArgumentNullException"></exception>
+    /// <exception cref="InvalidOperationException"></exception>
+    public KafkaMessageHandler(
+        IConfiguration configuration,
+        IItchMapperService itchMapperService,
+        KafkaMessageHandlerDependencies dependencies,
+        KafkaMessageHandlerMoreDependencies moreDependencies,
+        ILogger<KafkaMessageHandler> logger
+    )
+    {
+        _priceInfoService = dependencies.PriceInfoService;
+        _orderBookService = dependencies.OrderBookService;
+        _instrumentService = dependencies.InstrumentService;
+        _instrumentDetailService = dependencies.InstrumentDetailService;
+        _whiteListService = dependencies.WhiteListService;
+        _corporateActionService = dependencies.CorporateActionService;
+        _tradingSignService = dependencies.TradingSignService;
+        _cacheService = moreDependencies.CacheService;
+        _morningStarFlagService = moreDependencies.MorningStarFlagService;
+        _cacheServiceHelper = moreDependencies.CacheServiceHelper;
+        _scopeFactory = moreDependencies.ScopeFactory;
+        _itchMapperService = itchMapperService ?? throw new ArgumentNullException(nameof(itchMapperService));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _exchangeServer =
+            ConfigurationHelper
+                .GetTopicList(configuration, ConfigurationKeys.KafkaTopic)
+                .FirstOrDefault()
+            ?? throw new InvalidOperationException("KafkaTopic is not configured");
+    }
+
+    public async Task<bool> HandleAsync(Message<string, string> consumeMessage)
+    {
+        var message = consumeMessage.Value;
+        if (string.IsNullOrEmpty(message))
+        {
+            _logger.LogWarning("Received empty message");
+            return false;
+        }
+
+        var stopwatch = Stopwatch.StartNew();
+        try
+        {
+            if (!message.IsValidJsonMessage())
+            {
+                _logger.LogWarning("The message cannot be deserialized because it is invalid");
+                return false;
+            }
+
+            var cleanMessage = message.SimpleCleanJsonMessage();
+            var stockMessage = JsonConvert.DeserializeObject<StockMessage>(cleanMessage);
+
+            if (stockMessage?.Message == null)
+                return false;
+
+            _logger.LogDebug("Received message: {CleanMessage}", cleanMessage);
+            var result = false;
+
+            switch (stockMessage.MessageType)
+            {
+                case nameof(ItchMessageType.i): // i
+                    result = await HandleTradeTickerMessageAsync(stockMessage.Message);
+                    break;
+                case nameof(ItchMessageType.I): // I
+                    result = await HandleTradeStatisticsMessageAsync(stockMessage.Message);
+                    break;
+                case nameof(ItchMessageType.b): // b
+                    result = await HandleMarketByPriceMessageAsync(stockMessage.Message);
+                    break;
+                case nameof(ItchMessageType.R): // R
+                    var isSetStock = _exchangeServer.StartsWith(InstrumentConstants.SET,
+                        StringComparison.OrdinalIgnoreCase);
+                    var response =
+                        JsonConvert.DeserializeObject<OrderBookDirectoryMessageWrapper>(stockMessage.Message);
+                    var marketDirectory =
+                        await _cacheService.GetAsync<string>($"{CacheKey.MarketDirectory}{response?.MarketCode.Value}");
+                    result = await HandleOrderBookDirectoryMessageAsync
+                    (
+                        stockMessage.Message,
+                        isSetStock,
+                        JsonConvert.DeserializeObject<MarketDirectory>(marketDirectory ?? "")
+                    );
+                    break;
+                case nameof(ItchMessageType.L): // L
+                    result = await HandleTickSizeTable(stockMessage.Message);
+                    break;
+            }
+
+            return result;
+        }
+        catch (JsonException ex)
+        {
+            _logger.LogError(ex, "Json exception during processing message: {Message}", ex.Message);
+            return false;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+        finally
+        {
+            stopwatch.Stop();
+            _logger.LogInformation("HandleAsync completed in {ElapsedMilliseconds} ms",
+                stopwatch.ElapsedMilliseconds);
+        }
+    }
+
+    private async Task<bool> HandleTradeTickerMessageAsync(string message)
+    {
+        try
+        {
+            var tradeTickerMessage = JsonConvert.DeserializeObject<TradeTickerMessageWrapper>(message);
+            if (tradeTickerMessage != null)
+            {
+                var tradeTickerMessageResult = await MapToDatabase(tradeTickerMessage);
+                if (tradeTickerMessageResult.Values is { Length: > 0 })
+                    foreach (var item in tradeTickerMessageResult.Values)
+                    {
+                        var success = await HandleMessageResultAsync(tradeTickerMessageResult.Channel,
+                            item.TableName ?? RealtimeTableName,
+                            item.Value);
+
+                        if (!success)
+                            return false;
+                    }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    [SuppressMessage("SonarQube", "S3776:Cognitive Complexity of methods should not be too high")]
+    private async Task<bool> HandleTradeStatisticsMessageAsync(string message)
+    {
+        try
+        {
+            var tradeStatisticsMessage = JsonConvert.DeserializeObject<TradeStatisticsMessageWrapper>(message);
+            if (tradeStatisticsMessage != null)
+            {
+                var tradeStatisticsMessageResult = _itchMapperService.MapToDatabase(
+                    tradeStatisticsMessage,
+                    null,
+                    null,
+                    null,
+                    null
+                );
+
+                var statisticsMessageResult = tradeStatisticsMessageResult as DataProcessingResult?[]
+                                              ?? tradeStatisticsMessageResult.ToArray();
+                if (!statisticsMessageResult.Any())
+                    return true;
+
+                foreach (var result in statisticsMessageResult)
+                    if (result?.Values != null)
+                        foreach (var item in result.Values)
+                        {
+                            var success = await HandleMessageResultAsync(
+                                result.Channel,
+                                item.TableName ?? "price_info",
+                                item.Value
+                            );
+
+                            if (!success)
+                                return false;
+                        }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    [SuppressMessage("SonarQube", "S3776:Cognitive Complexity of methods should not be too high")]
+    private async Task<bool> HandleMarketByPriceMessageAsync(string message)
+    {
+        try
+        {
+            var orderBookMessage = JsonConvert.DeserializeObject<MarketByPriceLevelWrapper>(message);
+            var storedData = await _orderBookService.GetByIdAsync(
+                orderBookMessage?.OrderBookID.ToString() ?? string.Empty
+            );
+
+            if (orderBookMessage != null)
+            {
+                var orderBookMessageResult = _itchMapperService.MapToDatabase(
+                    orderBookMessage,
+                    storedData,
+                    null,
+                    null,
+                    null
+                );
+
+                var dataProcessingResults =
+                    orderBookMessageResult as DataProcessingResult?[] ?? orderBookMessageResult.ToArray();
+                if (!dataProcessingResults.Any())
+                    return true;
+
+                foreach (var result in dataProcessingResults)
+                    if (result?.Values != null)
+                        foreach (var item in result.Values)
+                        {
+                            var success = await HandleMessageResultAsync(
+                                result.Channel,
+                                item.TableName ?? "order_book",
+                                item.Value
+                            );
+
+                            if (!success)
+                                return false;
+                        }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    [SuppressMessage("SonarQube", "S3776:Cognitive Complexity of methods should not be too high")]
+    private async Task<bool> HandleOrderBookDirectoryMessageAsync(string message, bool exchangeServer,
+        MarketDirectory? marketDirectory)
+    {
+        try
+        {
+            var orderBookDirectoryMessage =
+                JsonConvert.DeserializeObject<OrderBookDirectoryMessageWrapper>(message);
+            if (orderBookDirectoryMessage != null)
+            {
+                var venue = await _cacheServiceHelper.GetVenueByOrderBookId(
+                    orderBookDirectoryMessage.OrderBookID.Value,
+                    orderBookDirectoryMessage.Symbol.ToString() ?? string.Empty
+                );
+
+                var orderBookDirectoryMessageResult = _itchMapperService.MapToDatabase(
+                    orderBookDirectoryMessage,
+                    null,
+                    exchangeServer,
+                    GetVenue(venue ?? string.Empty),
+                    marketDirectory
+                );
+
+                var bookDirectoryMessageResult = orderBookDirectoryMessageResult as DataProcessingResult?[]
+                                                 ?? orderBookDirectoryMessageResult.ToArray();
+                if (!bookDirectoryMessageResult.Any())
+                    return true;
+
+                foreach (var result in bookDirectoryMessageResult)
+                    if (result?.Values != null)
+                        foreach (var item in result.Values)
+                        {
+                            var success = await HandleMessageResultAsync(
+                                result.Channel,
+                                item.TableName ?? "order_book_directory",
+                                item.Value
+                            );
+
+                            if (!success)
+                                return false;
+                        }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    [SuppressMessage("SonarQube", "S3776:Cognitive Complexity of methods should not be too high")]
+    private async Task<bool> HandleTickSizeTable(string message)
+    {
+        try
+        {
+            var tickSizeTableEntry = JsonConvert.DeserializeObject<TickSizeTableMessageWrapper>(message);
+            if (tickSizeTableEntry != null)
+            {
+                var tickSizeTableEntryMessageResult = _itchMapperService.MapToDatabase(
+                    tickSizeTableEntry,
+                    null,
+                    null,
+                    null,
+                    null
+                );
+
+                var sizeTableEntryMessageResult = tickSizeTableEntryMessageResult as DataProcessingResult?[]
+                                                  ?? tickSizeTableEntryMessageResult.ToArray();
+                if (!sizeTableEntryMessageResult.Any())
+                    return true;
+
+                foreach (var result in sizeTableEntryMessageResult)
+                    if (result?.Values != null)
+                        foreach (var item in result.Values)
+                        {
+                            var success = await HandleMessageResultAsync(
+                                result.Channel,
+                                item.TableName ?? "tick_size_table_entry",
+                                item.Value
+                            );
+
+                            if (!success)
+                                return false;
+                        }
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> HandleMessageResultAsync(DataProcessingChannel? channel,
+        string tableName,
+        object? value)
+    {
+        try
+        {
+            switch (channel)
+            {
+                case DataProcessingChannel.MongoDb:
+                    return await SaveDataToMongoDb(tableName, value);
+                case DataProcessingChannel.TimescaleDb:
+                    return await SaveDataToTimescaleDb(tableName, value);
+                case DataProcessingChannel.Redis:
+                    return await SaveDataToCache(tableName, value);
+                case DataProcessingChannel.Both:
+                    return false;
+                default:
+                    _logger.LogWarning("The channel. Out of the channel's range");
+                    return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> SaveDataToTimescaleDb(string tableName, object? value)
+    {
+        if (value == null)
+            return true;
+
+        try
+        {
+            switch (tableName.ToLowerInvariant())
+            {
+                case "realtime_market_data" when value is RealtimeMarketData realtimeMarketData:
+                    using (var scope = _scopeFactory.CreateScope())
+                    {
+                        var realtimeMarketDataService = scope.ServiceProvider
+                            .GetRequiredService<ITimescaleService<RealtimeMarketData>>();
+                        await realtimeMarketDataService.UpsertAsync(
+                            realtimeMarketData,
+                            RealtimeTableName,
+                            nameof(RealtimeMarketData.DateTime),
+                            nameof(RealtimeMarketData.Symbol),
+                            nameof(RealtimeMarketData.Venue)
+                        );
+                    }
+
+                    return true;
+                default:
+                    _logger.LogError("Unknown table name for TimescaleDb: {TableName}", tableName);
+                    return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> SaveDataToMongoDb(string tableName, object? value)
+    {
+        if (value == null)
+            return true;
+
+        try
+        {
+            switch (tableName.ToLowerInvariant())
+            {
+                case "price_info" when value is PriceInfo priceInfo:
+                    var priceData = await _priceInfoService.GetByOrderBookId(
+                        priceInfo.OrderBookId ?? string.Empty
+                    );
+                    return await AddOrUpdatePriceInfo(priceData, priceInfo);
+
+                case "order_book" when value is OrderBook orderBook:
+                    var orderData = await _orderBookService.GetByOrderBookId(
+                        orderBook.OrderBookId.ToString()
+                    );
+                    var orderBookResult = await AddOrUpdateOrderBook(orderData, orderBook);
+                    return orderBookResult;
+
+                case "instrument" when value is Instrument instrument:
+                    var instrumentData = await _instrumentService.GetByOrderBookId(
+                        instrument.OrderBookId.ToString()
+                    );
+                    var instrumentResult = await AddOrUpdateInstrument(instrumentData, instrument);
+                    if (!instrumentResult)
+                        return false;
+                    return await AddOrUpdateMorningStarFlag(instrument);
+
+                case "instrument_detail" when value is InstrumentDetail detail:
+                    var detailData = await _instrumentDetailService.GetByOrderBookId(
+                        detail.OrderBookId.ToString()
+                    );
+                    return await AddOrUpdateInstrumentDetail(detailData, detail);
+
+                case "white_list" when value is WhiteList whiteList:
+                    var whiteListData = await _whiteListService.GetByFilterAsync(target =>
+                        target.Symbol == whiteList.Symbol
+                    );
+                    return await AddOrUpdateWhiteList(whiteListData, whiteList);
+
+                case "corporate_action" when value is CorporateAction corporateAction:
+                    var corporateActionData = await _corporateActionService.GetByFilterAsync(target =>
+                        target.OrderBookId == corporateAction.OrderBookId
+                    );
+                    return await AddOrUpdateCorporateAction(corporateActionData, corporateAction);
+
+                case "trading_sign" when value is TradingSign tradingSign:
+                    var tradingSignData = await _tradingSignService.GetByFilterAsync(target =>
+                        target.OrderBookId == tradingSign.OrderBookId
+                    );
+                    return await AddOrUpdateTradingSign(tradingSignData, tradingSign);
+
+                default:
+                    _logger.LogError(
+                        "The {TableName} collection. Out of the collection's range",
+                        tableName
+                    );
+                    return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> SaveDataToCache(string key, object? value)
+    {
+        if (value == null)
+            return true;
+
+        try
+        {
+            switch (value)
+            {
+                case TradingSign tradingSign:
+                    await _cacheService.SetAsync
+                    (
+                        $"{key}{tradingSign.OrderBookId}",
+                        JsonConvert.SerializeObject(tradingSign, _jsonSettings),
+                        false,
+                        _cacheMinute
+                    );
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateWhiteList(WhiteList? whiteListData, WhiteList whiteList)
+    {
+        try
+        {
+            if (whiteListData != null && !string.IsNullOrEmpty(whiteListData.Id.ToString()))
+            {
+                await _whiteListService.UpdateAsync(whiteListData.Id.ToString(), whiteList);
+            }
+            else
+            {
+                whiteList.Id = ObjectId.GenerateNewId();
+                await _whiteListService.CreateAsync(whiteList);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateInstrumentDetail(
+        InstrumentDetail? detailData,
+        InstrumentDetail detail
+    )
+    {
+        try
+        {
+            if (detailData != null && !string.IsNullOrEmpty(detailData.Id.ToString()))
+            {
+                await _instrumentDetailService.UpdateAsync(detailData.Id.ToString(), detail);
+            }
+            else
+            {
+                detail.Id = ObjectId.GenerateNewId();
+                await _instrumentDetailService.CreateAsync(detail);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateInstrument(Instrument? instrumentData, Instrument instrument)
+    {
+        try
+        {
+            if (instrumentData != null && !string.IsNullOrEmpty(instrumentData.Id.ToString()))
+            {
+                await _instrumentService.UpdateAsync(instrumentData.Id.ToString(), instrument);
+            }
+            else
+            {
+                instrument.Id = ObjectId.GenerateNewId();
+                await _instrumentService.CreateAsync(instrument);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateMorningStarFlag(Instrument instrument)
+    {
+        try
+        {
+            var morningStarFlagData = await _morningStarFlagService.GetByFilterAsync(target =>
+                target.StandardTicker == instrument.Symbol);
+
+            var morningStarFlag =
+                morningStarFlagData
+                ?? new MorningStarFlag { ExchangeId = "BKK", StandardTicker = instrument.Symbol };
+
+            morningStarFlag.StartDate = DateTime.Now.AddYears(-2).ToString(DataFormat.DateTimeFormat);
+            morningStarFlag.EndDate = DateTime.Now.ToString(DataFormat.DateTimeFormat);
+            morningStarFlag.ExcludingFrom = DateTime
+                .Now.AddYears(-2)
+                .ToString(DataFormat.DateTimeFormat);
+            morningStarFlag.ExcludingTo = DateTime.Now.ToString(DataFormat.DateTimeFormat);
+
+            await _morningStarFlagService.UpsertAsyncByFilter(
+                target => target.StandardTicker == instrument.Symbol,
+                morningStarFlag
+            );
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateOrderBook(OrderBook? orderData, OrderBook orderBook)
+    {
+        try
+        {
+            if (orderData != null && !string.IsNullOrEmpty(orderData.Id.ToString()))
+            {
+                await _orderBookService.UpdateAsync(orderData.Id.ToString(), orderBook);
+            }
+            else
+            {
+                orderBook.Id = ObjectId.GenerateNewId();
+                await _orderBookService.CreateAsync(orderBook);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdatePriceInfo(PriceInfo? priceData, PriceInfo priceInfo)
+    {
+        try
+        {
+            if (priceData != null && !string.IsNullOrEmpty(priceData.Id.ToString()))
+            {
+                await _priceInfoService.UpdateAsync(priceData.Id.ToString(), priceInfo);
+            }
+            else
+            {
+                priceInfo.Id = ObjectId.GenerateNewId();
+                await _priceInfoService.CreateAsync(priceInfo);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateCorporateAction(
+        CorporateAction? corporateActionData,
+        CorporateAction corporateAction
+    )
+    {
+        try
+        {
+            if (corporateActionData != null && !string.IsNullOrEmpty(corporateActionData.Id.ToString()))
+            {
+                await _corporateActionService.UpdateAsync(
+                    corporateActionData.Id.ToString(),
+                    corporateAction
+                );
+            }
+            else
+            {
+                corporateAction.Id = ObjectId.GenerateNewId();
+                await _corporateActionService.CreateAsync(corporateAction);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> AddOrUpdateTradingSign(TradingSign? tradingSignData, TradingSign tradingSign)
+    {
+        try
+        {
+            if (tradingSignData != null && !string.IsNullOrEmpty(tradingSignData.Id.ToString()))
+            {
+                await _tradingSignService.UpdateAsync(tradingSignData.Id.ToString(), tradingSign);
+            }
+            else
+            {
+                tradingSign.Id = ObjectId.GenerateNewId();
+                await _tradingSignService.CreateAsync(tradingSign);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<DataProcessingResult> MapToDatabase(
+        TradeTickerMessageWrapper tradeTickerMessage
+    )
+    {
+        try
+        {
+            if (tradeTickerMessage.Action.Value == 1) // New item
+            {
+                var orderBookId = tradeTickerMessage.OrderbookId.Value;
+                var priceInfo = await _cacheServiceHelper.GetPriceInfoByOrderBookId(orderBookId);
+
+                if (priceInfo != null)
+                {
+                    var symbol = priceInfo.Symbol;
+                    var venue = await _cacheServiceHelper.GetVenueByOrderBookId(
+                        orderBookId,
+                        symbol ?? string.Empty
+                    );
+
+                    if (!string.IsNullOrEmpty(symbol) && !string.IsNullOrEmpty(venue))
+                    {
+                        var instrumentDetail = await _instrumentDetailService.GetByOrderBookId(
+                            orderBookId.ToString()
+                        );
+                        var decimals = instrumentDetail?.DecimalsInPrice ?? 0;
+                        var price = double.Parse(
+                            FormatDecimals(tradeTickerMessage.Price.Value.ToString(), decimals)
+                        );
+                        var realtimeMarketData = new RealtimeMarketData
+                        {
+                            DateTime = (DateTimeOffset)tradeTickerMessage.DealDateTime,
+                            Symbol = symbol,
+                            Venue = GetVenue(venue),
+                            Price = price,
+                            Volume = tradeTickerMessage.Quantity.Value,
+                            Amount = price * tradeTickerMessage.Quantity.Value
+                        };
+
+                        return new DataProcessingResult
+                        {
+                            Channel = DataProcessingChannel.TimescaleDb,
+                            Values =
+                            [
+                                new DataProcessingValue
+                                {
+                                    TableName = RealtimeTableName,
+                                    Value = realtimeMarketData
+                                }
+                            ]
+                        };
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            // Return an empty result instead of throwing an exception
+            return new DataProcessingResult { Channel = DataProcessingChannel.TimescaleDb };
+        }
+
+        return new DataProcessingResult { Channel = DataProcessingChannel.TimescaleDb };
+    }
+
+    private string GetVenue(string venue)
+    {
+        try
+        {
+            if (!string.IsNullOrEmpty(venue))
+            {
+                if (venue.Trim().Equals(InstrumentConstants.SET, StringComparison.OrdinalIgnoreCase))
+                    return InstrumentConstants.VenueOfSetStock;
+
+                if (venue.Trim().Equals(InstrumentConstants.TFEX, StringComparison.OrdinalIgnoreCase))
+                    return InstrumentConstants.VenueOfTfexStock;
+            }
+            else
+            {
+                if (_exchangeServer.StartsWith(
+                        InstrumentConstants.SET,
+                        StringComparison.OrdinalIgnoreCase))
+                    return InstrumentConstants.VenueOfSetStock;
+
+                if (
+                    _exchangeServer.StartsWith(
+                        InstrumentConstants.TFEX,
+                        StringComparison.OrdinalIgnoreCase))
+                    return InstrumentConstants.VenueOfTfexStock;
+            }
+
+            return venue;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, ErrorFormat, ErrorMsg, ex.Message);
+            // Return the original venue instead of throwing exception
+            return venue;
+        }
+    }
+
+    private static string FormatDecimals(string value, int decimals)
+    {
+        // Check for null or empty value
+        if (string.IsNullOrEmpty(value))
+            return "0." + new string('0', decimals);
+
+        // Handle the case where decimals is 0
+        if (decimals == 0)
+        {
+            // If value contains a decimal point, return it unchanged
+            if (value.Contains('.'))
+                return value;
+
+            // If value does not contain a decimal point, append ".00"
+            return value + ".00";
+        }
+
+        // Remove any existing decimal point
+        value = value.Replace(".", string.Empty);
+
+        // Calculate the position to insert the decimal point
+        var insertPosition = value.Length - decimals;
+
+        // If the position is less than or equal to 0, the value will have all zeros before the decimal point
+        if (insertPosition <= 0)
+            return "0." + value.PadLeft(decimals, '0');
+
+        // Insert the decimal point
+        var formattedValue = value.Insert(insertPosition, ".");
+
+        return formattedValue;
+    }
+}

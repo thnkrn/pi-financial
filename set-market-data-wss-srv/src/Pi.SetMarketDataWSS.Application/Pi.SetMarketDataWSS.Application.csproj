@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;nullable</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove="Services\"/>
+        <None Remove="Commands\"/>
+        <None Remove="Services\Models\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Commands\"/>
+        <Folder Include="Exceptions\"/>
+        <Folder Include="Models\"/>
+        <Folder Include="Services\FixMapper\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
+        <PackageReference Include="StackExchange.Redis" Version="2.7.33"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.SetMarketDataWSS.Domain\Pi.SetMarketDataWSS.Domain.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.SetMarketDataWSS.Domain\Pi.SetMarketDataWSS.Domain.csproj"/>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,137 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    platform: linux/amd64
+    image: confluentinc/cp-zookeeper:7.0.1
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    platform: linux/amd64
+    image: confluentinc/cp-kafka:7.0.1
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8888:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  timescaledb:
+    container_name: timescaledb
+    image: timescale/timescaledb:latest-pg16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pi_market
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+    networks:
+      - timescale_kafka_redis
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com # Change to your preferred admin email
+      PGADMIN_DEFAULT_PASSWORD: admin # Change to your preferred admin password
+    ports:
+      - "5050:80"
+    depends_on:
+      - timescaledb
+    networks:
+      - timescale_kafka_redis
+
+  connect:
+    image: quay.io/debezium/connect:2.7
+    ports:
+     - 8083:8083
+     - 5005:5005
+    links:
+     - kafka
+     - timescaledb
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=dbz_my_connect_configs
+     - OFFSET_STORAGE_TOPIC=dbz_my_connect_offsets
+     - STATUS_STORAGE_TOPIC=dbz_my_connect_statuses
+     - KAFKA_DEBUG=true
+     - DEBUG_SUSPEND_FLAG=n
+     - JAVA_DEBUG_PORT=*:5005
+     - KAFKA_CONNECT_PLUGINS_DIR=/kafka/connect/,/etc/debezium-plugins
+    volumes:
+      - ./debezium/plugins:/kafka/connect/debezium-connector-postgres
+  
+  redis:
+    image: redis:7
+    # command: >
+    #   sh -c "redis-server --requirepass $${REDIS_PASSWORD} 
+    #   --user $${REDIS_USERNAME} on >$${REDIS_PASSWORD} ~* &>@all"
+    # # command: ["redis-server", "--requirepass", "pass", "--user", "user pass"]
+    # environment:
+    #   - REDIS_USERNAME=user
+    #   - REDIS_PASSWORD=pass
+    ports:
+      - 6379:6379
+
+  redis-ui:
+    image: redis/redisinsight:latest
+    environment:
+      RI_APP_HOST: 0.0.0.0
+    ports:
+      - 5540:5540
+  
+  mongo:
+    image: 'mongo:7.0.5'
+    ports:
+      - 27018:27017
+    volumes:
+      - ./mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+  mongo-express:
+    image: 'mongo-express:latest'
+    ports:
+      - 8092:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongo  # Assuming your MongoDB container is named 'mongo'
+      ME_CONFIG_MONGODB_AUTH_DATABASE: admin  # Database to use for authentication
+      ME_CONFIG_BASICAUTH_USERNAME: user_name
+      ME_CONFIG_BASICAUTH_PASSWORD: pass_word
+    depends_on:
+      - mongo  # This ensures mongo-express starts after the MongoDB container
+
+networks:
+  timescale_kafka_redis:
+    driver: bridge
+
+volumes:
+  timescale-data:
+  kafka-data:

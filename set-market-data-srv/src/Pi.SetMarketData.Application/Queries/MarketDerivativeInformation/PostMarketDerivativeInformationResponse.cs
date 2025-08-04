@@ -1,0 +1,5 @@
+using Pi.SetMarketData.Domain.Models.Response;
+
+namespace Pi.SetMarketData.Application.Queries.MarketDerivativeInformation;
+
+public record PostMarketDerivativeInformationResponse(MarketDerivativeInformationResponse Data);

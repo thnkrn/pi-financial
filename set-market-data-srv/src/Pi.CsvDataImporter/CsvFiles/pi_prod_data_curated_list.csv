@@ -1,0 +1,159 @@
+curated_list_id,curated_list_code,curated_type,relevant_to,name,hashtag,ordering,create_time,update_time,update_by,Is_default
+43,,Logical,Bonds,Bonds,,7,2022-08-24 23:36:20,2022-08-24 23:36:20,wu,N/A
+57,,Logical,Landing Pages,Pi-Ideas,#Pi.Ideas,1,2022-08-26 14:21:54,2022-08-26 14:21:54,wu,N/A
+64,,Logical,Thai Equities,Thai Stocks,#THStocks,1,2022-08-26 15:47:55,2022-08-26 15:47:55,wu,N/A
+71,,Logical,Thai Equities,Derivative Warrants,#DW,1,2022-08-26 15:52:58,2022-08-26 15:52:58,wu,N/A
+85,,Logical,Thai Equities,PFREIT,#PFREITS,1,2022-08-26 15:59:25,2022-10-21 19:26:39,wu,N/A
+99,,Logical,Thai Equities,ETFs,#ETFs,1,2022-08-26 16:06:59,2022-08-26 16:06:59,wu,N/A
+113,,Logical,Thai Equities,Awesome Warrants,#AwesomeWarrants,1,2022-08-26 16:15:35,2022-08-26 16:15:35,wu,N/A
+127,,Logical,Thai Equities,PFREITS 1,#PFREITS1,1,2022-08-26 16:20:46,2022-08-26 16:20:46,wu,N/A
+134,,Logical,Thai Equities,PFREITS 2,#PFREITS2,1,2022-08-26 16:22:10,2022-08-26 16:22:10,wu,N/A
+141,,Logical,Thai Equities,PFREITS 3,#PFREITS3,1,2022-08-26 16:22:43,2022-08-26 16:22:43,wu,N/A
+148,,Logical,Thai Equities,PFREITS 4,#PFREITS4,1,2022-08-26 16:25:08,2022-08-26 16:25:08,wu,N/A
+155,,Logical,Thai Equities,PFREITS 5,#PFREITS5,1,2022-08-26 16:25:47,2022-08-26 16:25:47,wu,N/A
+162,,Logical,Thai Equities,Inno DR,#DR,1,2022-08-26 16:27:36,2022-08-26 16:27:36,wu,N/A
+169,,Logical,Thai Equities,EV DR,#DR,1,2022-08-26 16:29:13,2022-08-26 16:29:13,wu,N/A
+176,,Logical,Thai Equities,Huge DR,#DR,1,2022-08-26 16:29:58,2022-08-26 16:29:58,wu,N/A
+183,,Logical,Derivatives,SET50 Futures,#S50Futures,1,2022-08-26 16:34:24,2022-08-26 16:34:24,wu,N/A
+190,,Logical,Derivatives,SET50 Options,#S50IO,1,2022-08-26 16:36:59,2022-08-26 16:36:59,wu,N/A
+197,,Logical,Derivatives,SET50 Call Options,#S50IO,1,2022-08-26 16:38:28,2022-08-26 16:38:28,wu,N/A
+204,,Logical,Derivatives,SET50 Put Options,#S50IO,1,2022-08-26 16:39:53,2022-08-26 16:39:53,wu,N/A
+211,,Logical,Derivatives,Stock Futures,#SSF,1,2022-08-26 16:41:41,2022-08-26 16:41:41,wu,N/A
+218,,Logical,Derivatives,Bank,#Bank,1,2022-08-26 16:43:49,2022-08-26 16:43:49,wu,N/A
+225,,Logical,Derivatives,Communications,#Comm,1,2022-08-26 16:45:15,2022-08-26 16:45:15,wu,N/A
+232,,Logical,Derivatives,Information,#ICT,1,2022-08-26 16:46:35,2022-08-26 16:46:35,wu,N/A
+239,,Logical,Derivatives,MetalCurrencyFutures,#MCF,1,2022-08-26 16:48:01,2022-08-26 16:48:01,wu,N/A
+246,,Logical,Global Equities,Global Equities,#GlobalEQ,1,2022-08-26 16:50:18,2022-08-26 16:50:18,wu,N/A
+253,,Logical,Global Equities,Global Stocks,#GlobalStocks,1,2022-08-26 16:53:07,2022-08-26 16:53:07,wu,0
+260,,Logical,Global Equities,Global ETFs,#GlobalETFs,1,2022-08-26 16:55:15,2022-08-26 16:55:15,wu,1
+267,,Logical,Funds,Funds,#MostActiveFunds,1,2022-08-26 17:02:55,2022-08-26 17:02:55,wu,N/A
+295,,Logical,Indices,Sector Indices,#sectorIndices,1,2022-08-26 17:13:16,2022-11-17 17:28:58,pitest03,N/A
+309,,Logical,Crypto,Default (Crypto THB Pairs),#Crypto,1,2022-08-26 17:16:40,2022-10-21 19:08:50,wu,N/A
+367,toploser,Logical,Thai Equities,Thai Top Loser,#Top.Loser.TH,3,2022-10-21 11:29:31,2022-10-21 19:18:29,wu,N/A
+661,,Logical,Thai Equities,S50,#SET50.TH,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+668,,Logical,Thai Equities,SET,#SET.TH,,2022-11-09 13:05:48,2022-11-09 13:05:48,,0
+675,,Logical,Thai Equities,SSET,#sSET.TH,,2022-11-09 13:05:48,2022-11-09 13:05:48,,0
+682,,Logical,Thai Equities,SETCLMV,#SETCLMV,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+689,,Logical,Thai Equities,SETHD,#SETHD,,2022-11-09 13:05:48,2022-11-09 13:05:48,,0
+696,,Logical,Thai Equities,SETHSI,#SETHSI,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+703,,Logical,Thai Equities,SETWEB,#SETWEB,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+710,,Logical,Thai Equities,mai,#SET.mai,,2022-11-09 13:05:48,2023-08-26 12:13:27,norathep.si,0
+717,,Logical,Thai Equities,AGRO,#AGRO,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+724,,Logical,Thai Equities,CONSUMP,#CONSUMP,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+731,,Logical,Thai Equities,FINCIAL,#FINCIAL,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+738,,Logical,Thai Equities,SERVICE,#SERVICE,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+745,,Logical,Thai Equities,PROPCON,#PROPCON,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+752,,Logical,Thai Equities,RESOURC,#RESOURC,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+759,,Logical,Thai Equities,INDUS,#INDUS,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+766,,Logical,Thai Equities,TECH,#TECH,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+773,mostactivevalue,Logical,Thai Equities,Thai Most Active,#Most.Active.TH,,2022-11-09 13:05:48,2022-11-11 22:30:02,,N/A
+780,topgainer,Logical,Thai Equities,Thai Top Gainers,#Top.Gainers.TH,,2022-11-09 13:05:48,2022-11-11 22:30:02,,N/A
+787,toploser,Logical,Thai Equities,Thai Top Losers,#Top.Losers.TH,,2022-11-09 13:05:48,2022-11-11 22:30:03,,N/A
+794,,Logical,Thai Equities,AGRI,#AGRI,,2022-11-09 13:05:48,2022-11-23 18:06:00,cwnkkt,N/A
+801,,Logical,Thai Equities,FOOD,#FOOD,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+808,,Logical,Thai Equities,FASHION,#FASHION,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+815,,Logical,Thai Equities,HOME,#HOME,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+822,,Logical,Thai Equities,PERSON,#PERSON,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+829,,Logical,Thai Equities,BANK,#BANK,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+836,,Logical,Thai Equities,FIN,#FIN,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+843,,Logical,Thai Equities,INSUR,#INSUR,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+850,,Logical,Thai Equities,AUTO,#AUTO,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+857,,Logical,Thai Equities,IMM,#IMM,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+864,,Logical,Thai Equities,PAPER,#PAPER,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+871,,Logical,Thai Equities,PETRO,#PETRO,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+878,,Logical,Thai Equities,PKG,#PKG,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+885,,Logical,Thai Equities,STEEL,#STEEL,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+892,,Logical,Thai Equities,CONMAT,#CONMAT,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+899,,Logical,Thai Equities,PROP,#PROP,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+906,,Logical,Thai Equities,PF&REIT,#PF&REIT,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+913,,Logical,Thai Equities,CONS,#CONS,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+920,,Logical,Thai Equities,ENERG,#ENERG,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+927,,Logical,Thai Equities,MINE,#MINE,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+934,,Logical,Thai Equities,COMM,#COMM,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+941,,Logical,Thai Equities,HELTH,#HELTH,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+948,,Logical,Thai Equities,MEDIA,#MEDIA,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+955,,Logical,Thai Equities,PROF,#PROF,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+962,,Logical,Thai Equities,TOURISM,#TOURISM,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+969,,Logical,Thai Equities,TRANS,#TRANS,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+976,,Logical,Thai Equities,ETRON,#ETRON,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+983,,Logical,Thai Equities,ICT,#ICT,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+990,,Logical,Thai Equities,S50 Index Derivative Warrants,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+997,,Logical,Thai Equities,Thai Stock Derivative Warrants,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,0
+1004,,Logical,Thai Equities,Foreign Derivative Warrants,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,0
+1011,,Logical,Thai Equities,Default (Depositary Receipts),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1018,,Logical,Thai Equities,Default (Thai Warrants),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1025,,Logical,Thai Equities,Default (Thai ETFs),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1032,,Logical,Derivatives,Default (SET50 Index Futures),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1039,,Logical,Derivatives,Default (Sector Index Futures),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1046,,Logical,Derivatives,Default (Single Stock Futures),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1053,,Logical,Derivatives,Default (Precious Metal Futures),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1060,,Logical,Derivatives,Default (Currency Futures),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1067,,Logical,Derivatives,Default (SET50 Index Options),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,1
+1074,,Logical,Funds,Top Funds YTD,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+1081,,Logical,Funds,Top Funds 3M,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+1088,,Logical,Funds,Top Funds 6M,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+1095,,Logical,Funds,Top Funds 1Y,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+1102,,Logical,Funds,Top Funds 3Y,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+1109,,Logical,Funds,Top Funds 5Y,,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+1116,,Logical,Bonds,Default (Bonds),,,2022-11-09 13:05:48,2022-11-09 13:05:48,,N/A
+9574,,Logical,Thai Equities,Thai SET Most Active,#Most.Active.TH.SET,,2023-03-07 17:25:51,2023-03-07 17:25:51,,N/A
+9581,,Logical,Thai Equities,Thai MAI Most Active,#Most.Active.TH.MAI,,2023-03-07 17:25:51,2023-03-08 10:28:27,tiwakwan.pe,N/A
+10098,,Logical,Thai Equities,SET Stocks,#SETSTOCK.ALL,,2023-08-26 11:17:07,,,0
+10105,,Logical,Thai Equities,SET DWs,,,2023-08-26 11:17:07,,,0
+10112,,Logical,Global Equities,Global Stocks,#GLOBALSTOCK.ALL,,2023-08-26 11:17:07,,,N/A
+10119,,Logical,Funds,Money Market,,,2023-08-26 11:17:07,,,0
+10126,,Logical,Funds,Fixed Income,,,2023-08-26 11:17:07,,,0
+10133,,Logical,Funds,Global Fixed Income,,,2023-08-26 11:17:07,,,0
+10140,,Logical,Funds,Thailand Equity,,,2023-08-26 11:17:07,,,0
+10147,,Logical,Funds,Global Equity (Emerging),,,2023-08-26 11:17:07,,,0
+10154,,Logical,Funds,Global Equity (Developed),,,2023-08-26 11:17:07,,,0
+10161,,Logical,Funds,Allocation,,,2023-08-26 11:17:07,,,0
+10168,,Logical,Funds,REITs,,,2023-08-26 11:17:07,,,0
+10175,,Logical,Funds,Commodity,,,2023-08-26 11:17:07,,,0
+10182,,Logical,Funds,Others,,,2023-08-26 11:17:07,,,0
+10189,,Logical,Global Equities,NASDAQ Most Active,#Most.Active.GE.NASDAQ,,2023-08-26 11:29:33,,,N/A
+10196,,Logical,Global Equities,HK Most Active,#Most.Active.GE.HKEX,,2023-08-26 11:29:33,,,N/A
+10203,,Logical,Mutual Funds,Top Funds,#Top.Funds,,2023-08-26 11:29:33,,,N/A
+10210,,Logical,Funds,All Funds,#Fund.All,,2023-12-22 17:48:43,,,1
+10994,,Manual,Commodities,Commodities,#Commodities,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11001,,Manual,Currencies,Currencies,#Currencies,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11008,,Manual,Funds,Dividend Funds,#Dividend.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11015,,Manual,Funds,Emerging Markets Funds,#EM.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11022,,Manual,Funds,Energy Funds,#Energy.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11029,,Manual,Funds,Healthcare Funds,#Healthcare.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11036,,Manual,Funds,Index Funds,#Index.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11043,,Manual,Funds,Infrastructure Funds,#Infra.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11050,,Manual,Funds,KASSET,#KASSET,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11057,,Manual,Funds,MFC,#MFC,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11064,,Manual,Funds,Most Active Funds,#Most.Active.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11071,,Manual,Funds,New Funds,#New.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11078,,Manual,Funds,SCBAM,#SCBAM,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11085,,Manual,Funds,Technology Funds,#Technology.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11092,,Manual,Global Equities,Energy,#Energy,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11099,,Manual,Global Equities,Healthcare,#Healthcare,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11106,,Manual,Global Equities,Hong Kong,#HongKong,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11113,,Manual,Global Equities,Innovation,#Innovation,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11120,,Manual,Global Equities,Metaverse,#Metaverse,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11127,,Manual,Global Equities,NASDAQ,#NASDAQ,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11134,,Manual,Global Equities,S&P 500,#S&P500,,2023-12-27 16:15:07,2023-12-27 16:15:07,,0
+11141,,Manual,Global Equities,Top Asia,#Top.Asia,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11148,,Manual,Global Equities,Top Brands,#Global.Brands,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11155,,Manual,Global Equities,Top ETFs,#Top.ETFs,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11162,,Manual,Global Equities,Top ETFs 2,#Top.ETFs2,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11169,,Manual,Global Equities,Top ETFs 3,#Top.ETFs3,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11176,,Manual,Global Equities,Top Stocks,#Global.Top.Stocks,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11183,,Manual,Global Equities,Top Tech,#Top.Tech,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11190,,Manual,Homepage,Home Carousel,#Home.Carousel,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11197,,Manual,Homepage,Home Funds,#Home.Funds,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11204,,Manual,Homepage,Home HK,#Home.HK,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11211,,Manual,Homepage,Home NASDAQ,#Home.NASDAQ,,2023-12-27 16:15:07,2023-12-27 16:15:07,,N/A
+11218,,Manual,Indices,Americas Indices,#Americas.Markets,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11225,,Manual,Indices,Asia-Pacific Indices,#Asia.Markets,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11232,,Manual,Indices,Europe Indices,#Europe.Markets,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11239,,Manual,Indices,Major Markets Indices,#Major.Markets,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11246,,Manual,Indices,Thailand Indices,#Thailand.Market,,2023-12-27 16:15:07,2023-12-27 16:15:07,,1
+11253,,Logical,Global Equities,NASDAQ ETFs,#NASDAQETFs,,2024-04-19 9:15:50,2024-04-19 9:15:50,,0
+11260,,Logical,Global Equities,ARCA ETFs,#ARCAETFs,,2024-04-19 9:15:50,2024-04-19 9:15:50,,0
+11267,,Logical,Global Equities,BATS ETFs,#BATSETFs,,2024-04-19 9:15:50,2024-04-19 9:15:50,,0
+11268,,Manual,Homepage,Home SET,#HOME.SET,,2025-01-28 9:15:50,2025-01-28 9:15:50,B,1
+11269,,Manual,Homepage,Home MAI,#HOME.MAI,,2025-01-28 9:15:50,2025-01-28 9:15:50,B,1

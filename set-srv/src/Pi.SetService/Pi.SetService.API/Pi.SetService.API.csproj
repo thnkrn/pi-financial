@@ -1,0 +1,71 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>Pi.SetService.API</RootNamespace>
+        <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>d2a4af1f-494f-42f8-9665-a9312f80a492</UserSecretsId>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+        <DocumentationFile>bin\Debug\net8.0\Pi.SetService.API.xml</DocumentationFile>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <DocumentationFile>bin\Release\net8.0\Pi.SetService.API.xml</DocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="EFCore.NamingConventions" Version="8.0.3"/>
+        <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="7.0.2"/>
+        <PackageReference Include="Pi.Client.SetMarketData" Version="1.0.6"/>
+        <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0"/>
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.2.3"/>
+        <PackageReference Include="MassTransit.Analyzers" Version="8.2.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.2.3"/>
+        <PackageReference Include="MassTransit" Version="8.2.3"/>
+        <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0"/>
+        <PackageReference Include="Pi.Common.Serilog" Version="1.0.115"/>
+        <PackageReference Include="pi.common.startup" Version="1.0.115"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Startup\"/>
+        <None Remove="Serilog.AspNetCore"/>
+        <None Remove="MassTransit.AmazonSQS"/>
+        <None Remove="MassTransit.Analyzers"/>
+        <None Remove="MassTransit.EntityFrameworkCore"/>
+        <None Remove="MassTransit"/>
+        <None Remove="Amazon.Extensions.Configuration.SystemsManager"/>
+        <None Remove="Pi.Common"/>
+        <None Remove="Serilog.Sinks.Seq"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Startup\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.SetService.Application\Pi.SetService.Application.csproj">
+            <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.SetService.Infrastructure\Pi.SetService.Infrastructure.csproj">
+            <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.SetService.IntegrationEvents\Pi.SetService.IntegrationEvents.csproj">
+            <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.SetService.Migrations\Pi.SetService.Migrations.csproj"/>
+    </ItemGroup>
+</Project>

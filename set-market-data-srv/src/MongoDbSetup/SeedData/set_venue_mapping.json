@@ -1,0 +1,16 @@
+[
+  {
+    "source": "SET",
+    "exchange": "SET",
+    "mic": "XBKK",
+    "exchangeid_ms": "BKK",
+    "venue_code": "Equity"
+  },
+  {
+    "source": "SET",
+    "exchange": "TFEX",
+    "mic": "-",
+    "exchangeid_ms": "-",
+    "venue_code": "Derivative"
+  }
+]

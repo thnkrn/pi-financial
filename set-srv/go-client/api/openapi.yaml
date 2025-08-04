@@ -1,0 +1,3457 @@
+openapi: 3.0.1
+info:
+  title: "Pi.SetService.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /internal/sbl/orders:
+    get:
+      parameters:
+      - explode: true
+        in: query
+        name: Page
+        required: false
+        schema:
+          example: "123"
+          format: int32
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: PageSize
+        required: false
+        schema:
+          example: "123"
+          format: int32
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: OrderBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: OrderDir
+        required: false
+        schema:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelCommonAggregateOrderDirection'
+        style: form
+      - explode: true
+        in: query
+        name: TradingAccountNo
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Open
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: Symbol
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Statues
+        required: false
+        schema:
+          items:
+            $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus'
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: Type
+        required: false
+        schema:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType'
+        style: form
+      - explode: true
+        in: query
+        name: CreatedDateFrom
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: CreatedDateTo
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - Sbl
+  /internal/sbl/orders/{orderId}:
+    patch:
+      parameters:
+      - explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsSblOrderSubmitReviewRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsSblOrderSubmitReviewRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsSblOrderSubmitReviewRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - Sbl
+  /internal/sbl/instruments:
+    get:
+      parameters:
+      - explode: true
+        in: query
+        name: Page
+        required: false
+        schema:
+          example: "123"
+          format: int32
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: PageSize
+        required: false
+        schema:
+          example: "123"
+          format: int32
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: OrderBy
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: OrderDir
+        required: false
+        schema:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelCommonAggregateOrderDirection'
+        style: form
+      - explode: true
+        in: query
+        name: Symbol
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - Sbl
+  /secure/accounts/openorders:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/available/balance:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/sbl/available/balance:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/cash/balance/summary:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/credit/balance/summary:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /internal/accounts/balance/summary:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/cash/balance/assets:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/cash/balance/info:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/credit/balance/assets:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/accounts/credit/balance/info:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/orders/histories/open:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: offSet
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/orders/histories/confirm:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: offSet
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /trading/orders:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/orders:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /trading/orders/change:
+    patch:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/orders/change:
+    patch:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /trading/orders/cancel:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/orders/cancel:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /secure/instruments/equity/margin-rate:
+    get:
+      parameters:
+      - explode: true
+        in: query
+        name: symbol
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsMarginRateResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsMarginRateResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceAPIModelsMarginRateResponseApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - SetTrading
+  /internal/sync/initial-margin:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceApplicationCommandsSyncInitialMarginRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceApplicationCommandsSyncInitialMarginRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceApplicationCommandsSyncInitialMarginRequest'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Sync
+  /internal/sync/sbl-instruments:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceApplicationCommandsSyncSblInstrument'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceApplicationCommandsSyncSblInstrument'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiSetServiceApplicationCommandsSyncSblInstrument'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceApplicationModelsSyncProcessResultApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceApplicationModelsSyncProcessResultApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSetServiceApplicationModelsSyncProcessResultApiResponse'
+          description: OK
+      tags:
+      - Sync
+components:
+  schemas:
+    MicrosoftAspNetCoreMvcProblemDetails:
+      additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: "123"
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          example: "123"
+          format: int32
+          nullable: true
+          type: string
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    PiSetServiceAPIModelsAccountDetail:
+      additionalProperties: false
+      example:
+        balance: "1112.1314"
+        balanceUnit: balanceUnit
+      properties:
+        balanceUnit:
+          nullable: true
+          type: string
+        balance:
+          example: "1112.1314"
+          format: double
+          type: string
+      required:
+      - balance
+      - balanceUnit
+      type: object
+    PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        tradingAccountNo: tradingAccountNo
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        tradingAccountNo:
+          nullable: true
+          type: string
+      required:
+      - symbol
+      - tradingAccountNo
+      type: object
+    PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponse:
+      additionalProperties: false
+      example:
+        accountDetail:
+          balance: "1112.1314"
+          balanceUnit: balanceUnit
+        unitRemain:
+          unit: "1112.1314"
+          amount: "1112.1314"
+          assetSymbol: assetSymbol
+          shortNvdrUnit: "1112.1314"
+          nvdrUnit: "1112.1314"
+          shortUnit: "1112.1314"
+      properties:
+        accountDetail:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsAccountDetail'
+        unitRemain:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsUnitRemain'
+      required:
+      - accountDetail
+      - unitRemain
+      type: object
+    PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          accountDetail:
+            balance: "1112.1314"
+            balanceUnit: balanceUnit
+          unitRemain:
+            unit: "1112.1314"
+            amount: "1112.1314"
+            assetSymbol: assetSymbol
+            shortNvdrUnit: "1112.1314"
+            nvdrUnit: "1112.1314"
+            shortUnit: "1112.1314"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponse'
+      type: object
+    PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponse:
+      additionalProperties: false
+      example:
+        ee: "1112.1314"
+        sblFlag: true
+        closePriceYesterday: "1112.1314"
+        shortUnitAvailable: "1112.1314"
+        borrowCredit: "1112.1314"
+        shelfAvailable: "123"
+        power: "1112.1314"
+        initialMarginRate: "1112.1314"
+        allowBorrowing: true
+        maximumShares: "1112.1314"
+      properties:
+        ee:
+          example: "1112.1314"
+          format: double
+          type: string
+        shelfAvailable:
+          example: "123"
+          format: int32
+          type: string
+        sblFlag:
+          type: boolean
+        borrowCredit:
+          example: "1112.1314"
+          format: double
+          type: string
+        maximumShares:
+          example: "1112.1314"
+          format: double
+          type: string
+        shortUnitAvailable:
+          example: "1112.1314"
+          format: double
+          type: string
+        power:
+          example: "1112.1314"
+          format: double
+          type: string
+        initialMarginRate:
+          example: "1112.1314"
+          format: double
+          type: string
+        closePriceYesterday:
+          example: "1112.1314"
+          format: double
+          type: string
+        allowBorrowing:
+          type: boolean
+      required:
+      - allowBorrowing
+      - borrowCredit
+      - closePriceYesterday
+      - ee
+      - initialMarginRate
+      - maximumShares
+      - power
+      - sblFlag
+      - shelfAvailable
+      - shortUnitAvailable
+      type: object
+    PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          ee: "1112.1314"
+          sblFlag: true
+          closePriceYesterday: "1112.1314"
+          shortUnitAvailable: "1112.1314"
+          borrowCredit: "1112.1314"
+          shelfAvailable: "123"
+          power: "1112.1314"
+          initialMarginRate: "1112.1314"
+          allowBorrowing: true
+          maximumShares: "1112.1314"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponse'
+      type: object
+    PiSetServiceAPIModelsCaEvent:
+      additionalProperties: false
+      example:
+        date: date
+        eventId: "123"
+        caType: caType
+      properties:
+        eventId:
+          example: "123"
+          format: int32
+          type: string
+        date:
+          nullable: true
+          type: string
+        caType:
+          nullable: true
+          type: string
+      required:
+      - caType
+      - date
+      type: object
+    PiSetServiceAPIModelsCancelOrderRequest:
+      additionalProperties: false
+      example:
+        tradingAccountNo: tradingAccountNo
+        orderId: orderId
+      properties:
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        orderId:
+          minLength: 1
+          type: string
+      required:
+      - orderId
+      - tradingAccountNo
+      type: object
+    PiSetServiceAPIModelsChangeOrderRequest:
+      additionalProperties: false
+      example:
+        volume: "123"
+        tradingAccountNo: tradingAccountNo
+        flag:
+        - nvdr
+        - nvdr
+        orderId: orderId
+        price: "1112.1314"
+      properties:
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        orderId:
+          minLength: 1
+          type: string
+        price:
+          example: "1112.1314"
+          format: double
+          type: string
+        volume:
+          example: "123"
+          format: int32
+          type: string
+        flag:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsOrderFlag'
+          nullable: true
+          type: array
+      required:
+      - orderId
+      - price
+      - tradingAccountNo
+      - volume
+      type: object
+    PiSetServiceAPIModelsMarginRateResponse:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        rate: "1112.1314"
+        isTurnoverList: true
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        rate:
+          example: "1112.1314"
+          format: double
+          type: string
+        isTurnoverList:
+          type: boolean
+      required:
+      - isTurnoverList
+      - rate
+      - symbol
+      type: object
+    PiSetServiceAPIModelsMarginRateResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          symbol: symbol
+          rate: "1112.1314"
+          isTurnoverList: true
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsMarginRateResponse'
+      type: object
+    PiSetServiceAPIModelsOrderFlag:
+      enum:
+      - nvdr
+      - lending
+      type: string
+    PiSetServiceAPIModelsPlaceOrderRequest:
+      additionalProperties: false
+      example:
+        tif: none
+        orderType: Limit
+        symbol: symbol
+        tradingAccountNo: tradingAccountNo
+        side: cover
+        quantity: "123"
+        flag:
+        - nvdr
+        - nvdr
+        price: "1112.1314"
+      properties:
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        orderType:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateConditionPrice'
+        side:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction'
+        symbol:
+          minLength: 1
+          type: string
+        quantity:
+          example: "123"
+          format: int32
+          type: string
+        price:
+          example: "1112.1314"
+          format: double
+          nullable: true
+          type: string
+        tif:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateCondition'
+        flag:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsOrderFlag'
+          nullable: true
+          type: array
+      required:
+      - orderType
+      - quantity
+      - side
+      - symbol
+      - tradingAccountNo
+      type: object
+    PiSetServiceAPIModelsSblOrderSubmitReviewRequest:
+      additionalProperties: false
+      example:
+        reviewerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        rejectedReason: rejectedReason
+        status: approved
+      properties:
+        status:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsSblSubmitReviewStatus'
+        reviewerId:
+          format: uuid
+          type: string
+        rejectedReason:
+          nullable: true
+          type: string
+      required:
+      - reviewerId
+      - status
+      type: object
+    PiSetServiceAPIModelsSblSubmitReviewStatus:
+      enum:
+      - approved
+      - rejected
+      type: string
+    PiSetServiceAPIModelsSetAccountAssetsResponse:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        marketPrice: "1112.1314"
+        caFlag: true
+        side: side
+        nvdr: true
+        costValue: "1112.1314"
+        availableVolume: "1112.1314"
+        stockType: stockType
+        caEventList:
+        - date: date
+          eventId: "123"
+          caType: caType
+        - date: date
+          eventId: "123"
+          caType: caType
+        marketValue: "1112.1314"
+        averageCostPrice: "1112.1314"
+        isNew: true
+        sellableVolume: "1112.1314"
+        assetType: assetType
+        upnl: "1112.1314"
+        instrumentCategory: instrumentCategory
+        upnlPercentage: "1112.1314"
+        realizedPnl: "1112.1314"
+        logo: logo
+        lendingVolume: "1112.1314"
+        friendlyName: friendlyName
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        marketPrice:
+          example: "1112.1314"
+          format: double
+          type: string
+        nvdr:
+          type: boolean
+        assetType:
+          nullable: true
+          type: string
+        isNew:
+          type: boolean
+        caFlag:
+          type: boolean
+        averageCostPrice:
+          example: "1112.1314"
+          format: double
+          type: string
+        costValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        marketValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        upnl:
+          example: "1112.1314"
+          format: double
+          type: string
+        upnlPercentage:
+          example: "1112.1314"
+          format: double
+          type: string
+        side:
+          nullable: true
+          type: string
+        availableVolume:
+          example: "1112.1314"
+          format: double
+          type: string
+        sellableVolume:
+          example: "1112.1314"
+          format: double
+          type: string
+        caEventList:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsCaEvent'
+          nullable: true
+          type: array
+        lendingVolume:
+          example: "1112.1314"
+          format: double
+          nullable: true
+          type: string
+        realizedPnl:
+          example: "1112.1314"
+          format: double
+          nullable: true
+          type: string
+        stockType:
+          nullable: true
+          type: string
+        logo:
+          nullable: true
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+      required:
+      - assetType
+      - availableVolume
+      - averageCostPrice
+      - caEventList
+      - caFlag
+      - costValue
+      - isNew
+      - marketPrice
+      - marketValue
+      - nvdr
+      - sellableVolume
+      - side
+      - symbol
+      - upnl
+      - upnlPercentage
+      type: object
+    PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - symbol: symbol
+          marketPrice: "1112.1314"
+          caFlag: true
+          side: side
+          nvdr: true
+          costValue: "1112.1314"
+          availableVolume: "1112.1314"
+          stockType: stockType
+          caEventList:
+          - date: date
+            eventId: "123"
+            caType: caType
+          - date: date
+            eventId: "123"
+            caType: caType
+          marketValue: "1112.1314"
+          averageCostPrice: "1112.1314"
+          isNew: true
+          sellableVolume: "1112.1314"
+          assetType: assetType
+          upnl: "1112.1314"
+          instrumentCategory: instrumentCategory
+          upnlPercentage: "1112.1314"
+          realizedPnl: "1112.1314"
+          logo: logo
+          lendingVolume: "1112.1314"
+          friendlyName: friendlyName
+        - symbol: symbol
+          marketPrice: "1112.1314"
+          caFlag: true
+          side: side
+          nvdr: true
+          costValue: "1112.1314"
+          availableVolume: "1112.1314"
+          stockType: stockType
+          caEventList:
+          - date: date
+            eventId: "123"
+            caType: caType
+          - date: date
+            eventId: "123"
+            caType: caType
+          marketValue: "1112.1314"
+          averageCostPrice: "1112.1314"
+          isNew: true
+          sellableVolume: "1112.1314"
+          assetType: assetType
+          upnl: "1112.1314"
+          instrumentCategory: instrumentCategory
+          upnlPercentage: "1112.1314"
+          realizedPnl: "1112.1314"
+          logo: logo
+          lendingVolume: "1112.1314"
+          friendlyName: friendlyName
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponse'
+          nullable: true
+          type: array
+      type: object
+    PiSetServiceAPIModelsSetAccountCashBalanceInfoResponse:
+      additionalProperties: false
+      example:
+        buyLimit: "1112.1314"
+        accountNo: accountNo
+        cashBalance: "1112.1314"
+        pendingSettlement: "1112.1314"
+        creditLimit: "1112.1314"
+      properties:
+        accountNo:
+          nullable: true
+          type: string
+        buyLimit:
+          example: "1112.1314"
+          format: double
+          type: string
+        creditLimit:
+          example: "1112.1314"
+          format: double
+          type: string
+        cashBalance:
+          example: "1112.1314"
+          format: double
+          type: string
+        pendingSettlement:
+          example: "1112.1314"
+          format: double
+          type: string
+      required:
+      - accountNo
+      - buyLimit
+      - cashBalance
+      - creditLimit
+      - pendingSettlement
+      type: object
+    PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          buyLimit: "1112.1314"
+          accountNo: accountNo
+          cashBalance: "1112.1314"
+          pendingSettlement: "1112.1314"
+          creditLimit: "1112.1314"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponse'
+      type: object
+    PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponse:
+      additionalProperties: false
+      example:
+        buyLimit: "1112.1314"
+        marginRatio: "1112.1314"
+        accountNo: accountNo
+        cashBalance: "1112.1314"
+        liabilities: "1112.1314"
+        creditLimit: "1112.1314"
+        marginCall: "1112.1314"
+        excessEquity: "1112.1314"
+        marginRequired: "1112.1314"
+        callForce: "1112.1314"
+      properties:
+        accountNo:
+          nullable: true
+          type: string
+        buyLimit:
+          example: "1112.1314"
+          format: double
+          type: string
+        creditLimit:
+          example: "1112.1314"
+          format: double
+          type: string
+        cashBalance:
+          example: "1112.1314"
+          format: double
+          type: string
+        excessEquity:
+          example: "1112.1314"
+          format: double
+          type: string
+        marginRequired:
+          example: "1112.1314"
+          format: double
+          type: string
+        marginRatio:
+          example: "1112.1314"
+          format: double
+          type: string
+        liabilities:
+          example: "1112.1314"
+          format: double
+          type: string
+        callForce:
+          example: "1112.1314"
+          format: double
+          type: string
+        marginCall:
+          example: "1112.1314"
+          format: double
+          type: string
+      required:
+      - accountNo
+      - buyLimit
+      - callForce
+      - cashBalance
+      - creditLimit
+      - excessEquity
+      - liabilities
+      - marginCall
+      - marginRatio
+      - marginRequired
+      type: object
+    PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          buyLimit: "1112.1314"
+          marginRatio: "1112.1314"
+          accountNo: accountNo
+          cashBalance: "1112.1314"
+          liabilities: "1112.1314"
+          creditLimit: "1112.1314"
+          marginCall: "1112.1314"
+          excessEquity: "1112.1314"
+          marginRequired: "1112.1314"
+          callForce: "1112.1314"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponse'
+      type: object
+    PiSetServiceAPIModelsSetAccountSummaryResponse:
+      additionalProperties: false
+      example:
+        totalValue: "1112.1314"
+        accountCode: accountCode
+        tradingAccountType: cash
+        customerCode: customerCode
+        totalMarketValue: "1112.1314"
+        totalUpnl: "1112.1314"
+        tradingAccountNo: tradingAccountNo
+        sblEnabled: true
+        assets:
+        - symbol: symbol
+          marketPrice: "1112.1314"
+          caFlag: true
+          side: side
+          nvdr: true
+          costValue: "1112.1314"
+          availableVolume: "1112.1314"
+          stockType: stockType
+          caEventList:
+          - date: date
+            eventId: "123"
+            caType: caType
+          - date: date
+            eventId: "123"
+            caType: caType
+          marketValue: "1112.1314"
+          averageCostPrice: "1112.1314"
+          isNew: true
+          sellableVolume: "1112.1314"
+          assetType: assetType
+          upnl: "1112.1314"
+          instrumentCategory: instrumentCategory
+          upnlPercentage: "1112.1314"
+          realizedPnl: "1112.1314"
+          logo: logo
+          lendingVolume: "1112.1314"
+          friendlyName: friendlyName
+        - symbol: symbol
+          marketPrice: "1112.1314"
+          caFlag: true
+          side: side
+          nvdr: true
+          costValue: "1112.1314"
+          availableVolume: "1112.1314"
+          stockType: stockType
+          caEventList:
+          - date: date
+            eventId: "123"
+            caType: caType
+          - date: date
+            eventId: "123"
+            caType: caType
+          marketValue: "1112.1314"
+          averageCostPrice: "1112.1314"
+          isNew: true
+          sellableVolume: "1112.1314"
+          assetType: assetType
+          upnl: "1112.1314"
+          instrumentCategory: instrumentCategory
+          upnlPercentage: "1112.1314"
+          realizedPnl: "1112.1314"
+          logo: logo
+          lendingVolume: "1112.1314"
+          friendlyName: friendlyName
+        cashBalance: "1112.1314"
+        asOfDate: asOfDate
+        totalUpnlPercentage: "1112.1314"
+        totalCost: "1112.1314"
+      properties:
+        tradingAccountNo:
+          nullable: true
+          type: string
+        tradingAccountType:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateTradingAccountType'
+        customerCode:
+          nullable: true
+          type: string
+        accountCode:
+          nullable: true
+          type: string
+        asOfDate:
+          nullable: true
+          type: string
+        totalCost:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalUpnl:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalUpnlPercentage:
+          example: "1112.1314"
+          format: double
+          type: string
+        cashBalance:
+          example: "1112.1314"
+          format: double
+          type: string
+        sblEnabled:
+          type: boolean
+        totalValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalMarketValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        assets:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponse'
+          nullable: true
+          type: array
+      required:
+      - accountCode
+      - asOfDate
+      - assets
+      - cashBalance
+      - customerCode
+      - sblEnabled
+      - totalCost
+      - totalMarketValue
+      - totalUpnl
+      - totalUpnlPercentage
+      - totalValue
+      - tradingAccountNo
+      - tradingAccountType
+      type: object
+    PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          totalValue: "1112.1314"
+          accountCode: accountCode
+          tradingAccountType: cash
+          customerCode: customerCode
+          totalMarketValue: "1112.1314"
+          totalUpnl: "1112.1314"
+          tradingAccountNo: tradingAccountNo
+          sblEnabled: true
+          assets:
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          cashBalance: "1112.1314"
+          asOfDate: asOfDate
+          totalUpnlPercentage: "1112.1314"
+          totalCost: "1112.1314"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponse'
+      type: object
+    PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - totalValue: "1112.1314"
+          accountCode: accountCode
+          tradingAccountType: cash
+          customerCode: customerCode
+          totalMarketValue: "1112.1314"
+          totalUpnl: "1112.1314"
+          tradingAccountNo: tradingAccountNo
+          sblEnabled: true
+          assets:
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          cashBalance: "1112.1314"
+          asOfDate: asOfDate
+          totalUpnlPercentage: "1112.1314"
+          totalCost: "1112.1314"
+        - totalValue: "1112.1314"
+          accountCode: accountCode
+          tradingAccountType: cash
+          customerCode: customerCode
+          totalMarketValue: "1112.1314"
+          totalUpnl: "1112.1314"
+          tradingAccountNo: tradingAccountNo
+          sblEnabled: true
+          assets:
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          cashBalance: "1112.1314"
+          asOfDate: asOfDate
+          totalUpnlPercentage: "1112.1314"
+          totalCost: "1112.1314"
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponse'
+          nullable: true
+          type: array
+      type: object
+    PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponse:
+      additionalProperties: false
+      example:
+        totalValue: "1112.1314"
+        accountCode: accountCode
+        accountValue: "1112.1314"
+        tradingAccountType: cash
+        marginLoan: "1112.1314"
+        customerCode: customerCode
+        totalMarketValue: "1112.1314"
+        totalUpnl: "1112.1314"
+        shortMarketValue: "1112.1314"
+        excessEquity: "1112.1314"
+        tradingAccountNo: tradingAccountNo
+        sblEnabled: true
+        assets:
+        - symbol: symbol
+          marketPrice: "1112.1314"
+          caFlag: true
+          side: side
+          nvdr: true
+          costValue: "1112.1314"
+          availableVolume: "1112.1314"
+          stockType: stockType
+          caEventList:
+          - date: date
+            eventId: "123"
+            caType: caType
+          - date: date
+            eventId: "123"
+            caType: caType
+          marketValue: "1112.1314"
+          averageCostPrice: "1112.1314"
+          isNew: true
+          sellableVolume: "1112.1314"
+          assetType: assetType
+          upnl: "1112.1314"
+          instrumentCategory: instrumentCategory
+          upnlPercentage: "1112.1314"
+          realizedPnl: "1112.1314"
+          logo: logo
+          lendingVolume: "1112.1314"
+          friendlyName: friendlyName
+        - symbol: symbol
+          marketPrice: "1112.1314"
+          caFlag: true
+          side: side
+          nvdr: true
+          costValue: "1112.1314"
+          availableVolume: "1112.1314"
+          stockType: stockType
+          caEventList:
+          - date: date
+            eventId: "123"
+            caType: caType
+          - date: date
+            eventId: "123"
+            caType: caType
+          marketValue: "1112.1314"
+          averageCostPrice: "1112.1314"
+          isNew: true
+          sellableVolume: "1112.1314"
+          assetType: assetType
+          upnl: "1112.1314"
+          instrumentCategory: instrumentCategory
+          upnlPercentage: "1112.1314"
+          realizedPnl: "1112.1314"
+          logo: logo
+          lendingVolume: "1112.1314"
+          friendlyName: friendlyName
+        cashBalance: "1112.1314"
+        liabilities: "1112.1314"
+        longCostValue: "1112.1314"
+        asOfDate: asOfDate
+        totalUpnlPercentage: "1112.1314"
+        shortCostValue: "1112.1314"
+        totalCost: "1112.1314"
+        longMarketValue: "1112.1314"
+      properties:
+        tradingAccountNo:
+          nullable: true
+          type: string
+        tradingAccountType:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateTradingAccountType'
+        customerCode:
+          nullable: true
+          type: string
+        accountCode:
+          nullable: true
+          type: string
+        asOfDate:
+          nullable: true
+          type: string
+        totalCost:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalUpnl:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalUpnlPercentage:
+          example: "1112.1314"
+          format: double
+          type: string
+        cashBalance:
+          example: "1112.1314"
+          format: double
+          type: string
+        sblEnabled:
+          type: boolean
+        totalValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalMarketValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        assets:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponse'
+          nullable: true
+          type: array
+        accountValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        longMarketValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        shortMarketValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        marginLoan:
+          example: "1112.1314"
+          format: double
+          type: string
+        longCostValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        shortCostValue:
+          example: "1112.1314"
+          format: double
+          type: string
+        excessEquity:
+          example: "1112.1314"
+          format: double
+          type: string
+        liabilities:
+          example: "1112.1314"
+          format: double
+          type: string
+      required:
+      - accountCode
+      - accountValue
+      - asOfDate
+      - assets
+      - cashBalance
+      - customerCode
+      - excessEquity
+      - liabilities
+      - longCostValue
+      - longMarketValue
+      - marginLoan
+      - sblEnabled
+      - shortCostValue
+      - shortMarketValue
+      - totalCost
+      - totalMarketValue
+      - totalUpnl
+      - totalUpnlPercentage
+      - totalValue
+      - tradingAccountNo
+      - tradingAccountType
+      type: object
+    PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          totalValue: "1112.1314"
+          accountCode: accountCode
+          accountValue: "1112.1314"
+          tradingAccountType: cash
+          marginLoan: "1112.1314"
+          customerCode: customerCode
+          totalMarketValue: "1112.1314"
+          totalUpnl: "1112.1314"
+          shortMarketValue: "1112.1314"
+          excessEquity: "1112.1314"
+          tradingAccountNo: tradingAccountNo
+          sblEnabled: true
+          assets:
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          - symbol: symbol
+            marketPrice: "1112.1314"
+            caFlag: true
+            side: side
+            nvdr: true
+            costValue: "1112.1314"
+            availableVolume: "1112.1314"
+            stockType: stockType
+            caEventList:
+            - date: date
+              eventId: "123"
+              caType: caType
+            - date: date
+              eventId: "123"
+              caType: caType
+            marketValue: "1112.1314"
+            averageCostPrice: "1112.1314"
+            isNew: true
+            sellableVolume: "1112.1314"
+            assetType: assetType
+            upnl: "1112.1314"
+            instrumentCategory: instrumentCategory
+            upnlPercentage: "1112.1314"
+            realizedPnl: "1112.1314"
+            logo: logo
+            lendingVolume: "1112.1314"
+            friendlyName: friendlyName
+          cashBalance: "1112.1314"
+          liabilities: "1112.1314"
+          longCostValue: "1112.1314"
+          asOfDate: asOfDate
+          totalUpnlPercentage: "1112.1314"
+          shortCostValue: "1112.1314"
+          totalCost: "1112.1314"
+          longMarketValue: "1112.1314"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponse'
+      type: object
+    PiSetServiceAPIModelsSetOpenOrderResponse:
+      additionalProperties: false
+      example:
+        interestRate: "1112.1314"
+        orderType: orderType
+        symbol: symbol
+        side: cover
+        amount: "1112.1314"
+        orderNo: orderNo
+        orderId: 0
+        avgPrice: "1112.1314"
+        isNVDR: true
+        orderTimeStamp: 1
+        custCode: custCode
+        instrumentCategory: instrumentCategory
+        price: "1112.1314"
+        quantityExecuted: "123"
+        logo: logo
+        brokerOrderId: 6
+        friendlyName: friendlyName
+        status: status
+        matchedPrice: "1112.1314"
+      properties:
+        orderId:
+          format: int64
+          type: integer
+        custCode:
+          nullable: true
+          type: string
+        side:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction'
+        status:
+          nullable: true
+          type: string
+        orderType:
+          nullable: true
+          type: string
+        avgPrice:
+          example: "1112.1314"
+          format: double
+          type: string
+        brokerOrderId:
+          format: int64
+          type: integer
+        matchedPrice:
+          example: "1112.1314"
+          format: double
+          type: string
+        isNVDR:
+          type: boolean
+        orderNo:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        price:
+          example: "1112.1314"
+          format: double
+          type: string
+        amount:
+          example: "1112.1314"
+          format: double
+          type: string
+        quantityExecuted:
+          example: "123"
+          format: int32
+          nullable: true
+          type: string
+        interestRate:
+          example: "1112.1314"
+          format: double
+          nullable: true
+          type: string
+        logo:
+          nullable: true
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+        orderTimeStamp:
+          format: int64
+          nullable: true
+          type: integer
+      required:
+      - amount
+      - avgPrice
+      - brokerOrderId
+      - custCode
+      - isNVDR
+      - matchedPrice
+      - orderId
+      - orderNo
+      - orderType
+      - price
+      - side
+      - status
+      - symbol
+      type: object
+    PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - interestRate: "1112.1314"
+          orderType: orderType
+          symbol: symbol
+          side: cover
+          amount: "1112.1314"
+          orderNo: orderNo
+          orderId: 0
+          avgPrice: "1112.1314"
+          isNVDR: true
+          orderTimeStamp: 1
+          custCode: custCode
+          instrumentCategory: instrumentCategory
+          price: "1112.1314"
+          quantityExecuted: "123"
+          logo: logo
+          brokerOrderId: 6
+          friendlyName: friendlyName
+          status: status
+          matchedPrice: "1112.1314"
+        - interestRate: "1112.1314"
+          orderType: orderType
+          symbol: symbol
+          side: cover
+          amount: "1112.1314"
+          orderNo: orderNo
+          orderId: 0
+          avgPrice: "1112.1314"
+          isNVDR: true
+          orderTimeStamp: 1
+          custCode: custCode
+          instrumentCategory: instrumentCategory
+          price: "1112.1314"
+          quantityExecuted: "123"
+          logo: logo
+          brokerOrderId: 6
+          friendlyName: friendlyName
+          status: status
+          matchedPrice: "1112.1314"
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponse'
+          nullable: true
+          type: array
+      type: object
+    PiSetServiceAPIModelsSetOrder:
+      additionalProperties: false
+      example:
+        orderNo: orderNo
+        orderId: orderId
+      properties:
+        orderId:
+          nullable: true
+          type: string
+        orderNo:
+          nullable: true
+          type: string
+      required:
+      - orderId
+      type: object
+    PiSetServiceAPIModelsSetOrderApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          orderNo: orderNo
+          orderId: orderId
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrder'
+      type: object
+    PiSetServiceAPIModelsSetOrderHistoryResponse:
+      additionalProperties: false
+      example:
+        interestRate: "1112.1314"
+        symbol: symbol
+        side: cover
+        amount: "1112.1314"
+        orderNo: 6
+        orderId: 0
+        isNVDR: true
+        orderTimeStamp: 1
+        realizedPL: realizedPL
+        cancelVolume: "1112.1314"
+        price: "1112.1314"
+        detail: detail
+        matchVolume: "123"
+        tradeType: tradeType
+        status: status
+        matchedPrice: "1112.1314"
+      properties:
+        orderId:
+          format: int64
+          type: integer
+        isNVDR:
+          type: boolean
+        status:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        side:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction'
+        tradeType:
+          nullable: true
+          type: string
+        orderNo:
+          format: int64
+          type: integer
+        matchedPrice:
+          example: "1112.1314"
+          format: double
+          type: string
+        amount:
+          example: "1112.1314"
+          format: double
+          type: string
+        price:
+          example: "1112.1314"
+          format: double
+          type: string
+        orderTimeStamp:
+          format: int64
+          nullable: true
+          type: integer
+        interestRate:
+          example: "1112.1314"
+          format: double
+          nullable: true
+          type: string
+        realizedPL:
+          nullable: true
+          type: string
+        matchVolume:
+          example: "123"
+          format: int32
+          nullable: true
+          type: string
+        cancelVolume:
+          example: "1112.1314"
+          format: double
+          nullable: true
+          type: string
+        detail:
+          nullable: true
+          type: string
+      required:
+      - amount
+      - isNVDR
+      - matchedPrice
+      - orderId
+      - orderNo
+      - price
+      - side
+      - status
+      - symbol
+      - tradeType
+      type: object
+    PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - interestRate: "1112.1314"
+          symbol: symbol
+          side: cover
+          amount: "1112.1314"
+          orderNo: 6
+          orderId: 0
+          isNVDR: true
+          orderTimeStamp: 1
+          realizedPL: realizedPL
+          cancelVolume: "1112.1314"
+          price: "1112.1314"
+          detail: detail
+          matchVolume: "123"
+          tradeType: tradeType
+          status: status
+          matchedPrice: "1112.1314"
+        - interestRate: "1112.1314"
+          symbol: symbol
+          side: cover
+          amount: "1112.1314"
+          orderNo: 6
+          orderId: 0
+          isNVDR: true
+          orderTimeStamp: 1
+          realizedPL: realizedPL
+          cancelVolume: "1112.1314"
+          price: "1112.1314"
+          detail: detail
+          matchVolume: "123"
+          tradeType: tradeType
+          status: status
+          matchedPrice: "1112.1314"
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponse'
+          nullable: true
+          type: array
+      type: object
+    PiSetServiceAPIModelsSetTradeHistoryResponse:
+      additionalProperties: false
+      example:
+        volume: "1112.1314"
+        tradeTime: tradeTime
+        totalAmount: "1112.1314"
+        accountCode: accountCode
+        side: side
+        amount: "1112.1314"
+        price: "1112.1314"
+        totalCommissionAndVat: "1112.1314"
+        currency: currency
+        instrumentSymbol: instrumentSymbol
+        tradeDate: tradeDate
+      properties:
+        accountCode:
+          nullable: true
+          type: string
+        instrumentSymbol:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        side:
+          nullable: true
+          type: string
+        tradeDate:
+          nullable: true
+          type: string
+        tradeTime:
+          nullable: true
+          type: string
+        price:
+          example: "1112.1314"
+          format: double
+          type: string
+        volume:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalAmount:
+          example: "1112.1314"
+          format: double
+          type: string
+        amount:
+          example: "1112.1314"
+          format: double
+          type: string
+        totalCommissionAndVat:
+          example: "1112.1314"
+          format: double
+          type: string
+      required:
+      - accountCode
+      - amount
+      - currency
+      - instrumentSymbol
+      - price
+      - side
+      - totalAmount
+      - totalCommissionAndVat
+      - tradeDate
+      - tradeTime
+      - volume
+      type: object
+    PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - volume: "1112.1314"
+          tradeTime: tradeTime
+          totalAmount: "1112.1314"
+          accountCode: accountCode
+          side: side
+          amount: "1112.1314"
+          price: "1112.1314"
+          totalCommissionAndVat: "1112.1314"
+          currency: currency
+          instrumentSymbol: instrumentSymbol
+          tradeDate: tradeDate
+        - volume: "1112.1314"
+          tradeTime: tradeTime
+          totalAmount: "1112.1314"
+          accountCode: accountCode
+          side: side
+          amount: "1112.1314"
+          price: "1112.1314"
+          totalCommissionAndVat: "1112.1314"
+          currency: currency
+          instrumentSymbol: instrumentSymbol
+          tradeDate: tradeDate
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponse'
+          nullable: true
+          type: array
+      type: object
+    PiSetServiceAPIModelsUnitRemain:
+      additionalProperties: false
+      example:
+        unit: "1112.1314"
+        amount: "1112.1314"
+        assetSymbol: assetSymbol
+        shortNvdrUnit: "1112.1314"
+        nvdrUnit: "1112.1314"
+        shortUnit: "1112.1314"
+      properties:
+        assetSymbol:
+          nullable: true
+          type: string
+        unit:
+          example: "1112.1314"
+          format: double
+          type: string
+        nvdrUnit:
+          example: "1112.1314"
+          format: double
+          type: string
+        shortUnit:
+          example: "1112.1314"
+          format: double
+          type: string
+        shortNvdrUnit:
+          example: "1112.1314"
+          format: double
+          type: string
+        amount:
+          example: "1112.1314"
+          format: double
+          type: string
+      required:
+      - assetSymbol
+      - nvdrUnit
+      - shortNvdrUnit
+      - shortUnit
+      - unit
+      type: object
+    PiSetServiceApplicationCommandsReviewSblOrderResponse:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        reviewerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        orderId: 0
+        customerCode: customerCode
+        type: borrow
+        volume: "123"
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        tradingAccountNo: tradingAccountNo
+        rejectedReason: rejectedReason
+        tradingAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: pending
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: uuid
+          type: string
+        tradingAccountId:
+          format: uuid
+          type: string
+        tradingAccountNo:
+          nullable: true
+          type: string
+        customerCode:
+          nullable: true
+          type: string
+        orderId:
+          format: int64
+          type: integer
+        symbol:
+          nullable: true
+          type: string
+        type:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType'
+        volume:
+          example: "123"
+          format: int32
+          type: string
+        status:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus'
+        rejectedReason:
+          nullable: true
+          type: string
+        reviewerId:
+          format: uuid
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - customerCode
+      - id
+      - orderId
+      - status
+      - symbol
+      - tradingAccountId
+      - tradingAccountNo
+      - type
+      - volume
+      type: object
+    PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          symbol: symbol
+          reviewerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          orderId: 0
+          customerCode: customerCode
+          type: borrow
+          volume: "123"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          tradingAccountNo: tradingAccountNo
+          rejectedReason: rejectedReason
+          tradingAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: pending
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponse'
+      type: object
+    PiSetServiceApplicationCommandsSyncInitialMarginRequest:
+      additionalProperties: false
+      example:
+        bucketName: bucketName
+        fileKey: fileKey
+      properties:
+        bucketName:
+          nullable: true
+          type: string
+        fileKey:
+          nullable: true
+          type: string
+      required:
+      - bucketName
+      - fileKey
+      type: object
+    PiSetServiceApplicationCommandsSyncSblInstrument:
+      additionalProperties: false
+      example:
+        bucketName: bucketName
+        fileKey: fileKey
+      properties:
+        bucketName:
+          nullable: true
+          type: string
+        fileKey:
+          nullable: true
+          type: string
+      required:
+      - bucketName
+      - fileKey
+      type: object
+    PiSetServiceApplicationModelsSyncProcessResult:
+      additionalProperties: false
+      example:
+        execution: "123"
+        create: "123"
+        update: "123"
+        skip: "123"
+      properties:
+        create:
+          example: "123"
+          format: int32
+          type: string
+        update:
+          example: "123"
+          format: int32
+          type: string
+        skip:
+          example: "123"
+          format: int32
+          type: string
+        execution:
+          example: "123"
+          format: int32
+          type: string
+      type: object
+    PiSetServiceApplicationModelsSyncProcessResultApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          execution: "123"
+          create: "123"
+          update: "123"
+          skip: "123"
+      properties:
+        data:
+          $ref: '#/components/schemas/PiSetServiceApplicationModelsSyncProcessResult'
+      type: object
+    PiSetServiceDomainAggregatesModelCommonAggregateOrderDirection:
+      enum:
+      - asc
+      - desc
+      type: string
+    PiSetServiceDomainAggregatesModelFinancialAssetAggregateCondition:
+      enum:
+      - none
+      - ioc
+      - fok
+      - odd
+      - gtc
+      - gtd
+      type: string
+    PiSetServiceDomainAggregatesModelFinancialAssetAggregateConditionPrice:
+      enum:
+      - Limit
+      - ATO
+      - ATC
+      - MP
+      - MP-MKT
+      - MP-MTL
+      type: string
+    PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction:
+      enum:
+      - cover
+      - short
+      - buy
+      - sell
+      - borrow
+      - return
+      type: string
+    PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus:
+      enum:
+      - pending
+      - approved
+      - rejected
+      type: string
+    PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType:
+      enum:
+      - borrow
+      - return
+      type: string
+    PiSetServiceDomainAggregatesModelFinancialAssetAggregateTradingAccountType:
+      enum:
+      - cash
+      - cashMargin
+      - maintenanceMargin
+      - creditBalance
+      - cashBalance
+      - internet
+      type: string
+    PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrument:
+      additionalProperties: false
+      example:
+        interestRate: "1112.1314"
+        symbol: symbol
+        availableLending: "1112.1314"
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        borrowOutstanding: "1112.1314"
+        retailLender: "1112.1314"
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: uuid
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        interestRate:
+          example: "1112.1314"
+          format: double
+          type: string
+        retailLender:
+          example: "1112.1314"
+          format: double
+          type: string
+        borrowOutstanding:
+          example: "1112.1314"
+          format: double
+          type: string
+        availableLending:
+          example: "1112.1314"
+          format: double
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse:
+      additionalProperties: false
+      example:
+        total: "123"
+        data:
+        - interestRate: "1112.1314"
+          symbol: symbol
+          availableLending: "1112.1314"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          borrowOutstanding: "1112.1314"
+          retailLender: "1112.1314"
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - interestRate: "1112.1314"
+          symbol: symbol
+          availableLending: "1112.1314"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          borrowOutstanding: "1112.1314"
+          retailLender: "1112.1314"
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        pageSize: "123"
+        orderBy: orderBy
+        page: "123"
+        orderDir: orderDir
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrument'
+          nullable: true
+          type: array
+        page:
+          example: "123"
+          format: int32
+          type: string
+        pageSize:
+          example: "123"
+          format: int32
+          type: string
+        total:
+          example: "123"
+          format: int32
+          type: string
+        orderBy:
+          nullable: true
+          type: string
+        orderDir:
+          nullable: true
+          type: string
+      type: object
+    PiSetServiceDomainAggregatesModelTradingAggregateSblOrder:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        createdAtDate: 2000-01-23
+        reviewerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        orderId: 0
+        customerCode: customerCode
+        type: borrow
+        volume: "123"
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        tradingAccountNo: tradingAccountNo
+        rejectedReason: rejectedReason
+        tradingAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: pending
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          format: uuid
+          type: string
+        tradingAccountId:
+          format: uuid
+          type: string
+        tradingAccountNo:
+          nullable: true
+          type: string
+        customerCode:
+          nullable: true
+          type: string
+        orderId:
+          format: int64
+          type: integer
+        symbol:
+          nullable: true
+          type: string
+        type:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType'
+        volume:
+          example: "123"
+          format: int32
+          type: string
+        status:
+          $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus'
+        rejectedReason:
+          nullable: true
+          type: string
+        reviewerId:
+          format: uuid
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        createdAtDate:
+          format: date
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse:
+      additionalProperties: false
+      example:
+        total: "123"
+        data:
+        - symbol: symbol
+          createdAtDate: 2000-01-23
+          reviewerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          orderId: 0
+          customerCode: customerCode
+          type: borrow
+          volume: "123"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          tradingAccountNo: tradingAccountNo
+          rejectedReason: rejectedReason
+          tradingAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: pending
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - symbol: symbol
+          createdAtDate: 2000-01-23
+          reviewerId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          orderId: 0
+          customerCode: customerCode
+          type: borrow
+          volume: "123"
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          tradingAccountNo: tradingAccountNo
+          rejectedReason: rejectedReason
+          tradingAccountId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: pending
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        pageSize: "123"
+        orderBy: orderBy
+        page: "123"
+        orderDir: orderDir
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrder'
+          nullable: true
+          type: array
+        page:
+          example: "123"
+          format: int32
+          type: string
+        pageSize:
+          example: "123"
+          format: int32
+          type: string
+        total:
+          example: "123"
+          format: int32
+          type: string
+        orderBy:
+          nullable: true
+          type: string
+        orderDir:
+          nullable: true
+          type: string
+      type: object

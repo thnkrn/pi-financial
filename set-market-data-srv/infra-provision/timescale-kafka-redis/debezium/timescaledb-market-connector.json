@@ -1,0 +1,34 @@
+{
+    "name": "timescaledb-market-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "timescaledb",
+        "database.port": "5432",
+        "database.user": "user",
+        "database.password": "password",
+        "database.dbname": "pi_market",
+        "plugin.name": "pgoutput",
+        "topic.prefix": "dbserver1",
+        "schema.include.list": "_timescaledb_internal",
+        "transforms": "timescaledb,filter",
+        "transforms.timescaledb.type": "io.debezium.connector.postgresql.transforms.timescaledb.TimescaleDb",
+        "transforms.timescaledb.database.hostname": "timescaledb",
+        "transforms.timescaledb.database.port": "5432",
+        "transforms.timescaledb.database.user": "user",
+        "transforms.timescaledb.database.password": "password",
+        "transforms.timescaledb.database.dbname": "pi_market",
+        
+        "transforms.filter.type": "io.debezium.transforms.Filter",
+        "transforms.filter.language": "jsr223.groovy",
+        "transforms.filter.condition": "value.source.table != 'realtime_market_data'",
+
+        "topic.creation.enable": "true",
+        "topic.creation.default.replication.factor": "1",
+        "topic.creation.default.partitions": "50",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": "false",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "false"
+    }
+}

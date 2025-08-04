@@ -1,0 +1,56 @@
+{
+  "Nanos": {
+    "Value": 12345678
+  },
+  "OrderBookID": {
+    "Value": 1
+  },
+  "MaximumLevel": {
+    "Value": 5
+  },
+  "NumberOfLevelItems": {
+    "Value": 1
+  },
+  "PriceLevelUpdates": [
+    {
+      "UpdateAction": {
+        "Value": "N"
+      },
+      "Side": {
+        "Value": "B"
+      },
+      "Level": {
+        "Value": 1
+      },
+      "Price": {
+        "Value": 200.5
+      },
+      "Quantity": {
+        "Value": 10
+      },
+      "NumberOfDeletes": {
+        "Value": 0
+      }
+    },
+    {
+      "UpdateAction": {
+        "Value": "N"
+      },
+      "Side": {
+        "Value": "A"
+      },
+      "Level": {
+        "Value": 1
+      },
+      "Price": {
+        "Value": 200.5
+      },
+      "Quantity": {
+        "Value": 10
+      },
+      "NumberOfDeletes": {
+        "Value": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Pi.SetService.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

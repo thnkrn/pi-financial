@@ -1,0 +1,6 @@
+using Pi.SetMarketData.Application.Abstractions;
+using Pi.SetMarketData.Application.Commands.FundPerformance;
+
+namespace Pi.SetMarketData.Application.Interfaces.FundPerformance;
+
+public abstract class DeleteFundPerformanceRequestAbstractHandler: RequestHandler<DeleteFundPerformanceRequest, DeleteFundPerformanceResponse>;

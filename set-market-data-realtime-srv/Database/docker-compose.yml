@@ -1,0 +1,80 @@
+# Use root/root_pass_word as user/password credentials
+version: '3.8'
+ 
+services:
+# mysqldb
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass_word
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+
+# mongodb  
+  mongo:
+    image: 'mongo:7.0.5'
+    ports:
+      - 27018:27017
+    volumes:
+      - my-data:/var/lib/mongodb/data
+  mongo-express:
+    image: 'mongo-express:1.0.2'
+    ports:
+      - 8082:8081
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: user_name
+      ME_CONFIG_BASICAUTH_PASSWORD: pass_word
+
+# timescaledb
+  timescaledb:
+    image: timescale/timescaledb:latest-pg14
+    container_name: timescaledb
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin # Change 'yourpassword' to a secure password
+      POSTGRES_USER: admin # Change 'youruser' to your preferred username
+      POSTGRES_DB: stockdb # Change 'yourdb' to your preferred database name
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+    networks:
+      - timescale_network
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com # Change to your preferred admin email
+      PGADMIN_DEFAULT_PASSWORD: admin # Change to your preferred admin password
+    ports:
+      - "5050:80"
+    depends_on:
+      - timescaledb
+    networks:
+      - timescale_network
+networks:
+  timescale_network:
+    driver: bridge
+volumes:
+  dbdata:
+  my-data:
+  timescaledb_data:

@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  zookeeper:
+    platform: linux/amd64
+    image: confluentinc/cp-zookeeper:7.0.1
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    platform: linux/amd64
+    image: confluentinc/cp-kafka:7.0.1
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_JVM_PERFORMANCE_OPTS: -XX:+UnlockDiagnosticVMOptions -XX:+LogVMOutput -XX:LogFile=/var/lib/kafka/data/jvm.log -XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    ulimits:
+      core:
+        soft: -1
+        hard: -1
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8888:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pi_market
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com # Change to your preferred admin email
+      PGADMIN_DEFAULT_PASSWORD: admin # Change to your preferred admin password
+    links:
+      - timescaledb
+    ports:
+      - "5050:80"
+  
+  connect:
+    image: quay.io/debezium/connect:2.7
+    ports:
+     - 8083:8083
+     - 5005:5005
+    links:
+     - kafka
+     - timescaledb
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=dbz_my_connect_configs
+     - OFFSET_STORAGE_TOPIC=dbz_my_connect_offsets
+     - STATUS_STORAGE_TOPIC=dbz_my_connect_statuses
+     - KAFKA_DEBUG=true
+     - DEBUG_SUSPEND_FLAG=n
+     - JAVA_DEBUG_PORT=*:5005
+     - KAFKA_CONNECT_PLUGINS_DIR=/kafka/connect/,/etc/debezium-plugins
+    volumes:
+    #  - ./debezium/plugins:/etc/debezium-plugins
+      - ./debezium/plugins:/kafka/connect/debezium-connector-postgres
+  
+
+volumes:
+  timescale-data:
+  kafka-data:

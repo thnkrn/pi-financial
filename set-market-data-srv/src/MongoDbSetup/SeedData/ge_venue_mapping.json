@@ -1,0 +1,37 @@
+[
+  {
+    "source": "Velexa",
+    "exchange": "ARCA",
+    "mic": "ARCX",
+    "exchangeid_ms": "ARCX",
+    "venue_code": "ARCA"
+  },
+  {
+    "source": "Velexa",
+    "exchange": "BATS",
+    "mic": "BATS",
+    "exchangeid_ms": "BATS",
+    "venue_code": "BATS"
+  },
+  {
+    "source": "Velexa",
+    "exchange": "HKEX",
+    "mic": "XHKG",
+    "exchangeid_ms": "HKG",
+    "venue_code": "HKEX"
+  },
+  {
+    "source": "Velexa",
+    "exchange": "NASDAQ",
+    "mic": "XNAS",
+    "exchangeid_ms": "NAS",
+    "venue_code": "NASDAQ"
+  },
+  {
+    "source": "Velexa",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "exchangeid_ms": "NYS",
+    "venue_code": "NYSE"
+  }
+]

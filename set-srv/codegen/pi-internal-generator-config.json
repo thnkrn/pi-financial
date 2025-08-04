@@ -1,0 +1,8 @@
+{
+  "apiName": "PiInternal",
+  "targetFramework": "net8.0",
+  "netCoreProjectFile": true,
+  "sourceFolder": "/",
+  "packageName": "Pi.Client.PiInternal",
+  "library": "httpclient"
+}

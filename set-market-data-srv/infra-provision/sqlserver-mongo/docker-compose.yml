@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql_server
+    platform: linux/amd64
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong!Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - sqlserver_network
+
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - "27018:27017" 
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - mongodata:/data/db
+
+  mongo-express:
+    image: 'mongo-express:latest'
+    ports:
+      - 8092:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_AUTH_DATABASE: admin
+      ME_CONFIG_BASICAUTH_USERNAME: user_name
+      ME_CONFIG_BASICAUTH_PASSWORD: pass_word
+    depends_on:
+      - mongo  # This ensures mongo-express starts after the MongoDB container
+
+volumes:
+  sqlserver_data:
+    driver: local
+  mongodata:
+
+networks:
+  sqlserver_network:
+    driver: bridge

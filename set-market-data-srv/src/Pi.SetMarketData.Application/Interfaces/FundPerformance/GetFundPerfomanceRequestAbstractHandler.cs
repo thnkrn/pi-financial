@@ -1,0 +1,6 @@
+using Pi.SetMarketData.Application.Abstractions;
+using Pi.SetMarketData.Application.Queries.FundPerformance;
+
+namespace Pi.SetMarketData.Application.Interfaces.FundPerformance;
+
+public abstract class GetFundPerformanceRequestAbstractHandler: RequestHandler<GetFundPerformanceRequest, GetFundPerformanceResponse>;

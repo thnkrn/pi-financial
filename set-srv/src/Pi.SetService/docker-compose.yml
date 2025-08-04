@@ -1,0 +1,46 @@
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - SERVICES=sns,sqs
+      - DEBUG=${DEBUG- }
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=set_db
+    volumes:
+      - set_srv_mysql_data:/var/lib/mysql
+
+  pi.set-service.api:
+    image: ${DOCKER_REGISTRY-}pi-financial-set-api
+    build:
+      context: .
+      dockerfile: Pi.SetService.API/Dockerfile
+    depends_on:
+      - localstack
+
+  pi.set-service.worker:
+    image: ${DOCKER_REGISTRY-}pi-financial-set-worker
+    build:
+      context: .
+      dockerfile: Pi.SetService.Worker/Dockerfile
+    depends_on:
+      - localstack
+
+volumes:
+  set_srv_mysql_data:

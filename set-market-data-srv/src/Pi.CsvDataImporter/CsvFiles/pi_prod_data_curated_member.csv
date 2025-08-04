@@ -1,0 +1,4250 @@
+curated_list_id,instrument_id,ordering,is_default,group_name,sub_group_name,symbol
+661,5019,33,1,Thai Equities,Stocks,MINT
+661,7749,31,1,Thai Equities,Stocks,KTC
+661,7952,23,1,Thai Equities,Stocks,GULF
+661,8099,14,1,Thai Equities,Stocks,CPALL
+661,8330,32,1,Thai Equities,Stocks,LH
+661,9163,38,1,Thai Equities,Stocks,PTTEP
+661,9212,37,1,Thai Equities,Stocks,PTT
+661,9394,43,1,Thai Equities,Stocks,SCC
+661,9646,40,1,Thai Equities,Stocks,RATCH
+661,10290,36,1,Thai Equities,Stocks,OSP
+661,11368,46,1,Thai Equities,Stocks,TISCO
+661,11599,21,1,Thai Equities,Stocks,GLOBAL
+661,11690,27,1,Thai Equities,Stocks,JMART
+661,11949,10,1,Thai Equities,Stocks,BTS
+661,12061,26,1,Thai Equities,Stocks,IVL
+661,12124,25,1,Thai Equities,Stocks,INTUCH
+661,12166,39,1,Thai Equities,Stocks,PTTGC
+661,12635,17,1,Thai Equities,Stocks,CRC
+661,12915,44,1,Thai Equities,Stocks,SCGP
+661,13097,35,1,Thai Equities,Stocks,OR
+661,13293,28,1,Thai Equities,Stocks,JMT
+661,13321,19,1,Thai Equities,Stocks,EA
+661,13447,3,1,Thai Equities,Stocks,AWC
+661,19530,6,1,Thai Equities,Stocks,BDMS
+661,19803,49,1,Thai Equities,Stocks,TTB
+661,19824,50,1,Thai Equities,Stocks,TU
+661,19901,34,1,Thai Equities,Stocks,MTC
+661,82460,45,1,Thai Equities,Stocks,TIDLOR
+661,82656,13,1,Thai Equities,Stocks,COM7
+661,82684,22,1,Thai Equities,Stocks,GPSC
+661,82859,47,1,Thai Equities,Stocks,TOP
+661,82866,1,1,Thai Equities,Stocks,ADVANC
+661,83069,24,1,Thai Equities,Stocks,HMPRO
+661,83174,29,1,Thai Equities,Stocks,KBANK
+661,83426,20,1,Thai Equities,Stocks,EGCO
+661,83496,30,1,Thai Equities,Stocks,KTB
+661,83545,2,1,Thai Equities,Stocks,AOT
+661,83650,7,1,Thai Equities,Stocks,BEM
+661,83706,5,1,Thai Equities,Stocks,BBL
+661,83923,12,1,Thai Equities,Stocks,CENTEL
+661,83972,4,1,Thai Equities,Stocks,BANPU
+661,84056,11,1,Thai Equities,Stocks,CBG
+661,84084,41,1,Thai Equities,Stocks,SAWAD
+661,84105,9,1,Thai Equities,Stocks,BH
+661,84231,15,1,Thai Equities,Stocks,CPF
+661,84287,16,1,Thai Equities,Stocks,CPN
+661,84350,18,1,Thai Equities,Stocks,DELTA
+661,84581,8,1,Thai Equities,Stocks,BGRIM
+661,224571,42,1,Thai Equities,Stocks,SCB
+661,279654,48,1,Thai Equities,Stocks,TRUE
+668,2436,159,0,Thai Equities,Stocks,DMT
+668,2450,363,0,Thai Equities,Stocks,NSL
+668,2534,322,0,Thai Equities,Stocks,MENA
+668,2541,512,0,Thai Equities,Stocks,SNNP
+668,2548,539,0,Thai Equities,Stocks,STECH
+668,2555,214,0,Thai Equities,Stocks,GROREIT
+668,2730,572,0,Thai Equities,Stocks,TFM
+668,2870,17,0,Thai Equities,Stocks,AIE
+668,2996,556,0,Thai Equities,Stocks,TAE
+668,3213,627,0,Thai Equities,Stocks,TSE
+668,4557,656,0,Thai Equities,Stocks,UTP
+668,4907,85,0,Thai Equities,Stocks,BKI
+668,4970,73,0,Thai Equities,Stocks,BEC
+668,4991,86,0,Thai Equities,Stocks,BKKCP
+668,5019,330,0,Thai Equities,Stocks,MINT
+668,5754,146,0,Thai Equities,Stocks,CSP
+668,6209,136,0,Thai Equities,Stocks,CPL
+668,6489,154,0,Thai Equities,Stocks,DCON
+668,6531,185,0,Thai Equities,Stocks,FE
+668,6608,241,0,Thai Equities,Stocks,INOX
+668,6643,200,0,Thai Equities,Stocks,GENCO
+668,6860,424,0,Thai Equities,Stocks,PT
+668,6888,192,0,Thai Equities,Stocks,FTE
+668,7189,640,0,Thai Equities,Stocks,TU-PF
+668,7217,256,0,Thai Equities,Stocks,JCT
+668,7658,267,0,Thai Equities,Stocks,KC
+668,7686,682,0,Thai Equities,Stocks,WPH
+668,7707,285,0,Thai Equities,Stocks,KYE
+668,7749,281,0,Thai Equities,Stocks,KTC
+668,7756,606,0,Thai Equities,Stocks,TOA
+668,7854,560,0,Thai Equities,Stocks,TCC
+668,7910,452,0,Thai Equities,Stocks,RSP
+668,7931,227,0,Thai Equities,Stocks,HUMAN
+668,7952,216,0,Thai Equities,Stocks,GULF
+668,7966,334,0,Thai Equities,Stocks,MJLF
+668,7973,501,0,Thai Equities,Stocks,SKE
+668,7980,258,0,Thai Equities,Stocks,JKN
+668,7987,404,0,Thai Equities,Stocks,PORT
+668,8015,655,0,Thai Equities,Stocks,URBNPF
+668,8043,329,0,Thai Equities,Stocks,MILL
+668,8064,462,0,Thai Equities,Stocks,SAM
+668,8071,333,0,Thai Equities,Stocks,MJD
+668,8078,573,0,Thai Equities,Stocks,TFMAMA
+668,8099,132,0,Thai Equities,Stocks,CPALL
+668,8113,582,0,Thai Equities,Stocks,THG
+668,8120,139,0,Thai Equities,Stocks,CPNREIT
+668,8134,209,0,Thai Equities,Stocks,GPI
+668,8155,196,0,Thai Equities,Stocks,GAHREIT
+668,8176,140,0,Thai Equities,Stocks,CPT
+668,8183,103,0,Thai Equities,Stocks,BWG
+668,8197,161,0,Thai Equities,Stocks,DREIT
+668,8211,155,0,Thai Equities,Stocks,DDD
+668,8239,534,0,Thai Equities,Stocks,SSTRT
+668,8274,492,0,Thai Equities,Stocks,SHREIT
+668,8288,143,0,Thai Equities,Stocks,CRANE
+668,8309,288,0,Thai Equities,Stocks,LANNA
+668,8330,290,0,Thai Equities,Stocks,LH
+668,8344,296,0,Thai Equities,Stocks,LOXLEY
+668,8351,293,0,Thai Equities,Stocks,LHK
+668,8358,289,0,Thai Equities,Stocks,LEE
+668,8379,299,0,Thai Equities,Stocks,LPN
+668,8386,300,0,Thai Equities,Stocks,LRH
+668,8400,301,0,Thai Equities,Stocks,LST
+668,8414,19,0,Thai Equities,Stocks,AIMIRT
+668,8435,287,0,Thai Equities,Stocks,LALIN
+668,8442,311,0,Thai Equities,Stocks,MALEE
+668,8470,90,0,Thai Equities,Stocks,BOFFICE
+668,8491,323,0,Thai Equities,Stocks,METCO
+668,8498,320,0,Thai Equities,Stocks,MDX
+668,8526,314,0,Thai Equities,Stocks,MATI
+668,8533,324,0,Thai Equities,Stocks,MFC
+668,8547,335,0,Thai Equities,Stocks,MK
+668,8561,344,0,Thai Equities,Stocks,MSC
+668,8568,340,0,Thai Equities,Stocks,MODERN
+668,8589,312,0,Thai Equities,Stocks,MANRIN
+668,8596,304,0,Thai Equities,Stocks,M-CHAI
+668,8610,310,0,Thai Equities,Stocks,CPAXT
+668,8624,309,0,Thai Equities,Stocks,MAJOR
+668,8638,308,0,Thai Equities,Stocks,ROCTEC
+668,8652,336,0,Thai Equities,Stocks,ML
+668,8687,349,0,Thai Equities,Stocks,NC
+668,8694,313,0,Thai Equities,Stocks,MATCH
+668,8701,325,0,Thai Equities,Stocks,MFEC
+668,8715,57,0,Thai Equities,Stocks,B-WORK
+668,8743,328,0,Thai Equities,Stocks,MIDA
+668,8750,316,0,Thai Equities,Stocks,MBK
+668,8764,352,0,Thai Equities,Stocks,NEP
+668,8771,357,0,Thai Equities,Stocks,NKI
+668,8848,126,0,Thai Equities,Stocks,CMAN
+668,8855,368,0,Thai Equities,Stocks,NWR
+668,8862,116,0,Thai Equities,Stocks,CHAYO
+668,8911,370,0,Thai Equities,Stocks,OCC
+668,8918,364,0,Thai Equities,Stocks,NTV
+668,8953,354,0,Thai Equities,Stocks,NEW
+668,8960,359,0,Thai Equities,Stocks,NOBLE
+668,8974,372,0,Thai Equities,Stocks,OHTL
+668,8981,356,0,Thai Equities,Stocks,NFC
+668,8995,358,0,Thai Equities,Stocks,NNCL
+668,9002,351,0,Thai Equities,Stocks,NCH
+668,9016,371,0,Thai Equities,Stocks,OGC
+668,9044,348,0,Thai Equities,Stocks,NATION
+668,9065,389,0,Thai Equities,Stocks,PG
+668,9072,379,0,Thai Equities,Stocks,PAF
+668,9114,405,0,Thai Equities,Stocks,POST
+668,9121,373,0,Thai Equities,Stocks,OISHI
+668,9135,423,0,Thai Equities,Stocks,PSL
+668,9142,414,0,Thai Equities,Stocks,PRG
+668,9163,429,0,Thai Equities,Stocks,PTTEP
+668,9177,381,0,Thai Equities,Stocks,PATO
+668,9191,402,0,Thai Equities,Stocks,POMPUI
+668,9212,428,0,Thai Equities,Stocks,PTT
+668,9233,413,0,Thai Equities,Stocks,PRECHA
+668,9240,393,0,Thai Equities,Stocks,PL
+668,9247,396,0,Thai Equities,Stocks,PLE
+668,9275,382,0,Thai Equities,Stocks,PB
+668,9282,432,0,Thai Equities,Stocks,Q-CON
+668,9303,388,0,Thai Equities,Stocks,PF
+668,9310,419,0,Thai Equities,Stocks,PRO
+668,9331,433,0,Thai Equities,Stocks,QH
+668,9338,439,0,Thai Equities,Stocks,RAM
+668,9366,451,0,Thai Equities,Stocks,RS
+668,9394,474,0,Thai Equities,Stocks,SCC
+668,9422,449,0,Thai Equities,Stocks,RPC
+668,9429,481,0,Thai Equities,Stocks,SCP
+668,9443,494,0,Thai Equities,Stocks,SINGER
+668,9485,483,0,Thai Equities,Stocks,SE-ED
+668,9534,464,0,Thai Equities,Stocks,SAMCO
+668,9541,508,0,Thai Equities,Stocks,SMK
+668,9555,446,0,Thai Equities,Stocks,ROCK
+668,9569,447,0,Thai Equities,Stocks,ROH
+668,9576,475,0,Thai Equities,Stocks,SCCC
+668,9590,566,0,Thai Equities,Stocks,TEAMG
+668,9604,463,0,Thai Equities,Stocks,SAMART
+668,9611,487,0,Thai Equities,Stocks,SFP
+668,9618,490,0,Thai Equities,Stocks,SHANG
+668,9625,499,0,Thai Equities,Stocks,SITHAI
+668,9632,470,0,Thai Equities,Stocks,SAWANG
+668,9639,442,0,Thai Equities,Stocks,RCL
+668,9646,440,0,Thai Equities,Stocks,RATCH
+668,9667,509,0,Thai Equities,Stocks,SMPC
+668,9681,528,0,Thai Equities,Stocks,SSC
+668,9723,131,0,Thai Equities,Stocks,COTTO
+668,9744,529,0,Thai Equities,Stocks,SSF
+668,9786,522,0,Thai Equities,Stocks,SPI
+668,9800,516,0,Thai Equities,Stocks,SORKON
+668,9814,536,0,Thai Equities,Stocks,STANLY
+668,9828,548,0,Thai Equities,Stocks,SUSCO
+668,9842,468,0,Thai Equities,Stocks,SAUCE
+668,9870,519,0,Thai Equities,Stocks,SPC
+668,9898,555,0,Thai Equities,Stocks,SYNTEC
+668,9912,533,0,Thai Equities,Stocks,SST
+668,9926,551,0,Thai Equities,Stocks,SVOA
+668,9940,544,0,Thai Equities,Stocks,SUC
+668,9961,460,0,Thai Equities,Stocks,SAFARI
+668,9968,495,0,Thai Equities,Stocks,SIRI
+668,10031,493,0,Thai Equities,Stocks,SIAM
+668,10045,535,0,Thai Equities,Stocks,STA
+668,10059,471,0,Thai Equities,Stocks,SC
+668,10080,532,0,Thai Equities,Stocks,SSSC
+668,10087,550,0,Thai Equities,Stocks,SVI
+668,10094,541,0,Thai Equities,Stocks,STHAI
+668,10101,518,0,Thai Equities,Stocks,SPALI
+668,10115,521,0,Thai Equities,Stocks,SPG
+668,10129,465,0,Thai Equities,Stocks,SAMTEL
+668,10150,503,0,Thai Equities,Stocks,SKR
+668,10171,476,0,Thai Equities,Stocks,SCG
+668,10185,497,0,Thai Equities,Stocks,SIS
+668,10199,538,0,Thai Equities,Stocks,STEC
+668,10227,484,0,Thai Equities,Stocks,SEAFCO
+668,10241,558,0,Thai Equities,Stocks,TC
+668,10255,557,0,Thai Equities,Stocks,TASCO
+668,10283,563,0,Thai Equities,Stocks,TCMC
+668,10290,377,0,Thai Equities,Stocks,OSP
+668,10311,569,0,Thai Equities,Stocks,TFFIF
+668,10339,561,0,Thai Equities,Stocks,TCCC
+668,10367,571,0,Thai Equities,Stocks,TFI
+668,10395,127,0,Thai Equities,Stocks,CMC
+668,10402,578,0,Thai Equities,Stocks,THAI
+668,10437,584,0,Thai Equities,Stocks,THL
+668,10465,542,0,Thai Equities,Stocks,STI
+668,10493,353,0,Thai Equities,Stocks,NER
+668,10528,628,0,Thai Equities,Stocks,TSI
+668,10542,643,0,Thai Equities,Stocks,TWP
+668,10556,76,0,Thai Equities,Stocks,BGC
+668,10563,614,0,Thai Equities,Stocks,TPIPL
+668,10591,410,0,Thai Equities,Stocks,PR9
+668,10605,602,0,Thai Equities,Stocks,TNL
+668,10626,642,0,Thai Equities,Stocks,TVO
+668,10633,599,0,Thai Equities,Stocks,TMD
+668,10647,641,0,Thai Equities,Stocks,TVI
+668,10654,603,0,Thai Equities,Stocks,TNPC
+668,10661,619,0,Thai Equities,Stocks,TQM
+668,10668,630,0,Thai Equities,Stocks,TSTE
+668,10675,620,0,Thai Equities,Stocks,TR
+668,10682,589,0,Thai Equities,Stocks,TIPCO
+668,10696,609,0,Thai Equities,Stocks,TOPP
+668,10703,617,0,Thai Equities,Stocks,TPP
+668,10717,498,0,Thai Equities,Stocks,SISB
+668,10724,635,0,Thai Equities,Stocks,TTI
+668,10745,564,0,Thai Equities,Stocks,TCOAT
+668,10766,583,0,Thai Equities,Stocks,THIP
+668,10773,623,0,Thai Equities,Stocks,TRU
+668,10836,562,0,Thai Equities,Stocks,TCJ
+668,10843,610,0,Thai Equities,Stocks,TPA
+668,10850,425,0,Thai Equities,Stocks,PTECH
+668,10871,632,0,Thai Equities,Stocks,TTA
+668,10941,524,0,Thai Equities,Stocks,SPRIME
+668,10983,576,0,Thai Equities,Stocks,TGPRO
+668,10990,592,0,Thai Equities,Stocks,TK
+668,11004,585,0,Thai Equities,Stocks,THRE
+668,11011,624,0,Thai Equities,Stocks,TRUBB
+668,11025,565,0,Thai Equities,Stocks,TEAM
+668,11039,579,0,Thai Equities,Stocks,THANI
+668,11046,601,0,Thai Equities,Stocks,TNITY
+668,11060,595,0,Thai Equities,Stocks,TKS
+668,11074,652,0,Thai Equities,Stocks,UP
+668,11095,684,0,Thai Equities,Stocks,ZEN
+668,11102,653,0,Thai Equities,Stocks,UPF
+668,11109,649,0,Thai Equities,Stocks,UMI
+668,11116,654,0,Thai Equities,Stocks,UPOIC
+668,11137,646,0,Thai Equities,Stocks,TYCN
+668,11151,596,0,Thai Equities,Stocks,TKT
+668,11165,657,0,Thai Equities,Stocks,UV
+668,11193,658,0,Thai Equities,Stocks,UVAN
+668,11214,659,0,Thai Equities,Stocks,VARO
+668,11235,661,0,Thai Equities,Stocks,VIBHA
+668,11305,679,0,Thai Equities,Stocks,WORK
+668,11312,149,0,Thai Equities,Stocks,CTARAF
+668,11340,663,0,Thai Equities,Stocks,VNG
+668,11354,667,0,Thai Equities,Stocks,WACOAL
+668,11368,591,0,Thai Equities,Stocks,TISCO
+668,11410,13,0,Thai Equities,Stocks,AGE
+668,11438,226,0,Thai Equities,Stocks,HTECH
+668,11466,448,0,Thai Equities,Stocks,ROJNA
+668,11473,108,0,Thai Equities,Stocks,CEN
+668,11487,120,0,Thai Equities,Stocks,CIMBT
+668,11515,338,0,Thai Equities,Stocks,MNIT2
+668,11529,128,0,Thai Equities,Stocks,CMR
+668,11550,665,0,Thai Equities,Stocks,VRANDA
+668,11564,616,0,Thai Equities,Stocks,TPOLY
+668,11585,668,0,Thai Equities,Stocks,WAVE
+668,11592,531,0,Thai Equities,Stocks,SSPF
+668,11599,207,0,Thai Equities,Stocks,GLOBAL
+668,11613,634,0,Thai Equities,Stocks,TTCL
+668,11627,637,0,Thai Equities,Stocks,TTT
+668,11676,485,0,Thai Equities,Stocks,SENA
+668,11690,259,0,Thai Equities,Stocks,JMART
+668,11697,191,0,Thai Equities,Stocks,FSS
+668,11725,232,0,Thai Equities,Stocks,IFS
+668,11746,307,0,Thai Equities,Stocks,M-STOR
+668,11774,9,0,Thai Equities,Stocks,ACG
+668,11837,87,0,Thai Equities,Stocks,BLA
+668,11844,553,0,Thai Equities,Stocks,SYMC
+668,11865,1,0,Thai Equities,Stocks,2S
+668,11872,510,0,Thai Equities,Stocks,SMT
+668,11879,315,0,Thai Equities,Stocks,MAX
+668,11921,217,0,Thai Equities,Stocks,GUNKUL
+668,11949,100,0,Thai Equities,Stocks,BTS
+668,11956,647,0,Thai Equities,Stocks,UAC
+668,12005,170,0,Thai Equities,Stocks,EE
+668,12061,251,0,Thai Equities,Stocks,IVL
+668,12089,273,0,Thai Equities,Stocks,KIAT
+668,12124,244,0,Thai Equities,Stocks,INTUCH
+668,12138,604,0,Thai Equities,Stocks,TNPF
+668,12145,111,0,Thai Equities,Stocks,CGD
+668,12152,236,0,Thai Equities,Stocks,ILM
+668,12166,430,0,Thai Equities,Stocks,PTTGC
+668,12180,206,0,Thai Equities,Stocks,GLAND
+668,12187,160,0,Thai Equities,Stocks,DOHOME
+668,12194,18,0,Thai Equities,Stocks,AIMCG
+668,12201,28,0,Thai Equities,Stocks,AMANAH
+668,12243,547,0,Thai Equities,Stocks,SUPEREIF
+668,12257,636,0,Thai Equities,Stocks,TTLPF
+668,12271,177,0,Thai Equities,Stocks,ERW
+668,12285,437,0,Thai Equities,Stocks,QTC
+668,12313,265,0,Thai Equities,Stocks,KBS
+668,12327,263,0,Thai Equities,Stocks,KAMART
+668,12334,520,0,Thai Equities,Stocks,SPCG
+668,12348,39,0,Thai Equities,Stocks,APCS
+668,12355,403,0,Thai Equities,Stocks,POPF
+668,12376,142,0,Thai Equities,Stocks,CPW
+668,12390,441,0,Thai Equities,Stocks,RBF
+668,12418,491,0,Thai Equities,Stocks,SHR
+668,12432,8,0,Thai Equities,Stocks,ACE
+668,12502,365,0,Thai Equities,Stocks,NUSA
+668,12565,61,0,Thai Equities,Stocks,BAM
+668,12614,486,0,Thai Equities,Stocks,SFLEX
+668,12635,144,0,Thai Equities,Stocks,CRC
+668,12649,391,0,Thai Equities,Stocks,PJW
+668,12663,294,0,Thai Equities,Stocks,LHPF
+668,12684,43,0,Thai Equities,Stocks,AQUA
+668,12698,445,0,Thai Equities,Stocks,RML
+668,12712,662,0,Thai Equities,Stocks,VIH
+668,12740,420,0,Thai Equities,Stocks,PROSPECT
+668,12747,327,0,Thai Equities,Stocks,MICRO
+668,12754,479,0,Thai Equities,Stocks,SCM
+668,12761,540,0,Thai Equities,Stocks,STGT
+668,12803,266,0,Thai Equities,Stocks,KBSPIF
+668,12817,181,0,Thai Equities,Stocks,ETC
+668,12845,2,0,Thai Equities,Stocks,3K-BAT
+668,12880,362,0,Thai Equities,Stocks,NRF
+668,12915,477,0,Thai Equities,Stocks,SCGP
+668,12922,670,0,Thai Equities,Stocks,WGE
+668,12964,459,0,Thai Equities,Stocks,SABUY
+668,12971,453,0,Thai Equities,Stocks,RT
+668,12985,261,0,Thai Equities,Stocks,JR
+668,12992,350,0,Thai Equities,Stocks,NCAP
+668,13013,514,0,Thai Equities,Stocks,SO
+668,13055,457,0,Thai Equities,Stocks,SA
+668,13062,461,0,Thai Equities,Stocks,SAK
+668,13083,271,0,Thai Equities,Stocks,KEX
+668,13097,375,0,Thai Equities,Stocks,OR
+668,13111,52,0,Thai Equities,Stocks,ASW
+668,13258,242,0,Thai Equities,Stocks,INSET
+668,13272,38,0,Thai Equities,Stocks,APCO
+668,13279,345,0,Thai Equities,Stocks,MST
+668,13286,434,0,Thai Equities,Stocks,QHHR
+668,13293,260,0,Thai Equities,Stocks,JMT
+668,13300,671,0,Thai Equities,Stocks,WHA
+668,13307,72,0,Thai Equities,Stocks,BEAUTY
+668,13314,35,0,Thai Equities,Stocks,ANAN
+668,13321,166,0,Thai Equities,Stocks,EA
+668,13328,305,0,Thai Equities,Stocks,M-II
+668,13335,660,0,Thai Equities,Stocks,VGI
+668,13342,138,0,Thai Equities,Stocks,CPNCG
+668,13349,407,0,Thai Equities,Stocks,PPP
+668,13356,317,0,Thai Equities,Stocks,MC
+668,13363,378,0,Thai Equities,Stocks,PACE
+668,13370,586,0,Thai Equities,Stocks,THREL
+668,13377,124,0,Thai Equities,Stocks,CKP
+668,13384,84,0,Thai Equities,Stocks,BKD
+668,13391,148,0,Thai Equities,Stocks,CSS
+668,13398,369,0,Thai Equities,Stocks,NYT
+668,13405,141,0,Thai Equities,Stocks,CPTGF
+668,13419,83,0,Thai Equities,Stocks,BJCHI
+668,13426,303,0,Thai Equities,Stocks,M
+668,13433,321,0,Thai Equities,Stocks,MEGA
+668,13447,54,0,Thai Equities,Stocks,AWC
+668,13454,274,0,Thai Equities,Stocks,KISS
+668,19509,29,0,Thai Equities,Stocks,AMARIN
+668,19516,67,0,Thai Equities,Stocks,BCH
+668,19523,355,0,Thai Equities,Stocks,NEX
+668,19530,71,0,Thai Equities,Stocks,BDMS
+668,19537,58,0,Thai Equities,Stocks,B52
+668,19544,56,0,Thai Equities,Stocks,B
+668,19551,537,0,Thai Equities,Stocks,STARK
+668,19558,408,0,Thai Equities,Stocks,PPPM
+668,19565,415,0,Thai Equities,Stocks,PRIME
+668,19572,417,0,Thai Equities,Stocks,PRINC
+668,19579,213,0,Thai Equities,Stocks,GREEN
+668,19586,7,0,Thai Equities,Stocks,ACC
+668,19593,165,0,Thai Equities,Stocks,DUSIT
+668,19600,680,0,Thai Equities,Stocks,WORLD
+668,19607,666,0,Thai Equities,Stocks,W
+668,19614,175,0,Thai Equities,Stocks,EP
+668,19621,183,0,Thai Equities,Stocks,F&D
+668,19628,199,0,Thai Equities,Stocks,GEL
+668,19635,622,0,Thai Equities,Stocks,TRITN
+668,19642,454,0,Thai Equities,Stocks,S
+668,19649,276,0,Thai Equities,Stocks,KKP
+668,19656,42,0,Thai Equities,Stocks,AKS
+668,19663,677,0,Thai Equities,Stocks,WIIK
+668,19670,284,0,Thai Equities,Stocks,KWI
+668,19677,400,0,Thai Equities,Stocks,POLAR
+668,19684,581,0,Thai Equities,Stocks,THE
+668,19691,40,0,Thai Equities,Stocks,APEX
+668,19698,286,0,Thai Equities,Stocks,L&E
+668,19705,3,0,Thai Equities,Stocks,AE
+668,19712,438,0,Thai Equities,Stocks,RABBIT
+668,19719,208,0,Thai Equities,Stocks,GLOCON
+668,19726,411,0,Thai Equities,Stocks,PRAKIT
+668,19733,75,0,Thai Equities,Stocks,BEYOND
+668,19740,385,0,Thai Equities,Stocks,PDJ
+668,19747,392,0,Thai Equities,Stocks,PK
+668,19754,455,0,Thai Equities,Stocks,S&J
+668,19761,79,0,Thai Equities,Stocks,BIG
+668,19768,513,0,Thai Equities,Stocks,SNP
+668,19775,482,0,Thai Equities,Stocks,SDC
+668,19782,70,0,Thai Equities,Stocks,BCT
+668,19789,255,0,Thai Equities,Stocks,JCK
+668,19796,361,0,Thai Equities,Stocks,NOVA
+668,19803,633,0,Thai Equities,Stocks,TTB
+668,19810,577,0,Thai Equities,Stocks,TH
+668,19817,613,0,Thai Equities,Stocks,TPCS
+668,19824,639,0,Thai Equities,Stocks,TU
+668,19831,190,0,Thai Equities,Stocks,FPT
+668,19838,104,0,Thai Equities,Stocks,BYD
+668,19845,683,0,Thai Equities,Stocks,XPG
+668,19852,203,0,Thai Equities,Stocks,GIFT
+668,19859,291,0,Thai Equities,Stocks,LHFG
+668,19866,297,0,Thai Equities,Stocks,LPF
+668,19873,178,0,Thai Equities,Stocks,ERWPF
+668,19880,158,0,Thai Equities,Stocks,DIF
+668,19887,22,0,Thai Equities,Stocks,AJA
+668,19894,504,0,Thai Equities,Stocks,SKY
+668,19901,346,0,Thai Equities,Stocks,MTC
+668,19908,194,0,Thai Equities,Stocks,FTREIT
+668,19915,367,0,Thai Equities,Stocks,NVD
+668,19922,545,0,Thai Equities,Stocks,SUN
+668,19929,25,0,Thai Equities,Stocks,ALLY
+668,19936,575,0,Thai Equities,Stocks,TGH
+668,82460,587,0,Thai Equities,Stocks,TIDLOR
+668,82481,6,0,Thai Equities,Stocks,AAV
+668,82502,34,0,Thai Equities,Stocks,AMR
+668,82523,526,0,Thai Equities,Stocks,SRICHA
+668,82530,151,0,Thai Equities,Stocks,CV
+668,82537,648,0,Thai Equities,Stocks,UBE
+668,82558,552,0,Thai Equities,Stocks,SVT
+668,82572,221,0,Thai Equities,Stocks,HENG
+668,82593,254,0,Thai Equities,Stocks,3BBIF
+668,82600,277,0,Thai Equities,Stocks,KPNPF
+668,82607,480,0,Thai Equities,Stocks,SCN
+668,82621,101,0,Thai Equities,Stocks,BTSGIF
+668,82628,394,0,Thai Equities,Stocks,PLANB
+668,82635,456,0,Thai Equities,Stocks,S11
+668,82642,395,0,Thai Equities,Stocks,PLAT
+668,82656,130,0,Thai Equities,Stocks,COM7
+668,82663,399,0,Thai Equities,Stocks,PMTA
+668,82677,676,0,Thai Equities,Stocks,WICE
+668,82684,210,0,Thai Equities,Stocks,GPSC
+668,82698,171,0,Thai Equities,Stocks,EGATIF
+668,82705,505,0,Thai Equities,Stocks,SLP
+668,82712,298,0,Thai Equities,Stocks,LPH
+668,82719,252,0,Thai Equities,Stocks,J
+668,82726,92,0,Thai Equities,Stocks,BR
+668,82733,478,0,Thai Equities,Stocks,SCI
+668,82740,570,0,Thai Equities,Stocks,TFG
+668,82754,30,0,Thai Equities,Stocks,AMATA
+668,82761,48,0,Thai Equities,Stocks,ASIAN
+668,82768,376,0,Thai Equities,Stocks,ORI
+668,82782,11,0,Thai Equities,Stocks,AEONTS
+668,82789,31,0,Thai Equities,Stocks,AMATAR
+668,82796,49,0,Thai Equities,Stocks,ASIMAR
+668,82803,16,0,Thai Equities,Stocks,AI
+668,82810,197,0,Thai Equities,Stocks,GBX
+668,82817,46,0,Thai Equities,Stocks,ASEFA
+668,82831,500,0,Thai Equities,Stocks,SJWD
+668,82845,517,0,Thai Equities,Stocks,SPACK
+668,82859,608,0,Thai Equities,Stocks,TOP
+668,82866,10,0,Thai Equities,Stocks,ADVANC
+668,82880,37,0,Thai Equities,Stocks,AP
+668,82894,51,0,Thai Equities,Stocks,ASP
+668,82901,235,0,Thai Equities,Stocks,ILINK
+668,82908,597,0,Thai Equities,Stocks,TLHPF
+668,82915,672,0,Thai Equities,Stocks,WHABT
+668,82922,68,0,Thai Equities,Stocks,BCP
+668,82929,205,0,Thai Equities,Stocks,GL
+668,82943,27,0,Thai Equities,Stocks,ALUCON
+668,82950,173,0,Thai Equities,Stocks,EKH
+668,82957,427,0,Thai Equities,Stocks,PTL
+668,82964,81,0,Thai Equities,Stocks,BIZ
+668,82971,20,0,Thai Equities,Stocks,AIT
+668,82985,515,0,Thai Equities,Stocks,SOLAR
+668,82992,319,0,Thai Equities,Stocks,MCS
+668,83006,60,0,Thai Equities,Stocks,BAFS
+668,83020,380,0,Thai Equities,Stocks,PAP
+668,83027,387,0,Thai Equities,Stocks,PERM
+668,83034,231,0,Thai Equities,Stocks,IFEC
+668,83041,249,0,Thai Equities,Stocks,ITD
+668,83055,26,0,Thai Equities,Stocks,ALT
+668,83062,222,0,Thai Equities,Stocks,HFT
+668,83069,223,0,Thai Equities,Stocks,HMPRO
+668,83076,580,0,Thai Equities,Stocks,THCOM
+668,83083,507,0,Thai Equities,Stocks,SMIT
+668,83090,99,0,Thai Equities,Stocks,BTNC
+668,83097,55,0,Thai Equities,Stocks,AYUD
+668,83104,262,0,Thai Equities,Stocks,JTS
+668,83111,511,0,Thai Equities,Stocks,SNC
+668,83118,21,0,Thai Equities,Stocks,AJ
+668,83125,594,0,Thai Equities,Stocks,TKN
+668,83132,270,0,Thai Equities,Stocks,KDH
+668,83146,644,0,Thai Equities,Stocks,TWPC
+668,83153,626,0,Thai Equities,Stocks,TSC
+668,83167,82,0,Thai Equities,Stocks,BJC
+668,83174,264,0,Thai Equities,Stocks,KBANK
+668,83195,96,0,Thai Equities,Stocks,BRRGIF
+668,83202,189,0,Thai Equities,Stocks,FORTH
+668,83209,530,0,Thai Equities,Stocks,SSP
+668,83223,179,0,Thai Equities,Stocks,BSRC
+668,83237,269,0,Thai Equities,Stocks,KCE
+668,83251,275,0,Thai Equities,Stocks,KKC
+668,83258,240,0,Thai Equities,Stocks,INGRS
+668,83265,631,0,Thai Equities,Stocks,TSTH
+668,83272,436,0,Thai Equities,Stocks,QHPF
+668,83279,47,0,Thai Equities,Stocks,ASIA
+668,83286,14,0,Thai Equities,Stocks,AH
+668,83293,612,0,Thai Equities,Stocks,TPBI
+668,83321,253,0,Thai Equities,Stocks,JAS
+668,83342,337,0,Thai Equities,Stocks,MNIT
+668,83363,546,0,Thai Equities,Stocks,SUPER
+668,83370,229,0,Thai Equities,Stocks,ICC
+668,83377,650,0,Thai Equities,Stocks,UNIQ
+668,83384,418,0,Thai Equities,Stocks,PRM
+668,83391,588,0,Thai Equities,Stocks,TIF1
+668,83398,195,0,Thai Equities,Stocks,FUTUREPF
+668,83405,272,0,Thai Equities,Stocks,KGI
+668,83419,234,0,Thai Equities,Stocks,III
+668,83426,172,0,Thai Equities,Stocks,EGCO
+668,83440,318,0,Thai Equities,Stocks,MCOT
+668,83447,283,0,Thai Equities,Stocks,KWC
+668,83454,502,0,Thai Equities,Stocks,SKN
+668,83461,80,0,Thai Equities,Stocks,BIOTEC
+668,83468,4,0,Thai Equities,Stocks,A
+668,83496,279,0,Thai Equities,Stocks,KTB
+668,83503,435,0,Thai Equities,Stocks,QHOP
+668,83510,102,0,Thai Equities,Stocks,BUI
+668,83517,33,0,Thai Equities,Stocks,AMC
+668,83524,243,0,Thai Equities,Stocks,INSURE
+668,83531,88,0,Thai Equities,Stocks,BLAND
+668,83538,157,0,Thai Equities,Stocks,DEMCO
+668,83545,36,0,Thai Equities,Stocks,AOT
+668,83552,89,0,Thai Equities,Stocks,BLISS
+668,83559,23,0,Thai Equities,Stocks,AKR
+668,83587,117,0,Thai Equities,Stocks,CHG
+668,83594,341,0,Thai Equities,Stocks,MONO
+668,83608,426,0,Thai Equities,Stocks,PTG
+668,83615,360,0,Thai Equities,Stocks,NOK
+668,83629,112,0,Thai Equities,Stocks,CGH
+668,83636,295,0,Thai Equities,Stocks,LHSC
+668,83643,292,0,Thai Equities,Stocks,LHHOTEL
+668,83650,74,0,Thai Equities,Stocks,BEM
+668,83657,332,0,Thai Equities,Stocks,MIT
+668,83664,64,0,Thai Equities,Stocks,BAY
+668,83671,218,0,Thai Equities,Stocks,GVREIT
+668,83678,472,0,Thai Equities,Stocks,SCAP
+668,83685,422,0,Thai Equities,Stocks,PSH
+668,83699,489,0,Thai Equities,Stocks,SGP
+668,83706,66,0,Thai Equities,Stocks,BBL
+668,83713,600,0,Thai Equities,Stocks,TMT
+668,83720,559,0,Thai Equities,Stocks,TCAP
+668,83734,219,0,Thai Equities,Stocks,GYT
+668,83755,110,0,Thai Equities,Stocks,CFRESH
+668,83762,121,0,Thai Equities,Stocks,CITY
+668,83769,607,0,Thai Equities,Stocks,TOG
+668,83776,554,0,Thai Equities,Stocks,SYNEX
+668,83790,32,0,Thai Equities,Stocks,AMATAV
+668,83797,212,0,Thai Equities,Stocks,GRAND
+668,83804,678,0,Thai Equities,Stocks,WIN
+668,83811,204,0,Thai Equities,Stocks,GJS
+668,83818,169,0,Thai Equities,Stocks,ECL
+668,83832,675,0,Thai Equities,Stocks,WHAUP
+668,83839,615,0,Thai Equities,Stocks,TPIPP
+668,83853,153,0,Thai Equities,Stocks,DCC
+668,83860,201,0,Thai Equities,Stocks,GFPT
+668,83867,278,0,Thai Equities,Stocks,KSL
+668,83874,44,0,Thai Equities,Stocks,AS
+668,83881,125,0,Thai Equities,Stocks,CM
+668,83888,450,0,Thai Equities,Stocks,RPH
+668,83895,164,0,Thai Equities,Stocks,DTCI
+668,83916,186,0,Thai Equities,Stocks,FMT
+668,83923,109,0,Thai Equities,Stocks,CENTEL
+668,83930,527,0,Thai Equities,Stocks,SRIPANWA
+668,83937,202,0,Thai Equities,Stocks,GGC
+668,83944,621,0,Thai Equities,Stocks,TRC
+668,83951,431,0,Thai Equities,Stocks,PYLON
+668,83958,114,0,Thai Equities,Stocks,CHARAN
+668,83965,211,0,Thai Equities,Stocks,GRAMMY
+668,83972,62,0,Thai Equities,Stocks,BANPU
+668,83979,331,0,Thai Equities,Stocks,MIPF
+668,83986,215,0,Thai Equities,Stocks,GSTEEL
+668,83993,188,0,Thai Equities,Stocks,FNS
+668,84000,118,0,Thai Equities,Stocks,CHOTI
+668,84007,15,0,Thai Equities,Stocks,AHC
+668,84014,233,0,Thai Equities,Stocks,IHL
+668,84021,41,0,Thai Equities,Stocks,APURE
+668,84028,302,0,Thai Equities,Stocks,LUXF
+668,84035,230,0,Thai Equities,Stocks,ICHI
+668,84042,176,0,Thai Equities,Stocks,EPG
+668,84049,59,0,Thai Equities,Stocks,BA
+668,84056,105,0,Thai Equities,Stocks,CBG
+668,84070,184,0,Thai Equities,Stocks,FANCY
+668,84077,220,0,Thai Equities,Stocks,HANA
+668,84084,469,0,Thai Equities,Stocks,SAWAD
+668,84091,12,0,Thai Equities,Stocks,AFC
+668,84098,97,0,Thai Equities,Stocks,BSBM
+668,84105,78,0,Thai Equities,Stocks,BH
+668,84112,467,0,Thai Equities,Stocks,SAT
+668,84119,458,0,Thai Equities,Stocks,SABINA
+668,84126,50,0,Thai Equities,Stocks,ASK
+668,84133,343,0,Thai Equities,Stocks,ZAA
+668,84140,543,0,Thai Equities,Stocks,STPI
+668,84147,416,0,Thai Equities,Stocks,PRIN
+668,84154,651,0,Thai Equities,Stocks,UOBKH
+668,84161,645,0,Thai Equities,Stocks,TWZ
+668,84168,638,0,Thai Equities,Stocks,TTW
+668,84175,268,0,Thai Equities,Stocks,KCAR
+668,84182,162,0,Thai Equities,Stocks,DRT
+668,84189,167,0,Thai Equities,Stocks,EASON
+668,84196,182,0,Thai Equities,Stocks,EVER
+668,84203,398,0,Thai Equities,Stocks,PM
+668,84210,412,0,Thai Equities,Stocks,PREB
+668,84217,198,0,Thai Equities,Stocks,GC
+668,84224,135,0,Thai Equities,Stocks,CPI
+668,84231,133,0,Thai Equities,Stocks,CPF
+668,84238,147,0,Thai Equities,Stocks,CSR
+668,84245,145,0,Thai Equities,Stocks,CSC
+668,84252,129,0,Thai Equities,Stocks,CNT
+668,84259,134,0,Thai Equities,Stocks,CPH
+668,84266,150,0,Thai Equities,Stocks,CTW
+668,84273,152,0,Thai Equities,Stocks,CWT
+668,84280,106,0,Thai Equities,Stocks,CCET
+668,84287,137,0,Thai Equities,Stocks,CPN
+668,84294,123,0,Thai Equities,Stocks,CK
+668,84301,107,0,Thai Equities,Stocks,CCP
+668,84308,119,0,Thai Equities,Stocks,CI
+668,84315,347,0,Thai Equities,Stocks,MTI
+668,84322,168,0,Thai Equities,Stocks,EASTW
+668,84329,339,0,Thai Equities,Stocks,MNRF
+668,84336,174,0,Thai Equities,Stocks,EMC
+668,84343,180,0,Thai Equities,Stocks,ESTAR
+668,84350,156,0,Thai Equities,Stocks,DELTA
+668,84357,225,0,Thai Equities,Stocks,HTC
+668,84364,247,0,Thai Equities,Stocks,IT
+668,84371,245,0,Thai Equities,Stocks,IRC
+668,84378,238,0,Thai Equities,Stocks,INET
+668,84385,94,0,Thai Equities,Stocks,BROCK
+668,84392,246,0,Thai Equities,Stocks,IRPC
+668,84399,224,0,Thai Equities,Stocks,HPF
+668,84406,549,0,Thai Equities,Stocks,SUTHA
+668,84413,629,0,Thai Equities,Stocks,SBNEXT
+668,84420,496,0,Thai Equities,Stocks,SIRIP
+668,84427,384,0,Thai Equities,Stocks,PCSGH
+668,84434,282,0,Thai Equities,Stocks,KTIS
+668,84441,306,0,Thai Equities,Stocks,M-PAT
+668,84448,406,0,Thai Equities,Stocks,PPF
+668,84455,466,0,Thai Equities,Stocks,SAPPE
+668,84462,443,0,Thai Equities,Stocks,RICHY
+668,84469,237,0,Thai Equities,Stocks,IMPACT
+668,84476,664,0,Thai Equities,Stocks,VPO
+668,84483,674,0,Thai Equities,Stocks,WHART
+668,84490,681,0,Thai Equities,Stocks,WP
+668,84497,95,0,Thai Equities,Stocks,BRR
+668,84504,523,0,Thai Equities,Stocks,SPRC
+668,84511,618,0,Thai Equities,Stocks,TPRIME
+668,84518,69,0,Thai Equities,Stocks,BCPG
+668,84525,187,0,Thai Equities,Stocks,FN
+668,84532,673,0,Thai Equities,Stocks,WHAIR
+668,84539,444,0,Thai Equities,Stocks,RJH
+668,84546,24,0,Thai Equities,Stocks,ALLA
+668,84553,91,0,Thai Equities,Stocks,BPP
+668,84560,525,0,Thai Equities,Stocks,SQ
+668,84567,605,0,Thai Equities,Stocks,TNR
+668,84574,45,0,Thai Equities,Stocks,ASAP
+668,84581,77,0,Thai Equities,Stocks,BGRIM
+668,84588,239,0,Thai Equities,Stocks,INETREIT
+668,84595,590,0,Thai Equities,Stocks,TIPH
+668,84616,611,0,Thai Equities,Stocks,TPAC
+668,84777,250,0,Thai Equities,Stocks,ITEL
+668,86143,374,0,Thai Equities,Stocks,ONEE
+668,86199,280,0,Thai Equities,Stocks,KTBSTMR
+668,86206,390,0,Thai Equities,Stocks,PIN
+668,86843,366,0,Thai Equities,Stocks,NV
+668,86864,93,0,Thai Equities,Stocks,BRI
+668,86878,669,0,Thai Equities,Stocks,WFX
+668,173748,593,0,Thai Equities,Stocks,TKC
+668,201790,122,0,Thai Equities,Stocks,CIVIL
+668,204163,386,0,Thai Equities,Stocks,PEACE
+668,211513,65,0,Thai Equities,Stocks,BBGI
+668,222566,257,0,Thai Equities,Stocks,JDF
+668,224571,473,0,Thai Equities,Stocks,SCB
+668,228491,193,0,Thai Equities,Stocks,FTI
+668,228855,397,0,Thai Equities,Stocks,PLUS
+668,232201,568,0,Thai Equities,Stocks,TEKA
+668,242554,598,0,Thai Equities,Stocks,TLI
+668,245354,574,0,Thai Equities,Stocks,TGE
+668,248742,113,0,Thai Equities,Stocks,CH
+668,249288,63,0,Thai Equities,Stocks,BAREIT
+668,253803,567,0,Thai Equities,Stocks,TEGH
+668,259389,383,0,Thai Equities,Stocks,PCC
+668,260880,5,0,Thai Equities,Stocks,AAI
+668,261181,98,0,Thai Equities,Stocks,BTG
+668,262644,401,0,Thai Equities,Stocks,POLY
+668,264051,53,0,Thai Equities,Stocks,AURA
+668,264877,248,0,Thai Equities,Stocks,ITC
+668,265094,228,0,Thai Equities,Stocks,HYDROGEN
+668,265108,488,0,Thai Equities,Stocks,SGC
+668,265381,163,0,Thai Equities,Stocks,DTCENT
+668,265766,506,0,Thai Equities,Stocks,SM
+668,266095,342,0,Thai Equities,Stocks,MOSHI
+668,277582,409,0,Thai Equities,Stocks,PQS
+668,278142,115,0,Thai Equities,Stocks,CHASE
+668,279654,625,0,Thai Equities,Stocks,TRUE
+668,281117,421,0,Thai Equities,Stocks,PRTR
+668,299009,326,0,Thai Equities,Stocks,MGC
+675,2436,29,0,Thai Equities,Stocks,DMT
+675,2450,70,0,Thai Equities,Stocks,NSL
+675,2730,117,0,Thai Equities,Stocks,TFM
+675,2870,5,0,Thai Equities,Stocks,AIE
+675,3213,128,0,Thai Equities,Stocks,TSE
+675,4557,135,0,Thai Equities,Stocks,UTP
+675,7931,39,0,Thai Equities,Stocks,HUMAN
+675,8043,64,0,Thai Equities,Stocks,MILL
+675,8183,23,0,Thai Equities,Stocks,BWG
+675,8211,27,0,Thai Equities,Stocks,DDD
+675,8309,53,0,Thai Equities,Stocks,LANNA
+675,8344,54,0,Thai Equities,Stocks,LOXLEY
+675,8379,56,0,Thai Equities,Stocks,LPN
+675,8400,57,0,Thai Equities,Stocks,LST
+675,8435,52,0,Thai Equities,Stocks,LALIN
+675,8561,65,0,Thai Equities,Stocks,MSC
+675,8624,59,0,Thai Equities,Stocks,MAJOR
+675,8638,58,0,Thai Equities,Stocks,ROCTEC
+675,8701,62,0,Thai Equities,Stocks,MFEC
+675,8862,26,0,Thai Equities,Stocks,CHAYO
+675,8918,71,0,Thai Equities,Stocks,NTV
+675,8960,68,0,Thai Equities,Stocks,NOBLE
+675,9303,75,0,Thai Equities,Stocks,PF
+675,9366,88,0,Thai Equities,Stocks,RS
+675,9604,93,0,Thai Equities,Stocks,SAMART
+675,9625,101,0,Thai Equities,Stocks,SITHAI
+675,9667,104,0,Thai Equities,Stocks,SMPC
+675,9814,111,0,Thai Equities,Stocks,STANLY
+675,9828,114,0,Thai Equities,Stocks,SUSCO
+675,10059,96,0,Thai Equities,Stocks,SC
+675,10185,100,0,Thai Equities,Stocks,SIS
+675,10241,116,0,Thai Equities,Stocks,TC
+675,10493,67,0,Thai Equities,Stocks,NER
+675,10556,20,0,Thai Equities,Stocks,BGC
+675,10591,79,0,Thai Equities,Stocks,PR9
+675,10647,131,0,Thai Equities,Stocks,TVI
+675,10682,121,0,Thai Equities,Stocks,TIPCO
+675,10766,119,0,Thai Equities,Stocks,THIP
+675,10871,130,0,Thai Equities,Stocks,TTA
+675,10990,122,0,Thai Equities,Stocks,TK
+675,11004,120,0,Thai Equities,Stocks,THRE
+675,11060,125,0,Thai Equities,Stocks,TKS
+675,11095,144,0,Thai Equities,Stocks,ZEN
+675,11165,136,0,Thai Equities,Stocks,UV
+675,11193,137,0,Thai Equities,Stocks,UVAN
+675,11305,142,0,Thai Equities,Stocks,WORK
+675,11340,139,0,Thai Equities,Stocks,VNG
+675,11410,2,0,Thai Equities,Stocks,AGE
+675,11466,86,0,Thai Equities,Stocks,ROJNA
+675,11676,98,0,Thai Equities,Stocks,SENA
+675,11872,105,0,Thai Equities,Stocks,SMT
+675,11956,133,0,Thai Equities,Stocks,UAC
+675,12145,25,0,Thai Equities,Stocks,CGD
+675,12152,43,0,Thai Equities,Stocks,ILM
+675,12201,8,0,Thai Equities,Stocks,AMANAH
+675,12327,48,0,Thai Equities,Stocks,KAMART
+675,12334,108,0,Thai Equities,Stocks,SPCG
+675,12348,10,0,Thai Equities,Stocks,APCS
+675,12418,99,0,Thai Equities,Stocks,SHR
+675,12502,72,0,Thai Equities,Stocks,NUSA
+675,12684,12,0,Thai Equities,Stocks,AQUA
+675,12698,85,0,Thai Equities,Stocks,RML
+675,12712,138,0,Thai Equities,Stocks,VIH
+675,12747,63,0,Thai Equities,Stocks,MICRO
+675,12754,97,0,Thai Equities,Stocks,SCM
+675,12817,34,0,Thai Equities,Stocks,ETC
+675,12880,69,0,Thai Equities,Stocks,NRF
+675,12985,47,0,Thai Equities,Stocks,JR
+675,12992,66,0,Thai Equities,Stocks,NCAP
+675,13013,107,0,Thai Equities,Stocks,SO
+675,13062,92,0,Thai Equities,Stocks,SAK
+675,13111,16,0,Thai Equities,Stocks,ASW
+675,13307,18,0,Thai Equities,Stocks,BEAUTY
+675,13314,9,0,Thai Equities,Stocks,ANAN
+675,13356,60,0,Thai Equities,Stocks,MC
+675,13398,74,0,Thai Equities,Stocks,NYT
+675,13454,50,0,Thai Equities,Stocks,KISS
+675,19565,80,0,Thai Equities,Stocks,PRIME
+675,19614,33,0,Thai Equities,Stocks,EP
+675,19642,89,0,Thai Equities,Stocks,S
+675,19705,1,0,Thai Equities,Stocks,AE
+675,19712,83,0,Thai Equities,Stocks,RABBIT
+675,19733,19,0,Thai Equities,Stocks,BEYOND
+675,19845,143,0,Thai Equities,Stocks,XPG
+675,19894,103,0,Thai Equities,Stocks,SKY
+675,19915,73,0,Thai Equities,Stocks,NVD
+675,19922,113,0,Thai Equities,Stocks,SUN
+675,82523,109,0,Thai Equities,Stocks,SRICHA
+675,82537,134,0,Thai Equities,Stocks,UBE
+675,82572,36,0,Thai Equities,Stocks,HENG
+675,82635,90,0,Thai Equities,Stocks,S11
+675,82642,76,0,Thai Equities,Stocks,PLAT
+675,82677,141,0,Thai Equities,Stocks,WICE
+675,82712,55,0,Thai Equities,Stocks,LPH
+675,82719,46,0,Thai Equities,Stocks,J
+675,82761,14,0,Thai Equities,Stocks,ASIAN
+675,82803,4,0,Thai Equities,Stocks,AI
+675,82894,15,0,Thai Equities,Stocks,ASP
+675,82901,42,0,Thai Equities,Stocks,ILINK
+675,82950,32,0,Thai Equities,Stocks,EKH
+675,82971,6,0,Thai Equities,Stocks,AIT
+675,82992,61,0,Thai Equities,Stocks,MCS
+675,83041,44,0,Thai Equities,Stocks,ITD
+675,83062,37,0,Thai Equities,Stocks,HFT
+675,83076,118,0,Thai Equities,Stocks,THCOM
+675,83111,106,0,Thai Equities,Stocks,SNC
+675,83118,7,0,Thai Equities,Stocks,AJ
+675,83125,124,0,Thai Equities,Stocks,TKN
+675,83146,132,0,Thai Equities,Stocks,TWPC
+675,83209,110,0,Thai Equities,Stocks,SSP
+675,83265,129,0,Thai Equities,Stocks,TSTH
+675,83286,3,0,Thai Equities,Stocks,AH
+675,83384,81,0,Thai Equities,Stocks,PRM
+675,83405,49,0,Thai Equities,Stocks,KGI
+675,83419,41,0,Thai Equities,Stocks,III
+675,83454,102,0,Thai Equities,Stocks,SKN
+675,83538,28,0,Thai Equities,Stocks,DEMCO
+675,83713,126,0,Thai Equities,Stocks,TMT
+675,83769,127,0,Thai Equities,Stocks,TOG
+675,83776,115,0,Thai Equities,Stocks,SYNEX
+675,83811,35,0,Thai Equities,Stocks,GJS
+675,83832,140,0,Thai Equities,Stocks,WHAUP
+675,83867,51,0,Thai Equities,Stocks,KSL
+675,83874,13,0,Thai Equities,Stocks,AS
+675,83888,87,0,Thai Equities,Stocks,RPH
+675,83951,82,0,Thai Equities,Stocks,PYLON
+675,84021,11,0,Thai Equities,Stocks,APURE
+675,84035,40,0,Thai Equities,Stocks,ICHI
+675,84112,95,0,Thai Equities,Stocks,SAT
+675,84119,91,0,Thai Equities,Stocks,SABINA
+675,84140,112,0,Thai Equities,Stocks,STPI
+675,84182,30,0,Thai Equities,Stocks,DRT
+675,84203,78,0,Thai Equities,Stocks,PM
+675,84280,24,0,Thai Equities,Stocks,CCET
+675,84322,31,0,Thai Equities,Stocks,EASTW
+675,84357,38,0,Thai Equities,Stocks,HTC
+675,84455,94,0,Thai Equities,Stocks,SAPPE
+675,84497,22,0,Thai Equities,Stocks,BRR
+675,84539,84,0,Thai Equities,Stocks,RJH
+675,84777,45,0,Thai Equities,Stocks,ITEL
+675,86864,21,0,Thai Equities,Stocks,BRI
+675,173748,123,0,Thai Equities,Stocks,TKC
+675,211513,17,0,Thai Equities,Stocks,BBGI
+675,228855,77,0,Thai Equities,Stocks,PLUS
+682,5019,33,N/A,N/A,N/A,MINT
+682,7952,23,N/A,N/A,N/A,GULF
+682,8624,31,N/A,N/A,N/A,MAJOR
+682,9163,37,N/A,N/A,N/A,PTTEP
+682,9212,36,N/A,N/A,N/A,PTT
+682,9394,44,N/A,N/A,N/A,SCC
+682,9576,45,N/A,N/A,N/A,SCCC
+682,9604,42,N/A,N/A,N/A,SAMART
+682,9639,41,N/A,N/A,N/A,RCL
+682,9646,39,N/A,N/A,N/A,RATCH
+682,10255,52,N/A,N/A,N/A,TASCO
+682,10290,35,N/A,N/A,N/A,OSP
+682,10556,9,N/A,N/A,N/A,BGC
+682,11340,57,N/A,N/A,N/A,VNG
+682,11599,21,N/A,N/A,N/A,GLOBAL
+682,11921,24,N/A,N/A,N/A,GUNKUL
+682,12124,26,N/A,N/A,N/A,INTUCH
+682,12166,38,N/A,N/A,N/A,PTTGC
+682,12390,40,N/A,N/A,N/A,RBF
+682,12635,18,N/A,N/A,N/A,CRC
+682,12761,50,N/A,N/A,N/A,STGT
+682,12915,46,N/A,N/A,N/A,SCGP
+682,13097,34,N/A,N/A,N/A,OR
+682,13377,16,N/A,N/A,N/A,CKP
+682,13433,32,N/A,N/A,N/A,MEGA
+682,19516,5,N/A,N/A,N/A,BCH
+682,19530,8,N/A,N/A,N/A,BDMS
+682,19649,29,N/A,N/A,N/A,KKP
+682,19824,56,N/A,N/A,N/A,TU
+682,82684,22,N/A,N/A,N/A,GPSC
+682,82754,2,N/A,N/A,N/A,AMATA
+682,82831,47,N/A,N/A,N/A,SJWD
+682,82859,54,N/A,N/A,N/A,TOP
+682,82922,6,N/A,N/A,N/A,BCP
+682,83076,53,N/A,N/A,N/A,THCOM
+682,83118,1,N/A,N/A,N/A,AJ
+682,83167,12,N/A,N/A,N/A,BJC
+682,83174,28,N/A,N/A,N/A,KBANK
+682,83209,49,N/A,N/A,N/A,SSP
+682,83265,55,N/A,N/A,N/A,TSTH
+682,83363,51,N/A,N/A,N/A,SUPER
+682,83426,20,N/A,N/A,N/A,EGCO
+682,83706,4,N/A,N/A,N/A,BBL
+682,83867,30,N/A,N/A,N/A,KSL
+682,83972,3,N/A,N/A,N/A,BANPU
+682,84035,25,N/A,N/A,N/A,ICHI
+682,84056,14,N/A,N/A,N/A,CBG
+682,84105,11,N/A,N/A,N/A,BH
+682,84182,19,N/A,N/A,N/A,DRT
+682,84231,17,N/A,N/A,N/A,CPF
+682,84294,15,N/A,N/A,N/A,CK
+682,84392,27,N/A,N/A,N/A,IRPC
+682,84504,48,N/A,N/A,N/A,SPRC
+682,84518,7,N/A,N/A,N/A,BCPG
+682,84553,13,N/A,N/A,N/A,BPP
+682,84581,10,N/A,N/A,N/A,BGRIM
+682,224571,43,N/A,N/A,N/A,SCB
+689,8330,15,0,Thai Equities,Stocks,LH
+689,9163,19,0,Thai Equities,Stocks,PTTEP
+689,9212,18,0,Thai Equities,Stocks,PTT
+689,9331,20,0,Thai Equities,Stocks,QH
+689,9394,23,0,Thai Equities,Stocks,SCC
+689,9646,21,0,Thai Equities,Stocks,RATCH
+689,10101,24,0,Thai Equities,Stocks,SPALI
+689,10290,17,0,Thai Equities,Stocks,OSP
+689,11039,26,0,Thai Equities,Stocks,THANI
+689,11368,27,0,Thai Equities,Stocks,TISCO
+689,11921,10,0,Thai Equities,Stocks,GUNKUL
+689,11949,6,0,Thai Equities,Stocks,BTS
+689,12124,12,0,Thai Equities,Stocks,INTUCH
+689,13300,30,0,Thai Equities,Stocks,WHA
+689,19516,4,0,Thai Equities,Stocks,BCH
+689,19649,13,0,Thai Equities,Stocks,KKP
+689,19803,28,0,Thai Equities,Stocks,TTB
+689,19824,29,0,Thai Equities,Stocks,TU
+689,82768,16,0,Thai Equities,Stocks,ORI
+689,82866,1,0,Thai Equities,Stocks,ADVANC
+689,82880,2,0,Thai Equities,Stocks,AP
+689,83426,9,0,Thai Equities,Stocks,EGCO
+689,83496,14,0,Thai Equities,Stocks,KTB
+689,83587,7,0,Thai Equities,Stocks,CHG
+689,83706,3,0,Thai Equities,Stocks,BBL
+689,83720,25,0,Thai Equities,Stocks,TCAP
+689,84077,11,0,Thai Equities,Stocks,HANA
+689,84084,22,0,Thai Equities,Stocks,SAWAD
+689,84231,8,0,Thai Equities,Stocks,CPF
+689,84518,5,0,Thai Equities,Stocks,BCPG
+696,2436,36,N/A,N/A,N/A,DMT
+696,4907,23,N/A,N/A,N/A,BKI
+696,5019,63,N/A,N/A,N/A,MINT
+696,7749,60,N/A,N/A,N/A,KTC
+696,7756,106,N/A,N/A,N/A,TOA
+696,7952,46,N/A,N/A,N/A,GULF
+696,8099,31,N/A,N/A,N/A,CPALL
+696,8624,61,N/A,N/A,N/A,MAJOR
+696,8960,66,N/A,N/A,N/A,NOBLE
+696,9135,75,N/A,N/A,N/A,PSL
+696,9163,78,N/A,N/A,N/A,PTTEP
+696,9212,77,N/A,N/A,N/A,PTT
+696,9366,81,N/A,N/A,N/A,RS
+696,9394,90,N/A,N/A,N/A,SCC
+696,9576,91,N/A,N/A,N/A,SCCC
+696,9646,80,N/A,N/A,N/A,RATCH
+696,9968,94,N/A,N/A,N/A,SIRI
+696,10045,98,N/A,N/A,N/A,STA
+696,10059,88,N/A,N/A,N/A,SC
+696,10101,97,N/A,N/A,N/A,SPALI
+696,10290,70,N/A,N/A,N/A,OSP
+696,10493,65,N/A,N/A,N/A,NER
+696,10556,20,N/A,N/A,N/A,BGC
+696,10563,108,N/A,N/A,N/A,TPIPL
+696,10591,73,N/A,N/A,N/A,PR9
+696,10626,115,N/A,N/A,N/A,TVO
+696,10661,110,N/A,N/A,N/A,TQM
+696,10871,112,N/A,N/A,N/A,TTA
+696,11039,101,N/A,N/A,N/A,THANI
+696,11060,104,N/A,N/A,N/A,TKS
+696,11368,103,N/A,N/A,N/A,TISCO
+696,11599,44,N/A,N/A,N/A,GLOBAL
+696,11837,24,N/A,N/A,N/A,BLA
+696,11921,47,N/A,N/A,N/A,GUNKUL
+696,11949,26,N/A,N/A,N/A,BTS
+696,12061,55,N/A,N/A,N/A,IVL
+696,12124,52,N/A,N/A,N/A,INTUCH
+696,12166,79,N/A,N/A,N/A,PTTGC
+696,12418,93,N/A,N/A,N/A,SHR
+696,12432,2,N/A,N/A,N/A,ACE
+696,12565,13,N/A,N/A,N/A,BAM
+696,12635,34,N/A,N/A,N/A,CRC
+696,12761,99,N/A,N/A,N/A,STGT
+696,12817,42,N/A,N/A,N/A,ETC
+696,12880,67,N/A,N/A,N/A,NRF
+696,12915,92,N/A,N/A,N/A,SCGP
+696,13062,84,N/A,N/A,N/A,SAK
+696,13083,57,N/A,N/A,N/A,KEX
+696,13097,68,N/A,N/A,N/A,OR
+696,13111,10,N/A,N/A,N/A,ASW
+696,13300,117,N/A,N/A,N/A,WHA
+696,13321,38,N/A,N/A,N/A,EA
+696,13335,116,N/A,N/A,N/A,VGI
+696,13377,29,N/A,N/A,N/A,CKP
+696,13433,62,N/A,N/A,N/A,MEGA
+696,13447,11,N/A,N/A,N/A,AWC
+696,19530,18,N/A,N/A,N/A,BDMS
+696,19642,82,N/A,N/A,N/A,S
+696,19649,58,N/A,N/A,N/A,KKP
+696,19803,113,N/A,N/A,N/A,TTB
+696,19901,64,N/A,N/A,N/A,MTC
+696,82481,1,N/A,N/A,N/A,AAV
+696,82628,71,N/A,N/A,N/A,PLANB
+696,82656,30,N/A,N/A,N/A,COM7
+696,82684,45,N/A,N/A,N/A,GPSC
+696,82754,6,N/A,N/A,N/A,AMATA
+696,82761,9,N/A,N/A,N/A,ASIAN
+696,82768,69,N/A,N/A,N/A,ORI
+696,82831,95,N/A,N/A,N/A,SJWD
+696,82859,107,N/A,N/A,N/A,TOP
+696,82866,3,N/A,N/A,N/A,ADVANC
+696,82880,8,N/A,N/A,N/A,AP
+696,82922,16,N/A,N/A,N/A,BCP
+696,83006,12,N/A,N/A,N/A,BAFS
+696,83069,49,N/A,N/A,N/A,HMPRO
+696,83076,102,N/A,N/A,N/A,THCOM
+696,83111,96,N/A,N/A,N/A,SNC
+696,83118,5,N/A,N/A,N/A,AJ
+696,83167,22,N/A,N/A,N/A,BJC
+696,83174,56,N/A,N/A,N/A,KBANK
+696,83265,111,N/A,N/A,N/A,TSTH
+696,83286,4,N/A,N/A,N/A,AH
+696,83426,40,N/A,N/A,N/A,EGCO
+696,83496,59,N/A,N/A,N/A,KTB
+696,83545,7,N/A,N/A,N/A,AOT
+696,83608,76,N/A,N/A,N/A,PTG
+696,83650,19,N/A,N/A,N/A,BEM
+696,83685,74,N/A,N/A,N/A,PSH
+696,83706,15,N/A,N/A,N/A,BBL
+696,83713,105,N/A,N/A,N/A,TMT
+696,83776,100,N/A,N/A,N/A,SYNEX
+696,83832,118,N/A,N/A,N/A,WHAUP
+696,83839,109,N/A,N/A,N/A,TPIPP
+696,83860,43,N/A,N/A,N/A,GFPT
+696,83923,28,N/A,N/A,N/A,CENTEL
+696,83972,14,N/A,N/A,N/A,BANPU
+696,84035,51,N/A,N/A,N/A,ICHI
+696,84042,41,N/A,N/A,N/A,EPG
+696,84056,27,N/A,N/A,N/A,CBG
+696,84077,48,N/A,N/A,N/A,HANA
+696,84084,87,N/A,N/A,N/A,SAWAD
+696,84112,86,N/A,N/A,N/A,SAT
+696,84119,83,N/A,N/A,N/A,SABINA
+696,84168,114,N/A,N/A,N/A,TTW
+696,84182,37,N/A,N/A,N/A,DRT
+696,84203,72,N/A,N/A,N/A,PM
+696,84231,32,N/A,N/A,N/A,CPF
+696,84287,33,N/A,N/A,N/A,CPN
+696,84322,39,N/A,N/A,N/A,EASTW
+696,84350,35,N/A,N/A,N/A,DELTA
+696,84357,50,N/A,N/A,N/A,HTC
+696,84392,53,N/A,N/A,N/A,IRPC
+696,84455,85,N/A,N/A,N/A,SAPPE
+696,84518,17,N/A,N/A,N/A,BCPG
+696,84553,25,N/A,N/A,N/A,BPP
+696,84581,21,N/A,N/A,N/A,BGRIM
+696,84777,54,N/A,N/A,N/A,ITEL
+696,224571,89,N/A,N/A,N/A,SCB
+703,8099,10,N/A,N/A,N/A,CPALL
+703,8113,27,N/A,N/A,N/A,THG
+703,9338,20,N/A,N/A,N/A,RAM
+703,9443,24,N/A,N/A,N/A,SINGER
+703,9639,22,N/A,N/A,N/A,RCL
+703,10045,26,N/A,N/A,N/A,STA
+703,10290,19,N/A,N/A,N/A,OSP
+703,10626,29,N/A,N/A,N/A,TVO
+703,11235,30,N/A,N/A,N/A,VIBHA
+703,11599,14,N/A,N/A,N/A,GLOBAL
+703,11949,6,N/A,N/A,N/A,BTS
+703,12187,13,N/A,N/A,N/A,DOHOME
+703,12390,21,N/A,N/A,N/A,RBF
+703,12635,12,N/A,N/A,N/A,CRC
+703,12964,23,N/A,N/A,N/A,SABUY
+703,13083,16,N/A,N/A,N/A,KEX
+703,13426,17,N/A,N/A,N/A,M
+703,13433,18,N/A,N/A,N/A,MEGA
+703,19516,1,N/A,N/A,N/A,BCH
+703,19530,2,N/A,N/A,N/A,BDMS
+703,19824,28,N/A,N/A,N/A,TU
+703,82656,9,N/A,N/A,N/A,COM7
+703,82831,25,N/A,N/A,N/A,SJWD
+703,83069,15,N/A,N/A,N/A,HMPRO
+703,83167,5,N/A,N/A,N/A,BJC
+703,83587,8,N/A,N/A,N/A,CHG
+703,83650,3,N/A,N/A,N/A,BEM
+703,84056,7,N/A,N/A,N/A,CBG
+703,84105,4,N/A,N/A,N/A,BH
+703,84231,11,N/A,N/A,N/A,CPF
+710,2443,200,0,Thai Equities,Stocks,WINMED
+710,2499,155,0,Thai Equities,Stocks,SMD
+710,2737,53,0,Thai Equities,Stocks,DPAINT
+710,6300,41,0,Thai Equities,Stocks,CMO
+710,6601,47,0,Thai Equities,Stocks,D
+710,7140,192,0,Thai Equities,Stocks,UBIS
+710,7840,46,0,Thai Equities,Stocks,CRD
+710,8022,5,0,Thai Equities,Stocks,ADB
+710,8029,58,0,Thai Equities,Stocks,FLOYD
+710,8050,151,0,Thai Equities,Stocks,SIMAT
+710,8106,178,0,Thai Equities,Stocks,TNDT
+710,8127,172,0,Thai Equities,Stocks,TITLE
+710,8148,25,0,Thai Equities,Stocks,BGT
+710,8169,170,0,Thai Equities,Stocks,THMUI
+710,8204,197,0,Thai Equities,Stocks,VCOM
+710,8295,50,0,Thai Equities,Stocks,DIMET
+710,8337,31,0,Thai Equities,Stocks,BSM
+710,8722,3,0,Thai Equities,Stocks,ABM
+710,8792,115,0,Thai Equities,Stocks,NPK
+710,9317,52,0,Thai Equities,Stocks,DOD
+710,9492,149,0,Thai Equities,Stocks,SGF
+710,9499,121,0,Thai Equities,Stocks,PICO
+710,9772,110,0,Thai Equities,Stocks,MVP
+710,10024,182,0,Thai Equities,Stocks,TPLAS
+710,10213,96,0,Thai Equities,Stocks,KWM
+710,10269,156,0,Thai Equities,Stocks,SONIC
+710,10549,171,0,Thai Equities,Stocks,TIGER
+710,10794,139,0,Thai Equities,Stocks,SAAM
+710,10913,34,0,Thai Equities,Stocks,CAZ
+710,10969,177,0,Thai Equities,Stocks,TMW
+710,11200,195,0,Thai Equities,Stocks,UMS
+710,11284,205,0,Thai Equities,Stocks,YUASA
+710,11319,64,0,Thai Equities,Stocks,GSC
+710,11571,135,0,Thai Equities,Stocks,QLT
+710,11669,10,0,Thai Equities,Stocks,ALL
+710,11732,16,0,Thai Equities,Stocks,ARIP
+710,11739,187,0,Thai Equities,Stocks,TSF
+710,11760,198,0,Thai Equities,Stocks,VL
+710,11795,169,0,Thai Equities,Stocks,THANA
+710,11816,105,0,Thai Equities,Stocks,MITSIB
+710,11830,188,0,Thai Equities,Stocks,TURTLE
+710,11900,88,0,Thai Equities,Stocks,KGEN
+710,11914,120,0,Thai Equities,Stocks,PHOL
+710,11977,83,0,Thai Equities,Stocks,JUBILE
+710,12012,106,0,Thai Equities,Stocks,MOONG
+710,12096,175,0,Thai Equities,Stocks,TMI
+710,12236,15,0,Thai Equities,Stocks,ARIN
+710,12341,42,0,Thai Equities,Stocks,COLOR
+710,12362,7,0,Thai Equities,Stocks,AF
+710,12369,94,0,Thai Equities,Stocks,KUMWEL
+710,12411,76,0,Thai Equities,Stocks,IP
+710,12467,183,0,Thai Equities,Stocks,TPS
+710,12474,71,0,Thai Equities,Stocks,HYDRO
+710,12509,39,0,Thai Equities,Stocks,CHOW
+710,12600,161,0,Thai Equities,Stocks,STC
+710,12607,14,0,Thai Equities,Stocks,APP
+710,12621,23,0,Thai Equities,Stocks,BC
+710,12642,95,0,Thai Equities,Stocks,KUN
+710,12656,203,0,Thai Equities,Stocks,YGG
+710,12670,74,0,Thai Equities,Stocks,IMH
+710,12768,150,0,Thai Equities,Stocks,SICT
+710,12789,73,0,Thai Equities,Stocks,IIG
+710,12831,152,0,Thai Equities,Stocks,SK
+710,12866,127,0,Thai Equities,Stocks,PRAPAT
+710,12873,49,0,Thai Equities,Stocks,DHOUSE
+710,12908,148,0,Thai Equities,Stocks,SFT
+710,12943,98,0,Thai Equities,Stocks,LEO
+710,13020,75,0,Thai Equities,Stocks,IND
+710,13076,80,0,Thai Equities,Stocks,JAK
+710,13090,184,0,Thai Equities,Stocks,TQR
+710,13104,130,0,Thai Equities,Stocks,PROS
+710,13125,129,0,Thai Equities,Stocks,PROEN
+710,13139,189,0,Thai Equities,Stocks,TVDH
+710,13146,59,0,Thai Equities,Stocks,FPI
+710,13153,126,0,Thai Equities,Stocks,PPS
+710,13160,176,0,Thai Equities,Stocks,TMILL
+710,13167,174,0,Thai Equities,Stocks,TMC
+710,13181,17,0,Thai Equities,Stocks,ARROW
+710,13188,144,0,Thai Equities,Stocks,SEAOIL
+710,13202,9,0,Thai Equities,Stocks,AKP
+710,13209,55,0,Thai Equities,Stocks,ECF
+710,13216,61,0,Thai Equities,Stocks,FVC
+710,13223,158,0,Thai Equities,Stocks,SPVI
+710,13230,201,0,Thai Equities,Stocks,WINNER
+710,13237,21,0,Thai Equities,Stocks,AUCT
+710,13251,11,0,Thai Equities,Stocks,ALPHAX
+710,13265,118,0,Thai Equities,Stocks,PACO
+710,19376,131,0,Thai Equities,Stocks,PROUD
+710,19383,114,0,Thai Equities,Stocks,NEWS
+710,19390,153,0,Thai Equities,Stocks,SLM
+710,19397,2,0,Thai Equities,Stocks,A5
+710,19404,132,0,Thai Equities,Stocks,PSG
+710,19411,54,0,Thai Equities,Stocks,DV8
+710,19418,56,0,Thai Equities,Stocks,EFORL
+710,19425,66,0,Thai Equities,Stocks,GTV
+710,19432,103,0,Thai Equities,Stocks,META
+710,19439,68,0,Thai Equities,Stocks,HEALTH
+710,19446,81,0,Thai Equities,Stocks,JCKH
+710,19453,196,0,Thai Equities,Stocks,UREKA
+710,19460,107,0,Thai Equities,Stocks,MORE
+710,19467,162,0,Thai Equities,Stocks,STOWER
+710,19474,62,0,Thai Equities,Stocks,GCAP
+710,19481,123,0,Thai Equities,Stocks,PLANET
+710,19488,67,0,Thai Equities,Stocks,HARN
+710,19495,109,0,Thai Equities,Stocks,MUD
+710,19502,90,0,Thai Equities,Stocks,KK
+710,82453,51,0,Thai Equities,Stocks,DITTO
+710,82467,6,0,Thai Equities,Stocks,ADD
+710,82474,145,0,Thai Equities,Stocks,SECURE
+710,82544,44,0,Thai Equities,Stocks,CPANEL
+710,82586,142,0,Thai Equities,Stocks,SANKO
+710,82614,38,0,Thai Equities,Stocks,CHO
+710,82649,190,0,Thai Equities,Stocks,TVT
+710,82670,122,0,Thai Equities,Stocks,PIMO
+710,82691,70,0,Thai Equities,Stocks,HPT
+710,82747,165,0,Thai Equities,Stocks,SWC
+710,82775,159,0,Thai Equities,Stocks,SR
+710,82824,92,0,Thai Equities,Stocks,KOOL
+710,82838,40,0,Thai Equities,Stocks,CIG
+710,82852,137,0,Thai Equities,Stocks,RP
+710,82887,19,0,Thai Equities,Stocks,ATP30
+710,82978,180,0,Thai Equities,Stocks,TNP
+710,82999,65,0,Thai Equities,Stocks,GTB
+710,83013,29,0,Thai Equities,Stocks,BOL
+710,83139,45,0,Thai Equities,Stocks,CPR
+710,83181,30,0,Thai Equities,Stocks,BTC
+710,83188,141,0,Thai Equities,Stocks,SALEE
+710,83216,101,0,Thai Equities,Stocks,MBAX
+710,83230,206,0,Thai Equities,Stocks,ZIGA
+710,83314,168,0,Thai Equities,Stocks,TAPAC
+710,83328,125,0,Thai Equities,Stocks,PPM
+710,83335,32,0,Thai Equities,Stocks,BTW
+710,83349,166,0,Thai Equities,Stocks,TACC
+710,83356,113,0,Thai Equities,Stocks,NETBAY
+710,83433,72,0,Thai Equities,Stocks,ICN
+710,83580,22,0,Thai Equities,Stocks,BBIK
+710,83601,181,0,Thai Equities,Stocks,TPCH
+710,83622,112,0,Thai Equities,Stocks,NDR
+710,83692,12,0,Thai Equities,Stocks,AMA
+710,83727,20,0,Thai Equities,Stocks,AU
+710,83748,185,0,Thai Equities,Stocks,TRT
+710,83783,57,0,Thai Equities,Stocks,ETE
+710,83825,36,0,Thai Equities,Stocks,CHEWA
+710,83846,104,0,Thai Equities,Stocks,MGT
+710,83902,143,0,Thai Equities,Stocks,SE
+710,83909,84,0,Thai Equities,Stocks,K
+710,84602,4,0,Thai Equities,Stocks,ACAP
+710,84609,193,0,Thai Equities,Stocks,UEC
+710,84623,179,0,Thai Equities,Stocks,TNH
+710,84630,160,0,Thai Equities,Stocks,WELL
+710,84637,85,0,Thai Equities,Stocks,KASET
+710,84644,77,0,Thai Equities,Stocks,IRCP
+710,84651,194,0,Thai Equities,Stocks,UKEM
+710,84658,99,0,Thai Equities,Stocks,LIT
+710,84665,119,0,Thai Equities,Stocks,PDG
+710,84672,8,0,Thai Equities,Stocks,AIRA
+710,84679,202,0,Thai Equities,Stocks,XO
+710,84686,117,0,Thai Equities,Stocks,PEER
+710,84693,138,0,Thai Equities,Stocks,RWI
+710,84700,167,0,Thai Equities,Stocks,TAKUNI
+710,84707,97,0,Thai Equities,Stocks,LDC
+710,84714,87,0,Thai Equities,Stocks,KCM
+710,84721,147,0,Thai Equities,Stocks,SENX
+710,84728,157,0,Thai Equities,Stocks,SPA
+710,84735,111,0,Thai Equities,Stocks,NCL
+710,84742,133,0,Thai Equities,Stocks,PSTC
+710,84749,154,0,Thai Equities,Stocks,SMART
+710,84756,60,0,Thai Equities,Stocks,FSMART
+710,84763,28,0,Thai Equities,Stocks,BM
+710,84770,18,0,Thai Equities,Stocks,ASN
+710,84784,146,0,Thai Equities,Stocks,SELIC
+710,84791,173,0,Thai Equities,Stocks,TM
+710,84798,43,0,Thai Equities,Stocks,COMAN
+710,84805,63,0,Thai Equities,Stocks,GLORY
+710,84869,82,0,Thai Equities,Stocks,JSP
+710,86136,24,0,Thai Equities,Stocks,BE8
+710,104168,186,0,Thai Equities,Stocks,TRV
+710,104182,69,0,Thai Equities,Stocks,HL
+710,200368,134,0,Thai Equities,Stocks,PTC
+710,225047,35,0,Thai Equities,Stocks,CEYE
+710,225985,26,0,Thai Equities,Stocks,BIS
+710,226006,86,0,Thai Equities,Stocks,KCCAMC
+710,232047,163,0,Thai Equities,Stocks,STP
+710,240349,27,0,Thai Equities,Stocks,BLESS
+710,243044,37,0,Thai Equities,Stocks,CHIC
+710,243275,204,0,Thai Equities,Stocks,YONG
+710,256666,1,0,Thai Equities,Stocks,24CS
+710,258955,13,0,Thai Equities,Stocks,AMARC
+710,259550,78,0,Thai Equities,Stocks,ITNS
+710,261461,91,0,Thai Equities,Stocks,KLINIQ
+710,263169,89,0,Thai Equities,Stocks,KJL
+710,264163,128,0,Thai Equities,Stocks,PRI
+710,264478,108,0,Thai Equities,Stocks,MTW
+710,264646,191,0,Thai Equities,Stocks,UBA
+710,265976,199,0,Thai Equities,Stocks,WARRIX
+710,266200,93,0,Thai Equities,Stocks,KTMS
+710,273991,140,0,Thai Equities,Stocks,SAF
+710,274761,100,0,Thai Equities,Stocks,MASTER
+710,276658,164,0,Thai Equities,Stocks,SVR
+710,276749,116,0,Thai Equities,Stocks,NTSC
+710,277288,102,0,Thai Equities,Stocks,MEB
+710,277834,33,0,Thai Equities,Stocks,BVG
+710,278282,136,0,Thai Equities,Stocks,READY
+710,282230,79,0,Thai Equities,Stocks,ITTHI
+710,285226,48,0,Thai Equities,Stocks,DEXON
+710,299303,124,0,Thai Equities,Stocks,PLT
+717,2450,37,N/A,N/A,N/A,NSL
+717,2541,51,N/A,N/A,N/A,SNNP
+717,2730,63,N/A,N/A,N/A,TFM
+717,5019,33,N/A,N/A,N/A,MINT
+717,8078,64,N/A,N/A,N/A,TFMAMA
+717,8358,28,N/A,N/A,N/A,LEE
+717,8400,29,N/A,N/A,N/A,LST
+717,8442,31,N/A,N/A,N/A,MALEE
+717,9121,39,N/A,N/A,N/A,OISHI
+717,9142,46,N/A,N/A,N/A,PRG
+717,9275,41,N/A,N/A,N/A,PB
+717,9611,50,N/A,N/A,N/A,SFP
+717,9681,54,N/A,N/A,N/A,SSC
+717,9744,55,N/A,N/A,N/A,SSF
+717,9800,53,N/A,N/A,N/A,SORKON
+717,9842,49,N/A,N/A,N/A,SAUCE
+717,9912,56,N/A,N/A,N/A,SST
+717,10045,57,N/A,N/A,N/A,STA
+717,10241,60,N/A,N/A,N/A,TC
+717,10290,40,N/A,N/A,N/A,OSP
+717,10493,35,N/A,N/A,N/A,NER
+717,10626,70,N/A,N/A,N/A,TVO
+717,10682,65,N/A,N/A,N/A,TIPCO
+717,11011,68,N/A,N/A,N/A,TRUBB
+717,11095,77,N/A,N/A,N/A,ZEN
+717,11116,72,N/A,N/A,N/A,UPOIC
+717,11193,73,N/A,N/A,N/A,UVAN
+717,11879,32,N/A,N/A,N/A,MAX
+717,12005,15,N/A,N/A,N/A,EE
+717,12313,25,N/A,N/A,N/A,KBS
+717,12390,47,N/A,N/A,N/A,RBF
+717,12880,36,N/A,N/A,N/A,NRF
+717,13160,67,N/A,N/A,N/A,TMILL
+717,13426,30,N/A,N/A,N/A,M
+717,19446,22,N/A,N/A,N/A,JCKH
+717,19495,34,N/A,N/A,N/A,MUD
+717,19558,44,N/A,N/A,N/A,PPPM
+717,19607,75,N/A,N/A,N/A,W
+717,19621,16,N/A,N/A,N/A,F&D
+717,19719,18,N/A,N/A,N/A,GLOCON
+717,19768,52,N/A,N/A,N/A,SNP
+717,19824,69,N/A,N/A,N/A,TU
+717,19922,58,N/A,N/A,N/A,SUN
+717,82726,5,N/A,N/A,N/A,BR
+717,82740,62,N/A,N/A,N/A,TFG
+717,82761,3,N/A,N/A,N/A,ASIAN
+717,83125,66,N/A,N/A,N/A,TKN
+717,83146,71,N/A,N/A,N/A,TWPC
+717,83349,59,N/A,N/A,N/A,TACC
+717,83727,4,N/A,N/A,N/A,AU
+717,83755,9,N/A,N/A,N/A,CFRESH
+717,83860,17,N/A,N/A,N/A,GFPT
+717,83867,26,N/A,N/A,N/A,KSL
+717,83881,12,N/A,N/A,N/A,CM
+717,84000,11,N/A,N/A,N/A,CHOTI
+717,84021,2,N/A,N/A,N/A,APURE
+717,84035,20,N/A,N/A,N/A,ICHI
+717,84056,8,N/A,N/A,N/A,CBG
+717,84203,43,N/A,N/A,N/A,PM
+717,84224,14,N/A,N/A,N/A,CPI
+717,84231,13,N/A,N/A,N/A,CPF
+717,84357,19,N/A,N/A,N/A,HTC
+717,84434,27,N/A,N/A,N/A,KTIS
+717,84455,48,N/A,N/A,N/A,SAPPE
+717,84476,74,N/A,N/A,N/A,VPO
+717,84497,6,N/A,N/A,N/A,BRR
+717,84637,24,N/A,N/A,N/A,KASET
+717,84679,76,N/A,N/A,N/A,XO
+717,222566,23,N/A,N/A,N/A,JDF
+717,228855,42,N/A,N/A,N/A,PLUS
+717,248742,10,N/A,N/A,N/A,CH
+717,253803,61,N/A,N/A,N/A,TEGH
+717,260880,1,N/A,N/A,N/A,AAI
+717,261181,7,N/A,N/A,N/A,BTG
+717,264877,21,N/A,N/A,N/A,ITC
+717,276749,38,N/A,N/A,N/A,NTSC
+717,277582,45,N/A,N/A,N/A,PQS
+724,2443,59,N/A,N/A,N/A,WINMED
+724,2499,42,N/A,N/A,N/A,SMD
+724,6209,10,N/A,N/A,N/A,CPL
+724,7217,21,N/A,N/A,N/A,JCT
+724,7707,25,N/A,N/A,N/A,KYE
+724,8148,6,N/A,N/A,N/A,BGT
+724,8211,11,N/A,N/A,N/A,DDD
+724,8568,27,N/A,N/A,N/A,MODERN
+724,8687,29,N/A,N/A,N/A,NC
+724,8792,30,N/A,N/A,N/A,NPK
+724,8911,32,N/A,N/A,N/A,OCC
+724,9016,33,N/A,N/A,N/A,OGC
+724,9065,36,N/A,N/A,N/A,PG
+724,9072,34,N/A,N/A,N/A,PAF
+724,9317,12,N/A,N/A,N/A,DOD
+724,9555,37,N/A,N/A,N/A,ROCK
+724,9632,40,N/A,N/A,N/A,SAWANG
+724,9940,45,N/A,N/A,N/A,SUC
+724,10031,41,N/A,N/A,N/A,SIAM
+724,10094,44,N/A,N/A,N/A,STHAI
+724,10283,46,N/A,N/A,N/A,TCMC
+724,10605,48,N/A,N/A,N/A,TNL
+724,10675,51,N/A,N/A,N/A,TR
+724,10724,53,N/A,N/A,N/A,TTI
+724,11102,55,N/A,N/A,N/A,UPF
+724,11354,56,N/A,N/A,N/A,WACOAL
+724,11627,54,N/A,N/A,N/A,TTT
+724,11977,23,N/A,N/A,N/A,JUBILE
+724,12012,28,N/A,N/A,N/A,MOONG
+724,12411,19,N/A,N/A,N/A,IP
+724,12761,43,N/A,N/A,N/A,STGT
+724,13209,14,N/A,N/A,N/A,ECF
+724,13251,3,N/A,N/A,N/A,ALPHAX
+724,13272,4,N/A,N/A,N/A,APCO
+724,13454,24,N/A,N/A,N/A,KISS
+724,19418,15,N/A,N/A,N/A,EFORL
+724,19698,26,N/A,N/A,N/A,L&E
+724,19740,35,N/A,N/A,N/A,PDJ
+724,19754,38,N/A,N/A,N/A,S&J
+724,19887,2,N/A,N/A,N/A,AJA
+724,82691,18,N/A,N/A,N/A,HPT
+724,82964,7,N/A,N/A,N/A,BIZ
+724,83090,8,N/A,N/A,N/A,BTNC
+724,83769,50,N/A,N/A,N/A,TOG
+724,83895,13,N/A,N/A,N/A,DTCI
+724,84070,16,N/A,N/A,N/A,FANCY
+724,84091,1,N/A,N/A,N/A,AFC
+724,84119,39,N/A,N/A,N/A,SABINA
+724,84259,9,N/A,N/A,N/A,CPH
+724,84413,52,N/A,N/A,N/A,SBNEXT
+724,84567,49,N/A,N/A,N/A,TNR
+724,84791,47,N/A,N/A,N/A,TM
+724,84869,22,N/A,N/A,N/A,JSP
+724,86843,31,N/A,N/A,N/A,NV
+724,86878,58,N/A,N/A,N/A,WFX
+724,228491,17,N/A,N/A,N/A,FTI
+724,264051,5,N/A,N/A,N/A,AURA
+724,265976,57,N/A,N/A,N/A,WARRIX
+724,282230,20,N/A,N/A,N/A,ITTHI
+731,4907,14,N/A,N/A,N/A,BKI
+731,7749,40,N/A,N/A,N/A,KTC
+731,8533,44,N/A,N/A,N/A,MFC
+731,8652,47,N/A,N/A,N/A,ML
+731,8771,52,N/A,N/A,N/A,NKI
+731,8862,22,N/A,N/A,N/A,CHAYO
+731,9240,53,N/A,N/A,N/A,PL
+731,9492,60,N/A,N/A,N/A,SGF
+731,9541,62,N/A,N/A,N/A,SMK
+731,10528,77,N/A,N/A,N/A,TSI
+731,10647,79,N/A,N/A,N/A,TVI
+731,10661,75,N/A,N/A,N/A,TQM
+731,10990,72,N/A,N/A,N/A,TK
+731,11004,67,N/A,N/A,N/A,THRE
+731,11039,66,N/A,N/A,N/A,THANI
+731,11046,74,N/A,N/A,N/A,TNITY
+731,11368,71,N/A,N/A,N/A,TISCO
+731,11487,23,N/A,N/A,N/A,CIMBT
+731,11697,26,N/A,N/A,N/A,FSS
+731,11725,31,N/A,N/A,N/A,IFS
+731,11816,46,N/A,N/A,N/A,MITSIB
+731,11837,15,N/A,N/A,N/A,BLA
+731,12201,5,N/A,N/A,N/A,AMANAH
+731,12362,3,N/A,N/A,N/A,AF
+731,12565,11,N/A,N/A,N/A,BAM
+731,12747,45,N/A,N/A,N/A,MICRO
+731,12992,51,N/A,N/A,N/A,NCAP
+731,13062,55,N/A,N/A,N/A,SAK
+731,13090,76,N/A,N/A,N/A,TQR
+731,13279,48,N/A,N/A,N/A,MST
+731,13293,33,N/A,N/A,N/A,JMT
+731,13370,68,N/A,N/A,N/A,THREL
+731,19474,28,N/A,N/A,N/A,GCAP
+731,19649,38,N/A,N/A,N/A,KKP
+731,19670,41,N/A,N/A,N/A,KWI
+731,19803,78,N/A,N/A,N/A,TTB
+731,19810,65,N/A,N/A,N/A,TH
+731,19838,18,N/A,N/A,N/A,BYD
+731,19845,81,N/A,N/A,N/A,XPG
+731,19859,42,N/A,N/A,N/A,LHFG
+731,19901,49,N/A,N/A,N/A,MTC
+731,19936,64,N/A,N/A,N/A,TGH
+731,82460,69,N/A,N/A,N/A,TIDLOR
+731,82572,30,N/A,N/A,N/A,HENG
+731,82635,54,N/A,N/A,N/A,S11
+731,82782,2,N/A,N/A,N/A,AEONTS
+731,82810,27,N/A,N/A,N/A,GBX
+731,82894,9,N/A,N/A,N/A,ASP
+731,82929,29,N/A,N/A,N/A,GL
+731,83097,10,N/A,N/A,N/A,AYUD
+731,83174,34,N/A,N/A,N/A,KBANK
+731,83181,16,N/A,N/A,N/A,BTC
+731,83405,37,N/A,N/A,N/A,KGI
+731,83496,39,N/A,N/A,N/A,KTB
+731,83510,17,N/A,N/A,N/A,BUI
+731,83524,32,N/A,N/A,N/A,INSURE
+731,83629,19,N/A,N/A,N/A,CGH
+731,83664,12,N/A,N/A,N/A,BAY
+731,83678,57,N/A,N/A,N/A,SCAP
+731,83706,13,N/A,N/A,N/A,BBL
+731,83720,63,N/A,N/A,N/A,TCAP
+731,83818,24,N/A,N/A,N/A,ECL
+731,83958,20,N/A,N/A,N/A,CHARAN
+731,83993,25,N/A,N/A,N/A,FNS
+731,84084,56,N/A,N/A,N/A,SAWAD
+731,84126,7,N/A,N/A,N/A,ASK
+731,84154,80,N/A,N/A,N/A,UOBKH
+731,84175,35,N/A,N/A,N/A,KCAR
+731,84315,50,N/A,N/A,N/A,MTI
+731,84574,6,N/A,N/A,N/A,ASAP
+731,84595,70,N/A,N/A,N/A,TIPH
+731,84602,1,N/A,N/A,N/A,ACAP
+731,84658,43,N/A,N/A,N/A,LIT
+731,84672,4,N/A,N/A,N/A,AIRA
+731,84770,8,N/A,N/A,N/A,ASN
+731,224571,58,N/A,N/A,N/A,SCB
+731,226006,36,N/A,N/A,N/A,KCCAMC
+731,242554,73,N/A,N/A,N/A,TLI
+731,265108,59,N/A,N/A,N/A,SGC
+731,265766,61,N/A,N/A,N/A,SM
+731,278142,21,N/A,N/A,N/A,CHASE
+738,2436,48,N/A,N/A,N/A,DMT
+738,2534,104,N/A,N/A,N/A,MENA
+738,4970,22,N/A,N/A,N/A,BEC
+738,6300,38,N/A,N/A,N/A,CMO
+738,6531,55,N/A,N/A,N/A,FE
+738,6601,46,N/A,N/A,N/A,D
+738,6643,60,N/A,N/A,N/A,GENCO
+738,6888,58,N/A,N/A,N/A,FTE
+738,7686,185,N/A,N/A,N/A,WPH
+738,7910,143,N/A,N/A,N/A,RSP
+738,7980,76,N/A,N/A,N/A,JKN
+738,7987,125,N/A,N/A,N/A,PORT
+738,8099,41,N/A,N/A,N/A,CPALL
+738,8106,166,N/A,N/A,N/A,TNDT
+738,8113,163,N/A,N/A,N/A,THG
+738,8134,63,N/A,N/A,N/A,GPI
+738,8169,164,N/A,N/A,N/A,THMUI
+738,8183,33,N/A,N/A,N/A,BWG
+738,8344,89,N/A,N/A,N/A,LOXLEY
+738,8386,91,N/A,N/A,N/A,LRH
+738,8526,99,N/A,N/A,N/A,MATI
+738,8589,96,N/A,N/A,N/A,MANRIN
+738,8596,92,N/A,N/A,N/A,M-CHAI
+738,8610,95,N/A,N/A,N/A,CPAXT
+738,8624,94,N/A,N/A,N/A,MAJOR
+738,8638,93,N/A,N/A,N/A,ROCTEC
+738,8694,98,N/A,N/A,N/A,MATCH
+738,8743,105,N/A,N/A,N/A,MIDA
+738,8918,116,N/A,N/A,N/A,NTV
+738,8953,113,N/A,N/A,N/A,NEW
+738,8974,118,N/A,N/A,N/A,OHTL
+738,9044,111,N/A,N/A,N/A,NATION
+738,9114,126,N/A,N/A,N/A,POST
+738,9135,133,N/A,N/A,N/A,PSL
+738,9310,131,N/A,N/A,N/A,PRO
+738,9338,136,N/A,N/A,N/A,RAM
+738,9366,142,N/A,N/A,N/A,RS
+738,9443,150,N/A,N/A,N/A,SINGER
+738,9485,147,N/A,N/A,N/A,SE-ED
+738,9499,122,N/A,N/A,N/A,PICO
+738,9569,139,N/A,N/A,N/A,ROH
+738,9618,148,N/A,N/A,N/A,SHANG
+738,9639,137,N/A,N/A,N/A,RCL
+738,9772,110,N/A,N/A,N/A,MVP
+738,9786,159,N/A,N/A,N/A,SPI
+738,9870,158,N/A,N/A,N/A,SPC
+738,10150,153,N/A,N/A,N/A,SKR
+738,10269,156,N/A,N/A,N/A,SONIC
+738,10311,161,N/A,N/A,N/A,TFFIF
+738,10402,162,N/A,N/A,N/A,THAI
+738,10591,127,N/A,N/A,N/A,PR9
+738,10668,170,N/A,N/A,N/A,TSTE
+738,10717,151,N/A,N/A,N/A,SISB
+738,10850,134,N/A,N/A,N/A,PTECH
+738,10871,171,N/A,N/A,N/A,TTA
+738,11060,165,N/A,N/A,N/A,TKS
+738,11235,177,N/A,N/A,N/A,VIBHA
+738,11305,184,N/A,N/A,N/A,WORK
+738,11319,66,N/A,N/A,N/A,GSC
+738,11529,39,N/A,N/A,N/A,CMR
+738,11550,180,N/A,N/A,N/A,VRANDA
+738,11571,135,N/A,N/A,N/A,QLT
+738,11585,181,N/A,N/A,N/A,WAVE
+738,11599,61,N/A,N/A,N/A,GLOBAL
+738,11732,10,N/A,N/A,N/A,ARIP
+738,11739,169,N/A,N/A,N/A,TSF
+738,11760,179,N/A,N/A,N/A,VL
+738,11830,172,N/A,N/A,N/A,TURTLE
+738,11900,80,N/A,N/A,N/A,KGEN
+738,11914,121,N/A,N/A,N/A,PHOL
+738,11949,31,N/A,N/A,N/A,BTS
+738,12089,81,N/A,N/A,N/A,KIAT
+738,12152,73,N/A,N/A,N/A,ILM
+738,12187,49,N/A,N/A,N/A,DOHOME
+738,12271,53,N/A,N/A,N/A,ERW
+738,12327,77,N/A,N/A,N/A,KAMART
+738,12376,42,N/A,N/A,N/A,CPW
+738,12418,149,N/A,N/A,N/A,SHR
+738,12635,43,N/A,N/A,N/A,CRC
+738,12656,186,N/A,N/A,N/A,YGG
+738,12670,74,N/A,N/A,N/A,IMH
+738,12684,9,N/A,N/A,N/A,AQUA
+738,12712,178,N/A,N/A,N/A,VIH
+738,12754,145,N/A,N/A,N/A,SCM
+738,12943,88,N/A,N/A,N/A,LEO
+738,12964,144,N/A,N/A,N/A,SABUY
+738,13013,155,N/A,N/A,N/A,SO
+738,13083,79,N/A,N/A,N/A,KEX
+738,13139,173,N/A,N/A,N/A,TVDH
+738,13202,4,N/A,N/A,N/A,AKP
+738,13216,59,N/A,N/A,N/A,FVC
+738,13230,183,N/A,N/A,N/A,WINNER
+738,13237,15,N/A,N/A,N/A,AUCT
+738,13307,21,N/A,N/A,N/A,BEAUTY
+738,13335,176,N/A,N/A,N/A,VGI
+738,13356,100,N/A,N/A,N/A,MC
+738,13391,45,N/A,N/A,N/A,CSS
+738,13398,117,N/A,N/A,N/A,NYT
+738,13433,103,N/A,N/A,N/A,MEGA
+738,19383,114,N/A,N/A,N/A,NEWS
+738,19390,154,N/A,N/A,N/A,SLM
+738,19411,51,N/A,N/A,N/A,DV8
+738,19439,68,N/A,N/A,N/A,HEALTH
+738,19460,107,N/A,N/A,N/A,MORE
+738,19488,67,N/A,N/A,N/A,HARN
+738,19502,82,N/A,N/A,N/A,KK
+738,19509,7,N/A,N/A,N/A,AMARIN
+738,19516,19,N/A,N/A,N/A,BCH
+738,19530,20,N/A,N/A,N/A,BDMS
+738,19537,17,N/A,N/A,N/A,B52
+738,19544,16,N/A,N/A,N/A,B
+738,19572,129,N/A,N/A,N/A,PRINC
+738,19593,50,N/A,N/A,N/A,DUSIT
+738,19726,128,N/A,N/A,N/A,PRAKIT
+738,19733,24,N/A,N/A,N/A,BEYOND
+738,19761,26,N/A,N/A,N/A,BIG
+738,82467,2,N/A,N/A,N/A,ADD
+738,82481,1,N/A,N/A,N/A,AAV
+738,82558,160,N/A,N/A,N/A,SVT
+738,82621,32,N/A,N/A,N/A,BTSGIF
+738,82628,123,N/A,N/A,N/A,PLANB
+738,82649,174,N/A,N/A,N/A,TVT
+738,82656,40,N/A,N/A,N/A,COM7
+738,82677,182,N/A,N/A,N/A,WICE
+738,82712,90,N/A,N/A,N/A,LPH
+738,82796,13,N/A,N/A,N/A,ASIMAR
+738,82824,84,N/A,N/A,N/A,KOOL
+738,82831,152,N/A,N/A,N/A,SJWD
+738,82852,140,N/A,N/A,N/A,RP
+738,82887,14,N/A,N/A,N/A,ATP30
+738,82950,52,N/A,N/A,N/A,EKH
+738,82978,168,N/A,N/A,N/A,TNP
+738,83013,30,N/A,N/A,N/A,BOL
+738,83069,70,N/A,N/A,N/A,HMPRO
+738,83132,78,N/A,N/A,N/A,KDH
+738,83167,29,N/A,N/A,N/A,BJC
+738,83279,12,N/A,N/A,N/A,ASIA
+738,83370,71,N/A,N/A,N/A,ICC
+738,83384,130,N/A,N/A,N/A,PRM
+738,83419,72,N/A,N/A,N/A,III
+738,83440,101,N/A,N/A,N/A,MCOT
+738,83447,86,N/A,N/A,N/A,KWC
+738,83461,27,N/A,N/A,N/A,BIOTEC
+738,83545,8,N/A,N/A,N/A,AOT
+738,83587,36,N/A,N/A,N/A,CHG
+738,83594,106,N/A,N/A,N/A,MONO
+738,83615,115,N/A,N/A,N/A,NOK
+738,83650,23,N/A,N/A,N/A,BEM
+738,83692,5,N/A,N/A,N/A,AMA
+738,83783,54,N/A,N/A,N/A,ETE
+738,83797,65,N/A,N/A,N/A,GRAND
+738,83874,11,N/A,N/A,N/A,AS
+738,83888,141,N/A,N/A,N/A,RPH
+738,83902,146,N/A,N/A,N/A,SE
+738,83923,34,N/A,N/A,N/A,CENTEL
+738,83965,64,N/A,N/A,N/A,GRAMMY
+738,84007,3,N/A,N/A,N/A,AHC
+738,84049,18,N/A,N/A,N/A,BA
+738,84105,25,N/A,N/A,N/A,BH
+738,84133,109,N/A,N/A,N/A,ZAA
+738,84238,44,N/A,N/A,N/A,CSR
+738,84364,75,N/A,N/A,N/A,IT
+738,84525,56,N/A,N/A,N/A,FN
+738,84539,138,N/A,N/A,N/A,RJH
+738,84623,167,N/A,N/A,N/A,TNH
+738,84686,120,N/A,N/A,N/A,PEER
+738,84707,87,N/A,N/A,N/A,LDC
+738,84728,157,N/A,N/A,N/A,SPA
+738,84735,112,N/A,N/A,N/A,NCL
+738,84756,57,N/A,N/A,N/A,FSMART
+738,84805,62,N/A,N/A,N/A,GLORY
+738,86143,119,N/A,N/A,N/A,ONEE
+738,104182,69,N/A,N/A,N/A,HL
+738,225047,35,N/A,N/A,N/A,CEYE
+738,225985,28,N/A,N/A,N/A,BIS
+738,243044,37,N/A,N/A,N/A,CHIC
+738,258955,6,N/A,N/A,N/A,AMARC
+738,261461,83,N/A,N/A,N/A,KLINIQ
+738,264646,175,N/A,N/A,N/A,UBA
+738,266095,108,N/A,N/A,N/A,MOSHI
+738,266200,85,N/A,N/A,N/A,KTMS
+738,274761,97,N/A,N/A,N/A,MASTER
+738,277288,102,N/A,N/A,N/A,MEB
+738,281117,132,N/A,N/A,N/A,PRTR
+738,285226,47,N/A,N/A,N/A,DEXON
+738,299303,124,N/A,N/A,N/A,PLT
+745,2548,171,N/A,N/A,N/A,STECH
+745,2555,69,N/A,N/A,N/A,GROREIT
+745,2737,54,N/A,N/A,N/A,DPAINT
+745,4991,25,N/A,N/A,N/A,BKKCP
+745,6489,51,N/A,N/A,N/A,DCON
+745,7189,194,N/A,N/A,N/A,TU-PF
+745,7658,82,N/A,N/A,N/A,KC
+745,7756,186,N/A,N/A,N/A,TOA
+745,7840,48,N/A,N/A,N/A,CRD
+745,7966,102,N/A,N/A,N/A,MJLF
+745,8015,197,N/A,N/A,N/A,URBNPF
+745,8029,62,N/A,N/A,N/A,FLOYD
+745,8071,101,N/A,N/A,N/A,MJD
+745,8120,46,N/A,N/A,N/A,CPNREIT
+745,8127,183,N/A,N/A,N/A,TITLE
+745,8155,66,N/A,N/A,N/A,GAHREIT
+745,8197,55,N/A,N/A,N/A,DREIT
+745,8239,168,N/A,N/A,N/A,SSTRT
+745,8274,155,N/A,N/A,N/A,SHREIT
+745,8295,53,N/A,N/A,N/A,DIMET
+745,8330,87,N/A,N/A,N/A,LH
+745,8337,31,N/A,N/A,N/A,BSM
+745,8379,92,N/A,N/A,N/A,LPN
+745,8414,5,N/A,N/A,N/A,AIMIRT
+745,8435,86,N/A,N/A,N/A,LALIN
+745,8470,28,N/A,N/A,N/A,BOFFICE
+745,8547,103,N/A,N/A,N/A,MK
+745,8715,20,N/A,N/A,N/A,B-WORK
+745,8750,97,N/A,N/A,N/A,MBK
+745,8855,112,N/A,N/A,N/A,NWR
+745,8960,109,N/A,N/A,N/A,NOBLE
+745,8995,108,N/A,N/A,N/A,NNCL
+745,9002,107,N/A,N/A,N/A,NCH
+745,9233,126,N/A,N/A,N/A,PRECHA
+745,9247,119,N/A,N/A,N/A,PLE
+745,9282,135,N/A,N/A,N/A,Q-CON
+745,9303,116,N/A,N/A,N/A,PF
+745,9331,136,N/A,N/A,N/A,QH
+745,9394,149,N/A,N/A,N/A,SCC
+745,9429,151,N/A,N/A,N/A,SCP
+745,9534,147,N/A,N/A,N/A,SAMCO
+745,9576,150,N/A,N/A,N/A,SCCC
+745,9590,178,N/A,N/A,N/A,TEAMG
+745,9723,42,N/A,N/A,N/A,COTTO
+745,9898,175,N/A,N/A,N/A,SYNTEC
+745,9968,156,N/A,N/A,N/A,SIRI
+745,10059,148,N/A,N/A,N/A,SC
+745,10101,161,N/A,N/A,N/A,SPALI
+745,10199,170,N/A,N/A,N/A,STEC
+745,10227,152,N/A,N/A,N/A,SEAFCO
+745,10255,177,N/A,N/A,N/A,TASCO
+745,10395,40,N/A,N/A,N/A,CMC
+745,10465,172,N/A,N/A,N/A,STI
+745,10549,182,N/A,N/A,N/A,TIGER
+745,10563,187,N/A,N/A,N/A,TPIPL
+745,10913,33,N/A,N/A,N/A,CAZ
+745,10941,162,N/A,N/A,N/A,SPRIME
+745,11109,195,N/A,N/A,N/A,UMI
+745,11165,198,N/A,N/A,N/A,UV
+745,11312,49,N/A,N/A,N/A,CTARAF
+745,11340,199,N/A,N/A,N/A,VNG
+745,11466,143,N/A,N/A,N/A,ROJNA
+745,11515,105,N/A,N/A,N/A,MNIT2
+745,11564,188,N/A,N/A,N/A,TPOLY
+745,11592,166,N/A,N/A,N/A,SSPF
+745,11613,192,N/A,N/A,N/A,TTCL
+745,11669,6,N/A,N/A,N/A,ALL
+745,11676,153,N/A,N/A,N/A,SENA
+745,11746,96,N/A,N/A,N/A,M-STOR
+745,11795,180,N/A,N/A,N/A,THANA
+745,12138,185,N/A,N/A,N/A,TNPF
+745,12145,35,N/A,N/A,N/A,CGD
+745,12180,68,N/A,N/A,N/A,GLAND
+745,12194,4,N/A,N/A,N/A,AIMCG
+745,12236,16,N/A,N/A,N/A,ARIN
+745,12257,193,N/A,N/A,N/A,TTLPF
+745,12348,13,N/A,N/A,N/A,APCS
+745,12355,121,N/A,N/A,N/A,POPF
+745,12474,72,N/A,N/A,N/A,HYDRO
+745,12502,110,N/A,N/A,N/A,NUSA
+745,12600,169,N/A,N/A,N/A,STC
+745,12621,22,N/A,N/A,N/A,BC
+745,12642,85,N/A,N/A,N/A,KUN
+745,12663,89,N/A,N/A,N/A,LHPF
+745,12698,142,N/A,N/A,N/A,RML
+745,12740,130,N/A,N/A,N/A,PROSPECT
+745,12831,158,N/A,N/A,N/A,SK
+745,12873,52,N/A,N/A,N/A,DHOUSE
+745,12922,200,N/A,N/A,N/A,WGE
+745,12971,144,N/A,N/A,N/A,RT
+745,13020,75,N/A,N/A,N/A,IND
+745,13055,146,N/A,N/A,N/A,SA
+745,13076,79,N/A,N/A,N/A,JAK
+745,13104,129,N/A,N/A,N/A,PROS
+745,13111,18,N/A,N/A,N/A,ASW
+745,13153,124,N/A,N/A,N/A,PPS
+745,13181,17,N/A,N/A,N/A,ARROW
+745,13286,137,N/A,N/A,N/A,QHHR
+745,13300,201,N/A,N/A,N/A,WHA
+745,13314,11,N/A,N/A,N/A,ANAN
+745,13328,94,N/A,N/A,N/A,M-II
+745,13342,45,N/A,N/A,N/A,CPNCG
+745,13349,123,N/A,N/A,N/A,PPP
+745,13363,114,N/A,N/A,N/A,PACE
+745,13384,24,N/A,N/A,N/A,BKD
+745,13405,47,N/A,N/A,N/A,CPTGF
+745,13419,23,N/A,N/A,N/A,BJCHI
+745,13447,19,N/A,N/A,N/A,AWC
+745,19376,131,N/A,N/A,N/A,PROUD
+745,19397,3,N/A,N/A,N/A,A5
+745,19404,132,N/A,N/A,N/A,PSG
+745,19432,98,N/A,N/A,N/A,META
+745,19628,67,N/A,N/A,N/A,GEL
+745,19635,191,N/A,N/A,N/A,TRITN
+745,19642,145,N/A,N/A,N/A,S
+745,19656,15,N/A,N/A,N/A,AKS
+745,19663,205,N/A,N/A,N/A,WIIK
+745,19677,120,N/A,N/A,N/A,POLAR
+745,19691,14,N/A,N/A,N/A,APEX
+745,19712,140,N/A,N/A,N/A,RABBIT
+745,19789,80,N/A,N/A,N/A,JCK
+745,19831,63,N/A,N/A,N/A,FPT
+745,19866,91,N/A,N/A,N/A,LPF
+745,19873,59,N/A,N/A,N/A,ERWPF
+745,19908,64,N/A,N/A,N/A,FTREIT
+745,19915,111,N/A,N/A,N/A,NVD
+745,19929,7,N/A,N/A,N/A,ALLY
+745,82523,164,N/A,N/A,N/A,SRICHA
+745,82544,43,N/A,N/A,N/A,CPANEL
+745,82600,83,N/A,N/A,N/A,KPNPF
+745,82642,118,N/A,N/A,N/A,PLAT
+745,82719,78,N/A,N/A,N/A,J
+745,82754,8,N/A,N/A,N/A,AMATA
+745,82768,113,N/A,N/A,N/A,ORI
+745,82789,9,N/A,N/A,N/A,AMATAR
+745,82880,12,N/A,N/A,N/A,AP
+745,82908,184,N/A,N/A,N/A,TLHPF
+745,82915,202,N/A,N/A,N/A,WHABT
+745,83041,77,N/A,N/A,N/A,ITD
+745,83272,139,N/A,N/A,N/A,QHPF
+745,83314,176,N/A,N/A,N/A,TAPAC
+745,83335,32,N/A,N/A,N/A,BTW
+745,83342,104,N/A,N/A,N/A,MNIT
+745,83377,196,N/A,N/A,N/A,UNIQ
+745,83391,181,N/A,N/A,N/A,TIF1
+745,83398,65,N/A,N/A,N/A,FUTUREPF
+745,83454,159,N/A,N/A,N/A,SKN
+745,83468,2,N/A,N/A,N/A,A
+745,83503,138,N/A,N/A,N/A,QHOP
+745,83531,26,N/A,N/A,N/A,BLAND
+745,83636,90,N/A,N/A,N/A,LHSC
+745,83643,88,N/A,N/A,N/A,LHHOTEL
+745,83657,100,N/A,N/A,N/A,MIT
+745,83671,70,N/A,N/A,N/A,GVREIT
+745,83685,133,N/A,N/A,N/A,PSH
+745,83790,10,N/A,N/A,N/A,AMATAV
+745,83804,206,N/A,N/A,N/A,WIN
+745,83825,36,N/A,N/A,N/A,CHEWA
+745,83853,50,N/A,N/A,N/A,DCC
+745,83909,81,N/A,N/A,N/A,K
+745,83930,165,N/A,N/A,N/A,SRIPANWA
+745,83944,190,N/A,N/A,N/A,TRC
+745,83951,134,N/A,N/A,N/A,PYLON
+745,83979,99,N/A,N/A,N/A,MIPF
+745,84028,93,N/A,N/A,N/A,LUXF
+745,84042,58,N/A,N/A,N/A,EPG
+745,84140,173,N/A,N/A,N/A,STPI
+745,84147,128,N/A,N/A,N/A,PRIN
+745,84182,56,N/A,N/A,N/A,DRT
+745,84196,61,N/A,N/A,N/A,EVER
+745,84210,125,N/A,N/A,N/A,PREB
+745,84252,41,N/A,N/A,N/A,CNT
+745,84287,44,N/A,N/A,N/A,CPN
+745,84294,39,N/A,N/A,N/A,CK
+745,84301,34,N/A,N/A,N/A,CCP
+745,84308,37,N/A,N/A,N/A,CI
+745,84329,106,N/A,N/A,N/A,MNRF
+745,84336,57,N/A,N/A,N/A,EMC
+745,84343,60,N/A,N/A,N/A,ESTAR
+745,84385,30,N/A,N/A,N/A,BROCK
+745,84399,71,N/A,N/A,N/A,HPF
+745,84420,157,N/A,N/A,N/A,SIRIP
+745,84441,95,N/A,N/A,N/A,M-PAT
+745,84448,122,N/A,N/A,N/A,PPF
+745,84462,141,N/A,N/A,N/A,RICHY
+745,84469,74,N/A,N/A,N/A,IMPACT
+745,84483,204,N/A,N/A,N/A,WHART
+745,84511,189,N/A,N/A,N/A,TPRIME
+745,84532,203,N/A,N/A,N/A,WHAIR
+745,84560,163,N/A,N/A,N/A,SQ
+745,84588,76,N/A,N/A,N/A,INETREIT
+745,84630,167,N/A,N/A,N/A,WELL
+745,84721,154,N/A,N/A,N/A,SENX
+745,84749,160,N/A,N/A,N/A,SMART
+745,86199,84,N/A,N/A,N/A,KTBSTMR
+745,86206,117,N/A,N/A,N/A,PIN
+745,86864,29,N/A,N/A,N/A,BRI
+745,201790,38,N/A,N/A,N/A,CIVIL
+745,204163,115,N/A,N/A,N/A,PEACE
+745,232201,179,N/A,N/A,N/A,TEKA
+745,240349,27,N/A,N/A,N/A,BLESS
+745,243275,207,N/A,N/A,N/A,YONG
+745,249288,21,N/A,N/A,N/A,BAREIT
+745,256666,1,N/A,N/A,N/A,24CS
+745,264163,127,N/A,N/A,N/A,PRI
+745,265094,73,N/A,N/A,N/A,HYDROGEN
+745,276658,174,N/A,N/A,N/A,SVR
+752,2870,7,N/A,N/A,N/A,AIE
+752,2996,66,N/A,N/A,N/A,TAE
+752,3213,75,N/A,N/A,N/A,TSE
+752,7854,68,N/A,N/A,N/A,TCC
+752,7952,30,N/A,N/A,N/A,GULF
+752,7973,56,N/A,N/A,N/A,SKE
+752,8309,36,N/A,N/A,N/A,LANNA
+752,8498,37,N/A,N/A,N/A,MDX
+752,8722,2,N/A,N/A,N/A,ABM
+752,9163,46,N/A,N/A,N/A,PTTEP
+752,9212,45,N/A,N/A,N/A,PTT
+752,9422,49,N/A,N/A,N/A,RPC
+752,9646,48,N/A,N/A,N/A,RATCH
+752,9828,65,N/A,N/A,N/A,SUSCO
+752,10171,51,N/A,N/A,N/A,SCG
+752,10437,70,N/A,N/A,N/A,THL
+752,10794,50,N/A,N/A,N/A,SAAM
+752,11200,78,N/A,N/A,N/A,UMS
+752,11410,5,N/A,N/A,N/A,AGE
+752,11921,31,N/A,N/A,N/A,GUNKUL
+752,12243,64,N/A,N/A,N/A,SUPEREIF
+752,12285,47,N/A,N/A,N/A,QTC
+752,12334,58,N/A,N/A,N/A,SPCG
+752,12432,4,N/A,N/A,N/A,ACE
+752,12803,35,N/A,N/A,N/A,KBSPIF
+752,12817,26,N/A,N/A,N/A,ETC
+752,12985,34,N/A,N/A,N/A,JR
+752,13097,39,N/A,N/A,N/A,OR
+752,13188,54,N/A,N/A,N/A,SEAOIL
+752,13321,20,N/A,N/A,N/A,EA
+752,13377,17,N/A,N/A,N/A,CKP
+752,19425,29,N/A,N/A,N/A,GTV
+752,19467,62,N/A,N/A,N/A,STOWER
+752,19565,41,N/A,N/A,N/A,PRIME
+752,19579,28,N/A,N/A,N/A,GREEN
+752,19586,3,N/A,N/A,N/A,ACC
+752,19614,24,N/A,N/A,N/A,EP
+752,19705,1,N/A,N/A,N/A,AE
+752,19796,38,N/A,N/A,N/A,NOVA
+752,82530,18,N/A,N/A,N/A,CV
+752,82537,77,N/A,N/A,N/A,UBE
+752,82607,53,N/A,N/A,N/A,SCN
+752,82684,27,N/A,N/A,N/A,GPSC
+752,82698,22,N/A,N/A,N/A,EGATIF
+752,82733,52,N/A,N/A,N/A,SCI
+752,82775,60,N/A,N/A,N/A,SR
+752,82803,6,N/A,N/A,N/A,AI
+752,82859,71,N/A,N/A,N/A,TOP
+752,82922,12,N/A,N/A,N/A,BCP
+752,82985,57,N/A,N/A,N/A,SOLAR
+752,83006,9,N/A,N/A,N/A,BAFS
+752,83034,32,N/A,N/A,N/A,IFEC
+752,83195,16,N/A,N/A,N/A,BRRGIF
+752,83209,61,N/A,N/A,N/A,SSP
+752,83223,25,N/A,N/A,N/A,BSRC
+752,83363,63,N/A,N/A,N/A,SUPER
+752,83426,23,N/A,N/A,N/A,EGCO
+752,83538,19,N/A,N/A,N/A,DEMCO
+752,83559,8,N/A,N/A,N/A,AKR
+752,83601,72,N/A,N/A,N/A,TPCH
+752,83608,44,N/A,N/A,N/A,PTG
+752,83699,55,N/A,N/A,N/A,SGP
+752,83748,74,N/A,N/A,N/A,TRT
+752,83832,79,N/A,N/A,N/A,WHAUP
+752,83839,73,N/A,N/A,N/A,TPIPP
+752,83972,10,N/A,N/A,N/A,BANPU
+752,84168,76,N/A,N/A,N/A,TTW
+752,84322,21,N/A,N/A,N/A,EASTW
+752,84392,33,N/A,N/A,N/A,IRPC
+752,84490,80,N/A,N/A,N/A,WP
+752,84504,59,N/A,N/A,N/A,SPRC
+752,84518,13,N/A,N/A,N/A,BCPG
+752,84553,15,N/A,N/A,N/A,BPP
+752,84581,14,N/A,N/A,N/A,BGRIM
+752,84700,67,N/A,N/A,N/A,TAKUNI
+752,84742,42,N/A,N/A,N/A,PSTC
+752,200368,43,N/A,N/A,N/A,PTC
+752,211513,11,N/A,N/A,N/A,BBGI
+752,245354,69,N/A,N/A,N/A,TGE
+752,259389,40,N/A,N/A,N/A,PCC
+759,4557,132,N/A,N/A,N/A,UTP
+759,5754,26,N/A,N/A,N/A,CSP
+759,6608,43,N/A,N/A,N/A,INOX
+759,7140,127,N/A,N/A,N/A,UBIS
+759,8022,4,N/A,N/A,N/A,ADB
+759,8043,56,N/A,N/A,N/A,MILL
+759,8064,79,N/A,N/A,N/A,SAM
+759,8176,23,N/A,N/A,N/A,CPT
+759,8288,24,N/A,N/A,N/A,CRANE
+759,8351,51,N/A,N/A,N/A,LHK
+759,8764,59,N/A,N/A,N/A,NEP
+759,8848,20,N/A,N/A,N/A,CMAN
+759,8981,60,N/A,N/A,N/A,NFC
+759,9177,63,N/A,N/A,N/A,PATO
+759,9625,86,N/A,N/A,N/A,SITHAI
+759,9667,89,N/A,N/A,N/A,SMPC
+759,9814,94,N/A,N/A,N/A,STANLY
+759,10024,118,N/A,N/A,N/A,TPLAS
+759,10080,93,N/A,N/A,N/A,SSSC
+759,10115,92,N/A,N/A,N/A,SPG
+759,10213,50,N/A,N/A,N/A,KWM
+759,10339,99,N/A,N/A,N/A,TCCC
+759,10367,102,N/A,N/A,N/A,TFI
+759,10542,124,N/A,N/A,N/A,TWP
+759,10556,12,N/A,N/A,N/A,BGC
+759,10633,108,N/A,N/A,N/A,TMD
+759,10654,112,N/A,N/A,N/A,TNPC
+759,10696,113,N/A,N/A,N/A,TOPP
+759,10703,119,N/A,N/A,N/A,TPP
+759,10745,101,N/A,N/A,N/A,TCOAT
+759,10766,105,N/A,N/A,N/A,THIP
+759,10773,120,N/A,N/A,N/A,TRU
+759,10836,100,N/A,N/A,N/A,TCJ
+759,10843,114,N/A,N/A,N/A,TPA
+759,10969,111,N/A,N/A,N/A,TMW
+759,10983,103,N/A,N/A,N/A,TGPRO
+759,11074,130,N/A,N/A,N/A,UP
+759,11137,125,N/A,N/A,N/A,TYCN
+759,11151,106,N/A,N/A,N/A,TKT
+759,11214,133,N/A,N/A,N/A,VARO
+759,11284,134,N/A,N/A,N/A,YUASA
+759,11438,40,N/A,N/A,N/A,HTECH
+759,11473,15,N/A,N/A,N/A,CEN
+759,11774,3,N/A,N/A,N/A,ACG
+759,11865,1,N/A,N/A,N/A,2S
+759,11956,126,N/A,N/A,N/A,UAC
+759,12061,45,N/A,N/A,N/A,IVL
+759,12096,109,N/A,N/A,N/A,TMI
+759,12166,75,N/A,N/A,N/A,PTTGC
+759,12341,21,N/A,N/A,N/A,COLOR
+759,12369,49,N/A,N/A,N/A,KUMWEL
+759,12509,17,N/A,N/A,N/A,CHOW
+759,12614,84,N/A,N/A,N/A,SFLEX
+759,12649,68,N/A,N/A,N/A,PJW
+759,12845,2,N/A,N/A,N/A,3K-BAT
+759,12866,73,N/A,N/A,N/A,PRAPAT
+759,12908,85,N/A,N/A,N/A,SFT
+759,12915,82,N/A,N/A,N/A,SCGP
+759,13146,31,N/A,N/A,N/A,FPI
+759,13167,107,N/A,N/A,N/A,TMC
+759,13265,61,N/A,N/A,N/A,PACO
+759,19453,131,N/A,N/A,N/A,UREKA
+759,19551,95,N/A,N/A,N/A,STARK
+759,19684,104,N/A,N/A,N/A,THE
+759,19747,69,N/A,N/A,N/A,PK
+759,19782,11,N/A,N/A,N/A,BCT
+759,19817,117,N/A,N/A,N/A,TPCS
+759,19852,34,N/A,N/A,N/A,GIFT
+759,82586,80,N/A,N/A,N/A,SANKO
+759,82614,16,N/A,N/A,N/A,CHO
+759,82663,70,N/A,N/A,N/A,PMTA
+759,82670,67,N/A,N/A,N/A,PIMO
+759,82705,87,N/A,N/A,N/A,SLP
+759,82747,98,N/A,N/A,N/A,SWC
+759,82817,10,N/A,N/A,N/A,ASEFA
+759,82838,18,N/A,N/A,N/A,CIG
+759,82845,91,N/A,N/A,N/A,SPACK
+759,82943,8,N/A,N/A,N/A,ALUCON
+759,82957,74,N/A,N/A,N/A,PTL
+759,82992,53,N/A,N/A,N/A,MCS
+759,82999,37,N/A,N/A,N/A,GTB
+759,83020,62,N/A,N/A,N/A,PAP
+759,83027,66,N/A,N/A,N/A,PERM
+759,83062,39,N/A,N/A,N/A,HFT
+759,83083,88,N/A,N/A,N/A,SMIT
+759,83111,90,N/A,N/A,N/A,SNC
+759,83118,6,N/A,N/A,N/A,AJ
+759,83139,22,N/A,N/A,N/A,CPR
+759,83153,122,N/A,N/A,N/A,TSC
+759,83188,78,N/A,N/A,N/A,SALEE
+759,83216,52,N/A,N/A,N/A,MBAX
+759,83230,135,N/A,N/A,N/A,ZIGA
+759,83251,48,N/A,N/A,N/A,KKC
+759,83258,42,N/A,N/A,N/A,INGRS
+759,83265,123,N/A,N/A,N/A,TSTH
+759,83286,5,N/A,N/A,N/A,AH
+759,83293,116,N/A,N/A,N/A,TPBI
+759,83328,72,N/A,N/A,N/A,PPM
+759,83517,9,N/A,N/A,N/A,AMC
+759,83622,58,N/A,N/A,N/A,NDR
+759,83713,110,N/A,N/A,N/A,TMT
+759,83734,38,N/A,N/A,N/A,GYT
+759,83762,19,N/A,N/A,N/A,CITY
+759,83811,35,N/A,N/A,N/A,GJS
+759,83846,55,N/A,N/A,N/A,MGT
+759,83916,30,N/A,N/A,N/A,FMT
+759,83937,33,N/A,N/A,N/A,GGC
+759,83986,36,N/A,N/A,N/A,GSTEEL
+759,84014,41,N/A,N/A,N/A,IHL
+759,84098,14,N/A,N/A,N/A,BSBM
+759,84112,81,N/A,N/A,N/A,SAT
+759,84189,29,N/A,N/A,N/A,EASON
+759,84217,32,N/A,N/A,N/A,GC
+759,84245,25,N/A,N/A,N/A,CSC
+759,84266,27,N/A,N/A,N/A,CTW
+759,84273,28,N/A,N/A,N/A,CWT
+759,84371,44,N/A,N/A,N/A,IRC
+759,84406,97,N/A,N/A,N/A,SUTHA
+759,84427,64,N/A,N/A,N/A,PCSGH
+759,84546,7,N/A,N/A,N/A,ALLA
+759,84609,128,N/A,N/A,N/A,UEC
+759,84616,115,N/A,N/A,N/A,TPAC
+759,84651,129,N/A,N/A,N/A,UKEM
+759,84665,65,N/A,N/A,N/A,PDG
+759,84693,76,N/A,N/A,N/A,RWI
+759,84714,46,N/A,N/A,N/A,KCM
+759,84763,13,N/A,N/A,N/A,BM
+759,84784,83,N/A,N/A,N/A,SELIC
+759,104168,121,N/A,N/A,N/A,TRV
+759,232047,96,N/A,N/A,N/A,STP
+759,262644,71,N/A,N/A,N/A,POLY
+759,263169,47,N/A,N/A,N/A,KJL
+759,264478,57,N/A,N/A,N/A,MTW
+759,273991,77,N/A,N/A,N/A,SAF
+759,299009,54,N/A,N/A,N/A,MGC
+766,6860,40,N/A,N/A,N/A,PT
+766,7931,18,N/A,N/A,N/A,HUMAN
+766,8050,47,N/A,N/A,N/A,SIMAT
+766,8204,62,N/A,N/A,N/A,VCOM
+766,8491,33,N/A,N/A,N/A,METCO
+766,8561,35,N/A,N/A,N/A,MSC
+766,8701,34,N/A,N/A,N/A,MFEC
+766,9604,42,N/A,N/A,N/A,SAMART
+766,9926,53,N/A,N/A,N/A,SVOA
+766,10087,52,N/A,N/A,N/A,SVI
+766,10129,43,N/A,N/A,N/A,SAMTEL
+766,10185,48,N/A,N/A,N/A,SIS
+766,11025,56,N/A,N/A,N/A,TEAM
+766,11690,30,N/A,N/A,N/A,JMART
+766,11844,54,N/A,N/A,N/A,SYMC
+766,11872,50,N/A,N/A,N/A,SMT
+766,12124,24,N/A,N/A,N/A,INTUCH
+766,12467,59,N/A,N/A,N/A,TPS
+766,12607,5,N/A,N/A,N/A,APP
+766,12768,46,N/A,N/A,N/A,SICT
+766,12789,20,N/A,N/A,N/A,IIG
+766,13125,39,N/A,N/A,N/A,PROEN
+766,13223,51,N/A,N/A,N/A,SPVI
+766,13258,23,N/A,N/A,N/A,INSET
+766,19481,38,N/A,N/A,N/A,PLANET
+766,19523,37,N/A,N/A,N/A,NEX
+766,19775,44,N/A,N/A,N/A,SDC
+766,19880,13,N/A,N/A,N/A,DIF
+766,19894,49,N/A,N/A,N/A,SKY
+766,82453,14,N/A,N/A,N/A,DITTO
+766,82474,45,N/A,N/A,N/A,SECURE
+766,82502,4,N/A,N/A,N/A,AMR
+766,82593,29,N/A,N/A,N/A,3BBIF
+766,82866,1,N/A,N/A,N/A,ADVANC
+766,82901,21,N/A,N/A,N/A,ILINK
+766,82971,2,N/A,N/A,N/A,AIT
+766,83055,3,N/A,N/A,N/A,ALT
+766,83076,57,N/A,N/A,N/A,THCOM
+766,83104,31,N/A,N/A,N/A,JTS
+766,83202,16,N/A,N/A,N/A,FORTH
+766,83237,32,N/A,N/A,N/A,KCE
+766,83321,28,N/A,N/A,N/A,JAS
+766,83356,36,N/A,N/A,N/A,NETBAY
+766,83433,19,N/A,N/A,N/A,ICN
+766,83552,8,N/A,N/A,N/A,BLISS
+766,83580,6,N/A,N/A,N/A,BBIK
+766,83776,55,N/A,N/A,N/A,SYNEX
+766,84077,17,N/A,N/A,N/A,HANA
+766,84161,61,N/A,N/A,N/A,TWZ
+766,84280,10,N/A,N/A,N/A,CCET
+766,84350,12,N/A,N/A,N/A,DELTA
+766,84378,22,N/A,N/A,N/A,INET
+766,84644,25,N/A,N/A,N/A,IRCP
+766,84777,26,N/A,N/A,N/A,ITEL
+766,84798,11,N/A,N/A,N/A,COMAN
+766,86136,7,N/A,N/A,N/A,BE8
+766,173748,58,N/A,N/A,N/A,TKC
+766,259550,27,N/A,N/A,N/A,ITNS
+766,265381,15,N/A,N/A,N/A,DTCENT
+766,277834,9,N/A,N/A,N/A,BVG
+766,278282,41,N/A,N/A,N/A,READY
+766,279654,60,N/A,N/A,N/A,TRUE
+794,2730,9,N/A,N/A,N/A,TFM
+794,8358,3,N/A,N/A,N/A,LEE
+794,10045,7,N/A,N/A,N/A,STA
+794,10493,5,N/A,N/A,N/A,NER
+794,11011,10,N/A,N/A,N/A,TRUBB
+794,11116,12,N/A,N/A,N/A,UPOIC
+794,11193,13,N/A,N/A,N/A,UVAN
+794,11879,4,N/A,N/A,N/A,MAX
+794,12005,1,N/A,N/A,N/A,EE
+794,19558,6,N/A,N/A,N/A,PPPM
+794,83146,11,N/A,N/A,N/A,TWPC
+794,83860,2,N/A,N/A,N/A,GFPT
+794,84476,14,N/A,N/A,N/A,VPO
+794,253803,8,N/A,N/A,N/A,TEGH
+801,2450,28,N/A,N/A,N/A,NSL
+801,2541,40,N/A,N/A,N/A,SNNP
+801,5019,26,N/A,N/A,N/A,MINT
+801,8078,49,N/A,N/A,N/A,TFMAMA
+801,8400,23,N/A,N/A,N/A,LST
+801,8442,25,N/A,N/A,N/A,MALEE
+801,9121,29,N/A,N/A,N/A,OISHI
+801,9142,35,N/A,N/A,N/A,PRG
+801,9275,31,N/A,N/A,N/A,PB
+801,9611,39,N/A,N/A,N/A,SFP
+801,9681,43,N/A,N/A,N/A,SSC
+801,9744,44,N/A,N/A,N/A,SSF
+801,9800,42,N/A,N/A,N/A,SORKON
+801,9842,38,N/A,N/A,N/A,SAUCE
+801,9912,45,N/A,N/A,N/A,SST
+801,10241,47,N/A,N/A,N/A,TC
+801,10290,30,N/A,N/A,N/A,OSP
+801,10626,53,N/A,N/A,N/A,TVO
+801,10682,50,N/A,N/A,N/A,TIPCO
+801,11095,55,N/A,N/A,N/A,ZEN
+801,12313,20,N/A,N/A,N/A,KBS
+801,12390,36,N/A,N/A,N/A,RBF
+801,12880,27,N/A,N/A,N/A,NRF
+801,13426,24,N/A,N/A,N/A,M
+801,19607,54,N/A,N/A,N/A,W
+801,19621,14,N/A,N/A,N/A,F&D
+801,19719,15,N/A,N/A,N/A,GLOCON
+801,19768,41,N/A,N/A,N/A,SNP
+801,19824,52,N/A,N/A,N/A,TU
+801,19922,46,N/A,N/A,N/A,SUN
+801,82726,4,N/A,N/A,N/A,BR
+801,82740,48,N/A,N/A,N/A,TFG
+801,82761,3,N/A,N/A,N/A,ASIAN
+801,83125,51,N/A,N/A,N/A,TKN
+801,83755,8,N/A,N/A,N/A,CFRESH
+801,83867,21,N/A,N/A,N/A,KSL
+801,83881,11,N/A,N/A,N/A,CM
+801,84000,10,N/A,N/A,N/A,CHOTI
+801,84021,2,N/A,N/A,N/A,APURE
+801,84035,17,N/A,N/A,N/A,ICHI
+801,84056,7,N/A,N/A,N/A,CBG
+801,84203,33,N/A,N/A,N/A,PM
+801,84224,13,N/A,N/A,N/A,CPI
+801,84231,12,N/A,N/A,N/A,CPF
+801,84357,16,N/A,N/A,N/A,HTC
+801,84434,22,N/A,N/A,N/A,KTIS
+801,84455,37,N/A,N/A,N/A,SAPPE
+801,84497,5,N/A,N/A,N/A,BRR
+801,222566,19,N/A,N/A,N/A,JDF
+801,228855,32,N/A,N/A,N/A,PLUS
+801,248742,9,N/A,N/A,N/A,CH
+801,260880,1,N/A,N/A,N/A,AAI
+801,261181,6,N/A,N/A,N/A,BTG
+801,264877,18,N/A,N/A,N/A,ITC
+801,277582,34,N/A,N/A,N/A,PQS
+808,6209,5,N/A,N/A,N/A,CPL
+808,8687,6,N/A,N/A,N/A,NC
+808,9065,9,N/A,N/A,N/A,PG
+808,9072,7,N/A,N/A,N/A,PAF
+808,9632,11,N/A,N/A,N/A,SAWANG
+808,9940,12,N/A,N/A,N/A,SUC
+808,10605,13,N/A,N/A,N/A,TNL
+808,10675,14,N/A,N/A,N/A,TR
+808,10724,15,N/A,N/A,N/A,TTI
+808,11102,17,N/A,N/A,N/A,UPF
+808,11354,18,N/A,N/A,N/A,WACOAL
+808,11627,16,N/A,N/A,N/A,TTT
+808,19740,8,N/A,N/A,N/A,PDJ
+808,83090,3,N/A,N/A,N/A,BTNC
+808,84091,1,N/A,N/A,N/A,AFC
+808,84119,10,N/A,N/A,N/A,SABINA
+808,84259,4,N/A,N/A,N/A,CPH
+808,86878,19,N/A,N/A,N/A,WFX
+808,264051,2,N/A,N/A,N/A,AURA
+815,7707,5,N/A,N/A,N/A,KYE
+815,8568,7,N/A,N/A,N/A,MODERN
+815,9016,8,N/A,N/A,N/A,OGC
+815,9555,9,N/A,N/A,N/A,ROCK
+815,10031,10,N/A,N/A,N/A,SIAM
+815,10283,11,N/A,N/A,N/A,TCMC
+815,19698,6,N/A,N/A,N/A,L&E
+815,19887,1,N/A,N/A,N/A,AJA
+815,83895,2,N/A,N/A,N/A,DTCI
+815,84070,3,N/A,N/A,N/A,FANCY
+815,84413,12,N/A,N/A,N/A,SBNEXT
+815,228491,4,N/A,N/A,N/A,FTI
+822,7217,4,N/A,N/A,N/A,JCT
+822,8211,3,N/A,N/A,N/A,DDD
+822,8911,7,N/A,N/A,N/A,OCC
+822,10094,10,N/A,N/A,N/A,STHAI
+822,12761,9,N/A,N/A,N/A,STGT
+822,13272,1,N/A,N/A,N/A,APCO
+822,13454,5,N/A,N/A,N/A,KISS
+822,19754,8,N/A,N/A,N/A,S&J
+822,82964,2,N/A,N/A,N/A,BIZ
+822,83769,12,N/A,N/A,N/A,TOG
+822,84567,11,N/A,N/A,N/A,TNR
+822,86843,6,N/A,N/A,N/A,NV
+829,11368,10,N/A,N/A,N/A,TISCO
+829,11487,3,N/A,N/A,N/A,CIMBT
+829,19649,5,N/A,N/A,N/A,KKP
+829,19803,11,N/A,N/A,N/A,TTB
+829,19859,7,N/A,N/A,N/A,LHFG
+829,83174,4,N/A,N/A,N/A,KBANK
+829,83496,6,N/A,N/A,N/A,KTB
+829,83664,1,N/A,N/A,N/A,BAY
+829,83706,2,N/A,N/A,N/A,BBL
+829,83720,9,N/A,N/A,N/A,TCAP
+829,224571,8,N/A,N/A,N/A,SCB
+836,7749,21,N/A,N/A,N/A,KTC
+836,8533,22,N/A,N/A,N/A,MFC
+836,8652,24,N/A,N/A,N/A,ML
+836,8862,10,N/A,N/A,N/A,CHAYO
+836,9240,28,N/A,N/A,N/A,PL
+836,10990,38,N/A,N/A,N/A,TK
+836,11039,36,N/A,N/A,N/A,THANI
+836,11046,39,N/A,N/A,N/A,TNITY
+836,11697,13,N/A,N/A,N/A,FSS
+836,11725,17,N/A,N/A,N/A,IFS
+836,12201,2,N/A,N/A,N/A,AMANAH
+836,12565,6,N/A,N/A,N/A,BAM
+836,12747,23,N/A,N/A,N/A,MICRO
+836,12992,27,N/A,N/A,N/A,NCAP
+836,13062,30,N/A,N/A,N/A,SAK
+836,13279,25,N/A,N/A,N/A,MST
+836,13293,18,N/A,N/A,N/A,JMT
+836,19810,35,N/A,N/A,N/A,TH
+836,19838,7,N/A,N/A,N/A,BYD
+836,19845,41,N/A,N/A,N/A,XPG
+836,19901,26,N/A,N/A,N/A,MTC
+836,82460,37,N/A,N/A,N/A,TIDLOR
+836,82572,16,N/A,N/A,N/A,HENG
+836,82635,29,N/A,N/A,N/A,S11
+836,82782,1,N/A,N/A,N/A,AEONTS
+836,82810,14,N/A,N/A,N/A,GBX
+836,82894,5,N/A,N/A,N/A,ASP
+836,82929,15,N/A,N/A,N/A,GL
+836,83405,20,N/A,N/A,N/A,KGI
+836,83629,8,N/A,N/A,N/A,CGH
+836,83678,32,N/A,N/A,N/A,SCAP
+836,83818,11,N/A,N/A,N/A,ECL
+836,83993,12,N/A,N/A,N/A,FNS
+836,84084,31,N/A,N/A,N/A,SAWAD
+836,84126,4,N/A,N/A,N/A,ASK
+836,84154,40,N/A,N/A,N/A,UOBKH
+836,84175,19,N/A,N/A,N/A,KCAR
+836,84574,3,N/A,N/A,N/A,ASAP
+836,265108,33,N/A,N/A,N/A,SGC
+836,265766,34,N/A,N/A,N/A,SM
+836,278142,9,N/A,N/A,N/A,CHASE
+843,4907,2,N/A,N/A,N/A,BKI
+843,8771,9,N/A,N/A,N/A,NKI
+843,9541,10,N/A,N/A,N/A,SMK
+843,10528,17,N/A,N/A,N/A,TSI
+843,10647,18,N/A,N/A,N/A,TVI
+843,10661,16,N/A,N/A,N/A,TQM
+843,11004,12,N/A,N/A,N/A,THRE
+843,11837,3,N/A,N/A,N/A,BLA
+843,13370,13,N/A,N/A,N/A,THREL
+843,19670,7,N/A,N/A,N/A,KWI
+843,19936,11,N/A,N/A,N/A,TGH
+843,83097,1,N/A,N/A,N/A,AYUD
+843,83510,4,N/A,N/A,N/A,BUI
+843,83524,6,N/A,N/A,N/A,INSURE
+843,83958,5,N/A,N/A,N/A,CHARAN
+843,84315,8,N/A,N/A,N/A,MTI
+843,84595,14,N/A,N/A,N/A,TIPH
+843,242554,15,N/A,N/A,N/A,TLI
+850,9814,16,N/A,N/A,N/A,STANLY
+850,10115,15,N/A,N/A,N/A,SPG
+850,10654,18,N/A,N/A,N/A,TNPC
+850,10773,19,N/A,N/A,N/A,TRU
+850,11151,17,N/A,N/A,N/A,TKT
+850,11774,2,N/A,N/A,N/A,ACG
+850,12845,1,N/A,N/A,N/A,3K-BAT
+850,83062,7,N/A,N/A,N/A,HFT
+850,83153,20,N/A,N/A,N/A,TSC
+850,83258,9,N/A,N/A,N/A,INGRS
+850,83286,3,N/A,N/A,N/A,AH
+850,83734,6,N/A,N/A,N/A,GYT
+850,84014,8,N/A,N/A,N/A,IHL
+850,84112,14,N/A,N/A,N/A,SAT
+850,84189,5,N/A,N/A,N/A,EASON
+850,84273,4,N/A,N/A,N/A,CWT
+850,84371,10,N/A,N/A,N/A,IRC
+850,84427,12,N/A,N/A,N/A,PCSGH
+850,262644,13,N/A,N/A,N/A,POLY
+850,299009,11,N/A,N/A,N/A,MGC
+857,8176,3,N/A,N/A,N/A,CPT
+857,8288,4,N/A,N/A,N/A,CRANE
+857,10836,12,N/A,N/A,N/A,TCJ
+857,11214,14,N/A,N/A,N/A,VARO
+857,11438,7,N/A,N/A,N/A,HTECH
+857,19551,11,N/A,N/A,N/A,STARK
+857,19747,9,N/A,N/A,N/A,PK
+857,19817,13,N/A,N/A,N/A,TPCS
+857,82817,2,N/A,N/A,N/A,ASEFA
+857,83111,10,N/A,N/A,N/A,SNC
+857,83251,8,N/A,N/A,N/A,KKC
+857,83916,6,N/A,N/A,N/A,FMT
+857,84266,5,N/A,N/A,N/A,CTW
+857,84546,1,N/A,N/A,N/A,ALLA
+864,4557,1,N/A,N/A,N/A,UTP
+871,8848,2,N/A,N/A,N/A,CMAN
+871,8981,7,N/A,N/A,N/A,NFC
+871,9177,8,N/A,N/A,N/A,PATO
+871,10339,12,N/A,N/A,N/A,TCCC
+871,10843,13,N/A,N/A,N/A,TPA
+871,11074,15,N/A,N/A,N/A,UP
+871,11956,14,N/A,N/A,N/A,UAC
+871,12061,6,N/A,N/A,N/A,IVL
+871,12166,10,N/A,N/A,N/A,PTTGC
+871,19782,1,N/A,N/A,N/A,BCT
+871,19852,5,N/A,N/A,N/A,GIFT
+871,82663,9,N/A,N/A,N/A,PMTA
+871,83937,4,N/A,N/A,N/A,GGC
+871,84217,3,N/A,N/A,N/A,GC
+871,84406,11,N/A,N/A,N/A,SUTHA
+878,8764,5,N/A,N/A,N/A,NEP
+878,9625,10,N/A,N/A,N/A,SITHAI
+878,9667,12,N/A,N/A,N/A,SMPC
+878,10367,15,N/A,N/A,N/A,TFI
+878,10556,3,N/A,N/A,N/A,BGC
+878,10633,17,N/A,N/A,N/A,TMD
+878,10696,18,N/A,N/A,N/A,TOPP
+878,10703,21,N/A,N/A,N/A,TPP
+878,10745,14,N/A,N/A,N/A,TCOAT
+878,10766,16,N/A,N/A,N/A,THIP
+878,12614,9,N/A,N/A,N/A,SFLEX
+878,12649,6,N/A,N/A,N/A,PJW
+878,12915,8,N/A,N/A,N/A,SCGP
+878,82705,11,N/A,N/A,N/A,SLP
+878,82845,13,N/A,N/A,N/A,SPACK
+878,82943,2,N/A,N/A,N/A,ALUCON
+878,82957,7,N/A,N/A,N/A,PTL
+878,83118,1,N/A,N/A,N/A,AJ
+878,83293,20,N/A,N/A,N/A,TPBI
+878,84245,4,N/A,N/A,N/A,CSC
+878,84616,19,N/A,N/A,N/A,TPAC
+885,5754,6,N/A,N/A,N/A,CSP
+885,6608,9,N/A,N/A,N/A,INOX
+885,8043,12,N/A,N/A,N/A,MILL
+885,8064,15,N/A,N/A,N/A,SAM
+885,8351,10,N/A,N/A,N/A,LHK
+885,10080,17,N/A,N/A,N/A,SSSC
+885,10542,22,N/A,N/A,N/A,TWP
+885,10983,18,N/A,N/A,N/A,TGPRO
+885,11137,23,N/A,N/A,N/A,TYCN
+885,11473,4,N/A,N/A,N/A,CEN
+885,11865,1,N/A,N/A,N/A,2S
+885,19684,19,N/A,N/A,N/A,THE
+885,82992,11,N/A,N/A,N/A,MCS
+885,83020,13,N/A,N/A,N/A,PAP
+885,83027,14,N/A,N/A,N/A,PERM
+885,83083,16,N/A,N/A,N/A,SMIT
+885,83265,21,N/A,N/A,N/A,TSTH
+885,83517,2,N/A,N/A,N/A,AMC
+885,83713,20,N/A,N/A,N/A,TMT
+885,83762,5,N/A,N/A,N/A,CITY
+885,83811,7,N/A,N/A,N/A,GJS
+885,83986,8,N/A,N/A,N/A,GSTEEL
+885,84098,3,N/A,N/A,N/A,BSBM
+892,2548,14,N/A,N/A,N/A,STECH
+892,6489,4,N/A,N/A,N/A,DCON
+892,7756,16,N/A,N/A,N/A,TOA
+892,9282,9,N/A,N/A,N/A,Q-CON
+892,9394,10,N/A,N/A,N/A,SCC
+892,9429,12,N/A,N/A,N/A,SCP
+892,9576,11,N/A,N/A,N/A,SCCC
+892,9723,2,N/A,N/A,N/A,COTTO
+892,10255,15,N/A,N/A,N/A,TASCO
+892,10563,17,N/A,N/A,N/A,TPIPL
+892,11109,18,N/A,N/A,N/A,UMI
+892,11340,19,N/A,N/A,N/A,VNG
+892,13349,8,N/A,N/A,N/A,PPP
+892,19628,7,N/A,N/A,N/A,GEL
+892,19663,20,N/A,N/A,N/A,WIIK
+892,83454,13,N/A,N/A,N/A,SKN
+892,83853,3,N/A,N/A,N/A,DCC
+892,84042,6,N/A,N/A,N/A,EPG
+892,84182,5,N/A,N/A,N/A,DRT
+892,84301,1,N/A,N/A,N/A,CCP
+899,7658,23,N/A,N/A,N/A,KC
+899,8071,28,N/A,N/A,N/A,MJD
+899,8330,25,N/A,N/A,N/A,LH
+899,8379,26,N/A,N/A,N/A,LPN
+899,8435,24,N/A,N/A,N/A,LALIN
+899,8547,29,N/A,N/A,N/A,MK
+899,8750,27,N/A,N/A,N/A,MBK
+899,8960,32,N/A,N/A,N/A,NOBLE
+899,8995,31,N/A,N/A,N/A,NNCL
+899,9002,30,N/A,N/A,N/A,NCH
+899,9233,42,N/A,N/A,N/A,PRECHA
+899,9303,38,N/A,N/A,N/A,PF
+899,9331,45,N/A,N/A,N/A,QH
+899,9534,52,N/A,N/A,N/A,SAMCO
+899,9968,55,N/A,N/A,N/A,SIRI
+899,10059,53,N/A,N/A,N/A,SC
+899,10101,56,N/A,N/A,N/A,SPALI
+899,10395,15,N/A,N/A,N/A,CMC
+899,11165,57,N/A,N/A,N/A,UV
+899,11466,49,N/A,N/A,N/A,ROJNA
+899,11676,54,N/A,N/A,N/A,SENA
+899,12145,13,N/A,N/A,N/A,CGD
+899,12180,20,N/A,N/A,N/A,GLAND
+899,12502,33,N/A,N/A,N/A,NUSA
+899,12698,48,N/A,N/A,N/A,RML
+899,13055,51,N/A,N/A,N/A,SA
+899,13111,8,N/A,N/A,N/A,ASW
+899,13300,58,N/A,N/A,N/A,WHA
+899,13314,4,N/A,N/A,N/A,ANAN
+899,13363,36,N/A,N/A,N/A,PACE
+899,13447,9,N/A,N/A,N/A,AWC
+899,19642,50,N/A,N/A,N/A,S
+899,19656,7,N/A,N/A,N/A,AKS
+899,19677,41,N/A,N/A,N/A,POLAR
+899,19691,6,N/A,N/A,N/A,APEX
+899,19712,46,N/A,N/A,N/A,RABBIT
+899,19789,22,N/A,N/A,N/A,JCK
+899,19831,19,N/A,N/A,N/A,FPT
+899,19915,34,N/A,N/A,N/A,NVD
+899,82642,40,N/A,N/A,N/A,PLAT
+899,82719,21,N/A,N/A,N/A,J
+899,82754,2,N/A,N/A,N/A,AMATA
+899,82768,35,N/A,N/A,N/A,ORI
+899,82880,5,N/A,N/A,N/A,AP
+899,83468,1,N/A,N/A,N/A,A
+899,83531,10,N/A,N/A,N/A,BLAND
+899,83685,44,N/A,N/A,N/A,PSH
+899,83790,3,N/A,N/A,N/A,AMATAV
+899,83804,59,N/A,N/A,N/A,WIN
+899,84147,43,N/A,N/A,N/A,PRIN
+899,84196,18,N/A,N/A,N/A,EVER
+899,84287,16,N/A,N/A,N/A,CPN
+899,84308,14,N/A,N/A,N/A,CI
+899,84343,17,N/A,N/A,N/A,ESTAR
+899,84385,12,N/A,N/A,N/A,BROCK
+899,84462,47,N/A,N/A,N/A,RICHY
+899,86206,39,N/A,N/A,N/A,PIN
+899,86864,11,N/A,N/A,N/A,BRI
+899,204163,37,N/A,N/A,N/A,PEACE
+906,2555,18,1,Thai Equities,PF & REIT,GROREIT
+906,4991,7,1,Thai Equities,PF & REIT,BKKCP
+906,7189,57,1,Thai Equities,PF & REIT,TU-PF
+906,7966,36,1,Thai Equities,PF & REIT,MJLF
+906,8015,58,1,Thai Equities,PF & REIT,URBNPF
+906,8120,10,1,Thai Equities,PF & REIT,CPNREIT
+906,8155,17,1,Thai Equities,PF & REIT,GAHREIT
+906,8197,13,1,Thai Equities,PF & REIT,DREIT
+906,8239,51,1,Thai Equities,PF & REIT,SSTRT
+906,8274,46,1,Thai Equities,PF & REIT,SHREIT
+906,8414,2,1,Thai Equities,PF & REIT,AIMIRT
+906,8470,8,1,Thai Equities,PF & REIT,BOFFICE
+906,8715,5,1,Thai Equities,PF & REIT,B-WORK
+906,10941,48,1,Thai Equities,PF & REIT,SPRIME
+906,11312,12,1,Thai Equities,PF & REIT,CTARAF
+906,11515,38,1,Thai Equities,PF & REIT,MNIT2
+906,11592,50,1,Thai Equities,PF & REIT,SSPF
+906,11746,33,1,Thai Equities,PF & REIT,M-STOR
+906,12138,54,1,Thai Equities,PF & REIT,TNPF
+906,12194,1,1,Thai Equities,PF & REIT,AIMCG
+906,12257,56,1,Thai Equities,PF & REIT,TTLPF
+906,12355,40,1,Thai Equities,PF & REIT,POPF
+906,12663,27,1,Thai Equities,PF & REIT,LHPF
+906,12740,42,1,Thai Equities,PF & REIT,PROSPECT
+906,13286,43,1,Thai Equities,PF & REIT,QHHR
+906,13328,31,1,Thai Equities,PF & REIT,M-II
+906,13342,9,1,Thai Equities,PF & REIT,CPNCG
+906,13405,11,1,Thai Equities,PF & REIT,CPTGF
+906,19866,29,1,Thai Equities,PF & REIT,LPF
+906,19873,14,1,Thai Equities,PF & REIT,ERWPF
+906,19908,15,1,Thai Equities,PF & REIT,FTREIT
+906,19929,3,1,Thai Equities,PF & REIT,ALLY
+906,82600,24,1,Thai Equities,PF & REIT,KPNPF
+906,82789,4,1,Thai Equities,PF & REIT,AMATAR
+906,82908,53,1,Thai Equities,PF & REIT,TLHPF
+906,82915,59,1,Thai Equities,PF & REIT,WHABT
+906,83272,45,1,Thai Equities,PF & REIT,QHPF
+906,83342,37,1,Thai Equities,PF & REIT,MNIT
+906,83391,52,1,Thai Equities,PF & REIT,TIF1
+906,83398,16,1,Thai Equities,PF & REIT,FUTUREPF
+906,83503,44,1,Thai Equities,PF & REIT,QHOP
+906,83636,28,1,Thai Equities,PF & REIT,LHSC
+906,83643,26,1,Thai Equities,PF & REIT,LHHOTEL
+906,83657,35,1,Thai Equities,PF & REIT,MIT
+906,83671,19,1,Thai Equities,PF & REIT,GVREIT
+906,83930,49,1,Thai Equities,PF & REIT,SRIPANWA
+906,83979,34,1,Thai Equities,PF & REIT,MIPF
+906,84028,30,1,Thai Equities,PF & REIT,LUXF
+906,84329,39,1,Thai Equities,PF & REIT,MNRF
+906,84399,20,1,Thai Equities,PF & REIT,HPF
+906,84420,47,1,Thai Equities,PF & REIT,SIRIP
+906,84441,32,1,Thai Equities,PF & REIT,M-PAT
+906,84448,41,1,Thai Equities,PF & REIT,PPF
+906,84469,22,1,Thai Equities,PF & REIT,IMPACT
+906,84483,61,1,Thai Equities,PF & REIT,WHART
+906,84511,55,1,Thai Equities,PF & REIT,TPRIME
+906,84532,60,1,Thai Equities,PF & REIT,WHAIR
+906,84588,23,1,Thai Equities,PF & REIT,INETREIT
+906,86199,25,1,Thai Equities,PF & REIT,KTBSTMR
+906,249288,6,1,Thai Equities,PF & REIT,BAREIT
+906,265094,21,1,Thai Equities,PF & REIT,HYDROGEN
+913,8855,9,N/A,N/A,N/A,NWR
+913,9247,10,N/A,N/A,N/A,PLE
+913,9590,21,N/A,N/A,N/A,TEAMG
+913,9898,20,N/A,N/A,N/A,SYNTEC
+913,10199,17,N/A,N/A,N/A,STEC
+913,10227,14,N/A,N/A,N/A,SEAFCO
+913,10465,18,N/A,N/A,N/A,STI
+913,11564,23,N/A,N/A,N/A,TPOLY
+913,11613,26,N/A,N/A,N/A,TTCL
+913,12348,1,N/A,N/A,N/A,APCS
+913,12922,28,N/A,N/A,N/A,WGE
+913,12971,13,N/A,N/A,N/A,RT
+913,13384,3,N/A,N/A,N/A,BKD
+913,13419,2,N/A,N/A,N/A,BJCHI
+913,19635,25,N/A,N/A,N/A,TRITN
+913,82523,16,N/A,N/A,N/A,SRICHA
+913,83041,8,N/A,N/A,N/A,ITD
+913,83377,27,N/A,N/A,N/A,UNIQ
+913,83944,24,N/A,N/A,N/A,TRC
+913,83951,12,N/A,N/A,N/A,PYLON
+913,84140,19,N/A,N/A,N/A,STPI
+913,84210,11,N/A,N/A,N/A,PREB
+913,84252,6,N/A,N/A,N/A,CNT
+913,84294,5,N/A,N/A,N/A,CK
+913,84336,7,N/A,N/A,N/A,EMC
+913,84560,15,N/A,N/A,N/A,SQ
+913,201790,4,N/A,N/A,N/A,CIVIL
+913,232201,22,N/A,N/A,N/A,TEKA
+920,2870,6,N/A,N/A,N/A,AIE
+920,2996,58,N/A,N/A,N/A,TAE
+920,3213,63,N/A,N/A,N/A,TSE
+920,7854,59,N/A,N/A,N/A,TCC
+920,7952,28,N/A,N/A,N/A,GULF
+920,7973,50,N/A,N/A,N/A,SKE
+920,8309,34,N/A,N/A,N/A,LANNA
+920,8498,35,N/A,N/A,N/A,MDX
+920,9163,42,N/A,N/A,N/A,PTTEP
+920,9212,41,N/A,N/A,N/A,PTT
+920,9422,45,N/A,N/A,N/A,RPC
+920,9646,44,N/A,N/A,N/A,RATCH
+920,9828,57,N/A,N/A,N/A,SUSCO
+920,10171,46,N/A,N/A,N/A,SCG
+920,11410,4,N/A,N/A,N/A,AGE
+920,11921,29,N/A,N/A,N/A,GUNKUL
+920,12243,56,N/A,N/A,N/A,SUPEREIF
+920,12285,43,N/A,N/A,N/A,QTC
+920,12334,52,N/A,N/A,N/A,SPCG
+920,12432,3,N/A,N/A,N/A,ACE
+920,12803,33,N/A,N/A,N/A,KBSPIF
+920,12817,25,N/A,N/A,N/A,ETC
+920,12985,32,N/A,N/A,N/A,JR
+920,13097,37,N/A,N/A,N/A,OR
+920,13321,19,N/A,N/A,N/A,EA
+920,13377,16,N/A,N/A,N/A,CKP
+920,19565,39,N/A,N/A,N/A,PRIME
+920,19579,27,N/A,N/A,N/A,GREEN
+920,19586,2,N/A,N/A,N/A,ACC
+920,19614,23,N/A,N/A,N/A,EP
+920,19705,1,N/A,N/A,N/A,AE
+920,19796,36,N/A,N/A,N/A,NOVA
+920,82530,17,N/A,N/A,N/A,CV
+920,82537,65,N/A,N/A,N/A,UBE
+920,82607,48,N/A,N/A,N/A,SCN
+920,82684,26,N/A,N/A,N/A,GPSC
+920,82698,21,N/A,N/A,N/A,EGATIF
+920,82733,47,N/A,N/A,N/A,SCI
+920,82803,5,N/A,N/A,N/A,AI
+920,82859,61,N/A,N/A,N/A,TOP
+920,82922,11,N/A,N/A,N/A,BCP
+920,82985,51,N/A,N/A,N/A,SOLAR
+920,83006,8,N/A,N/A,N/A,BAFS
+920,83034,30,N/A,N/A,N/A,IFEC
+920,83195,15,N/A,N/A,N/A,BRRGIF
+920,83209,54,N/A,N/A,N/A,SSP
+920,83223,24,N/A,N/A,N/A,BSRC
+920,83363,55,N/A,N/A,N/A,SUPER
+920,83426,22,N/A,N/A,N/A,EGCO
+920,83538,18,N/A,N/A,N/A,DEMCO
+920,83559,7,N/A,N/A,N/A,AKR
+920,83608,40,N/A,N/A,N/A,PTG
+920,83699,49,N/A,N/A,N/A,SGP
+920,83832,66,N/A,N/A,N/A,WHAUP
+920,83839,62,N/A,N/A,N/A,TPIPP
+920,83972,9,N/A,N/A,N/A,BANPU
+920,84168,64,N/A,N/A,N/A,TTW
+920,84322,20,N/A,N/A,N/A,EASTW
+920,84392,31,N/A,N/A,N/A,IRPC
+920,84490,67,N/A,N/A,N/A,WP
+920,84504,53,N/A,N/A,N/A,SPRC
+920,84518,12,N/A,N/A,N/A,BCPG
+920,84553,14,N/A,N/A,N/A,BPP
+920,84581,13,N/A,N/A,N/A,BGRIM
+920,211513,10,N/A,N/A,N/A,BBGI
+920,245354,60,N/A,N/A,N/A,TGE
+920,259389,38,N/A,N/A,N/A,PCC
+927,10437,1,N/A,N/A,N/A,THL
+934,6888,12,N/A,N/A,N/A,FTE
+934,7910,26,N/A,N/A,N/A,RSP
+934,8099,6,N/A,N/A,N/A,CPALL
+934,8344,19,N/A,N/A,N/A,LOXLEY
+934,8610,20,N/A,N/A,N/A,CPAXT
+934,8743,23,N/A,N/A,N/A,MIDA
+934,9366,25,N/A,N/A,N/A,RS
+934,9443,29,N/A,N/A,N/A,SINGER
+934,9786,31,N/A,N/A,N/A,SPI
+934,9870,30,N/A,N/A,N/A,SPC
+934,11599,13,N/A,N/A,N/A,GLOBAL
+934,12152,16,N/A,N/A,N/A,ILM
+934,12187,10,N/A,N/A,N/A,DOHOME
+934,12327,18,N/A,N/A,N/A,KAMART
+934,12376,7,N/A,N/A,N/A,CPW
+934,12635,8,N/A,N/A,N/A,CRC
+934,12754,28,N/A,N/A,N/A,SCM
+934,12964,27,N/A,N/A,N/A,SABUY
+934,13307,2,N/A,N/A,N/A,BEAUTY
+934,13356,21,N/A,N/A,N/A,MC
+934,13391,9,N/A,N/A,N/A,CSS
+934,13433,22,N/A,N/A,N/A,MEGA
+934,19537,1,N/A,N/A,N/A,B52
+934,19761,3,N/A,N/A,N/A,BIG
+934,82558,32,N/A,N/A,N/A,SVT
+934,82656,5,N/A,N/A,N/A,COM7
+934,83069,14,N/A,N/A,N/A,HMPRO
+934,83167,4,N/A,N/A,N/A,BJC
+934,83370,15,N/A,N/A,N/A,ICC
+934,84364,17,N/A,N/A,N/A,IT
+934,84525,11,N/A,N/A,N/A,FN
+934,266095,24,N/A,N/A,N/A,MOSHI
+941,7686,22,N/A,N/A,N/A,WPH
+941,8113,19,N/A,N/A,N/A,THG
+941,8596,10,N/A,N/A,N/A,M-CHAI
+941,8918,12,N/A,N/A,N/A,NTV
+941,8953,11,N/A,N/A,N/A,NEW
+941,9338,15,N/A,N/A,N/A,RAM
+941,10150,18,N/A,N/A,N/A,SKR
+941,10591,13,N/A,N/A,N/A,PR9
+941,11235,20,N/A,N/A,N/A,VIBHA
+941,11529,6,N/A,N/A,N/A,CMR
+941,12712,21,N/A,N/A,N/A,VIH
+941,19516,2,N/A,N/A,N/A,BCH
+941,19530,3,N/A,N/A,N/A,BDMS
+941,19572,14,N/A,N/A,N/A,PRINC
+941,82712,9,N/A,N/A,N/A,LPH
+941,82950,7,N/A,N/A,N/A,EKH
+941,83132,8,N/A,N/A,N/A,KDH
+941,83587,5,N/A,N/A,N/A,CHG
+941,83888,17,N/A,N/A,N/A,RPH
+941,84007,1,N/A,N/A,N/A,AHC
+941,84105,4,N/A,N/A,N/A,BH
+941,84539,16,N/A,N/A,N/A,RJH
+948,4970,4,N/A,N/A,N/A,BEC
+948,6531,5,N/A,N/A,N/A,FE
+948,7980,8,N/A,N/A,N/A,JKN
+948,8134,6,N/A,N/A,N/A,GPI
+948,8526,12,N/A,N/A,N/A,MATI
+948,8624,10,N/A,N/A,N/A,MAJOR
+948,8638,9,N/A,N/A,N/A,ROCTEC
+948,8694,11,N/A,N/A,N/A,MATCH
+948,9044,16,N/A,N/A,N/A,NATION
+948,9114,19,N/A,N/A,N/A,POST
+948,9485,22,N/A,N/A,N/A,SE-ED
+948,10850,21,N/A,N/A,N/A,PTECH
+948,11060,23,N/A,N/A,N/A,TKS
+948,11305,26,N/A,N/A,N/A,WORK
+948,11585,25,N/A,N/A,N/A,WAVE
+948,12684,2,N/A,N/A,N/A,AQUA
+948,13335,24,N/A,N/A,N/A,VGI
+948,19509,1,N/A,N/A,N/A,AMARIN
+948,19726,20,N/A,N/A,N/A,PRAKIT
+948,82628,18,N/A,N/A,N/A,PLANB
+948,83440,13,N/A,N/A,N/A,MCOT
+948,83594,14,N/A,N/A,N/A,MONO
+948,83874,3,N/A,N/A,N/A,AS
+948,83965,7,N/A,N/A,N/A,GRAMMY
+948,84133,15,N/A,N/A,N/A,ZAA
+948,86143,17,N/A,N/A,N/A,ONEE
+955,6643,2,N/A,N/A,N/A,GENCO
+955,8183,1,N/A,N/A,N/A,BWG
+955,9310,3,N/A,N/A,N/A,PRO
+955,10717,5,N/A,N/A,N/A,SISB
+955,13013,6,N/A,N/A,N/A,SO
+955,281117,4,N/A,N/A,N/A,PRTR
+962,8386,8,N/A,N/A,N/A,LRH
+962,8589,9,N/A,N/A,N/A,MANRIN
+962,8974,10,N/A,N/A,N/A,OHTL
+962,9569,11,N/A,N/A,N/A,ROH
+962,9618,12,N/A,N/A,N/A,SHANG
+962,11550,14,N/A,N/A,N/A,VRANDA
+962,12271,6,N/A,N/A,N/A,ERW
+962,12418,13,N/A,N/A,N/A,SHR
+962,19593,5,N/A,N/A,N/A,DUSIT
+962,19733,2,N/A,N/A,N/A,BEYOND
+962,83279,1,N/A,N/A,N/A,ASIA
+962,83797,7,N/A,N/A,N/A,GRAND
+962,83923,3,N/A,N/A,N/A,CENTEL
+962,84238,4,N/A,N/A,N/A,CSR
+969,2436,10,N/A,N/A,N/A,DMT
+969,2534,15,N/A,N/A,N/A,MENA
+969,7987,18,N/A,N/A,N/A,PORT
+969,9135,20,N/A,N/A,N/A,PSL
+969,9639,21,N/A,N/A,N/A,RCL
+969,10311,23,N/A,N/A,N/A,TFFIF
+969,10402,24,N/A,N/A,N/A,THAI
+969,10668,25,N/A,N/A,N/A,TSTE
+969,10871,26,N/A,N/A,N/A,TTA
+969,11949,8,N/A,N/A,N/A,BTS
+969,12089,13,N/A,N/A,N/A,KIAT
+969,13083,12,N/A,N/A,N/A,KEX
+969,13398,17,N/A,N/A,N/A,NYT
+969,19544,4,N/A,N/A,N/A,B
+969,82481,1,N/A,N/A,N/A,AAV
+969,82621,9,N/A,N/A,N/A,BTSGIF
+969,82677,27,N/A,N/A,N/A,WICE
+969,82796,3,N/A,N/A,N/A,ASIMAR
+969,82831,22,N/A,N/A,N/A,SJWD
+969,83384,19,N/A,N/A,N/A,PRM
+969,83419,11,N/A,N/A,N/A,III
+969,83447,14,N/A,N/A,N/A,KWC
+969,83461,7,N/A,N/A,N/A,BIOTEC
+969,83545,2,N/A,N/A,N/A,AOT
+969,83615,16,N/A,N/A,N/A,NOK
+969,83650,6,N/A,N/A,N/A,BEM
+969,84049,5,N/A,N/A,N/A,BA
+976,8491,5,N/A,N/A,N/A,METCO
+976,10087,8,N/A,N/A,N/A,SVI
+976,11025,9,N/A,N/A,N/A,TEAM
+976,11872,7,N/A,N/A,N/A,SMT
+976,19523,6,N/A,N/A,N/A,NEX
+976,83237,4,N/A,N/A,N/A,KCE
+976,84077,3,N/A,N/A,N/A,HANA
+976,84280,1,N/A,N/A,N/A,CCET
+976,84350,2,N/A,N/A,N/A,DELTA
+983,6860,21,N/A,N/A,N/A,PT
+983,7931,9,N/A,N/A,N/A,HUMAN
+983,8561,20,N/A,N/A,N/A,MSC
+983,8701,19,N/A,N/A,N/A,MFEC
+983,9604,22,N/A,N/A,N/A,SAMART
+983,9926,27,N/A,N/A,N/A,SVOA
+983,10129,23,N/A,N/A,N/A,SAMTEL
+983,10185,25,N/A,N/A,N/A,SIS
+983,11690,17,N/A,N/A,N/A,JMART
+983,11844,28,N/A,N/A,N/A,SYMC
+983,12124,13,N/A,N/A,N/A,INTUCH
+983,13258,12,N/A,N/A,N/A,INSET
+983,19775,24,N/A,N/A,N/A,SDC
+983,19880,6,N/A,N/A,N/A,DIF
+983,19894,26,N/A,N/A,N/A,SKY
+983,82502,4,N/A,N/A,N/A,AMR
+983,82593,16,N/A,N/A,N/A,3BBIF
+983,82866,1,N/A,N/A,N/A,ADVANC
+983,82901,10,N/A,N/A,N/A,ILINK
+983,82971,2,N/A,N/A,N/A,AIT
+983,83055,3,N/A,N/A,N/A,ALT
+983,83076,30,N/A,N/A,N/A,THCOM
+983,83104,18,N/A,N/A,N/A,JTS
+983,83202,8,N/A,N/A,N/A,FORTH
+983,83321,15,N/A,N/A,N/A,JAS
+983,83552,5,N/A,N/A,N/A,BLISS
+983,83776,29,N/A,N/A,N/A,SYNEX
+983,84161,33,N/A,N/A,N/A,TWZ
+983,84378,11,N/A,N/A,N/A,INET
+983,84777,14,N/A,N/A,N/A,ITEL
+983,173748,31,N/A,N/A,N/A,TKC
+983,265381,7,N/A,N/A,N/A,DTCENT
+983,279654,32,N/A,N/A,N/A,TRUE
+990,281600,1,1,Thai Equities,Derivative Warrants,SET5013C2306E
+990,282314,3,1,Thai Equities,Derivative Warrants,SET5041C2309A
+990,282342,10,1,Thai Equities,Derivative Warrants,SET5041P2309A
+990,282503,6,1,Thai Equities,Derivative Warrants,SET5006C2306C
+990,282510,8,1,Thai Equities,Derivative Warrants,SET5006P2306C
+990,282979,4,1,Thai Equities,Derivative Warrants,SET5013P2306E
+990,297882,7,1,Thai Equities,Derivative Warrants,SET5006P2306E
+990,299373,9,1,Thai Equities,Derivative Warrants,SET5013C2306H
+990,299380,2,1,Thai Equities,Derivative Warrants,SET5013P2306G
+990,299947,5,1,Thai Equities,Derivative Warrants,SET5013C2306I
+997,263498,46,0,Thai Equities,Derivative Warrants,BEM11P2306A
+997,271800,15,0,Thai Equities,Derivative Warrants,DELTA19P2305A
+997,272640,19,0,Thai Equities,Derivative Warrants,DELTA19P2305B
+997,277029,39,0,Thai Equities,Derivative Warrants,COM701P2307A
+997,278401,16,0,Thai Equities,Derivative Warrants,JMT06C2307B
+997,278842,10,0,Thai Equities,Derivative Warrants,DELTA19P2306A
+997,279073,3,0,Thai Equities,Derivative Warrants,DELTA13P2306A
+997,279101,34,0,Thai Equities,Derivative Warrants,PTTEP13C2307A
+997,279500,20,0,Thai Equities,Derivative Warrants,KBANK06C2307A
+997,279563,24,0,Thai Equities,Derivative Warrants,PTTEP06C2307A
+997,279738,25,0,Thai Equities,Derivative Warrants,SCC19C2308A
+997,280004,32,0,Thai Equities,Derivative Warrants,JMART01P2308A
+997,280109,48,0,Thai Equities,Derivative Warrants,TIDLOR41C2308B
+997,280291,29,0,Thai Equities,Derivative Warrants,GPSC19C2308A
+997,280340,28,0,Thai Equities,Derivative Warrants,SAWAD19C2307B
+997,281369,13,0,Thai Equities,Derivative Warrants,AOT06C2307A
+997,281831,42,0,Thai Equities,Derivative Warrants,BBL19C2308A
+997,282174,12,0,Thai Equities,Derivative Warrants,DELTA19C2308A
+997,282258,4,0,Thai Equities,Derivative Warrants,DELTA13C2308A
+997,282286,49,0,Thai Equities,Derivative Warrants,PTT13C2308A
+997,282489,7,0,Thai Equities,Derivative Warrants,PTTEP06C2308A
+997,284148,50,0,Thai Equities,Derivative Warrants,COM719P2308A
+997,284197,9,0,Thai Equities,Derivative Warrants,KBANK06C2308A
+997,288096,37,0,Thai Equities,Derivative Warrants,DELTA13C2308B
+997,288117,44,0,Thai Equities,Derivative Warrants,KBANK01C2309W
+997,297679,40,0,Thai Equities,Derivative Warrants,TCAP13C2309A
+997,297735,1,0,Thai Equities,Derivative Warrants,DELTA06C2308A
+997,297770,35,0,Thai Equities,Derivative Warrants,INTUCH06C2308A
+997,297826,45,0,Thai Equities,Derivative Warrants,SABUY19C2308A
+997,297833,33,0,Thai Equities,Derivative Warrants,SAWAD06C2308A
+997,297945,36,0,Thai Equities,Derivative Warrants,COM719C2308A
+997,298330,18,0,Thai Equities,Derivative Warrants,SAWAD41C2309A
+997,298512,22,0,Thai Equities,Derivative Warrants,DELTA01C2308A
+997,298554,31,0,Thai Equities,Derivative Warrants,JMT01C2309A
+997,298708,43,0,Thai Equities,Derivative Warrants,JMART19C2309A
+997,298715,5,0,Thai Equities,Derivative Warrants,JMART41C2309A
+997,298722,47,0,Thai Equities,Derivative Warrants,JMT13C2309A
+997,298729,11,0,Thai Equities,Derivative Warrants,JMT41C2309A
+997,298855,8,0,Thai Equities,Derivative Warrants,JMT19C2309A
+997,299037,26,0,Thai Equities,Derivative Warrants,HANA19C2309A
+997,299317,2,0,Thai Equities,Derivative Warrants,DELTA13C2308C
+997,299345,23,0,Thai Equities,Derivative Warrants,HANA41C2310A
+997,299555,14,0,Thai Equities,Derivative Warrants,CBG41C2310A
+997,299583,38,0,Thai Equities,Derivative Warrants,CPN41C2309A
+997,299604,21,0,Thai Equities,Derivative Warrants,EA41C2310A
+997,299611,27,0,Thai Equities,Derivative Warrants,GLOBAL06C2308A
+997,299632,6,0,Thai Equities,Derivative Warrants,JMART13C2309B
+997,299639,41,0,Thai Equities,Derivative Warrants,JMART41C2310A
+997,299660,30,0,Thai Equities,Derivative Warrants,SABUY13C2309A
+997,299737,17,0,Thai Equities,Derivative Warrants,GULF13C2309A
+1004,275076,13,0,Thai Equities,Derivative Warrants,HSI28C2305A
+1004,275090,14,0,Thai Equities,Derivative Warrants,HSI28P2305A
+1004,276315,18,0,Thai Equities,Derivative Warrants,TENCEN28P2305B
+1004,278177,6,0,Thai Equities,Derivative Warrants,HSI28C2306A
+1004,279255,7,0,Thai Equities,Derivative Warrants,HSI28C2306B
+1004,279983,8,0,Thai Equities,Derivative Warrants,HSI28C2305E
+1004,281173,1,0,Thai Equities,Derivative Warrants,HSI28C2305H
+1004,281180,2,0,Thai Equities,Derivative Warrants,HSI28P2305D
+1004,281250,11,0,Thai Equities,Derivative Warrants,MEITUA28C2308A
+1004,281985,17,0,Thai Equities,Derivative Warrants,PINGAN28C2308A
+1004,282461,19,0,Thai Equities,Derivative Warrants,HSCEI28P2306A
+1004,282846,4,0,Thai Equities,Derivative Warrants,HSI28C2306C
+1004,282874,3,0,Thai Equities,Derivative Warrants,HSI28P2306C
+1004,285275,16,0,Thai Equities,Derivative Warrants,JD28P2308A
+1004,285310,20,0,Thai Equities,Derivative Warrants,MEITUA28P2308A
+1004,297469,15,0,Thai Equities,Derivative Warrants,HSI28P2306D
+1004,298694,9,0,Thai Equities,Derivative Warrants,HSBC28C2308A
+1004,299058,5,0,Thai Equities,Derivative Warrants,HSI28P2307A
+1004,299072,10,0,Thai Equities,Derivative Warrants,JD28C2309A
+1004,299107,12,0,Thai Equities,Derivative Warrants,TENCEN28C2312A
+1011,10535,5,1,Thai Equities,Depositary Receipts,E1VFVN3001
+1011,207684,1,1,Thai Equities,Depositary Receipts,BABA80
+1011,219080,6,1,Thai Equities,Depositary Receipts,FUEVFVND01
+1011,224333,11,1,Thai Equities,Depositary Receipts,TENCENT80
+1011,226062,7,1,Thai Equities,Depositary Receipts,NDX01
+1011,226069,10,1,Thai Equities,Depositary Receipts,STAR5001
+1011,242449,2,1,Thai Equities,Depositary Receipts,BYDCOM80
+1011,242456,12,1,Thai Equities,Depositary Receipts,XIAOMI80
+1011,242897,4,1,Thai Equities,Depositary Receipts,CNTECH01
+1011,242904,3,1,Thai Equities,Depositary Receipts,CN01
+1011,281306,8,1,Thai Equities,Depositary Receipts,NETEASE80
+1011,281320,9,1,Thai Equities,Depositary Receipts,PINGAN80
+1018,103615,142,1,Thai Equities,Warrants,TCC-W4
+1018,103643,143,1,Thai Equities,Warrants,TCC-W5
+1018,103657,47,1,Thai Equities,Warrants,EMC-W6
+1018,103664,146,1,Thai Equities,Warrants,TGPRO-W3
+1018,103685,127,1,Thai Equities,Warrants,SDC-W1
+1018,103699,166,1,Thai Equities,Warrants,XPG-W4
+1018,103755,108,1,Thai Equities,Warrants,PPPM-W4
+1018,103762,58,1,Thai Equities,Warrants,III-W1
+1018,103769,85,1,Thai Equities,Warrants,MINT-W7
+1018,103790,124,1,Thai Equities,Warrants,SAWAD-W2
+1018,103804,36,1,Thai Equities,Warrants,CWT-W5
+1018,103818,27,1,Thai Equities,Warrants,BYD-W6
+1018,103825,93,1,Thai Equities,Warrants,NEX-W2
+1018,103839,17,1,Thai Equities,Warrants,BCPG-W2
+1018,103846,66,1,Thai Equities,Warrants,JMART-W4
+1018,103860,77,1,Thai Equities,Warrants,MBK-W1
+1018,103867,164,1,Thai Equities,Warrants,WAVE-W2
+1018,103874,139,1,Thai Equities,Warrants,STARK-W1
+1018,103881,94,1,Thai Equities,Warrants,NOBLE-W2
+1018,103888,163,1,Thai Equities,Warrants,W-W5
+1018,103895,145,1,Thai Equities,Warrants,TFI-W1
+1018,103902,10,1,Thai Equities,Warrants,AS-W2
+1018,103916,2,1,Thai Equities,Warrants,AIE-W2
+1018,103923,120,1,Thai Equities,Warrants,SABUY-W1
+1018,103930,144,1,Thai Equities,Warrants,TFG-W3
+1018,103937,136,1,Thai Equities,Warrants,SNP-W2
+1018,103944,28,1,Thai Equities,Warrants,CEN-W5
+1018,103951,86,1,Thai Equities,Warrants,MINT-W8
+1018,103958,87,1,Thai Equities,Warrants,MINT-W9
+1018,103972,84,1,Thai Equities,Warrants,MILL-W6
+1018,103979,95,1,Thai Equities,Warrants,NRF-W1
+1018,103986,96,1,Thai Equities,Warrants,NUSA-W4
+1018,103993,115,1,Thai Equities,Warrants,RS-W4
+1018,104000,122,1,Thai Equities,Warrants,SAMART-W3
+1018,104007,123,1,Thai Equities,Warrants,SAMTEL-W1
+1018,104014,29,1,Thai Equities,Warrants,CGH-W4
+1018,104021,78,1,Thai Equities,Warrants,MBK-W2
+1018,104028,49,1,Thai Equities,Warrants,ERW-W3
+1018,104035,138,1,Thai Equities,Warrants,SSP-W2
+1018,104049,30,1,Thai Equities,Warrants,CHAYO-W2
+1018,104056,135,1,Thai Equities,Warrants,SMT-W3
+1018,104063,67,1,Thai Equities,Warrants,JMART-W5
+1018,104070,74,1,Thai Equities,Warrants,ROCTEC-W3
+1018,104077,153,1,Thai Equities,Warrants,TRUBB-W2
+1018,104084,4,1,Thai Equities,Warrants,AJA-W3
+1018,104091,13,1,Thai Equities,Warrants,B-W6
+1018,104098,18,1,Thai Equities,Warrants,BEYOND-W2
+1018,104105,61,1,Thai Equities,Warrants,ITEL-W3
+1018,104119,15,1,Thai Equities,Warrants,BANPU-W5
+1018,104133,25,1,Thai Equities,Warrants,BTS-W7
+1018,104140,46,1,Thai Equities,Warrants,EKH-W1
+1018,104147,26,1,Thai Equities,Warrants,BTS-W8
+1018,104154,79,1,Thai Equities,Warrants,MBK-W3
+1018,104161,110,1,Thai Equities,Warrants,PRG-W1
+1018,104189,132,1,Thai Equities,Warrants,SIMAT-W3
+1018,104259,160,1,Thai Equities,Warrants,UREKA-W2
+1018,104280,38,1,Thai Equities,Warrants,DIMET-W4
+1018,104308,41,1,Thai Equities,Warrants,ECF-W4
+1018,104315,19,1,Thai Equities,Warrants,BM-W2
+1018,104322,65,1,Thai Equities,Warrants,JCKH-W1
+1018,104329,89,1,Thai Equities,Warrants,MVP-W1
+1018,104336,101,1,Thai Equities,Warrants,PIMO-W2
+1018,104343,140,1,Thai Equities,Warrants,STOWER-W3
+1018,104350,71,1,Thai Equities,Warrants,KWM-W1
+1018,104357,81,1,Thai Equities,Warrants,META-W5
+1018,104371,51,1,Thai Equities,Warrants,FLOYD-W1
+1018,104378,21,1,Thai Equities,Warrants,BTC-W6
+1018,104385,22,1,Thai Equities,Warrants,BTC-W7
+1018,104392,102,1,Thai Equities,Warrants,PJW-W1
+1018,104399,16,1,Thai Equities,Warrants,BC-W1
+1018,104406,133,1,Thai Equities,Warrants,SIMAT-W5
+1018,104413,60,1,Thai Equities,Warrants,IP-W1
+1018,104420,70,1,Thai Equities,Warrants,KUN-W1
+1018,104434,40,1,Thai Equities,Warrants,DOD-W2
+1018,104441,104,1,Thai Equities,Warrants,PLANET-W1
+1018,104448,99,1,Thai Equities,Warrants,PEER-W1
+1018,104455,59,1,Thai Equities,Warrants,INSET-W1
+1018,104469,119,1,Thai Equities,Warrants,SAAM-W2
+1018,104476,56,1,Thai Equities,Warrants,ICN-W1
+1018,135822,6,1,Thai Equities,Warrants,ANAN-W1
+1018,173090,68,1,Thai Equities,Warrants,JMT-W4
+1018,173293,7,1,Thai Equities,Warrants,APURE-W3
+1018,173475,8,1,Thai Equities,Warrants,AKS-W5
+1018,174154,126,1,Thai Equities,Warrants,SCN-W2
+1018,174161,137,1,Thai Equities,Warrants,SOLAR-W1
+1018,174714,125,1,Thai Equities,Warrants,SCM-W1
+1018,174889,103,1,Thai Equities,Warrants,PLANB-W1
+1018,201573,3,1,Thai Equities,Warrants,AIT-W2
+1018,201783,130,1,Thai Equities,Warrants,SFLEX-W1
+1018,202917,131,1,Thai Equities,Warrants,SFLEX-W2
+1018,203302,157,1,Thai Equities,Warrants,TWZ-W6
+1018,203309,158,1,Thai Equities,Warrants,TWZ-W7
+1018,204156,73,1,Thai Equities,Warrants,LIT-W2
+1018,209154,43,1,Thai Equities,Warrants,EE-W1
+1018,209966,55,1,Thai Equities,Warrants,HEALTH-W2
+1018,210120,159,1,Thai Equities,Warrants,UBIS-W1
+1018,212773,14,1,Thai Equities,Warrants,B-W7
+1018,221992,128,1,Thai Equities,Warrants,SENA-W1
+1018,222741,53,1,Thai Equities,Warrants,GLOCON-W5
+1018,223129,50,1,Thai Equities,Warrants,EVER-W4
+1018,223556,5,1,Thai Equities,Warrants,AJA-W4
+1018,227931,91,1,Thai Equities,Warrants,NDR-W2
+1018,229394,117,1,Thai Equities,Warrants,RWI-W3
+1018,229632,161,1,Thai Equities,Warrants,VGI-W3
+1018,229947,39,1,Thai Equities,Warrants,DITTO-W1
+1018,229954,11,1,Thai Equities,Warrants,ASW-W1
+1018,230325,113,1,Thai Equities,Warrants,PROEN-W1
+1018,230479,155,1,Thai Equities,Warrants,TTB-W1
+1018,231011,105,1,Thai Equities,Warrants,PORT-W2
+1018,231144,151,1,Thai Equities,Warrants,TRITN-W5
+1018,231277,134,1,Thai Equities,Warrants,SKE-W1
+1018,231284,44,1,Thai Equities,Warrants,EFORL-W5
+1018,231291,45,1,Thai Equities,Warrants,EFORL-W6
+1018,232061,92,1,Thai Equities,Warrants,NEWS-W7
+1018,232068,116,1,Thai Equities,Warrants,RT-W1
+1018,232187,111,1,Thai Equities,Warrants,PRG-W2
+1018,232194,80,1,Thai Equities,Warrants,MBK-W4
+1018,232215,148,1,Thai Equities,Warrants,TM-W1
+1018,232761,9,1,Thai Equities,Warrants,AQUA-W3
+1018,232915,34,1,Thai Equities,Warrants,COLOR-W2
+1018,233272,63,1,Thai Equities,Warrants,J-W2
+1018,233279,64,1,Thai Equities,Warrants,J-W3
+1018,233678,88,1,Thai Equities,Warrants,ML-W3
+1018,233685,83,1,Thai Equities,Warrants,MIDA-W3
+1018,235568,52,1,Thai Equities,Warrants,GEL-W5
+1018,236772,35,1,Thai Equities,Warrants,CPANEL-W1
+1018,239635,129,1,Thai Equities,Warrants,SENX-W1
+1018,239789,149,1,Thai Equities,Warrants,TNDT-W1
+1018,239796,156,1,Thai Equities,Warrants,TVDH-W3
+1018,240223,141,1,Thai Equities,Warrants,STOWER-W4
+1018,240790,90,1,Thai Equities,Warrants,NCAP-W1
+1018,240895,109,1,Thai Equities,Warrants,PPPM-W5
+1018,240902,147,1,Thai Equities,Warrants,TH-W3
+1018,240923,48,1,Thai Equities,Warrants,EP-W4
+1018,240930,106,1,Thai Equities,Warrants,PORT-W3
+1018,241203,33,1,Thai Equities,Warrants,CI-W2
+1018,241343,97,1,Thai Equities,Warrants,NVD-W2
+1018,241350,98,1,Thai Equities,Warrants,NVD-W3
+1018,242043,62,1,Thai Equities,Warrants,ITEL-W4
+1018,242547,118,1,Thai Equities,Warrants,SA-W1
+1018,243163,162,1,Thai Equities,Warrants,VIBHA-W4
+1018,243555,82,1,Thai Equities,Warrants,META-W6
+1018,243961,72,1,Thai Equities,Warrants,LEO-W1
+1018,244682,42,1,Thai Equities,Warrants,ECL-W4
+1018,248595,37,1,Thai Equities,Warrants,CWT-W6
+1018,248735,20,1,Thai Equities,Warrants,BR-W1
+1018,249330,69,1,Thai Equities,Warrants,JSP-W1
+1018,249337,75,1,Thai Equities,Warrants,MACO-W4
+1018,250604,76,1,Thai Equities,Warrants,MBAX-W2
+1018,250793,121,1,Thai Equities,Warrants,SABUY-W2
+1018,261174,12,1,Thai Equities,Warrants,ASW-W2
+1018,261769,150,1,Thai Equities,Warrants,TPS-W1
+1018,261832,165,1,Thai Equities,Warrants,WAVE-W3
+1018,262245,154,1,Thai Equities,Warrants,SBNEXT-W2
+1018,263316,114,1,Thai Equities,Warrants,PSTC-W2
+1018,263995,54,1,Thai Equities,Warrants,GLORY-W1
+1018,265374,112,1,Thai Equities,Warrants,PRG-W3
+1018,272157,1,1,Thai Equities,Warrants,ABM-W1
+1018,272248,107,1,Thai Equities,Warrants,PPM-W2
+1018,274754,32,1,Thai Equities,Warrants,CHO-W3
+1018,275447,100,1,Thai Equities,Warrants,PACO-W1
+1018,275762,57,1,Thai Equities,Warrants,IIG-W1
+1018,278751,23,1,Thai Equities,Warrants,BRR-W1
+1018,278758,24,1,Thai Equities,Warrants,BRR-W2
+1018,278772,31,1,Thai Equities,Warrants,CHEWA-W2
+1018,299499,152,1,Thai Equities,Warrants,TRITN-W6
+1025,90238,10,1,Thai Equities,ETFs,TDEX
+1025,90266,7,1,Thai Equities,ETFs,ENGY
+1025,90273,9,1,Thai Equities,ETFs,GLD
+1025,90294,1,1,Thai Equities,ETFs,1DIV
+1025,90301,6,1,Thai Equities,ETFs,EBANK
+1025,90308,2,1,Thai Equities,ETFs,ABFTH
+1025,90315,5,1,Thai Equities,ETFs,BSET100
+1025,90322,8,1,Thai Equities,ETFs,ENY
+1025,90329,4,1,Thai Equities,ETFs,BMSCITH
+1025,90336,3,1,Thai Equities,ETFs,BMSCG
+1032,234525,3,1,Derivatives,S50 Futures,S50M23
+1032,251647,5,1,Derivatives,S50 Futures,S50U23
+1032,266648,6,1,Derivatives,S50 Futures,S50Z23
+1032,278604,2,1,Derivatives,S50 Futures,S50K23
+1032,283091,1,1,Derivatives,S50 Futures,S50H24
+1032,299156,4,1,Derivatives,S50 Futures,S50N23
+1032,0,1,1,Derivatives,S50 Futures,S50Z24
+1039,0,1,1,Derivatives,Sectors,ADVANCH25
+1039,234490,19,1,Derivatives,Sectors,BANKM23
+1039,234497,3,1,Derivatives,Sectors,COMMM23
+1039,234504,7,1,Derivatives,Sectors,ENERGM23
+1039,234511,11,1,Derivatives,Sectors,FOODM23
+1039,234518,15,1,Derivatives,Sectors,ICTM23
+1039,251612,18,1,Derivatives,Sectors,BANKU23
+1039,251619,2,1,Derivatives,Sectors,COMMU23
+1039,251626,6,1,Derivatives,Sectors,ENERGU23
+1039,251633,10,1,Derivatives,Sectors,FOODU23
+1039,251640,14,1,Derivatives,Sectors,ICTU23
+1039,266613,17,1,Derivatives,Sectors,BANKZ23
+1039,266620,1,1,Derivatives,Sectors,COMMZ23
+1039,266627,5,1,Derivatives,Sectors,ENERGZ23
+1039,266634,9,1,Derivatives,Sectors,FOODZ23
+1039,266641,13,1,Derivatives,Sectors,ICTZ23
+1039,283056,16,1,Derivatives,Sectors,BANKH24
+1039,283063,20,1,Derivatives,Sectors,COMMH24
+1039,283070,4,1,Derivatives,Sectors,ENERGH24
+1039,283077,8,1,Derivatives,Sectors,FOODH24
+1039,283084,12,1,Derivatives,Sectors,ICTH24
+1046,234539,46,1,Derivatives,Stocks,GULFM23
+1046,234560,19,1,Derivatives,Stocks,RSM23X
+1046,234602,20,1,Derivatives,Stocks,CPFM23
+1046,234651,9,1,Derivatives,Stocks,BANPUM23
+1046,234672,31,1,Derivatives,Stocks,TUM23
+1046,234693,45,1,Derivatives,Stocks,BAMM23
+1046,234812,40,1,Derivatives,Stocks,PTGM23
+1046,234833,39,1,Derivatives,Stocks,KTBM23
+1046,235001,23,1,Derivatives,Stocks,EAM23
+1046,235113,33,1,Derivatives,Stocks,PLANBM23
+1046,235127,47,1,Derivatives,Stocks,BEMM23
+1046,235141,6,1,Derivatives,Stocks,AAVM23
+1046,235169,16,1,Derivatives,Stocks,IRPCM23
+1046,235225,2,1,Derivatives,Stocks,GUNKULM23
+1046,235239,15,1,Derivatives,Stocks,CKPM23
+1046,235253,28,1,Derivatives,Stocks,TTBM23
+1046,235316,5,1,Derivatives,Stocks,JASM23
+1046,235323,38,1,Derivatives,Stocks,TKNM23
+1046,235330,30,1,Derivatives,Stocks,ITDM23
+1046,235351,4,1,Derivatives,Stocks,BLANDM23
+1046,235386,24,1,Derivatives,Stocks,BECM23
+1046,235400,12,1,Derivatives,Stocks,BEAUTYM23
+1046,235407,22,1,Derivatives,Stocks,SM23
+1046,235414,27,1,Derivatives,Stocks,STPIM23
+1046,235421,10,1,Derivatives,Stocks,SUPERM23
+1046,251682,18,1,Derivatives,Stocks,RSU23X
+1046,251696,13,1,Derivatives,Stocks,BCPGU23
+1046,251773,11,1,Derivatives,Stocks,BANPUU23
+1046,251948,7,1,Derivatives,Stocks,KTBU23
+1046,252102,8,1,Derivatives,Stocks,KTCU23
+1046,252123,49,1,Derivatives,Stocks,EAU23
+1046,252305,44,1,Derivatives,Stocks,IRPCU23
+1046,252382,41,1,Derivatives,Stocks,TPIPLU23
+1046,252445,35,1,Derivatives,Stocks,JASU23
+1046,252459,17,1,Derivatives,Stocks,ITDU23
+1046,252466,48,1,Derivatives,Stocks,TKNU23
+1046,252473,1,1,Derivatives,Stocks,BLANDU23
+1046,252529,25,1,Derivatives,Stocks,BEAUTYU23
+1046,252536,32,1,Derivatives,Stocks,SU23
+1046,252550,14,1,Derivatives,Stocks,SUPERU23
+1046,266774,29,1,Derivatives,Stocks,BANPUZ23
+1046,267257,50,1,Derivatives,Stocks,BEMZ23
+1046,267292,36,1,Derivatives,Stocks,QHZ23
+1046,267362,37,1,Derivatives,Stocks,GUNKULZ23
+1046,267446,3,1,Derivatives,Stocks,JASZ23X
+1046,267551,21,1,Derivatives,Stocks,SUPERZ23
+1046,279367,26,1,Derivatives,Stocks,TRUEM23
+1046,279374,42,1,Derivatives,Stocks,TRUEU23
+1046,283126,43,1,Derivatives,Stocks,RSH24X
+1046,283987,34,1,Derivatives,Stocks,SUPERH24
+1053,266585,1,1,Derivatives,Metals,GF10M23
+1053,266592,4,1,Derivatives,Metals,GFM23
+1053,266599,7,1,Derivatives,Metals,GOM23
+1053,267558,9,1,Derivatives,Metals,SVFM23
+1053,278583,2,1,Derivatives,Metals,GF10Q23
+1053,278590,5,1,Derivatives,Metals,GFQ23
+1053,283042,8,1,Derivatives,Metals,GOU23
+1053,283994,10,1,Derivatives,Metals,SVFU23
+1053,299135,3,1,Derivatives,Metals,GF10V23
+1053,299142,6,1,Derivatives,Metals,GFV23
+1060,266606,2,1,Derivatives,Currency,USDM23
+1060,278597,1,1,Derivatives,Currency,USDK23
+1060,283049,4,1,Derivatives,Currency,USDU23
+1060,299149,3,1,Derivatives,Currency,USDN23
+1067,267572,12,1,Derivatives,S50 Options,S50M23C925
+1067,267579,4,1,Derivatives,S50 Options,S50M23C950
+1067,267586,1,1,Derivatives,S50 Options,S50M23C975
+1067,267593,2,1,Derivatives,S50 Options,S50M23C1000
+1067,267600,5,1,Derivatives,S50 Options,S50M23C1025
+1067,267607,9,1,Derivatives,S50 Options,S50M23C1050
+1067,267614,15,1,Derivatives,S50 Options,S50M23C1075
+1067,267621,14,1,Derivatives,S50 Options,S50M23C1100
+1067,267628,3,1,Derivatives,S50 Options,S50M23P900
+1067,267635,6,1,Derivatives,S50 Options,S50M23P925
+1067,267642,11,1,Derivatives,S50 Options,S50M23P950
+1067,267649,16,1,Derivatives,S50 Options,S50M23P975
+1067,267656,17,1,Derivatives,S50 Options,S50M23P1000
+1067,277428,8,1,Derivatives,S50 Options,S50M23P875
+1067,279815,7,1,Derivatives,S50 Options,S50M23P850
+1067,281103,10,1,Derivatives,S50 Options,S50M23P800
+1067,281110,13,1,Derivatives,S50 Options,S50M23P825
+1067,284064,19,1,Derivatives,S50 Options,S50U23P875
+1067,297623,18,1,Derivatives,S50 Options,S50U23P850
+1067,299002,20,1,Derivatives,S50 Options,S50U23P825
+1074,37,28,N/A,N/A,N/A,K-CHINA-A(A)
+1074,41,9,N/A,N/A,N/A,PRINCIPAL VNEQ-A
+1074,43,4,N/A,N/A,N/A,TGoldRMF-UH
+1074,45,30,N/A,N/A,N/A,SCBENERGY
+1074,46,24,N/A,N/A,N/A,T-TTW1
+1074,47,14,N/A,N/A,N/A,SCBDM
+1074,48,12,N/A,N/A,N/A,KKP ACT FIXED-SSF
+1074,49,1,N/A,N/A,N/A,LHESPORT-D
+1074,52,7,N/A,N/A,N/A,SCBRMLEQ-51
+1074,53,3,N/A,N/A,N/A,TMB-ES-GCG
+1074,54,27,N/A,N/A,N/A,SCBRM4-51
+1074,55,21,N/A,N/A,N/A,KTBTHAICG-A
+1074,56,11,N/A,N/A,N/A,PRINCIPAL iBALANCED-R
+1074,57,10,N/A,N/A,N/A,SCBINCA
+1074,58,17,N/A,N/A,N/A,TMB-T-ES-IPlus
+1074,61,23,N/A,N/A,N/A,LHSTRATEGY-D
+1074,63,22,N/A,N/A,N/A,PRINCIPAL ELTF-T
+1074,64,8,N/A,N/A,N/A,SCBGSIF
+1074,66,19,N/A,N/A,N/A,KTMUNG-D
+1074,69,13,N/A,N/A,N/A,KFIRMF
+1074,71,18,N/A,N/A,N/A,1AM-DAILY-SSF
+1074,73,15,N/A,N/A,N/A,PRINCIPAL iDAILY-D
+1074,74,26,N/A,N/A,N/A,SCBRMMLCA-51
+1074,76,16,N/A,N/A,N/A,T-GlobalBondRMF
+1074,79,20,N/A,N/A,N/A,KWI APREIT-R
+1074,81,2,N/A,N/A,N/A,PRINCIPAL iGOLD-R
+1074,82,25,N/A,N/A,N/A,VALUE-D LTF
+1074,84,5,N/A,N/A,N/A,M-VI
+1074,85,29,N/A,N/A,N/A,SCBEQ-SSFX
+1074,87,6,N/A,N/A,N/A,KKP PGE-H
+1081,37,30,N/A,N/A,N/A,K-CHINA-A(A)
+1081,41,21,N/A,N/A,N/A,PRINCIPAL VNEQ-A
+1081,43,1,N/A,N/A,N/A,TGoldRMF-UH
+1081,45,28,N/A,N/A,N/A,SCBENERGY
+1081,46,22,N/A,N/A,N/A,T-TTW1
+1081,47,11,N/A,N/A,N/A,SCBDM
+1081,48,4,N/A,N/A,N/A,KKP ACT FIXED-SSF
+1081,49,16,N/A,N/A,N/A,LHESPORT-D
+1081,52,5,N/A,N/A,N/A,SCBRMLEQ-51
+1081,53,18,N/A,N/A,N/A,TMB-ES-GCG
+1081,54,25,N/A,N/A,N/A,SCBRM4-51
+1081,55,19,N/A,N/A,N/A,KTBTHAICG-A
+1081,56,17,N/A,N/A,N/A,PRINCIPAL iBALANCED-R
+1081,57,14,N/A,N/A,N/A,SCBINCA
+1081,58,6,N/A,N/A,N/A,TMB-T-ES-IPlus
+1081,61,24,N/A,N/A,N/A,LHSTRATEGY-D
+1081,63,20,N/A,N/A,N/A,PRINCIPAL ELTF-T
+1081,64,10,N/A,N/A,N/A,SCBGSIF
+1081,66,12,N/A,N/A,N/A,KTMUNG-D
+1081,69,3,N/A,N/A,N/A,KFIRMF
+1081,71,8,N/A,N/A,N/A,1AM-DAILY-SSF
+1081,73,7,N/A,N/A,N/A,PRINCIPAL iDAILY-D
+1081,74,29,N/A,N/A,N/A,SCBRMMLCA-51
+1081,76,15,N/A,N/A,N/A,T-GlobalBondRMF
+1081,79,26,N/A,N/A,N/A,KWI APREIT-R
+1081,81,2,N/A,N/A,N/A,PRINCIPAL iGOLD-R
+1081,82,23,N/A,N/A,N/A,VALUE-D LTF
+1081,84,9,N/A,N/A,N/A,M-VI
+1081,85,27,N/A,N/A,N/A,SCBEQ-SSFX
+1081,87,13,N/A,N/A,N/A,KKP PGE-H
+1088,37,4,N/A,N/A,N/A,K-CHINA-A(A)
+1088,41,13,N/A,N/A,N/A,PRINCIPAL VNEQ-A
+1088,43,6,N/A,N/A,N/A,TGoldRMF-UH
+1088,45,30,N/A,N/A,N/A,SCBENERGY
+1088,46,25,N/A,N/A,N/A,T-TTW1
+1088,47,22,N/A,N/A,N/A,SCBDM
+1088,48,16,N/A,N/A,N/A,KKP ACT FIXED-SSF
+1088,49,2,N/A,N/A,N/A,LHESPORT-D
+1088,52,9,N/A,N/A,N/A,SCBRMLEQ-51
+1088,53,3,N/A,N/A,N/A,TMB-ES-GCG
+1088,54,28,N/A,N/A,N/A,SCBRM4-51
+1088,55,21,N/A,N/A,N/A,KTBTHAICG-A
+1088,56,14,N/A,N/A,N/A,PRINCIPAL iBALANCED-R
+1088,57,12,N/A,N/A,N/A,SCBINCA
+1088,58,17,N/A,N/A,N/A,TMB-T-ES-IPlus
+1088,61,23,N/A,N/A,N/A,LHSTRATEGY-D
+1088,63,24,N/A,N/A,N/A,PRINCIPAL ELTF-T
+1088,64,10,N/A,N/A,N/A,SCBGSIF
+1088,66,20,N/A,N/A,N/A,KTMUNG-D
+1088,69,15,N/A,N/A,N/A,KFIRMF
+1088,71,19,N/A,N/A,N/A,1AM-DAILY-SSF
+1088,73,18,N/A,N/A,N/A,PRINCIPAL iDAILY-D
+1088,74,27,N/A,N/A,N/A,SCBRMMLCA-51
+1088,76,11,N/A,N/A,N/A,T-GlobalBondRMF
+1088,79,8,N/A,N/A,N/A,KWI APREIT-R
+1088,81,1,N/A,N/A,N/A,PRINCIPAL iGOLD-R
+1088,82,26,N/A,N/A,N/A,VALUE-D LTF
+1088,84,5,N/A,N/A,N/A,M-VI
+1088,85,29,N/A,N/A,N/A,SCBEQ-SSFX
+1088,87,7,N/A,N/A,N/A,KKP PGE-H
+1095,37,29,N/A,N/A,N/A,K-CHINA-A(A)
+1095,41,30,N/A,N/A,N/A,PRINCIPAL VNEQ-A
+1095,43,1,N/A,N/A,N/A,TGoldRMF-UH
+1095,45,24,N/A,N/A,N/A,SCBENERGY
+1095,46,15,N/A,N/A,N/A,T-TTW1
+1095,47,22,N/A,N/A,N/A,SCBDM
+1095,48,2,N/A,N/A,N/A,KKP ACT FIXED-SSF
+1095,49,23,N/A,N/A,N/A,LHESPORT-D
+1095,52,9,N/A,N/A,N/A,SCBRMLEQ-51
+1095,53,19,N/A,N/A,N/A,TMB-ES-GCG
+1095,54,26,N/A,N/A,N/A,SCBRM4-51
+1095,55,18,N/A,N/A,N/A,KTBTHAICG-A
+1095,56,13,N/A,N/A,N/A,PRINCIPAL iBALANCED-R
+1095,57,11,N/A,N/A,N/A,SCBINCA
+1095,58,4,N/A,N/A,N/A,TMB-T-ES-IPlus
+1095,61,12,N/A,N/A,N/A,LHSTRATEGY-D
+1095,63,10,N/A,N/A,N/A,PRINCIPAL ELTF-T
+1095,64,17,N/A,N/A,N/A,SCBGSIF
+1095,66,20,N/A,N/A,N/A,KTMUNG-D
+1095,69,3,N/A,N/A,N/A,KFIRMF
+1095,71,6,N/A,N/A,N/A,1AM-DAILY-SSF
+1095,73,5,N/A,N/A,N/A,PRINCIPAL iDAILY-D
+1095,74,25,N/A,N/A,N/A,SCBRMMLCA-51
+1095,76,16,N/A,N/A,N/A,T-GlobalBondRMF
+1095,79,28,N/A,N/A,N/A,KWI APREIT-R
+1095,81,8,N/A,N/A,N/A,PRINCIPAL iGOLD-R
+1095,82,21,N/A,N/A,N/A,VALUE-D LTF
+1095,84,7,N/A,N/A,N/A,M-VI
+1095,85,27,N/A,N/A,N/A,SCBEQ-SSFX
+1095,87,14,N/A,N/A,N/A,KKP PGE-H
+1102,37,27,N/A,N/A,N/A,K-CHINA-A(A)
+1102,41,1,N/A,N/A,N/A,PRINCIPAL VNEQ-A
+1102,43,8,N/A,N/A,N/A,TGoldRMF-UH
+1102,45,16,N/A,N/A,N/A,SCBENERGY
+1102,46,11,N/A,N/A,N/A,T-TTW1
+1102,47,20,N/A,N/A,N/A,SCBDM
+1102,48,19,N/A,N/A,N/A,KKP ACT FIXED-SSF
+1102,49,26,N/A,N/A,N/A,LHESPORT-D
+1102,52,25,N/A,N/A,N/A,SCBRMLEQ-51
+1102,53,24,N/A,N/A,N/A,TMB-ES-GCG
+1102,54,22,N/A,N/A,N/A,SCBRM4-51
+1102,55,4,N/A,N/A,N/A,KTBTHAICG-A
+1102,56,13,N/A,N/A,N/A,PRINCIPAL iBALANCED-R
+1102,57,14,N/A,N/A,N/A,SCBINCA
+1102,58,17,N/A,N/A,N/A,TMB-T-ES-IPlus
+1102,61,6,N/A,N/A,N/A,LHSTRATEGY-D
+1102,63,3,N/A,N/A,N/A,PRINCIPAL ELTF-T
+1102,64,30,N/A,N/A,N/A,SCBGSIF
+1102,66,10,N/A,N/A,N/A,KTMUNG-D
+1102,69,15,N/A,N/A,N/A,KFIRMF
+1102,71,21,N/A,N/A,N/A,1AM-DAILY-SSF
+1102,73,18,N/A,N/A,N/A,PRINCIPAL iDAILY-D
+1102,74,23,N/A,N/A,N/A,SCBRMMLCA-51
+1102,76,29,N/A,N/A,N/A,T-GlobalBondRMF
+1102,79,28,N/A,N/A,N/A,KWI APREIT-R
+1102,81,12,N/A,N/A,N/A,PRINCIPAL iGOLD-R
+1102,82,9,N/A,N/A,N/A,VALUE-D LTF
+1102,84,5,N/A,N/A,N/A,M-VI
+1102,85,7,N/A,N/A,N/A,SCBEQ-SSFX
+1102,87,2,N/A,N/A,N/A,KKP PGE-H
+1109,37,20,N/A,N/A,N/A,K-CHINA-A(A)
+1109,41,22,N/A,N/A,N/A,PRINCIPAL VNEQ-A
+1109,43,1,N/A,N/A,N/A,TGoldRMF-UH
+1109,45,29,N/A,N/A,N/A,SCBENERGY
+1109,46,30,N/A,N/A,N/A,T-TTW1
+1109,47,15,N/A,N/A,N/A,SCBDM
+1109,48,14,N/A,N/A,N/A,KKP ACT FIXED-SSF
+1109,49,10,N/A,N/A,N/A,LHESPORT-D
+1109,52,9,N/A,N/A,N/A,SCBRMLEQ-51
+1109,53,8,N/A,N/A,N/A,TMB-ES-GCG
+1109,54,11,N/A,N/A,N/A,SCBRM4-51
+1109,55,23,N/A,N/A,N/A,KTBTHAICG-A
+1109,56,27,N/A,N/A,N/A,PRINCIPAL iBALANCED-R
+1109,57,7,N/A,N/A,N/A,SCBINCA
+1109,58,4,N/A,N/A,N/A,TMB-T-ES-IPlus
+1109,61,5,N/A,N/A,N/A,LHSTRATEGY-D
+1109,63,25,N/A,N/A,N/A,PRINCIPAL ELTF-T
+1109,64,24,N/A,N/A,N/A,SCBGSIF
+1109,66,19,N/A,N/A,N/A,KTMUNG-D
+1109,69,3,N/A,N/A,N/A,KFIRMF
+1109,71,18,N/A,N/A,N/A,1AM-DAILY-SSF
+1109,73,6,N/A,N/A,N/A,PRINCIPAL iDAILY-D
+1109,74,13,N/A,N/A,N/A,SCBRMMLCA-51
+1109,76,26,N/A,N/A,N/A,T-GlobalBondRMF
+1109,79,12,N/A,N/A,N/A,KWI APREIT-R
+1109,81,2,N/A,N/A,N/A,PRINCIPAL iGOLD-R
+1109,82,28,N/A,N/A,N/A,VALUE-D LTF
+1109,84,16,N/A,N/A,N/A,M-VI
+1109,85,17,N/A,N/A,N/A,SCBEQ-SSFX
+1109,87,21,N/A,N/A,N/A,KKP PGE-H
+10994,298113,0,1,Commodities,,GOLD$
+10994,298120,0,1,Commodities,,SILVER$
+10994,298127,0,1,Commodities,,BRENT$
+10994,298134,0,1,Commodities,,WTI$
+10994,298141,0,1,Commodities,,PT$
+10994,298148,0,1,Commodities,,PD$
+10994,298155,0,1,Commodities,,CA$
+11001,201307,0,1,Currencies,,USD
+11001,201314,0,1,Currencies,,GBP
+11001,201321,0,1,Currencies,,EUR
+11001,201328,0,1,Currencies,,JPY
+11001,201335,0,1,Currencies,,HKD
+11001,201342,0,1,Currencies,,SGD
+11001,201349,0,1,Currencies,,INR
+11001,201356,0,1,Currencies,,AUD
+11001,298162,0,1,Currencies,,CHF
+11001,298169,0,1,Currencies,,CNY
+11008,358,0,0,Funds,Discover,KKP LTFD
+11008,603,0,0,Funds,Discover,KFSEQ-D
+11008,1200,0,0,Funds,Discover,T-DIV2
+11008,1516,0,0,Funds,Discover,T-LTFD
+11008,1518,0,0,Funds,Discover,KF-HJAPAND
+11008,2430,0,0,Funds,Discover,T-DIV
+11015,41,0,0,Funds,Discover,PRINCIPAL VNEQ-A
+11015,269,0,0,Funds,Discover,TMBEAE
+11015,342,0,0,Funds,Discover,M-EM
+11015,446,0,0,Funds,Discover,KT-EMEQ-A
+11015,812,0,0,Funds,Discover,ASP-EVOCHINA
+11015,1087,0,0,Funds,Discover,TMBCOF
+11015,1280,0,0,Funds,Discover,UEMIF-N
+11015,1432,0,0,Funds,Discover,SCBAEMHA
+11015,1504,0,0,Funds,Discover,K-INDIA
+11022,218,0,0,Funds,Discover,KT-OIL
+11022,516,0,0,Funds,Discover,PRINCIPAL EPIF
+11022,822,0,0,Funds,Discover,K-OIL
+11022,983,0,0,Funds,Discover,KT-ENERGY
+11022,1357,0,0,Funds,Discover,T-GlobalEnergy
+11022,1438,0,0,Funds,Discover,ASP-OIL
+11022,1882,0,0,Funds,Discover,K-ENERGY
+11022,2166,0,0,Funds,Discover,I-OIL
+11022,167539,0,0,Funds,Discover,SCBENERGYA
+11029,597,0,0,Funds,Discover,KT-HEALTHCARE-A
+11029,1182,0,0,Funds,Discover,PRINCIPAL GHEALTH-A
+11029,1623,0,0,Funds,Discover,K-GHEALTH
+11029,1658,0,0,Funds,Discover,UCHI
+11029,1706,0,0,Funds,Discover,KFHEALTH-D
+11029,168134,0,0,Funds,Discover,SCBIHEALTH(A)
+11036,372,0,0,Funds,Discover,K-USXNDQ-A(D)
+11036,722,0,0,Funds,Discover,K-EUX
+11036,1041,0,0,Funds,Discover,TMBUS500
+11036,1293,0,0,Funds,Discover,TMBWDEQ
+11036,1514,0,0,Funds,Discover,SCBBANKING
+11036,1880,0,0,Funds,Discover,K-INDX
+11036,1882,0,0,Funds,Discover,K-ENERGY
+11036,2205,0,0,Funds,Discover,K-SET50
+11043,434,0,0,Funds,Discover,SCBGIF
+11043,1616,0,0,Funds,Discover,KT-PIF-A
+11043,1762,0,0,Funds,Discover,KFINFRA-A
+11043,2018,0,0,Funds,Discover,MPII-D
+11043,2080,0,0,Funds,Discover,T-PropInfraFlex
+11043,2215,0,0,Funds,Discover,SCBPINA
+11043,2277,0,0,Funds,Discover,TMBPIPF
+11043,275272,0,0,Funds,Discover,K-PROPI-A(D)
+11050,106,0,0,Funds,Discover,KEQLTF-C(L)
+11050,415,0,0,Funds,Discover,K-CHANGE-A(A)
+11050,830,0,0,Funds,Discover,K-FIXEDPLUS-SSF
+11050,1523,0,0,Funds,Discover,K-SFPLUS
+11050,1836,0,0,Funds,Discover,K-FIXEDPLUS-A
+11050,2308,0,0,Funds,Discover,K-MONEY
+11050,205115,0,0,Funds,Discover,K-GA-A(D)
+11050,263295,0,0,Funds,Discover,K-SF-A
+11057,462,0,0,Funds,Discover,SMARTMF
+11057,1304,0,0,Funds,Discover,MMM-PLUS
+11057,1745,0,0,Funds,Discover,MMGOVMF
+11057,1813,0,0,Funds,Discover,MVLTF
+11057,1975,0,0,Funds,Discover,MRENEW-D
+11057,2185,0,0,Funds,Discover,MPDIVMF
+11057,206165,0,0,Funds,Discover,M-EDGE
+11064,268,0,1,Funds,Discover,SCBSFF
+11064,279,0,1,Funds,Discover,K-CASH
+11064,263295,0,1,Funds,Discover,K-SF-A
+11064,263603,0,1,Funds,Discover,KFSPLUS-A
+11064,263610,0,1,Funds,Discover,KFSMART-A
+11071,203631,0,0,Funds,Discover,KFCYBER-A
+11071,206676,0,0,Funds,Discover,ONE-MEDTECH
+11071,206977,0,0,Funds,Discover,ASP-DIGIBLOC-SSF
+11071,206998,0,0,Funds,Discover,KKP NDQ100-H
+11071,212199,0,0,Funds,Discover,LHUSFIN-A
+11071,223738,0,0,Funds,Discover,KKP S-PLUS
+11078,268,0,0,Funds,Discover,SCBSFF
+11078,480,0,0,Funds,Discover,SCBSET
+11078,798,0,0,Funds,Discover,SCBSET50
+11078,1066,0,0,Funds,Discover,SCBRF
+11078,1643,0,0,Funds,Discover,SCBMPLUSA
+11078,1647,0,0,Funds,Discover,SCBFP
+11078,1746,0,0,Funds,Discover,SCBPLUS
+11085,644,0,0,Funds,Discover,MGTECH
+11085,863,0,0,Funds,Discover,KKP TECH-H
+11085,937,0,0,Funds,Discover,UEV
+11085,1334,0,0,Funds,Discover,K-ATECH
+11085,2225,0,0,Funds,Discover,KT-WTAI-A
+11085,85226,0,0,Funds,Discover,KT-EUROTECH-A
+11085,85674,0,0,Funds,Discover,KFGTECH-A
+11085,86577,0,0,Funds,Discover,T-ES-GTech
+11085,168757,0,0,Funds,Discover,SCBCTECHA
+11092,200401,0,0,Global Equities,Stocks,XOM
+11092,200405,0,0,Global Equities,Stocks,CVX
+11092,200815,0,0,Global Equities,Stocks,386
+11092,200822,0,0,Global Equities,Stocks,857
+11099,200263,0,0,Global Equities,Stocks,MRNA
+11099,200264,0,0,Global Equities,Stocks,ISRG
+11099,200393,0,0,Global Equities,Stocks,JNJ
+11099,200397,0,0,Global Equities,Stocks,PFE
+11099,200402,0,0,Global Equities,Stocks,TMO
+11099,200410,0,0,Global Equities,Stocks,ABBV
+11099,200412,0,0,Global Equities,Stocks,LLY
+11099,200414,0,0,Global Equities,Stocks,MRK
+11099,295056,0,0,Global Equities,Stocks,NVO
+11106,200802,0,0,Global Equities,Stocks,0005
+11106,200819,0,0,Global Equities,Stocks,0700
+11106,200835,0,0,Global Equities,Stocks,1211
+11106,200837,0,0,Global Equities,Stocks,1398
+11106,200847,0,0,Global Equities,Stocks,2318
+11106,200853,0,0,Global Equities,Stocks,3690
+11106,200858,0,0,Global Equities,Stocks,9988
+11106,291280,0,0,Global Equities,Stocks,9618
+11113,200243,0,0,Global Equities,Stocks,TSLA
+11113,200244,0,0,Global Equities,Stocks,GOOGL
+11113,200245,0,0,Global Equities,Stocks,NVDA
+11120,200240,0,0,Global Equities,Stocks,AAPL
+11120,200241,0,0,Global Equities,Stocks,MSFT
+11120,200245,0,0,Global Equities,Stocks,NVDA
+11120,200256,0,0,Global Equities,Stocks,QCOM
+11120,200258,0,0,Global Equities,Stocks,AMD
+11120,200819,0,0,Global Equities,Stocks,700
+11120,295345,0,0,Global Equities,Stocks,SONY
+11127,200240,0,1,Global Equities,Stocks,AAPL
+11127,200241,0,1,Global Equities,Stocks,MSFT
+11127,200242,0,1,Global Equities,Stocks,AMZN
+11127,200243,0,1,Global Equities,Stocks,TSLA
+11127,200245,0,1,Global Equities,Stocks,NVDA
+11127,200246,0,1,Global Equities,Stocks,GOOG
+11127,200248,0,1,Global Equities,Stocks,ADBE
+11127,200249,0,1,Global Equities,Stocks,NFLX
+11127,200255,0,1,Global Equities,Stocks,PYPL
+11127,200256,0,1,Global Equities,Stocks,QCOM
+11127,200257,0,1,Global Equities,Stocks,INTC
+11127,200271,0,1,Global Equities,Stocks,BKNG
+11134,200240,0,0,Global Equities,Stocks,AAPL
+11134,200241,0,0,Global Equities,Stocks,MSFT
+11134,200242,0,0,Global Equities,Stocks,AMZN
+11134,200243,0,0,Global Equities,Stocks,TSLA
+11134,200244,0,0,Global Equities,Stocks,GOOGL
+11134,200245,0,0,Global Equities,Stocks,NVDA
+11134,200246,0,0,Global Equities,Stocks,GOOG
+11134,200247,0,0,Global Equities,Stocks,META
+11134,200248,0,0,Global Equities,Stocks,ADBE
+11134,200249,0,0,Global Equities,Stocks,NFLX
+11134,200250,0,0,Global Equities,Stocks,COST
+11134,200251,0,0,Global Equities,Stocks,CSCO
+11134,200252,0,0,Global Equities,Stocks,CMCSA
+11134,200253,0,0,Global Equities,Stocks,AVGO
+11134,200254,0,0,Global Equities,Stocks,PEP
+11134,200255,0,0,Global Equities,Stocks,PYPL
+11134,200256,0,0,Global Equities,Stocks,QCOM
+11134,200257,0,0,Global Equities,Stocks,INTC
+11134,200258,0,0,Global Equities,Stocks,AMD
+11134,200259,0,0,Global Equities,Stocks,INTU
+11134,200260,0,0,Global Equities,Stocks,TXN
+11134,200261,0,0,Global Equities,Stocks,AMAT
+11134,200262,0,0,Global Equities,Stocks,SBUX
+11134,200263,0,0,Global Equities,Stocks,MRNA
+11134,200264,0,0,Global Equities,Stocks,ISRG
+11134,200265,0,0,Global Equities,Stocks,AMGN
+11134,200266,0,0,Global Equities,Stocks,ADP
+11134,200267,0,0,Global Equities,Stocks,ADI
+11134,200268,0,0,Global Equities,Stocks,LRCX
+11134,200269,0,0,Global Equities,Stocks,MU
+11134,200270,0,0,Global Equities,Stocks,GILD
+11134,200271,0,0,Global Equities,Stocks,BKNG
+11134,200272,0,0,Global Equities,Stocks,MDLZ
+11134,200273,0,0,Global Equities,Stocks,CHTR
+11134,200274,0,0,Global Equities,Stocks,CME
+11134,200275,0,0,Global Equities,Stocks,CSX
+11134,200277,0,0,Global Equities,Stocks,REGN
+11134,200278,0,0,Global Equities,Stocks,TMUS
+11134,200279,0,0,Global Equities,Stocks,KLAC
+11134,200286,0,0,Global Equities,Stocks,SNPS
+11134,200291,0,0,Global Equities,Stocks,VRTX
+11134,200301,0,0,Global Equities,Stocks,AEP
+11134,200302,0,0,Global Equities,Stocks,MAR
+11134,200390,0,0,Global Equities,Stocks,JPM
+11134,200391,0,0,Global Equities,Stocks,HD
+11134,200392,0,0,Global Equities,Stocks,UNH
+11134,200393,0,0,Global Equities,Stocks,JNJ
+11134,200395,0,0,Global Equities,Stocks,BAC
+11134,200396,0,0,Global Equities,Stocks,V
+11134,200397,0,0,Global Equities,Stocks,PFE
+11134,200398,0,0,Global Equities,Stocks,CRM
+11134,200399,0,0,Global Equities,Stocks,MA
+11134,200400,0,0,Global Equities,Stocks,DIS
+11134,200401,0,0,Global Equities,Stocks,XOM
+11134,200402,0,0,Global Equities,Stocks,TMO
+11134,200403,0,0,Global Equities,Stocks,ACN
+11134,200404,0,0,Global Equities,Stocks,ABT
+11134,200405,0,0,Global Equities,Stocks,CVX
+11134,200406,0,0,Global Equities,Stocks,NKE
+11134,200407,0,0,Global Equities,Stocks,VZ
+11134,200408,0,0,Global Equities,Stocks,DHR
+11134,200409,0,0,Global Equities,Stocks,KO
+11134,200410,0,0,Global Equities,Stocks,ABBV
+11134,200411,0,0,Global Equities,Stocks,WMT
+11134,200412,0,0,Global Equities,Stocks,LLY
+11134,200413,0,0,Global Equities,Stocks,WFC
+11134,200414,0,0,Global Equities,Stocks,MRK
+11134,200415,0,0,Global Equities,Stocks,MCD
+11134,200416,0,0,Global Equities,Stocks,LOW
+11134,200417,0,0,Global Equities,Stocks,NEE
+11134,200419,0,0,Global Equities,Stocks,T
+11134,200420,0,0,Global Equities,Stocks,UNP
+11134,200421,0,0,Global Equities,Stocks,ORCL
+11134,200422,0,0,Global Equities,Stocks,UPS
+11134,200423,0,0,Global Equities,Stocks,MDT
+11134,200425,0,0,Global Equities,Stocks,MS
+11134,200427,0,0,Global Equities,Stocks,BLK
+11134,200428,0,0,Global Equities,Stocks,C
+11134,200429,0,0,Global Equities,Stocks,GS
+11134,200430,0,0,Global Equities,Stocks,NOW
+11134,200431,0,0,Global Equities,Stocks,RTX
+11134,200432,0,0,Global Equities,Stocks,TGT
+11134,200434,0,0,Global Equities,Stocks,BMY
+11134,200435,0,0,Global Equities,Stocks,CVS
+11134,200436,0,0,Global Equities,Stocks,SCHW
+11134,200438,0,0,Global Equities,Stocks,SPGI
+11134,200440,0,0,Global Equities,Stocks,CAT
+11134,200441,0,0,Global Equities,Stocks,ZTS
+11134,200442,0,0,Global Equities,Stocks,IBM
+11134,200443,0,0,Global Equities,Stocks,GE
+11134,200445,0,0,Global Equities,Stocks,MMM
+11134,200446,0,0,Global Equities,Stocks,DE
+11134,200447,0,0,Global Equities,Stocks,AXP
+11134,200448,0,0,Global Equities,Stocks,COP
+11134,200449,0,0,Global Equities,Stocks,GM
+11134,200450,0,0,Global Equities,Stocks,TJX
+11134,200451,0,0,Global Equities,Stocks,PNC
+11134,200452,0,0,Global Equities,Stocks,MMC
+11134,200453,0,0,Global Equities,Stocks,LMT
+11134,200454,0,0,Global Equities,Stocks,SHW
+11134,200455,0,0,Global Equities,Stocks,SYK
+11134,200456,0,0,Global Equities,Stocks,TFC
+11134,200457,0,0,Global Equities,Stocks,CB
+11134,200458,0,0,Global Equities,Stocks,MO
+11134,200460,0,0,Global Equities,Stocks,EL
+11134,200461,0,0,Global Equities,Stocks,F
+11134,200462,0,0,Global Equities,Stocks,USB
+11134,200463,0,0,Global Equities,Stocks,DUK
+11134,200464,0,0,Global Equities,Stocks,ICE
+11134,200465,0,0,Global Equities,Stocks,BDX
+11134,200466,0,0,Global Equities,Stocks,EW
+11134,200467,0,0,Global Equities,Stocks,AON
+11134,200468,0,0,Global Equities,Stocks,ITW
+11134,200469,0,0,Global Equities,Stocks,NSC
+11134,200472,0,0,Global Equities,Stocks,ETN
+11134,200473,0,0,Global Equities,Stocks,FIS
+11134,200474,0,0,Global Equities,Stocks,APD
+11134,200475,0,0,Global Equities,Stocks,CL
+11134,200476,0,0,Global Equities,Stocks,MCO
+11134,200478,0,0,Global Equities,Stocks,WM
+11134,200480,0,0,Global Equities,Stocks,FDX
+11134,200481,0,0,Global Equities,Stocks,HCA
+11134,200484,0,0,Global Equities,Stocks,PGR
+11134,200485,0,0,Global Equities,Stocks,BSX
+11134,200486,0,0,Global Equities,Stocks,HUM
+11134,200488,0,0,Global Equities,Stocks,NOC
+11134,200489,0,0,Global Equities,Stocks,EMR
+11134,200490,0,0,Global Equities,Stocks,DG
+11134,200492,0,0,Global Equities,Stocks,EOG
+11134,200507,0,0,Global Equities,Stocks,GD
+11134,200511,0,0,Global Equities,Stocks,MET
+11134,200514,0,0,Global Equities,Stocks,CNC
+11134,200516,0,0,Global Equities,Stocks,PXD
+11134,200517,0,0,Global Equities,Stocks,SLB
+11134,200524,0,0,Global Equities,Stocks,SRE
+11134,200541,0,0,Global Equities,Stocks,ADM
+11134,200545,0,0,Global Equities,Stocks,MCK
+11134,200588,0,0,Global Equities,Stocks,OXY
+11134,200776,0,0,Global Equities,Stocks,HON
+11134,200785,0,0,Global Equities,Stocks,KDP
+11134,201538,0,0,Global Equities,Stocks,ABNB
+11134,201559,0,0,Global Equities,Stocks,PANW
+11134,290000,0,0,Global Equities,Stocks,CBOE
+11134,291353,0,0,Global Equities,Stocks,ACGL
+11134,291597,0,0,Global Equities,Stocks,AXON
+11134,291782,0,0,Global Equities,Stocks,CEG
+11134,291920,0,0,Global Equities,Stocks,CSGP
+11134,292045,0,0,Global Equities,Stocks,EA
+11134,292118,0,0,Global Equities,Stocks,EVRG
+11134,292241,0,0,Global Equities,Stocks,FSLR
+11134,292285,0,0,Global Equities,Stocks,GEHC
+11134,292286,0,0,Global Equities,Stocks,GEN
+11134,292920,0,0,Global Equities,Stocks,NDSN
+11134,293034,0,0,Global Equities,Stocks,ON
+11134,293085,0,0,Global Equities,Stocks,PARA
+11134,293175,0,0,Global Equities,Stocks,PODD
+11134,293546,0,0,Global Equities,Stocks,STLD
+11134,293605,0,0,Global Equities,Stocks,TECH
+11134,293831,0,0,Global Equities,Stocks,WBD
+11134,293870,0,0,Global Equities,Stocks,WTW
+11134,293926,0,0,Global Equities,Stocks,A
+11134,293992,0,0,Global Equities,Stocks,ALL
+11134,294096,0,0,Global Equities,Stocks,BA
+11134,294140,0,0,Global Equities,Stocks,BG
+11134,294167,0,0,Global Equities,Stocks,BLDR
+11134,294189,0,0,Global Equities,Stocks,BR
+11134,294195,0,0,Global Equities,Stocks,BRKB
+11134,294214,0,0,Global Equities,Stocks,BX
+11134,294273,0,0,Global Equities,Stocks,CI
+11134,294384,0,0,Global Equities,Stocks,D
+11134,294461,0,0,Global Equities,Stocks,ECL
+11134,294481,0,0,Global Equities,Stocks,ELV
+11134,294496,0,0,Global Equities,Stocks,EPAM
+11134,294500,0,0,Global Equities,Stocks,EQT
+11134,294540,0,0,Global Equities,Stocks,FDS
+11134,294542,0,0,Global Equities,Stocks,FE
+11134,294549,0,0,Global Equities,Stocks,FICO
+11134,294632,0,0,Global Equities,Stocks,GL
+11134,294659,0,0,Global Equities,Stocks,GRMN
+11134,294729,0,0,Global Equities,Stocks,HUBB
+11134,294768,0,0,Global Equities,Stocks,IP
+11134,294775,0,0,Global Equities,Stocks,IT
+11134,294783,0,0,Global Equities,Stocks,J
+11134,294785,0,0,Global Equities,Stocks,JBL
+11134,294803,0,0,Global Equities,Stocks,K
+11134,294860,0,0,Global Equities,Stocks,LH
+11134,294956,0,0,Global Equities,Stocks,MOH
+11134,295129,0,0,Global Equities,Stocks,PCG
+11134,295140,0,0,Global Equities,Stocks,PG
+11134,295155,0,0,Global Equities,Stocks,PKG
+11134,295162,0,0,Global Equities,Stocks,PM
+11134,295212,0,0,Global Equities,Stocks,RCL
+11134,295340,0,0,Global Equities,Stocks,SO
+11134,295470,0,0,Global Equities,Stocks,TRGP
+11134,295477,0,0,Global Equities,Stocks,TRV
+11134,295500,0,0,Global Equities,Stocks,UBER
+11134,305806,0,0,Global Equities,Stocks,AAL
+11134,305813,0,0,Global Equities,Stocks,ADSK
+11134,305820,0,0,Global Equities,Stocks,AKAM
+11134,305827,0,0,Global Equities,Stocks,ALGN
+11134,305834,0,0,Global Equities,Stocks,ANSS
+11134,305841,0,0,Global Equities,Stocks,APA
+11134,305855,0,0,Global Equities,Stocks,BIIB
+11134,305862,0,0,Global Equities,Stocks,BKR
+11134,305869,0,0,Global Equities,Stocks,CDNS
+11134,305876,0,0,Global Equities,Stocks,CDW
+11134,305890,0,0,Global Equities,Stocks,CHRW
+11134,305897,0,0,Global Equities,Stocks,CINF
+11134,305904,0,0,Global Equities,Stocks,CPRT
+11134,305918,0,0,Global Equities,Stocks,CTAS
+11134,305925,0,0,Global Equities,Stocks,CTSH
+11134,305932,0,0,Global Equities,Stocks,CZR
+11134,305953,0,0,Global Equities,Stocks,DLTR
+11134,305967,0,0,Global Equities,Stocks,DXCM
+11134,305974,0,0,Global Equities,Stocks,EBAY
+11134,305981,0,0,Global Equities,Stocks,ENPH
+11134,305988,0,0,Global Equities,Stocks,ETSY
+11134,305995,0,0,Global Equities,Stocks,EXC
+11134,306009,0,0,Global Equities,Stocks,EXPE
+11134,306016,0,0,Global Equities,Stocks,FANG
+11134,306023,0,0,Global Equities,Stocks,FAST
+11134,306030,0,0,Global Equities,Stocks,FFIV
+11134,306037,0,0,Global Equities,Stocks,FITB
+11134,306044,0,0,Global Equities,Stocks,FOX
+11134,306051,0,0,Global Equities,Stocks,FOXA
+11134,306058,0,0,Global Equities,Stocks,FTNT
+11134,306065,0,0,Global Equities,Stocks,HAS
+11134,306072,0,0,Global Equities,Stocks,HBAN
+11134,306079,0,0,Global Equities,Stocks,HOLX
+11134,306086,0,0,Global Equities,Stocks,HSIC
+11134,306093,0,0,Global Equities,Stocks,IDXX
+11134,306100,0,0,Global Equities,Stocks,ILMN
+11134,306107,0,0,Global Equities,Stocks,INCY
+11134,306121,0,0,Global Equities,Stocks,JBHT
+11134,306128,0,0,Global Equities,Stocks,JKHY
+11134,306135,0,0,Global Equities,Stocks,KHC
+11134,306149,0,0,Global Equities,Stocks,LKQ
+11134,306156,0,0,Global Equities,Stocks,LNT
+11134,306163,0,0,Global Equities,Stocks,LULU
+11134,306170,0,0,Global Equities,Stocks,MCHP
+11134,306184,0,0,Global Equities,Stocks,MKTX
+11134,306191,0,0,Global Equities,Stocks,MNST
+11134,306198,0,0,Global Equities,Stocks,MPWR
+11134,306212,0,0,Global Equities,Stocks,MTCH
+11134,306219,0,0,Global Equities,Stocks,NDAQ
+11134,306226,0,0,Global Equities,Stocks,NTAP
+11134,306233,0,0,Global Equities,Stocks,NTRS
+11134,306247,0,0,Global Equities,Stocks,NWS
+11134,306254,0,0,Global Equities,Stocks,NWSA
+11134,306261,0,0,Global Equities,Stocks,NXPI
+11134,306268,0,0,Global Equities,Stocks,ODFL
+11134,306282,0,0,Global Equities,Stocks,ORLY
+11134,306289,0,0,Global Equities,Stocks,PAYX
+11134,306296,0,0,Global Equities,Stocks,PCAR
+11134,306310,0,0,Global Equities,Stocks,PFG
+11134,306317,0,0,Global Equities,Stocks,POOL
+11134,306324,0,0,Global Equities,Stocks,PTC
+11134,306338,0,0,Global Equities,Stocks,QRVO
+11134,306345,0,0,Global Equities,Stocks,ROST
+11134,306366,0,0,Global Equities,Stocks,STX
+11134,306373,0,0,Global Equities,Stocks,SWKS
+11134,306387,0,0,Global Equities,Stocks,TER
+11134,306394,0,0,Global Equities,Stocks,TRMB
+11134,306401,0,0,Global Equities,Stocks,TROW
+11134,306408,0,0,Global Equities,Stocks,TSCO
+11134,306415,0,0,Global Equities,Stocks,TTWO
+11134,306422,0,0,Global Equities,Stocks,UAL
+11134,306429,0,0,Global Equities,Stocks,ULTA
+11134,306436,0,0,Global Equities,Stocks,VRSK
+11134,306443,0,0,Global Equities,Stocks,VRSN
+11134,306450,0,0,Global Equities,Stocks,VTRS
+11134,306457,0,0,Global Equities,Stocks,WBA
+11134,306471,0,0,Global Equities,Stocks,WDC
+11134,306478,0,0,Global Equities,Stocks,WYNN
+11134,306485,0,0,Global Equities,Stocks,XEL
+11134,306492,0,0,Global Equities,Stocks,XRAY
+11134,306499,0,0,Global Equities,Stocks,ZBRA
+11134,306506,0,0,Global Equities,Stocks,ZION
+11134,306541,0,0,Global Equities,Stocks,AEE
+11134,306548,0,0,Global Equities,Stocks,AES
+11134,306555,0,0,Global Equities,Stocks,AFL
+11134,306562,0,0,Global Equities,Stocks,AIG
+11134,306569,0,0,Global Equities,Stocks,AIZ
+11134,306576,0,0,Global Equities,Stocks,AJG
+11134,306583,0,0,Global Equities,Stocks,ALB
+11134,306597,0,0,Global Equities,Stocks,ALLE
+11134,306604,0,0,Global Equities,Stocks,AMCR
+11134,306611,0,0,Global Equities,Stocks,AME
+11134,306618,0,0,Global Equities,Stocks,AMP
+11134,306625,0,0,Global Equities,Stocks,ANET
+11134,306632,0,0,Global Equities,Stocks,AOS
+11134,306639,0,0,Global Equities,Stocks,APH
+11134,306646,0,0,Global Equities,Stocks,APTV
+11134,306653,0,0,Global Equities,Stocks,ATO
+11134,306660,0,0,Global Equities,Stocks,AVY
+11134,306667,0,0,Global Equities,Stocks,AWK
+11134,306674,0,0,Global Equities,Stocks,AZO
+11134,306681,0,0,Global Equities,Stocks,BALL
+11134,306688,0,0,Global Equities,Stocks,BAX
+11134,306695,0,0,Global Equities,Stocks,BBWI
+11134,306702,0,0,Global Equities,Stocks,BBY
+11134,306709,0,0,Global Equities,Stocks,BEN
+11134,306716,0,0,Global Equities,Stocks,BIO
+11134,306723,0,0,Global Equities,Stocks,BK
+11134,306730,0,0,Global Equities,Stocks,BRO
+11134,306737,0,0,Global Equities,Stocks,BWA
+11134,306744,0,0,Global Equities,Stocks,CAG
+11134,306751,0,0,Global Equities,Stocks,CAH
+11134,306758,0,0,Global Equities,Stocks,CARR
+11134,306765,0,0,Global Equities,Stocks,CBRE
+11134,306772,0,0,Global Equities,Stocks,CCL
+11134,306779,0,0,Global Equities,Stocks,CDAY
+11134,306786,0,0,Global Equities,Stocks,CE
+11134,306793,0,0,Global Equities,Stocks,CF
+11134,306800,0,0,Global Equities,Stocks,CFG
+11134,306807,0,0,Global Equities,Stocks,CHD
+11134,306814,0,0,Global Equities,Stocks,CLX
+11134,306821,0,0,Global Equities,Stocks,CMA
+11134,306828,0,0,Global Equities,Stocks,CMG
+11134,306835,0,0,Global Equities,Stocks,CMI
+11134,306842,0,0,Global Equities,Stocks,CMS
+11134,306849,0,0,Global Equities,Stocks,CNP
+11134,306856,0,0,Global Equities,Stocks,COF
+11134,306870,0,0,Global Equities,Stocks,CPB
+11134,306884,0,0,Global Equities,Stocks,CRL
+11134,306891,0,0,Global Equities,Stocks,CTLT
+11134,306898,0,0,Global Equities,Stocks,CTRA
+11134,306905,0,0,Global Equities,Stocks,CTVA
+11134,306912,0,0,Global Equities,Stocks,DAL
+11134,306919,0,0,Global Equities,Stocks,DD
+11134,306926,0,0,Global Equities,Stocks,DFS
+11134,306933,0,0,Global Equities,Stocks,DGX
+11134,306940,0,0,Global Equities,Stocks,DHI
+11134,306947,0,0,Global Equities,Stocks,DOV
+11134,306954,0,0,Global Equities,Stocks,DOW
+11134,306961,0,0,Global Equities,Stocks,DPZ
+11134,306968,0,0,Global Equities,Stocks,DRI
+11134,306975,0,0,Global Equities,Stocks,DTE
+11134,306982,0,0,Global Equities,Stocks,DVA
+11134,306989,0,0,Global Equities,Stocks,DVN
+11134,307003,0,0,Global Equities,Stocks,ED
+11134,307010,0,0,Global Equities,Stocks,EFX
+11134,307017,0,0,Global Equities,Stocks,EIX
+11134,307024,0,0,Global Equities,Stocks,EMN
+11134,307031,0,0,Global Equities,Stocks,ES
+11134,307038,0,0,Global Equities,Stocks,ETR
+11134,307045,0,0,Global Equities,Stocks,FCX
+11134,307052,0,0,Global Equities,Stocks,FLT
+11134,307059,0,0,Global Equities,Stocks,FMC
+11134,307066,0,0,Global Equities,Stocks,FTV
+11134,307073,0,0,Global Equities,Stocks,GIS
+11134,307080,0,0,Global Equities,Stocks,GLW
+11134,307087,0,0,Global Equities,Stocks,GNRC
+11134,307094,0,0,Global Equities,Stocks,GPC
+11134,307101,0,0,Global Equities,Stocks,GPN
+11134,307115,0,0,Global Equities,Stocks,GWW
+11134,307122,0,0,Global Equities,Stocks,HAL
+11134,307136,0,0,Global Equities,Stocks,HES
+11134,307143,0,0,Global Equities,Stocks,HIG
+11134,307150,0,0,Global Equities,Stocks,HII
+11134,307157,0,0,Global Equities,Stocks,HLT
+11134,307164,0,0,Global Equities,Stocks,HPE
+11134,307171,0,0,Global Equities,Stocks,HPQ
+11134,307178,0,0,Global Equities,Stocks,HRL
+11134,307185,0,0,Global Equities,Stocks,HSY
+11134,307192,0,0,Global Equities,Stocks,HWM
+11134,307199,0,0,Global Equities,Stocks,IEX
+11134,307206,0,0,Global Equities,Stocks,IFF
+11134,307213,0,0,Global Equities,Stocks,IPG
+11134,307220,0,0,Global Equities,Stocks,IQV
+11134,307227,0,0,Global Equities,Stocks,IR
+11134,307234,0,0,Global Equities,Stocks,IVZ
+11134,307241,0,0,Global Equities,Stocks,JCI
+11134,307248,0,0,Global Equities,Stocks,JNPR
+11134,307255,0,0,Global Equities,Stocks,KEY
+11134,307262,0,0,Global Equities,Stocks,KEYS
+11134,307269,0,0,Global Equities,Stocks,KMB
+11134,307276,0,0,Global Equities,Stocks,KMI
+11134,307283,0,0,Global Equities,Stocks,KMX
+11134,307290,0,0,Global Equities,Stocks,KR
+11134,307297,0,0,Global Equities,Stocks,L
+11134,307304,0,0,Global Equities,Stocks,LDOS
+11134,307318,0,0,Global Equities,Stocks,LEN
+11134,307325,0,0,Global Equities,Stocks,LHX
+11134,307346,0,0,Global Equities,Stocks,LUV
+11134,307353,0,0,Global Equities,Stocks,LVS
+11134,307360,0,0,Global Equities,Stocks,LW
+11134,307367,0,0,Global Equities,Stocks,LYB
+11134,307374,0,0,Global Equities,Stocks,LYV
+11134,307381,0,0,Global Equities,Stocks,MAS
+11134,307388,0,0,Global Equities,Stocks,MGM
+11134,307395,0,0,Global Equities,Stocks,MHK
+11134,307402,0,0,Global Equities,Stocks,MKC
+11134,307409,0,0,Global Equities,Stocks,MLM
+11134,307416,0,0,Global Equities,Stocks,MOS
+11134,307423,0,0,Global Equities,Stocks,MPC
+11134,307430,0,0,Global Equities,Stocks,MRO
+11134,307437,0,0,Global Equities,Stocks,MSCI
+11134,307444,0,0,Global Equities,Stocks,MSI
+11134,307451,0,0,Global Equities,Stocks,MTB
+11134,307458,0,0,Global Equities,Stocks,MTD
+11134,307465,0,0,Global Equities,Stocks,NCLH
+11134,307472,0,0,Global Equities,Stocks,NEM
+11134,307479,0,0,Global Equities,Stocks,NI
+11134,307486,0,0,Global Equities,Stocks,NRG
+11134,307493,0,0,Global Equities,Stocks,NUE
+11134,307500,0,0,Global Equities,Stocks,NVR
+11134,307514,0,0,Global Equities,Stocks,OKE
+11134,307521,0,0,Global Equities,Stocks,OMC
+11134,307528,0,0,Global Equities,Stocks,OTIS
+11134,307535,0,0,Global Equities,Stocks,PAYC
+11134,307542,0,0,Global Equities,Stocks,PEG
+11134,307549,0,0,Global Equities,Stocks,PH
+11134,307556,0,0,Global Equities,Stocks,PHM
+11134,307563,0,0,Global Equities,Stocks,PNR
+11134,307570,0,0,Global Equities,Stocks,PNW
+11134,307577,0,0,Global Equities,Stocks,PPG
+11134,307584,0,0,Global Equities,Stocks,PPL
+11134,307591,0,0,Global Equities,Stocks,PRU
+11134,307598,0,0,Global Equities,Stocks,PSX
+11134,307612,0,0,Global Equities,Stocks,PWR
+11134,307626,0,0,Global Equities,Stocks,RF
+11134,307633,0,0,Global Equities,Stocks,RHI
+11134,307640,0,0,Global Equities,Stocks,RJF
+11134,307647,0,0,Global Equities,Stocks,RL
+11134,307654,0,0,Global Equities,Stocks,RMD
+11134,307661,0,0,Global Equities,Stocks,ROK
+11134,307668,0,0,Global Equities,Stocks,ROL
+11134,307682,0,0,Global Equities,Stocks,RSG
+11134,307696,0,0,Global Equities,Stocks,SJM
+11134,307703,0,0,Global Equities,Stocks,SNA
+11134,307710,0,0,Global Equities,Stocks,STE
+11134,307717,0,0,Global Equities,Stocks,STT
+11134,307724,0,0,Global Equities,Stocks,STZ
+11134,307731,0,0,Global Equities,Stocks,SWK
+11134,307738,0,0,Global Equities,Stocks,SYF
+11134,307745,0,0,Global Equities,Stocks,SYY
+11134,307752,0,0,Global Equities,Stocks,TAP
+11134,307759,0,0,Global Equities,Stocks,TDG
+11134,307766,0,0,Global Equities,Stocks,TDY
+11134,307773,0,0,Global Equities,Stocks,TEL
+11134,307780,0,0,Global Equities,Stocks,TFX
+11134,307787,0,0,Global Equities,Stocks,TPR
+11134,307794,0,0,Global Equities,Stocks,TSN
+11134,307801,0,0,Global Equities,Stocks,TT
+11134,307808,0,0,Global Equities,Stocks,TXT
+11134,307815,0,0,Global Equities,Stocks,TYL
+11134,307836,0,0,Global Equities,Stocks,UHS
+11134,307843,0,0,Global Equities,Stocks,URI
+11134,307850,0,0,Global Equities,Stocks,VFC
+11134,307857,0,0,Global Equities,Stocks,VLO
+11134,307864,0,0,Global Equities,Stocks,VMC
+11134,307871,0,0,Global Equities,Stocks,WAB
+11134,307878,0,0,Global Equities,Stocks,WAT
+11134,307885,0,0,Global Equities,Stocks,WEC
+11134,307892,0,0,Global Equities,Stocks,WHR
+11134,307899,0,0,Global Equities,Stocks,WMB
+11134,307906,0,0,Global Equities,Stocks,WRB
+11134,307913,0,0,Global Equities,Stocks,WRK
+11134,307920,0,0,Global Equities,Stocks,WST
+11134,307934,0,0,Global Equities,Stocks,XYL
+11134,307941,0,0,Global Equities,Stocks,YUM
+11134,307948,0,0,Global Equities,Stocks,ZBH
+11141,200802,0,N/A,N/A,N/A,5
+11141,200819,0,N/A,N/A,N/A,700
+11141,200835,0,N/A,N/A,N/A,1211
+11141,200836,0,N/A,N/A,N/A,1299
+11141,200837,0,N/A,N/A,N/A,1398
+11141,200847,0,N/A,N/A,N/A,2318
+11141,200853,0,N/A,N/A,N/A,3690
+11141,200858,0,N/A,N/A,N/A,9988
+11141,291280,0,N/A,N/A,N/A,9618
+11141,291329,0,N/A,N/A,N/A,9999
+11141,295345,0,N/A,N/A,N/A,SONY
+11141,295447,0,N/A,N/A,N/A,TM
+11141,295481,0,N/A,N/A,N/A,TSM
+11148,200240,0,N/A,N/A,N/A,AAPL
+11148,200244,0,N/A,N/A,N/A,GOOGL
+11148,200254,0,N/A,N/A,N/A,PEP
+11148,200262,0,N/A,N/A,N/A,SBUX
+11148,200393,0,N/A,N/A,N/A,JNJ
+11148,200396,0,N/A,N/A,N/A,V
+11148,200399,0,N/A,N/A,N/A,MA
+11148,200400,0,N/A,N/A,N/A,DIS
+11148,200406,0,N/A,N/A,N/A,NKE
+11148,200409,0,N/A,N/A,N/A,KO
+11148,200415,0,N/A,N/A,N/A,MCD
+11148,200460,0,N/A,N/A,N/A,EL
+11148,200475,0,N/A,N/A,N/A,CL
+11148,200836,0,N/A,N/A,N/A,1299
+11148,294205,0,N/A,N/A,N/A,BUD
+11148,295140,0,N/A,N/A,N/A,PG
+11148,295345,0,N/A,N/A,N/A,SONY
+11148,295447,0,N/A,N/A,N/A,TM
+11155,296028,0,N/A,N/A,N/A,BND
+11155,296237,0,N/A,N/A,N/A,QQQ
+11155,296682,0,N/A,N/A,N/A,GDX
+11155,296689,0,N/A,N/A,N/A,GLD
+11155,297220,0,N/A,N/A,N/A,SPY
+11155,297323,0,N/A,N/A,N/A,VGK
+11162,297324,0,N/A,N/A,N/A,VGT
+11162,297334,0,N/A,N/A,N/A,VNQ
+11162,297337,0,N/A,N/A,N/A,VOO
+11169,297349,0,N/A,N/A,N/A,VTI
+11169,297350,0,N/A,N/A,N/A,VTV
+11169,297354,0,N/A,N/A,N/A,VWO
+11169,297356,0,N/A,N/A,N/A,VYM
+11176,200240,0,N/A,N/A,N/A,AAPL
+11176,200241,0,N/A,N/A,N/A,MSFT
+11176,200242,0,N/A,N/A,N/A,AMZN
+11176,200243,0,N/A,N/A,N/A,TSLA
+11176,200244,0,N/A,N/A,N/A,GOOGL
+11176,200245,0,N/A,N/A,N/A,NVDA
+11176,200249,0,N/A,N/A,N/A,NFLX
+11176,200393,0,N/A,N/A,N/A,JNJ
+11176,200396,0,N/A,N/A,N/A,V
+11176,200399,0,N/A,N/A,N/A,MA
+11176,200400,0,N/A,N/A,N/A,DIS
+11176,200401,0,N/A,N/A,N/A,XOM
+11176,200406,0,N/A,N/A,N/A,NKE
+11176,200409,0,N/A,N/A,N/A,KO
+11176,200428,0,N/A,N/A,N/A,C
+11176,200802,0,N/A,N/A,N/A,5
+11176,200819,0,N/A,N/A,N/A,700
+11176,200858,0,N/A,N/A,N/A,9988
+11176,295447,0,N/A,N/A,N/A,TM
+11176,295481,0,N/A,N/A,N/A,TSM
+11183,200240,0,N/A,N/A,N/A,AAPL
+11183,200241,0,N/A,N/A,N/A,MSFT
+11183,200242,0,N/A,N/A,N/A,AMZN
+11183,200243,0,N/A,N/A,N/A,TSLA
+11183,200244,0,N/A,N/A,N/A,GOOGL
+11183,200245,0,N/A,N/A,N/A,NVDA
+11183,200248,0,N/A,N/A,N/A,ADBE
+11183,200249,0,N/A,N/A,N/A,NFLX
+11183,200256,0,N/A,N/A,N/A,QCOM
+11183,200258,0,N/A,N/A,N/A,AMD
+11183,200398,0,N/A,N/A,N/A,CRM
+11183,200819,0,N/A,N/A,N/A,700
+11183,200858,0,N/A,N/A,N/A,9988
+11183,295345,0,N/A,N/A,N/A,SONY
+11183,295481,0,N/A,N/A,N/A,TSM
+11190,114213,1,N/A,N/A,N/A,SET
+11190,114220,2,N/A,N/A,N/A,SET50
+11190,114353,3,N/A,N/A,N/A,MAI
+11190,201244,5,N/A,N/A,N/A,HSI.INDEX
+11190,201272,4,N/A,N/A,N/A,NDX.INDEX
+11190,201307,9,N/A,N/A,N/A,USD
+11190,298064,6,N/A,N/A,N/A,SPX.INDEX
+11190,298113,7,N/A,N/A,N/A,GOLD$
+11190,298127,8,N/A,N/A,N/A,BRENT$
+11197,434,0,N/A,N/A,N/A,SCBGIF
+11197,822,0,N/A,N/A,N/A,K-OIL
+11197,1025,0,N/A,N/A,N/A,M-ACTIVE
+11197,1796,0,N/A,N/A,N/A,SCBGOLD
+11204,200819,0,N/A,N/A,N/A,700
+11204,200835,0,N/A,N/A,N/A,1211
+11204,200853,0,N/A,N/A,N/A,3690
+11204,200858,0,N/A,N/A,N/A,9988
+11204,291280,0,N/A,N/A,N/A,9618
+11211,200240,0,N/A,N/A,N/A,AAPL
+11211,200241,0,N/A,N/A,N/A,MSFT
+11211,200243,0,N/A,N/A,N/A,TSLA
+11211,200244,0,N/A,N/A,N/A,GOOGL
+11218,201251,4,1,Indices,Americas,DJI.INDEX
+11218,201272,2,1,Indices,Americas,NDX.INDEX
+11218,298064,1,1,Indices,Americas,SPX.INDEX
+11218,298071,3,1,Indices,Americas,NDXCOMP.INDEX
+11218,298078,6,1,Indices,Americas,TSX.INDEX
+11225,114213,2,1,Indices,Asia-Pacific,SET
+11225,114220,1,1,Indices,Asia-Pacific,SET50
+11225,201244,3,1,Indices,Asia-Pacific,HSI.INDEX
+11225,201265,10,1,Indices,Asia-Pacific,ASX.INDEX
+11225,201279,9,1,Indices,Asia-Pacific,NKY.INDEX
+11225,298015,4,1,Indices,Asia-Pacific,A50.INDEX
+11225,298022,5,1,Indices,Asia-Pacific,CSI.INDEX
+11225,298029,6,1,Indices,Asia-Pacific,TWII.INDEX
+11225,298036,7,1,Indices,Asia-Pacific,KOSPI.INDEX
+11225,298043,8,1,Indices,Asia-Pacific,STI.INDEX
+11225,298050,11,1,Indices,Asia-Pacific,NIFTY.INDEX
+11225,298057,12,1,Indices,Asia-Pacific,SENSEX.INDEX
+11232,201286,4,1,Indices,Europe,CAC.INDEX
+11232,201293,3,1,Indices,Europe,DAX.INDEX
+11232,298085,1,1,Indices,Europe,SXXP.INDEX
+11232,298092,2,1,Indices,Europe,FTSE.INDEX
+11232,298099,5,1,Indices,Europe,IBEX.INDEX
+11232,298106,6,1,Indices,Europe,MIB.INDEX
+11239,201244,4,1,Indices,Major Markets,HSI.INDEX
+11239,201251,3,1,Indices,Major Markets,DJI.INDEX
+11239,201265,7,1,Indices,Major Markets,ASX.INDEX
+11239,201272,2,1,Indices,Major Markets,NDX.INDEX
+11239,201279,6,1,Indices,Major Markets,NKY.INDEX
+11239,298008,10,1,Indices,Major Markets,VIX.INDEX
+11239,298022,5,1,Indices,Major Markets,CSI.INDEX
+11239,298064,1,1,Indices,Major Markets,SPX.INDEX
+11239,298085,8,1,Indices,Major Markets,SXXP.INDEX
+11239,298092,9,1,Indices,Major Markets,FTSE.INDEX
+11246,114206,3,1,Indices,Thailand,SET100
+11246,114213,2,1,Indices,Thailand,SET
+11246,114220,1,1,Indices,Thailand,SET50
+11246,114353,4,1,Indices,Thailand,MAI
+260,3079499,0,1,Global Equities,ETFs,VEA
+1067,299988,20,1,Derivatives,S50 Options,S50K24C925
+1067,299999,1,1,Derivatives,S50 Options,S50H25P925
+12268,5019,33,1,Thai Equities,Stocks,MINT
+12268,7749,31,1,Thai Equities,Stocks,KTC
+12268,7952,23,1,Thai Equities,Stocks,GULF
+12268,8099,14,1,Thai Equities,Stocks,CPALL
+12268,8330,32,1,Thai Equities,Stocks,LH
+12268,9163,38,1,Thai Equities,Stocks,PTTEP
+12268,9212,37,1,Thai Equities,Stocks,PTT
+12268,9394,43,1,Thai Equities,Stocks,SCC
+12268,9646,40,1,Thai Equities,Stocks,RATCH
+12268,10290,36,1,Thai Equities,Stocks,OSP
+12268,11368,46,1,Thai Equities,Stocks,TISCO
+12268,11599,21,1,Thai Equities,Stocks,GLOBAL
+12268,11690,27,1,Thai Equities,Stocks,JMART
+12268,11949,10,1,Thai Equities,Stocks,BTS
+12268,12061,26,1,Thai Equities,Stocks,IVL
+12268,12124,25,1,Thai Equities,Stocks,INTUCH
+12268,12166,39,1,Thai Equities,Stocks,PTTGC
+12268,12635,17,1,Thai Equities,Stocks,CRC
+12268,12915,44,1,Thai Equities,Stocks,SCGP
+12268,13097,35,1,Thai Equities,Stocks,OR
+12268,13293,28,1,Thai Equities,Stocks,JMT
+12268,13321,19,1,Thai Equities,Stocks,EA
+12268,13447,3,1,Thai Equities,Stocks,AWC
+12268,19530,6,1,Thai Equities,Stocks,BDMS
+12268,19803,49,1,Thai Equities,Stocks,TTB
+12268,19824,50,1,Thai Equities,Stocks,TU
+12268,19901,34,1,Thai Equities,Stocks,MTC
+12268,82460,45,1,Thai Equities,Stocks,TIDLOR
+12268,82656,13,1,Thai Equities,Stocks,COM7
+12268,82684,22,1,Thai Equities,Stocks,GPSC
+12268,82859,47,1,Thai Equities,Stocks,TOP
+12268,82866,1,1,Thai Equities,Stocks,ADVANC
+12268,83069,24,1,Thai Equities,Stocks,HMPRO
+12268,83174,29,1,Thai Equities,Stocks,KBANK
+12268,83426,20,1,Thai Equities,Stocks,EGCO
+12268,83496,30,1,Thai Equities,Stocks,KTB
+12268,83545,2,1,Thai Equities,Stocks,AOT
+12268,83650,7,1,Thai Equities,Stocks,BEM
+12268,83706,5,1,Thai Equities,Stocks,BBL
+12268,83923,12,1,Thai Equities,Stocks,CENTEL
+12268,83972,4,1,Thai Equities,Stocks,BANPU
+12268,84056,11,1,Thai Equities,Stocks,CBG
+12268,84084,41,1,Thai Equities,Stocks,SAWAD
+12268,84105,9,1,Thai Equities,Stocks,BH
+12268,84231,15,1,Thai Equities,Stocks,CPF
+12268,84287,16,1,Thai Equities,Stocks,CPN
+12268,84350,18,1,Thai Equities,Stocks,DELTA
+12268,84581,8,1,Thai Equities,Stocks,BGRIM
+12268,224571,42,1,Thai Equities,Stocks,SCB
+12268,279654,48,1,Thai Equities,Stocks,TRUE

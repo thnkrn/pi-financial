@@ -1,0 +1,59 @@
+using Pi.SetMarketDataWSS.Application.Services.Types.ItchParser;
+using Pi.SetMarketDataWSS.Application.Services.Constants;
+using Pi.SetMarketDataWSS.Application.Services.ItchParser;
+using Pi.SetMarketDataWSS.Application.Services.Models.ItchParser;
+using Pi.SetMarketDataWSS.Application.Tests.ItchParser.Mocks;
+
+namespace Pi.SetMarketDataWSS.Application.Tests.ItchParser.Unit.Models
+{
+    public class IndexPriceMessageTests
+    {
+        private static readonly ItchParserService itchParserService = new();
+        public static readonly IEnumerable<object[]> message = ItchMockMessage.GetMessage(
+            ItchMessageType.J
+        );
+
+        [Theory]
+        [MemberData(nameof(message))]
+        public void IndexPriceMessage_Constructor_SetsInputCorrectly(
+            byte[] input,
+            object[] result
+        )
+        {
+            // Arrange
+            // Act
+            IndexPriceMessage? output = itchParserService.Parse(input) as IndexPriceMessage;
+            var (dateTime, extraPrecision) = Timestamp.Parse((long)result[13]);
+            // format to match the expected output
+            var expectedTimeStamp = Timestamp.Formatter(dateTime, extraPrecision);
+
+            // Assert
+            Assert.NotNull(output);
+            Assert.Equal(result[0], output.MsgType);
+            Assert.Equal(result[1], (int)output.Nanos.Value);
+            Assert.Equal(result[2], (int)output.OrderbookId.Value);
+            Assert.Equal(result[3], (int)output.Value.Value);
+            Assert.Equal(result[4], (int)output.HighValue.Value);
+            Assert.Equal(result[5], (int)output.LowValue.Value);
+            Assert.Equal(result[6], (int)output.OpenValue.Value);
+            Assert.Equal(result[7], (int)output.TradedVolume.Value);
+            Assert.Equal(result[9], (int)output.Change.Value);
+            Assert.Equal(result[10], output.ChangePercent.Value);
+            Assert.Equal(result[11], (int)output.PreviousClose.Value);
+            Assert.Equal(result[12], (int)output.Close.Value);
+            Assert.Equal(expectedTimeStamp, output.Timestamp.ToString());
+        }
+
+        [Fact]
+        public void IndexPriceMessage_Constructor_SetsInputWithIncorrectFormat()
+        {
+            // Arrange
+            byte[] input = [(byte)ItchMessageType.J, 0, 0, 0, 1];
+
+            // Act
+            // Assert
+            Assert.Throws<ArgumentException>(() => itchParserService.Parse(input));
+        }
+
+    }
+}

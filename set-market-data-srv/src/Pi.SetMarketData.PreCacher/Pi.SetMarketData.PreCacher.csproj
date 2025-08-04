@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;CS8618;nullable</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;CS8618;nullable</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="7.0.2"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.Analyzers" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15"/>
+        <PackageReference Include="MassTransit" Version="8.0.15"/>
+        <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0"/>
+        <PackageReference Include="Pi.Common" Version="1.0.73"/>
+        <PackageReference Include="Pi.Common.Serilog" Version="1.0.73"/>
+        <PackageReference Include="pi.common.startup" Version="1.0.73"/>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.8"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.SetMarketData.Application\Pi.SetMarketData.Application.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.SetMarketData.Infrastructure\Pi.SetMarketData.Infrastructure.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="appsettings.Development.json" />
+      <Content Include="appsettings.Development.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="appsettings.Staging.json" />
+      <Content Include="appsettings.Staging.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>

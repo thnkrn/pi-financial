@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1703.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.Application", "Pi.SetMarketDataRealTime.Application\Pi.SetMarketDataRealTime.Application.csproj", "{2D6EFF8F-DC98-49D4-833D-4B3A1FCF3DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.Domain", "Pi.SetMarketDataRealTime.Domain\Pi.SetMarketDataRealTime.Domain.csproj", "{A7B59C4F-2B12-44D0-85F3-153CE9B7FB82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.Infrastructure", "Pi.SetMarketDataRealTime.Infrastructure\Pi.SetMarketDataRealTime.Infrastructure.csproj", "{2DDC9F4B-94A5-43D6-A5E6-620015635BCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.DataHandler", "Pi.SetMarketDataRealTime.DataHandler\Pi.SetMarketDataRealTime.DataHandler.csproj", "{6BAF111C-BFD2-43F6-BB65-D5908C99E8B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.DataServer", "Pi.SetMarketDataRealTime.DataServer\Pi.SetMarketDataRealTime.DataServer.csproj", "{14D7E077-9125-4F3A-9613-DD09263A339C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4B0623EC-6822-42E3-89AD-4ADB07F569CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.Application.Tests", "Pi.SetMarketDataRealTime.Application.Tests\Pi.SetMarketDataRealTime.Application.Tests.csproj", "{12C309EE-83A5-4F32-A932-345B74755363}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.DataHandler.Tests", "Pi.SetMarketDataRealTime.DataHandler.Tests\Pi.SetMarketDataRealTime.DataHandler.Tests.csproj", "{F2D0DBC6-5E6F-42BF-92D6-400A649CBAC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.Domain.Tests", "Pi.SetMarketDataRealTime.Domain.Tests\Pi.SetMarketDataRealTime.Domain.Tests.csproj", "{21C4FB5C-0FD2-4137-A92E-96D6667BE0C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.SetMarketDataRealTime.Infrastructure.Tests", "Pi.SetMarketDataRealTime.Infrastructure.Tests\Pi.SetMarketDataRealTime.Infrastructure.Tests.csproj", "{3388ED16-76BD-44F4-B025-B19D6DBE217F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D6EFF8F-DC98-49D4-833D-4B3A1FCF3DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D6EFF8F-DC98-49D4-833D-4B3A1FCF3DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D6EFF8F-DC98-49D4-833D-4B3A1FCF3DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D6EFF8F-DC98-49D4-833D-4B3A1FCF3DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B59C4F-2B12-44D0-85F3-153CE9B7FB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B59C4F-2B12-44D0-85F3-153CE9B7FB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B59C4F-2B12-44D0-85F3-153CE9B7FB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B59C4F-2B12-44D0-85F3-153CE9B7FB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DDC9F4B-94A5-43D6-A5E6-620015635BCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DDC9F4B-94A5-43D6-A5E6-620015635BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DDC9F4B-94A5-43D6-A5E6-620015635BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DDC9F4B-94A5-43D6-A5E6-620015635BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6043D428-847C-423A-9076-ABDB89AF0B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6043D428-847C-423A-9076-ABDB89AF0B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6043D428-847C-423A-9076-ABDB89AF0B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6043D428-847C-423A-9076-ABDB89AF0B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9726B4AC-2054-4CA8-8566-13E95687E2D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9726B4AC-2054-4CA8-8566-13E95687E2D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9726B4AC-2054-4CA8-8566-13E95687E2D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9726B4AC-2054-4CA8-8566-13E95687E2D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD07F9DB-A5A2-48EF-ABA4-0F45C351A328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD07F9DB-A5A2-48EF-ABA4-0F45C351A328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD07F9DB-A5A2-48EF-ABA4-0F45C351A328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD07F9DB-A5A2-48EF-ABA4-0F45C351A328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BAF111C-BFD2-43F6-BB65-D5908C99E8B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BAF111C-BFD2-43F6-BB65-D5908C99E8B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BAF111C-BFD2-43F6-BB65-D5908C99E8B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BAF111C-BFD2-43F6-BB65-D5908C99E8B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D7E077-9125-4F3A-9613-DD09263A339C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D7E077-9125-4F3A-9613-DD09263A339C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D7E077-9125-4F3A-9613-DD09263A339C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D7E077-9125-4F3A-9613-DD09263A339C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12C309EE-83A5-4F32-A932-345B74755363}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12C309EE-83A5-4F32-A932-345B74755363}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12C309EE-83A5-4F32-A932-345B74755363}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12C309EE-83A5-4F32-A932-345B74755363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D0DBC6-5E6F-42BF-92D6-400A649CBAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D0DBC6-5E6F-42BF-92D6-400A649CBAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D0DBC6-5E6F-42BF-92D6-400A649CBAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D0DBC6-5E6F-42BF-92D6-400A649CBAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21C4FB5C-0FD2-4137-A92E-96D6667BE0C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21C4FB5C-0FD2-4137-A92E-96D6667BE0C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21C4FB5C-0FD2-4137-A92E-96D6667BE0C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21C4FB5C-0FD2-4137-A92E-96D6667BE0C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3388ED16-76BD-44F4-B025-B19D6DBE217F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3388ED16-76BD-44F4-B025-B19D6DBE217F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3388ED16-76BD-44F4-B025-B19D6DBE217F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3388ED16-76BD-44F4-B025-B19D6DBE217F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B26BA303-2640-4776-A294-866E6ED85FD9}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{12C309EE-83A5-4F32-A932-345B74755363} = {4B0623EC-6822-42E3-89AD-4ADB07F569CE}
+		{F2D0DBC6-5E6F-42BF-92D6-400A649CBAC8} = {4B0623EC-6822-42E3-89AD-4ADB07F569CE}
+		{21C4FB5C-0FD2-4137-A92E-96D6667BE0C0} = {4B0623EC-6822-42E3-89AD-4ADB07F569CE}
+		{3388ED16-76BD-44F4-B025-B19D6DBE217F} = {4B0623EC-6822-42E3-89AD-4ADB07F569CE}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,256 @@
+openapi: 3.0.1
+info:
+  title: pi-it-backoffice-api
+  version: v1
+paths:
+  /api/BackOffice/OrderTrades:
+    get:
+      tags:
+        - BackOffice
+      parameters:
+        - name: apiKey
+          in: header
+          schema:
+            type: string
+            format: uuid
+        - name: StartDate
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: EndDate
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: AccountNumber
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResponseData'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseData'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResponseData'
+  /api/BackOffice/AUMByAccount:
+    get:
+      tags:
+        - BackOffice
+      parameters:
+        - name: apiKey
+          in: header
+          schema:
+            type: string
+            format: uuid
+        - name: accountNumber
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResponseDataAUM'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDataAUM'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResponseDataAUM'
+components:
+  schemas:
+    ResponseData:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          format: int64
+        timestemp:
+          type: string
+          format: date-time
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TradeDetail'
+          nullable: true
+      additionalProperties: false
+    ResponseDataAUM:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+          nullable: true
+        count:
+          type: integer
+          format: int64
+        timestemp:
+          type: string
+          format: date-time
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/pi_get_aum'
+          nullable: true
+      additionalProperties: false
+    TradeDetail:
+      type: object
+      properties:
+        refDate:
+          type: string
+          format: date-time
+        refType:
+          type: string
+          nullable: true
+        unit:
+          type: number
+          format: double
+        price:
+          type: number
+          format: double
+        custCode:
+          type: string
+          nullable: true
+        account:
+          type: string
+          nullable: true
+        shareCode:
+          type: string
+          nullable: true
+        trxBranch:
+          type: string
+          nullable: true
+        trxTeamId:
+          type: string
+          nullable: true
+        trxMktId:
+          type: string
+          nullable: true
+        confirmTime:
+          $ref: "#/components/schemas/ConfirmTime"
+        confirmTimeString:
+          type: string
+          nullable: true
+          readOnly: true
+        serviceType:
+          type: string
+          nullable: true
+        commSub:
+          type: number
+          format: double
+        vatSub:
+          type: number
+          format: double
+        amt:
+          type: number
+          format: double
+        remainPostUnit:
+          type: number
+          format: double
+        xchgMkt:
+          type: string
+          nullable: true
+        multiplier:
+          type: number
+          format: double
+        refNo:
+          type: string
+          nullable: true
+        tradeFee:
+          type: number
+          format: double
+        clrFee:
+          type: number
+          format: double
+        secFee:
+          type: number
+          format: double
+        regFee:
+          type: number
+          format: double
+        userId:
+          type: string
+          nullable: true
+        buysellsorter:
+          type: string
+          nullable: true
+      additionalProperties: false
+    pi_get_aum:
+      type: object
+      properties:
+        postDate:
+          type: string
+          format: date-time
+        xchgMkt:
+          type: string
+          nullable: true
+        account:
+          type: string
+          nullable: true
+        cashBalance:
+          type: number
+          format: double
+        arTrade:
+          type: number
+          format: double
+        apTrade:
+          type: number
+          format: double
+        marketValue:
+          type: number
+          format: double
+      additionalProperties: false
+    ConfirmTime:
+      type: object
+      properties:
+        ticks:
+          type: integer
+          format: int64
+        days:
+          type: integer
+          format: int64
+        hours:
+          type: integer
+          format: int64
+        milliseconds:
+          type: integer
+          format: int64
+        minutes:
+          type: integer
+          format: int64
+        seconds:
+          type: integer
+          format: int64
+        totalDays:
+          type: number
+          format: double
+        totalHours:
+          type: number
+          format: double
+        totalMilliseconds:
+          type: integer
+        totalMinutes:
+          type: number
+          format: double
+        totalSeconds:
+          type: integer
+          format: int64

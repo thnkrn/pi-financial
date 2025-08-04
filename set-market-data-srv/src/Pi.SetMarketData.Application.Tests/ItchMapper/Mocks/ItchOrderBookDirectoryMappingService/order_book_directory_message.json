@@ -1,0 +1,135 @@
+{
+  "Nanos": {
+    "Value": 123456789
+  },
+  "OrderBookID": {
+    "Value": 1001
+  },
+  "Symbol": {
+    "Value": "AAPL"
+  },
+  "LongName": {
+    "Value": "Apple Inc."
+  },
+  "ISIN": {
+    "Value": "US0378331005"
+  },
+  "FinancialProduct": {
+    "Value": "CS"
+  },
+  "TradingCurrency": {
+    "Value": "USD"
+  },
+  "DecimalsInPrice": {
+    "Value": 2
+  },
+  "DecimalsInNominalValue": {
+    "Value": 2
+  },
+  "RoundLotSize": {
+    "Value": 100
+  },
+  "NominalValue": {
+    "Value": 150
+  },
+  "NumberOfLegs": {
+    "Value": 1
+  },
+  "UnderlyingName": {
+    "Value": "Apple Underlying"
+  },
+  "Underlying": {
+    "Value": 2001
+  },
+  "UnderlyingOrderBookID": {
+    "Value": 3001
+  },
+  "StrikePrice": {
+    "Value": 1550,
+    "NumberOfDecimals": 2
+  },
+  "ExpirationDate": null,
+  "DecimalsInStrikePrice": {
+    "Value": 2
+  },
+  "OptionType": {
+    "Value": 1
+  },
+  "ExchangeCode": {
+    "Value": 123
+  },
+  "MarketCode": {
+    "Value": 11
+  },
+  "PriceQuotationFactor": {
+    "Value": 100,
+    "NumberOfDecimals": 2
+  },
+  "CorporateActionCode": {
+    "Value": "SP"
+  },
+  "NotificationSign": {
+    "Value": "N"
+  },
+  "OtherSign": {
+    "Value": "O"
+  },
+  "AllowNvdr": {
+    "Value": "Yes"
+  },
+  "AllowShortSell": {
+    "Value": "Yes"
+  },
+  "AllowShortSellOnNvdr": {
+    "Value": "No"
+  },
+  "AllowTtf": {
+    "Value": "Yes"
+  },
+  "ParValue": {
+    "Value": 1
+  },
+  "FirstTradingDate": null,
+  "FirstTradingTime": {
+    "Hours": 9,
+    "Minutes": 30,
+    "Seconds": 0
+  },
+  "LastTradingDate": null,
+  "LastTradingTime": {
+    "Hours": 16,
+    "Minutes": 0,
+    "Seconds": 0
+  },
+  "MarketSegment": {
+    "Value": "SET"
+  },
+  "PhysicalDelivery": {
+    "Value": "Yes"
+  },
+  "ContractSize": {
+    "Value": 100
+  },
+  "SectorCode": {
+    "Value": "IT"
+  },
+  "OriginatesFrom": {
+    "Value": "NASDAQ"
+  },
+  "Status": {
+    "Value": "Active"
+  },
+  "Modifier": {
+    "Value": 0
+  },
+  "NotationDate": null,
+  "DecimalsInContractSizePQF": {
+    "Value": 2
+  },
+  "Metadata": {
+    "Timestamp": 1625140800,
+    "Session": "Session1",
+    "SequenceNumber": 1000001
+  },
+  "MsgType": "R"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "morning_star_flag_id": 1,
+    "white_list_id": 1,
+    "mic": "XNAS",
+    "standard_ticker": "AAPL"
+  },
+  {
+    "morning_star_flag_id": 2,
+    "white_list_id": 2,
+    "mic": "XNYS",
+    "standard_ticker": "GOOGL"
+  },
+  {
+    "morning_star_flag_id": 3,
+    "white_list_id": 3,
+    "mic": "XNYS",
+    "standard_ticker": "AMZN"
+  },
+  {
+    "morning_star_flag_id": 4,
+    "white_list_id": 4,
+    "mic": "XNAS",
+    "standard_ticker": "MSFT"
+  },
+  {
+    "morning_star_flag_id": 5,
+    "white_list_id": 5,
+    "mic": "XNAS",
+    "standard_ticker": "FB"
+  },
+  {
+    "morning_star_flag_id": 6,
+    "white_list_id": 6,
+    "mic": "XNAS",
+    "standard_ticker": "TSLA"
+  },
+  {
+    "morning_star_flag_id": 7,
+    "white_list_id": 7,
+    "mic": "XNYS",
+    "standard_ticker": "BRK.B"
+  },
+  {
+    "morning_star_flag_id": 8,
+    "white_list_id": 8,
+    "mic": "XNYS",
+    "standard_ticker": "V"
+  },
+  {
+    "morning_star_flag_id": 9,
+    "white_list_id": 9,
+    "mic": "XNYS",
+    "standard_ticker": "JNJ"
+  },
+  {
+    "morning_star_flag_id": 10,
+    "white_list_id": 10,
+    "mic": "XNYS",
+    "standard_ticker": "WMT"
+  }
+]

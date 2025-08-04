@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Pi.SetMarketData.Worker": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5555/",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

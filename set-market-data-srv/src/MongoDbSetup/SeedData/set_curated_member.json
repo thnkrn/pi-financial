@@ -1,0 +1,882 @@
+[
+  {
+    "curated_list_id": 1032,
+    "symbol": "S50M23",
+    "ordering": 3,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Futures"
+  },
+  {
+    "curated_list_id": 1032,
+    "symbol": "S50U23",
+    "ordering": 5,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Futures"
+  },
+  {
+    "curated_list_id": 1032,
+    "symbol": "S50Z23",
+    "ordering": 6,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Futures"
+  },
+  {
+    "curated_list_id": 1032,
+    "symbol": "S50K23",
+    "ordering": 2,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Futures"
+  },
+  {
+    "curated_list_id": 1032,
+    "symbol": "S50H24",
+    "ordering": 1,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Futures"
+  },
+  {
+    "curated_list_id": 1032,
+    "symbol": "S50N23",
+    "ordering": 4,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Futures"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "BANKM23",
+    "ordering": 19,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "COMMM23",
+    "ordering": 3,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ENERGM23",
+    "ordering": 7,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "FOODM23",
+    "ordering": 11,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ICTM23",
+    "ordering": 15,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "BANKU23",
+    "ordering": 18,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "COMMU23",
+    "ordering": 2,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ENERGU23",
+    "ordering": 6,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "FOODU23",
+    "ordering": 10,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ICTU23",
+    "ordering": 14,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "BANKZ23",
+    "ordering": 17,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "COMMZ23",
+    "ordering": 1,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ENERGZ23",
+    "ordering": 5,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "FOODZ23",
+    "ordering": 9,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ICTZ23",
+    "ordering": 13,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "BANKH24",
+    "ordering": 16,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "COMMH24",
+    "ordering": 20,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ENERGH24",
+    "ordering": 4,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "FOODH24",
+    "ordering": 8,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1039,
+    "symbol": "ICTH24",
+    "ordering": 12,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Sectors"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "GULFM23",
+    "ordering": 46,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "RSM23X",
+    "ordering": 19,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "CPFM23",
+    "ordering": 20,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BANPUM23",
+    "ordering": 9,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TUM23",
+    "ordering": 31,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BAMM23",
+    "ordering": 45,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "PTGM23",
+    "ordering": 40,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "KTBM23",
+    "ordering": 39,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "EAM23",
+    "ordering": 23,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "PLANBM23",
+    "ordering": 33,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BEMM23",
+    "ordering": 47,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "AAVM23",
+    "ordering": 6,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "IRPCM23",
+    "ordering": 16,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "GUNKULM23",
+    "ordering": 2,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "CKPM23",
+    "ordering": 15,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TTBM23",
+    "ordering": 28,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "JASM23",
+    "ordering": 5,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TKNM23",
+    "ordering": 38,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "ITDM23",
+    "ordering": 30,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BLANDM23",
+    "ordering": 4,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BECM23",
+    "ordering": 24,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BEAUTYM23",
+    "ordering": 12,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "SM23",
+    "ordering": 22,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "STPIM23",
+    "ordering": 27,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "SUPERM23",
+    "ordering": 10,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "RSU23X",
+    "ordering": 18,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BCPGU23",
+    "ordering": 13,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BANPUU23",
+    "ordering": 11,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "KTBU23",
+    "ordering": 7,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "KTCU23",
+    "ordering": 8,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "EAU23",
+    "ordering": 49,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "IRPCU23",
+    "ordering": 44,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TPIPLU23",
+    "ordering": 41,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "JASU23",
+    "ordering": 35,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "ITDU23",
+    "ordering": 17,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TKNU23",
+    "ordering": 48,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BLANDU23",
+    "ordering": 1,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BEAUTYU23",
+    "ordering": 25,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "SU23",
+    "ordering": 32,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "SUPERU23",
+    "ordering": 14,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BANPUZ23",
+    "ordering": 29,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "BEMZ23",
+    "ordering": 50,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "QHZ23",
+    "ordering": 36,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "GUNKULZ23",
+    "ordering": 37,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "JASZ23X",
+    "ordering": 3,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "SUPERZ23",
+    "ordering": 21,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TRUEM23",
+    "ordering": 26,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "TRUEU23",
+    "ordering": 42,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "RSH24X",
+    "ordering": 43,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1046,
+    "symbol": "SUPERH24",
+    "ordering": 34,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Stocks"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GF10M23",
+    "ordering": 1,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GFM23",
+    "ordering": 4,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GOM23",
+    "ordering": 7,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "SVFM23",
+    "ordering": 9,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GF10Q23",
+    "ordering": 2,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GFQ23",
+    "ordering": 5,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GOU23",
+    "ordering": 8,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "SVFU23",
+    "ordering": 10,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GF10V23",
+    "ordering": 3,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1053,
+    "symbol": "GFV23",
+    "ordering": 6,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Metals"
+  },
+  {
+    "curated_list_id": 1060,
+    "symbol": "USDM23",
+    "ordering": 2,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Currency"
+  },
+  {
+    "curated_list_id": 1060,
+    "symbol": "USDK23",
+    "ordering": 1,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Currency"
+  },
+  {
+    "curated_list_id": 1060,
+    "symbol": "USDU23",
+    "ordering": 4,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Currency"
+  },
+  {
+    "curated_list_id": 1060,
+    "symbol": "USDN23",
+    "ordering": 3,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "Currency"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C925",
+    "ordering": 12,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C950",
+    "ordering": 4,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C975",
+    "ordering": 1,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C1000",
+    "ordering": 2,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C1025",
+    "ordering": 5,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C1050",
+    "ordering": 9,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C1075",
+    "ordering": 15,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23C1100",
+    "ordering": 14,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P900",
+    "ordering": 3,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P925",
+    "ordering": 6,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P950",
+    "ordering": 11,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P975",
+    "ordering": 16,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P1000",
+    "ordering": 17,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P875",
+    "ordering": 8,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P850",
+    "ordering": 7,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P800",
+    "ordering": 10,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50M23P825",
+    "ordering": 13,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50U23P875",
+    "ordering": 19,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50U23P850",
+    "ordering": 18,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  },
+  {
+    "curated_list_id": 1067,
+    "symbol": "S50U23P825",
+    "ordering": 20,
+    "is_default": 1,
+    "group_name": "Derivatives",
+    "sub_group_name": "S50 Options"
+  }
+]

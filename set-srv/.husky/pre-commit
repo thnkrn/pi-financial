@@ -1,0 +1,34 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+## husky task runner examples -------------------
+## Note : for local installation use 'dotnet' prefix. e.g. 'dotnet husky'
+
+## run all tasks
+#husky run
+
+### run all tasks with group: 'group-name'
+#husky run --group group-name
+
+## run task with name: 'task-name'
+#husky run --name task-name
+
+## pass hook arguments to task
+#husky run --args "$1" "$2"
+
+## or put your custom commands -------------------
+#echo 'Husky.Net is awesome!'
+
+# Verify dotnet format before commit
+dotnet format src/Pi.SetService/Pi.SetService.sln --verbosity=normal 2>&1 | tee format_output.log  # Redirect stderr to stdout and save to file
+format_result=$?
+
+if grep -q "Formatted code file" format_output.log; then  # Check for "error" in the output
+    echo "Code formatting issues found and fixed. Please review the changes."
+    exit 2
+elif [ $format_result -ne 0 ]; then
+    echo "An unexpected error occurred during formatting."
+    exit $format_result
+else
+    echo "Code formatting successful."
+fi

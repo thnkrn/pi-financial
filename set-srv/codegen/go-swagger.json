@@ -1,0 +1,3544 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Pi.SetService.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/internal/sbl/orders": {
+      "get": {
+        "tags": [
+          "Sbl"
+        ],
+        "parameters": [
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "int32",
+              "example": 123
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "int32",
+              "example": 123
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderDir",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelCommonAggregateOrderDirection"
+            }
+          },
+          {
+            "name": "TradingAccountNo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Open",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "Symbol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Statues",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus"
+              }
+            }
+          },
+          {
+            "name": "Type",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType"
+            }
+          },
+          {
+            "name": "CreatedDateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "CreatedDateTo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/sbl/orders/{orderId}": {
+      "patch": {
+        "tags": [
+          "Sbl"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsSblOrderSubmitReviewRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsSblOrderSubmitReviewRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsSblOrderSubmitReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/sbl/instruments": {
+      "get": {
+        "tags": [
+          "Sbl"
+        ],
+        "parameters": [
+          {
+            "name": "Page",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "int32",
+              "example": 123
+            }
+          },
+          {
+            "name": "PageSize",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "int32",
+              "example": 123
+            }
+          },
+          {
+            "name": "OrderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "OrderDir",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelCommonAggregateOrderDirection"
+            }
+          },
+          {
+            "name": "Symbol",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/openorders": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/available/balance": {
+      "post": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/sbl/available/balance": {
+      "post": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/cash/balance/summary": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/credit/balance/summary": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/accounts/balance/summary": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/cash/balance/assets": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/cash/balance/info": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/credit/balance/assets": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/credit/balance/info": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/histories/open": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offSet",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/histories/confirm": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offSet",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/trading/orders": {
+      "post": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders": {
+      "post": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsPlaceOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/trading/orders/change": {
+      "patch": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/change": {
+      "patch": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsChangeOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/trading/orders/cancel": {
+      "post": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/cancel": {
+      "post": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceAPIModelsCancelOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/instruments/equity/margin-rate": {
+      "get": {
+        "tags": [
+          "SetTrading"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsMarginRateResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsMarginRateResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceAPIModelsMarginRateResponseApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/sync/initial-margin": {
+      "post": {
+        "tags": [
+          "Sync"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceApplicationCommandsSyncInitialMarginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceApplicationCommandsSyncInitialMarginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceApplicationCommandsSyncInitialMarginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/internal/sync/sbl-instruments": {
+      "post": {
+        "tags": [
+          "Sync"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceApplicationCommandsSyncSblInstrument"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceApplicationCommandsSyncSblInstrument"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiSetServiceApplicationCommandsSyncSblInstrument"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceApplicationModelsSyncProcessResultApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceApplicationModelsSyncProcessResultApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiSetServiceApplicationModelsSyncProcessResultApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MicrosoftAspNetCoreMvcProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "format": "int32",
+            "nullable": true,
+            "example": 123
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "PiSetServiceAPIModelsAccountDetail": {
+        "required": [
+          "balance",
+          "balanceUnit"
+        ],
+        "type": "object",
+        "properties": {
+          "balanceUnit": {
+            "type": "string",
+            "nullable": true
+          },
+          "balance": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsAccountInstrumentAvailableBalanceRequest": {
+        "required": [
+          "symbol",
+          "tradingAccountNo"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponse": {
+        "required": [
+          "accountDetail",
+          "unitRemain"
+        ],
+        "type": "object",
+        "properties": {
+          "accountDetail": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountDetail"
+          },
+          "unitRemain": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsUnitRemain"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountInstrumentAvailableBalanceResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponse": {
+        "required": [
+          "allowBorrowing",
+          "borrowCredit",
+          "closePriceYesterday",
+          "ee",
+          "initialMarginRate",
+          "maximumShares",
+          "power",
+          "sblFlag",
+          "shelfAvailable",
+          "shortUnitAvailable"
+        ],
+        "type": "object",
+        "properties": {
+          "ee": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "shelfAvailable": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "sblFlag": {
+            "type": "boolean"
+          },
+          "borrowCredit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "maximumShares": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "shortUnitAvailable": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "power": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "initialMarginRate": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "closePriceYesterday": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "allowBorrowing": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsAccountSblInstrumentAvailableBalanceResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsCaEvent": {
+        "required": [
+          "caType",
+          "date"
+        ],
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "date": {
+            "type": "string",
+            "nullable": true
+          },
+          "caType": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsCancelOrderRequest": {
+        "required": [
+          "orderId",
+          "tradingAccountNo"
+        ],
+        "type": "object",
+        "properties": {
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "orderId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsChangeOrderRequest": {
+        "required": [
+          "orderId",
+          "price",
+          "tradingAccountNo",
+          "volume"
+        ],
+        "type": "object",
+        "properties": {
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "orderId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "price": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "volume": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "flag": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsOrderFlag"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsMarginRateResponse": {
+        "required": [
+          "isTurnoverList",
+          "rate",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "rate": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "isTurnoverList": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsMarginRateResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsMarginRateResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsOrderFlag": {
+        "enum": [
+          "nvdr",
+          "lending"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceAPIModelsPlaceOrderRequest": {
+        "required": [
+          "orderType",
+          "quantity",
+          "side",
+          "symbol",
+          "tradingAccountNo"
+        ],
+        "type": "object",
+        "properties": {
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "orderType": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateConditionPrice"
+          },
+          "side": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction"
+          },
+          "symbol": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "price": {
+            "type": "string",
+            "format": "double",
+            "nullable": true,
+            "example": 1112.1314
+          },
+          "tif": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateCondition"
+          },
+          "flag": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsOrderFlag"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSblOrderSubmitReviewRequest": {
+        "required": [
+          "reviewerId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsSblSubmitReviewStatus"
+          },
+          "reviewerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rejectedReason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSblSubmitReviewStatus": {
+        "enum": [
+          "approved",
+          "rejected"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceAPIModelsSetAccountAssetsResponse": {
+        "required": [
+          "assetType",
+          "availableVolume",
+          "averageCostPrice",
+          "caEventList",
+          "caFlag",
+          "costValue",
+          "isNew",
+          "marketPrice",
+          "marketValue",
+          "nvdr",
+          "sellableVolume",
+          "side",
+          "symbol",
+          "upnl",
+          "upnlPercentage"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "marketPrice": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "nvdr": {
+            "type": "boolean"
+          },
+          "assetType": {
+            "type": "string",
+            "nullable": true
+          },
+          "isNew": {
+            "type": "boolean"
+          },
+          "caFlag": {
+            "type": "boolean"
+          },
+          "averageCostPrice": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "costValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "marketValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "upnl": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "upnlPercentage": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "side": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableVolume": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "sellableVolume": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "caEventList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsCaEvent"
+            },
+            "nullable": true
+          },
+          "lendingVolume": {
+            "type": "string",
+            "format": "double",
+            "nullable": true,
+            "example": 1112.1314
+          },
+          "realizedPnl": {
+            "type": "string",
+            "format": "double",
+            "nullable": true,
+            "example": 1112.1314
+          },
+          "stockType": {
+            "type": "string",
+            "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "friendlyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "instrumentCategory": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountAssetsResponseListApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountCashBalanceInfoResponse": {
+        "required": [
+          "accountNo",
+          "buyLimit",
+          "cashBalance",
+          "creditLimit",
+          "pendingSettlement"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "buyLimit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "creditLimit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "cashBalance": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "pendingSettlement": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountCashBalanceInfoResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCashBalanceInfoResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponse": {
+        "required": [
+          "accountNo",
+          "buyLimit",
+          "callForce",
+          "cashBalance",
+          "creditLimit",
+          "excessEquity",
+          "liabilities",
+          "marginCall",
+          "marginRatio",
+          "marginRequired"
+        ],
+        "type": "object",
+        "properties": {
+          "accountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "buyLimit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "creditLimit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "cashBalance": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "excessEquity": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "marginRequired": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "marginRatio": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "liabilities": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "callForce": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "marginCall": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountCreditBalanceInfoResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountSummaryResponse": {
+        "required": [
+          "accountCode",
+          "asOfDate",
+          "assets",
+          "cashBalance",
+          "customerCode",
+          "sblEnabled",
+          "totalCost",
+          "totalMarketValue",
+          "totalUpnl",
+          "totalUpnlPercentage",
+          "totalValue",
+          "tradingAccountNo",
+          "tradingAccountType"
+        ],
+        "type": "object",
+        "properties": {
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountType": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateTradingAccountType"
+          },
+          "customerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "asOfDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalCost": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalUpnl": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalUpnlPercentage": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "cashBalance": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "sblEnabled": {
+            "type": "boolean"
+          },
+          "totalValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalMarketValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountSummaryResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetAccountSummaryResponseListApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountSummaryResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponse": {
+        "required": [
+          "accountCode",
+          "accountValue",
+          "asOfDate",
+          "assets",
+          "cashBalance",
+          "customerCode",
+          "excessEquity",
+          "liabilities",
+          "longCostValue",
+          "longMarketValue",
+          "marginLoan",
+          "sblEnabled",
+          "shortCostValue",
+          "shortMarketValue",
+          "totalCost",
+          "totalMarketValue",
+          "totalUpnl",
+          "totalUpnlPercentage",
+          "totalValue",
+          "tradingAccountNo",
+          "tradingAccountType"
+        ],
+        "type": "object",
+        "properties": {
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountType": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateTradingAccountType"
+          },
+          "customerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "asOfDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalCost": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalUpnl": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalUpnlPercentage": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "cashBalance": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "sblEnabled": {
+            "type": "boolean"
+          },
+          "totalValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalMarketValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetAccountAssetsResponse"
+            },
+            "nullable": true
+          },
+          "accountValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "longMarketValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "shortMarketValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "marginLoan": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "longCostValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "shortCostValue": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "excessEquity": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "liabilities": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsSetCreditBalanceAccountSummaryResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetOpenOrderResponse": {
+        "required": [
+          "amount",
+          "avgPrice",
+          "brokerOrderId",
+          "custCode",
+          "isNVDR",
+          "matchedPrice",
+          "orderId",
+          "orderNo",
+          "orderType",
+          "price",
+          "side",
+          "status",
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "custCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "side": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderType": {
+            "type": "string",
+            "nullable": true
+          },
+          "avgPrice": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "brokerOrderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "matchedPrice": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "isNVDR": {
+            "type": "boolean"
+          },
+          "orderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "amount": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "quantityExecuted": {
+            "type": "string",
+            "format": "int32",
+            "nullable": true,
+            "example": 123
+          },
+          "interestRate": {
+            "type": "string",
+            "format": "double",
+            "nullable": true,
+            "example": 1112.1314
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "friendlyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "instrumentCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderTimeStamp": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetOpenOrderResponseListApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOpenOrderResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetOrder": {
+        "required": [
+          "orderId"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetOrderApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrder"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetOrderHistoryResponse": {
+        "required": [
+          "amount",
+          "isNVDR",
+          "matchedPrice",
+          "orderId",
+          "orderNo",
+          "price",
+          "side",
+          "status",
+          "symbol",
+          "tradeType"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "isNVDR": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "side": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction"
+          },
+          "tradeType": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNo": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "matchedPrice": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "amount": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "price": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "orderTimeStamp": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "interestRate": {
+            "type": "string",
+            "format": "double",
+            "nullable": true,
+            "example": 1112.1314
+          },
+          "realizedPL": {
+            "type": "string",
+            "nullable": true
+          },
+          "matchVolume": {
+            "type": "string",
+            "format": "int32",
+            "nullable": true,
+            "example": 123
+          },
+          "cancelVolume": {
+            "type": "string",
+            "format": "double",
+            "nullable": true,
+            "example": 1112.1314
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetOrderHistoryResponseListApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetOrderHistoryResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetTradeHistoryResponse": {
+        "required": [
+          "accountCode",
+          "amount",
+          "currency",
+          "instrumentSymbol",
+          "price",
+          "side",
+          "totalAmount",
+          "totalCommissionAndVat",
+          "tradeDate",
+          "tradeTime",
+          "volume"
+        ],
+        "type": "object",
+        "properties": {
+          "accountCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "instrumentSymbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "nullable": true
+          },
+          "side": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "volume": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalAmount": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "amount": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "totalCommissionAndVat": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsSetTradeHistoryResponseListApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceAPIModelsSetTradeHistoryResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceAPIModelsUnitRemain": {
+        "required": [
+          "assetSymbol",
+          "nvdrUnit",
+          "shortNvdrUnit",
+          "shortUnit",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "assetSymbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "nvdrUnit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "shortUnit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "shortNvdrUnit": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "amount": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceApplicationCommandsReviewSblOrderResponse": {
+        "required": [
+          "customerCode",
+          "id",
+          "orderId",
+          "status",
+          "symbol",
+          "tradingAccountId",
+          "tradingAccountNo",
+          "type",
+          "volume"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tradingAccountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType"
+          },
+          "volume": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "status": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus"
+          },
+          "rejectedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceApplicationCommandsReviewSblOrderResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceApplicationCommandsReviewSblOrderResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceApplicationCommandsSyncInitialMarginRequest": {
+        "required": [
+          "bucketName",
+          "fileKey"
+        ],
+        "type": "object",
+        "properties": {
+          "bucketName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileKey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceApplicationCommandsSyncSblInstrument": {
+        "required": [
+          "bucketName",
+          "fileKey"
+        ],
+        "type": "object",
+        "properties": {
+          "bucketName": {
+            "type": "string",
+            "nullable": true
+          },
+          "fileKey": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceApplicationModelsSyncProcessResult": {
+        "type": "object",
+        "properties": {
+          "create": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "update": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "skip": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "execution": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceApplicationModelsSyncProcessResultApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiSetServiceApplicationModelsSyncProcessResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceDomainAggregatesModelCommonAggregateOrderDirection": {
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelFinancialAssetAggregateCondition": {
+        "enum": [
+          "none",
+          "ioc",
+          "fok",
+          "odd",
+          "gtc",
+          "gtd"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelFinancialAssetAggregateConditionPrice": {
+        "enum": [
+          "Limit",
+          "ATO",
+          "ATC",
+          "MP",
+          "MP-MKT",
+          "MP-MTL"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelFinancialAssetAggregateOrderAction": {
+        "enum": [
+          "cover",
+          "short",
+          "buy",
+          "sell",
+          "borrow",
+          "return"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus": {
+        "enum": [
+          "pending",
+          "approved",
+          "rejected"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType": {
+        "enum": [
+          "borrow",
+          "return"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelFinancialAssetAggregateTradingAccountType": {
+        "enum": [
+          "cash",
+          "cashMargin",
+          "maintenanceMargin",
+          "creditBalance",
+          "cashBalance",
+          "internet"
+        ],
+        "type": "string"
+      },
+      "PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "interestRate": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "retailLender": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "borrowOutstanding": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "availableLending": {
+            "type": "string",
+            "format": "double",
+            "example": 1112.1314
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrumentIEnumerableApiPaginateResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelInstrumentAggregateSblInstrument"
+            },
+            "nullable": true
+          },
+          "page": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "pageSize": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "total": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDir": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceDomainAggregatesModelTradingAggregateSblOrder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tradingAccountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderType"
+          },
+          "volume": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "status": {
+            "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelFinancialAssetAggregateSblOrderStatus"
+          },
+          "rejectedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "reviewerId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAtDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiSetServiceDomainAggregatesModelTradingAggregateSblOrderIEnumerableApiPaginateResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiSetServiceDomainAggregatesModelTradingAggregateSblOrder"
+            },
+            "nullable": true
+          },
+          "page": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "pageSize": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "total": {
+            "type": "string",
+            "format": "int32",
+            "example": 123
+          },
+          "orderBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderDir": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

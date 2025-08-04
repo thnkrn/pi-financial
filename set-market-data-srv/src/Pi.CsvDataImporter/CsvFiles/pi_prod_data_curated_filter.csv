@@ -1,0 +1,254 @@
+filter_id,filter_name,filter_category,filter_type,category_priority,group_name,sub_group_name,curated_list_id,is_default,highlight,ordering
+29628,All,Markets,Primary,1,Thai Equities,Stocks,10098,0,0,1
+29635,SET50,Markets,Primary,1,Thai Equities,Stocks,661,1,0,2
+29642,SET,Markets,Primary,1,Thai Equities,Stocks,668,0,0,3
+29649,MAI,Markets,Primary,1,Thai Equities,Stocks,710,0,0,4
+29656,SETHD,Markets,Primary,1,Thai Equities,Stocks,689,0,0,5
+29663,sSET,Markets,Primary,1,Thai Equities,Stocks,675,0,0,6
+29670,Basic Materials,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,1
+29677,Communication Services,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,2
+29684,Consumer Cyclical,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,3
+29691,Consumer Defensive,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,4
+29698,Energy,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,5
+29705,Financial Services,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,6
+29712,Healthcare,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,7
+29719,Industrials,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,8
+29726,Real Estate,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,9
+29733,Technology,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,10
+29740,Utilities,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,11
+29747,Others,Sectors,Secondary,2,Thai Equities,Stocks,0,0,0,12
+29754,All,Markets,Primary,1,Thai Equities,Derivative Warrants,10105,0,0,1
+29761,SET50 Index,Markets,Primary,1,Thai Equities,Derivative Warrants,990,1,0,2
+29768,Thai Stock,Markets,Primary,1,Thai Equities,Derivative Warrants,997,0,0,3
+29775,Foreign,Markets,Primary,1,Thai Equities,Derivative Warrants,1004,0,0,4
+29782,Call Only,Call/Put,Secondary,4,Thai Equities,Derivative Warrants,0,0,0,1
+29789,Put Only,Call/Put,Secondary,4,Thai Equities,Derivative Warrants,0,0,0,2
+29796,ASPS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,1
+29803,BLS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,2
+29810,FSS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,3
+29817,JPM,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,4
+29824,KGI,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,5
+29831,KKPS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,6
+29838,KS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,7
+29845,MACQ,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,8
+29852,MST,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,9
+29859,SCBS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,10
+29866,TNS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,11
+29873,YUANTA,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,12
+29880,KTB,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,13
+29887,RHBS,Issuers,Secondary,5,Thai Equities,Derivative Warrants,0,0,0,14
+29894,PF & REIT,Markets,Primary,1,Thai Equities,PF & REIT,906,1,0,1
+29901,Depositary Receipts,Markets,Primary,1,Thai Equities,Depositary Receipts,1011,1,0,1
+29908,ETFs,Markets,Primary,1,Thai Equities,ETFs,1025,1,0,1
+29915,Warrants,Markets,Primary,1,Thai Equities,Warrants,1018,1,0,1
+29922,All,Markets,Primary,1,Global Equities,Stocks,253,0,0,1
+29929,NASDAQ,Markets,Primary,1,Global Equities,Stocks,11127,1,0,2
+29936,S&P 500,Markets,Primary,1,Global Equities,Stocks,11134,0,0,3
+29943,Hong Kong,Markets,Primary,1,Global Equities,Stocks,11106,0,0,4
+29950,Basic Materials,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,1
+29957,Communication Services,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,2
+29964,Consumer Cyclical,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,3
+29971,Consumer Defensive,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,4
+29978,Energy,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,5
+29985,Financial Services,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,6
+29992,Healthcare,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,7
+29999,Industrials,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,8
+30006,Real Estate,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,9
+30013,Technology,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,10
+30020,Utilities,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,11
+30027,Others,Sectors,Secondary,2,Global Equities,Stocks,0,0,0,12
+30034,Innovation,Themes,Primary,3,Global Equities,Stocks,11113,0,0,1
+30041,Energy,Themes,Primary,3,Global Equities,Stocks,11092,0,0,2
+30048,Healthcare,Themes,Primary,3,Global Equities,Stocks,11099,0,0,3
+30055,Metaverse,Themes,Primary,3,Global Equities,Stocks,11120,0,0,4
+30062,All,Markets,Primary,1,Global Equities,ETFs,260,1,0,1
+30069,NASDAQ,Markets,Primary,1,Global Equities,ETFs,11253,0,0,2
+30076,ARCA,Markets,Primary,1,Global Equities,ETFs,11260,0,0,3
+30083,BATS,Markets,Primary,1,Global Equities,ETFs,11267,0,0,4
+30090,Fixed Income,Asset Class Focus,Secondary,2,Global Equities,ETFs,0,0,0,1
+30097,Equity,Asset Class Focus,Secondary,2,Global Equities,ETFs,0,0,0,2
+30104,Commodities,Asset Class Focus,Secondary,2,Global Equities,ETFs,0,0,0,3
+30111,Miscellaneous,Asset Class Focus,Secondary,2,Global Equities,ETFs,0,0,0,4
+30118,Alternative,Asset Class Focus,Secondary,2,Global Equities,ETFs,0,0,0,5
+30125,US Fund Intermediate Core Bond,Category,Secondary,3,Global Equities,ETFs,0,0,0,1
+30132,US Fund Large Blend,Category,Secondary,3,Global Equities,ETFs,0,0,0,2
+30139,US Fund Large Growth,Category,Secondary,3,Global Equities,ETFs,0,0,0,3
+30146,US Fund Large Value,Category,Secondary,3,Global Equities,ETFs,0,0,0,4
+30153,US Fund Diversified Emerging Mkts,Category,Secondary,3,Global Equities,ETFs,0,0,0,5
+30160,US Fund Commodities Focused,Category,Secondary,3,Global Equities,ETFs,0,0,0,6
+30167,US Fund Technology,Category,Secondary,3,Global Equities,ETFs,0,0,0,7
+30174,US Fund Real Estate,Category,Secondary,3,Global Equities,ETFs,0,0,0,8
+30181,US Fund Europe Stock,Category,Secondary,3,Global Equities,ETFs,0,0,0,9
+30188,US Fund Equity Precious Metals,Category,Secondary,3,Global Equities,ETFs,0,0,0,10
+30195,US Fund Equity Energy,Category,Secondary,3,Global Equities,ETFs,0,0,0,11
+30202,US Fund Mid-Cap Growth,Category,Secondary,3,Global Equities,ETFs,0,0,0,12
+30209,US Fund Health,Category,Secondary,3,Global Equities,ETFs,0,0,0,13
+30216,US Fund Financial,Category,Secondary,3,Global Equities,ETFs,0,0,0,14
+30223,US Fund Global Large-Stock Blend,Category,Secondary,3,Global Equities,ETFs,0,0,0,15
+30230,US Fund Utilities,Category,Secondary,3,Global Equities,ETFs,0,0,0,16
+30237,US Fund Industrials,Category,Secondary,3,Global Equities,ETFs,0,0,0,17
+30244,US Fund Japan Stock,Category,Secondary,3,Global Equities,ETFs,0,0,0,18
+30251,US Fund Energy Limited Partnership,Category,Secondary,3,Global Equities,ETFs,0,0,0,19
+30258,US Fund China Region,Category,Secondary,3,Global Equities,ETFs,0,0,0,20
+30265,US Fund India Equity,Category,Secondary,3,Global Equities,ETFs,0,0,0,21
+30272,US Fund Miscellaneous Sector,Category,Secondary,3,Global Equities,ETFs,0,0,0,22
+30279,US Fund Commodities Broad Basket,Category,Secondary,3,Global Equities,ETFs,0,0,0,23
+30286,US Fund Infrastructure,Category,Secondary,3,Global Equities,ETFs,0,0,0,24
+30293,US Fund Natural Resources,Category,Secondary,3,Global Equities,ETFs,0,0,0,25
+30300,US Fund Miscellaneous Region,Category,Secondary,3,Global Equities,ETFs,0,0,0,26
+30307,US Fund Pacific/Asia ex-Japan Stk,Category,Secondary,3,Global Equities,ETFs,0,0,0,27
+30314,US Fund Trading--Leveraged Commodities,Category,Secondary,3,Global Equities,ETFs,0,0,0,28
+30321,US Fund Small Growth,Category,Secondary,3,Global Equities,ETFs,0,0,0,29
+30328,US Fund Digital Assets,Category,Secondary,3,Global Equities,ETFs,0,0,0,30
+30335,US Fund Trading--Leveraged Equity,Category,Secondary,3,Global Equities,ETFs,0,0,0,31
+30342,US Fund Foreign Large Growth,Category,Secondary,3,Global Equities,ETFs,0,0,0,32
+30349,US Fund Trading--Miscellaneous,Category,Secondary,3,Global Equities,ETFs,0,0,0,33
+30356,US Fund Global Large-Stock Growth,Category,Secondary,3,Global Equities,ETFs,0,0,0,34
+30363,US Fund Communications,Category,Secondary,3,Global Equities,ETFs,0,0,0,35
+30370,US Fund Mid-Cap Blend,Category,Secondary,3,Global Equities,ETFs,0,0,0,36
+30377,US Fund Foreign Large Blend,Category,Secondary,3,Global Equities,ETFs,0,0,0,37
+30384,US Fund Options Trading,Category,Secondary,3,Global Equities,ETFs,0,0,0,38
+30391,US Fund Long-Short Equity,Category,Secondary,3,Global Equities,ETFs,0,0,0,39
+30398,US Fund Multisector Bond,Category,Secondary,3,Global Equities,ETFs,0,0,0,40
+30405,US Fund Ultrashort Bond,Category,Secondary,3,Global Equities,ETFs,0,0,0,41
+30412,Vanguard,Manager,Secondary,4,Global Equities,ETFs,0,0,0,1
+30419,SPDR State Street Global Advisors,Manager,Secondary,4,Global Equities,ETFs,0,0,0,2
+30426,Invesco,Manager,Secondary,4,Global Equities,ETFs,0,0,0,3
+30433,VanEck,Manager,Secondary,4,Global Equities,ETFs,0,0,0,4
+30440,iShares,Manager,Secondary,4,Global Equities,ETFs,0,0,0,5
+30447,ARK ETF Trust,Manager,Secondary,4,Global Equities,ETFs,0,0,0,6
+30454,JPMorgan,Manager,Secondary,4,Global Equities,ETFs,0,0,0,7
+30461,ALPS,Manager,Secondary,4,Global Equities,ETFs,0,0,0,8
+30468,First Trust Advisors L.P.,Manager,Secondary,4,Global Equities,ETFs,0,0,0,9
+30475,KraneShares,Manager,Secondary,4,Global Equities,ETFs,0,0,0,10
+30482,Global X Funds,Manager,Secondary,4,Global Equities,ETFs,0,0,0,11
+30489,WisdomTree,Manager,Secondary,4,Global Equities,ETFs,0,0,0,12
+30496,USCF Investments,Manager,Secondary,4,Global Equities,ETFs,0,0,0,13
+30503,Xtrackers,Manager,Secondary,4,Global Equities,ETFs,0,0,0,14
+30510,ProShares,Manager,Secondary,4,Global Equities,ETFs,0,0,0,15
+30517,Aberdeen Standard Investments,Manager,Secondary,4,Global Equities,ETFs,0,0,0,16
+30524,Avantis Investors,Manager,Secondary,4,Global Equities,ETFs,0,0,0,17
+30531,Graniteshares,Manager,Secondary,4,Global Equities,ETFs,0,0,0,18
+30538,Dimensional Fund Advisors,Manager,Secondary,4,Global Equities,ETFs,0,0,0,19
+30545,Amplify ETFs,Manager,Secondary,4,Global Equities,ETFs,0,0,0,20
+30552,Direxion Funds,Manager,Secondary,4,Global Equities,ETFs,0,0,0,21
+30559,EMQQ,Manager,Secondary,4,Global Equities,ETFs,0,0,0,22
+30566,Teucrium,Manager,Secondary,4,Global Equities,ETFs,0,0,0,23
+30573,Virtus,Manager,Secondary,4,Global Equities,ETFs,0,0,0,24
+30580,Barclays,Manager,Secondary,4,Global Equities,ETFs,0,0,0,25
+30587,Alpha Architect,Manager,Secondary,4,Global Equities,ETFs,0,0,0,26
+30594,Flexshares Trust,Manager,Secondary,4,Global Equities,ETFs,0,0,0,27
+30601,ETFMG,Manager,Secondary,4,Global Equities,ETFs,0,0,0,28
+30608,Nuveen,Manager,Secondary,4,Global Equities,ETFs,0,0,0,29
+30615,SRN Advisors,Manager,Secondary,4,Global Equities,ETFs,0,0,0,30
+30622,APTUS ETFs,Manager,Secondary,4,Global Equities,ETFs,0,0,0,31
+30629,Innovator ETFs,Manager,Secondary,4,Global Equities,ETFs,0,0,0,32
+30636,Exponential ETFs,Manager,Secondary,4,Global Equities,ETFs,0,0,0,33
+30643,Anfield,Manager,Secondary,4,Global Equities,ETFs,0,0,0,34
+30650,Regents Park Funds,Manager,Secondary,4,Global Equities,ETFs,0,0,0,35
+30657,ArrowShares,Manager,Secondary,4,Global Equities,ETFs,0,0,0,36
+30664,S&P 500,Markets,Primary,1,Global Equities,S&P 500,11134,1,0,1
+30671,Basic Materials,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,1
+30678,Communication Services,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,2
+30685,Consumer Cyclical,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,3
+30692,Consumer Defensive,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,4
+30699,Energy,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,5
+30706,Financial Services,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,6
+30713,Healthcare,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,7
+30720,Industrials,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,8
+30727,Real Estate,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,9
+30734,Technology,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,10
+30741,Utilities,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,11
+30748,Others,Sectors,Secondary,2,Global Equities,S&P 500,0,0,0,12
+30755,NASDAQ,Markets,Primary,1,Global Equities,NASDAQ,11127,1,0,1
+30762,Basic Materials,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,1
+30769,Communication Services,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,2
+30776,Consumer Cyclical,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,3
+30783,Consumer Defensive,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,4
+30790,Energy,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,5
+30797,Financial Services,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,6
+30804,Healthcare,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,7
+30811,Industrials,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,8
+30818,Real Estate,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,9
+30825,Technology,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,10
+30832,Utilities,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,11
+30839,Others,Sectors,Secondary,2,Global Equities,NASDAQ,0,0,0,12
+30846,Hong Kong,Markets,Primary,1,Global Equities,Hong Kong,11106,1,0,1
+30853,Basic Materials,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,1
+30860,Communication Services,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,2
+30867,Consumer Cyclical,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,3
+30874,Consumer Defensive,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,4
+30881,Energy,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,5
+30888,Financial Services,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,6
+30895,Healthcare,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,7
+30902,Industrials,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,8
+30909,Real Estate,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,9
+30916,Technology,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,10
+30923,Utilities,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,11
+30930,Others,Sectors,Secondary,2,Global Equities,Hong Kong,0,0,0,12
+30937,SET50 Futures,Markets,Primary,1,Derivatives,S50 Futures,1032,1,0,1
+30944,SET50 Options,Markets,Primary,1,Derivatives,S50 Options,1067,1,0,1
+30951,Call Only,Call/Put,Secondary,4,Derivatives,S50 Options,0,0,0,1
+30958,Put Only,Call/Put,Secondary,4,Derivatives,S50 Options,0,0,0,2
+30965,Sector Index Futures,Markets,Primary,1,Derivatives,Sectors,1039,1,0,1
+30972,Single Stock Futures,Markets,Primary,1,Derivatives,Stocks,1046,1,0,1
+30979,Precious Metal Futures,Markets,Primary,1,Derivatives,Metals,1053,1,0,1
+30986,Currency Futures,Markets,Primary,1,Derivatives,Currency,1060,1,0,1
+30993,Most Active,Trending,Primary,1,Funds,Discover,11064,1,0,1
+31000,New Funds,Trending,Primary,1,Funds,Discover,11071,0,0,2
+31007,Technology,Themes,Primary,2,Funds,Discover,11085,0,0,1
+31014,Dividends,Themes,Primary,2,Funds,Discover,11008,0,0,2
+31021,Emerging Markets,Themes,Primary,2,Funds,Discover,11015,0,0,3
+31028,Infrastructure,Themes,Primary,2,Funds,Discover,11043,0,0,4
+31035,Healthcare,Themes,Primary,2,Funds,Discover,11029,0,0,5
+31042,Index,Themes,Primary,2,Funds,Discover,11036,0,0,6
+31049,Energy,Themes,Primary,2,Funds,Discover,11022,0,0,7
+31056,MFC,Featured Managers,Primary,3,Funds,Discover,11057,0,0,1
+31063,SCBAM,Featured Managers,Primary,3,Funds,Discover,11078,0,0,2
+31070,KASSET,Featured Managers,Primary,3,Funds,Discover,11050,0,0,3
+31077,All,Fund Type,Primary,4,Funds,Categories,10210,1,0,1
+31084,Money Market,Fund Type,Primary,4,Funds,Categories,10119,0,0,2
+31091,Fixed Income,Fund Type,Primary,4,Funds,Categories,10126,0,0,3
+31098,Global Fixed Income,Fund Type,Primary,4,Funds,Categories,10133,0,0,4
+31105,Thailand Equity,Fund Type,Primary,4,Funds,Categories,10140,0,0,5
+31112,Global Equity (Emerging),Fund Type,Primary,4,Funds,Categories,10147,0,0,6
+31119,Global Equity (Developed),Fund Type,Primary,4,Funds,Categories,10154,0,0,7
+31126,Allocation,Fund Type,Primary,4,Funds,Categories,10161,0,0,8
+31133,REITs,Fund Type,Primary,4,Funds,Categories,10168,0,0,9
+31140,Commodity,Fund Type,Primary,4,Funds,Categories,10175,0,0,10
+31147,Others,Fund Type,Primary,4,Funds,Categories,10182,0,0,11
+31154,RMF,Tax Saving,Secondary,5,Funds,Categories,0,0,0,1
+31161,SSF,Tax Saving,Secondary,5,Funds,Categories,0,0,0,2
+31168,ABERDEEN,Fund House,Secondary,6,Funds,Categories,0,0,0,1
+31175,ASSETFUND,Fund House,Secondary,6,Funds,Categories,0,0,0,2
+31182,DAOLINV,Fund House,Secondary,6,Funds,Categories,0,0,0,3
+31189,EASTSPRING,Fund House,Secondary,6,Funds,Categories,0,0,0,4
+31196,KASSET,Fund House,Secondary,6,Funds,Categories,0,0,0,5
+31203,KKAPM,Fund House,Secondary,6,Funds,Categories,0,0,0,6
+31210,KSAM,Fund House,Secondary,6,Funds,Categories,0,0,0,7
+31217,KTAM,Fund House,Secondary,6,Funds,Categories,0,0,0,8
+31224,LHFUND,Fund House,Secondary,6,Funds,Categories,0,0,0,9
+31231,MFC,Fund House,Secondary,6,Funds,Categories,0,0,0,10
+31238,ONEAM,Fund House,Secondary,6,Funds,Categories,0,0,0,11
+31245,PAMC,Fund House,Secondary,6,Funds,Categories,0,0,0,12
+31252,PRINCIPAL,Fund House,Secondary,6,Funds,Categories,0,0,0,13
+31259,TALISAM,Fund House,Secondary,6,Funds,Categories,0,0,0,14
+31266,UOBAM,Fund House,Secondary,6,Funds,Categories,0,0,0,15
+31273,XSpringAM,Fund House,Secondary,6,Funds,Categories,0,0,0,16
+31280,Level 1,Risk Level,Secondary,7,Funds,Categories,0,0,0,1
+31287,Level 2,Risk Level,Secondary,7,Funds,Categories,0,0,0,2
+31294,Level 3,Risk Level,Secondary,7,Funds,Categories,0,0,0,3
+31301,Level 4,Risk Level,Secondary,7,Funds,Categories,0,0,0,4
+31308,Level 5,Risk Level,Secondary,7,Funds,Categories,0,0,0,5
+31315,Level 6,Risk Level,Secondary,7,Funds,Categories,0,0,0,6
+31322,Level 7,Risk Level,Secondary,7,Funds,Categories,0,0,0,7
+31329,Level 8,Risk Level,Secondary,7,Funds,Categories,0,0,0,8
+31336,No,Dividend,Secondary,8,Funds,Categories,0,0,0,1
+31343,Dividended,Dividend,Secondary,8,Funds,Categories,0,0,0,2
+31350,Major Markets,Markets,Primary,1,Indices,Major Markets,11239,1,0,1
+31357,Thailand,Markets,Primary,1,Indices,Thailand,11246,1,0,1
+31364,Asia-Pacific,Markets,Primary,1,Indices,Asia-Pacific,11225,1,0,1
+31371,Americas,Markets,Primary,1,Indices,Americas,11218,1,0,1
+31378,Europe,Markets,Primary,1,Indices,Europe,11232,1,0,1
+31385,Currencies,Markets,Primary,1,Currencies,,11001,1,0,1
+31392,Commodities,Markets,Primary,1,Commodities,,10994,1,0,1

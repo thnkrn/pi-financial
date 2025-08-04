@@ -1,0 +1,92 @@
+[
+  {
+    "white_list_id": 1,
+    "ge_instrument_id": 1,
+    "symbol": "AAPL",
+    "exchange": "NASDAQ",
+    "mic": "XNAS",
+    "standard_ticker": "AAPL",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 2,
+    "ge_instrument_id": 2,
+    "symbol": "GOOGL",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "standard_ticker": "GOOGL",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 3,
+    "ge_instrument_id": 3,
+    "symbol": "AMZN",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "standard_ticker": "AMZN",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 4,
+    "ge_instrument_id": 4,
+    "symbol": "MSFT",
+    "exchange": "NASDAQ",
+    "mic": "XNAS",
+    "standard_ticker": "MSFT",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 5,
+    "ge_instrument_id": 5,
+    "symbol": "FB",
+    "exchange": "NASDAQ",
+    "mic": "XNAS",
+    "standard_ticker": "FB",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 6,
+    "ge_instrument_id": 6,
+    "symbol": "TSLA",
+    "exchange": "NASDAQ",
+    "mic": "XNAS",
+    "standard_ticker": "TSLA",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 7,
+    "ge_instrument_id": 7,
+    "symbol": "BRK.B",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "standard_ticker": "BRK.B",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 8,
+    "ge_instrument_id": 8,
+    "symbol": "V",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "standard_ticker": "V",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 9,
+    "ge_instrument_id": 9,
+    "symbol": "JNJ",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "standard_ticker": "JNJ",
+    "is_whitelist": true
+  },
+  {
+    "white_list_id": 10,
+    "ge_instrument_id": 10,
+    "symbol": "WMT",
+    "exchange": "NYSE",
+    "mic": "XNYS",
+    "standard_ticker": "WMT",
+    "is_whitelist": true
+  }
+]

@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Pi.SetService.Application</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugSymbols>true</DebugSymbols>
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Remove="Services\"/>
+        <None Remove="Commands\"/>
+        <None Remove="Services\Models\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Services\FileStorageService\" />
+        <Folder Include="Services\Models\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MassTransit" Version="8.2.3"/>
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.2.3" />
+        <PackageReference Include="MassTransit.Analyzers" Version="8.2.3">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
+        <PackageReference Include="Pi.Common" Version="1.0.115"/>
+        <PackageReference Include="Pi.OnePort.IntegrationEvents" Version="1.0.4" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.Client.PiInternal\Pi.Client.PiInternal.csproj" />
+        <ProjectReference Include="..\Pi.SetService.Domain\Pi.SetService.Domain.csproj"/>
+        <ProjectReference Include="..\Pi.SetService.IntegrationEvents\Pi.SetService.IntegrationEvents.csproj"/>
+    </ItemGroup>
+</Project>

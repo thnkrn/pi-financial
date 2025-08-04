@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignalR Client (Kong)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+    <style>
+        #messageList {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>SignalR Client (Kong)</h1>
+    <div id="messageList"></div>
+
+    <script>
+        async function startSignalRConnection() {
+            const connection = new signalR.HubConnectionBuilder()
+                .withUrl("http://localhost:8000/stockMarketDataHub")
+                .configureLogging(signalR.LogLevel.Information)
+                .build();
+
+            connection.onclose(async () => {
+                await startSignalRConnection();
+            });
+
+            try {
+                await connection.start();
+                console.log("Connected to the SignalR hub.");
+                await subscribeToStockMarketData();
+            } catch (err) {
+                console.error("Error connecting to the SignalR hub:", err);
+                setTimeout(() => startSignalRConnection(), 5000); // Retry connection
+            }
+
+            connection.on("ReceiveStockMarketData", (message) => {
+                console.log("Received stock market data:", message);
+                displayMessage(message);
+            });
+
+            async function subscribeToStockMarketData() {
+                try {
+                    await connection.invoke("SubscribeToStockMarketData");
+                } catch (err) {
+                    console.error("Error subscribing to stock market data:", err);
+                }
+            }
+        }
+
+        function displayMessage(message) {
+            const messageList = document.getElementById("messageList");
+            const messageElement = document.createElement("div");
+            messageElement.textContent = message;
+            messageList.appendChild(messageElement);
+            messageList.scrollTop = messageList.scrollHeight; // Scroll to the bottom
+        }
+
+        startSignalRConnection(); // Initiate the connection process
+    </script>
+</body>
+
+</html>

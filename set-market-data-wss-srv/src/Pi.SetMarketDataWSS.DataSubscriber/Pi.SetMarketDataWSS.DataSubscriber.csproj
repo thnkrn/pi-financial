@@ -1,0 +1,73 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>f437caf7-d339-4666-8080-fdeced2d8770</UserSecretsId>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;nullable</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="EFCore.NamingConventions" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0"/>
+        <PackageReference Include="MassTransit" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.Analyzers" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
+        <PackageReference Include="Pi.Common" Version="1.0.73"/>
+        <PackageReference Include="Pi.Common.Serilog" Version="1.0.73"/>
+        <PackageReference Include="pi.common.startup" Version="1.0.73"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0-silver.1"/>
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="MassTransit"/>
+        <None Remove="MassTransit.EntityFrameworkCore"/>
+        <None Remove="MassTransit.AmazonSQS"/>
+        <None Remove="MassTransit.Analyzers"/>
+        <None Remove="MassTransit.RabbitMQ"/>
+        <None Remove="Microsoft.Extensions.Http"/>
+        <None Remove="Serilog.Extensions.Hosting"/>
+        <None Remove="Serilog.Sinks.Console"/>
+        <None Remove="Serilog.Settings.Configuration"/>
+        <None Remove="Serilog.Sinks.Seq"/>
+        <None Remove="Pomelo.EntityFrameworkCore.MySql"/>
+        <None Remove="Startup\"/>
+        <None Remove="Microsoft.EntityFrameworkCore.Design"/>
+        <None Remove="Amazon.Extensions.Configuration.SystemsManager"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Helpers\" />
+        <Folder Include="Startup\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.SetMarketDataWSS.Application\Pi.SetMarketDataWSS.Application.csproj">
+            <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.SetMarketDataWSS.Domain\Pi.SetMarketDataWSS.Domain.csproj">
+            <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.SetMarketDataWSS.Infrastructure\Pi.SetMarketDataWSS.Infrastructure.csproj">
+            <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+        </ProjectReference>
+    </ItemGroup>
+</Project>
