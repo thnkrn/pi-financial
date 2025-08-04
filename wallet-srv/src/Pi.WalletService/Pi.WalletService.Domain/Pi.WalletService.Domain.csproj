@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>Pi.WalletService.Domain</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.0.15" />
+    <PackageReference Include="Pi.Common" Version="1.0.86" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="AggregatesModel\OnlineDirectDebitRegistrationAggregate\" />
+    <None Remove="Pi.Common" />
+    <None Remove="Exceptions\" />
+    <None Remove="AggregatesModel\WithdrawAggregate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AggregatesModel\OnlineDirectDebitRegistrationAggregate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.WalletService.IntegrationEvents\Pi.WalletService.IntegrationEvents.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,60 @@
+{
+    "branches": ["master", "main"],
+    "plugins": [
+        [
+            "@semantic-release/commit-analyzer",
+            {
+                "preset": "conventionalcommits",
+                "presetConfig": {
+                },
+                "releaseRules": [
+                    {"type": "feat", "release": "minor"},
+                    {"type": "fix", "release": "patch"},
+                    {"type": "chore", "release": "patch"},
+                    {"type": "docs", "release": "patch"},
+                    {"type": "style", "release": "patch"},
+                    {"type": "refactor", "release": "patch"},
+                    {"type": "perf", "release": "patch"},
+                    {"type": "test", "release": "patch"}
+                ]
+            }
+        ],
+        [
+            "@semantic-release/release-notes-generator",
+            {
+                "preset": "conventionalcommits",
+                "presetConfig": {
+                    "types": [
+                        {"type": "feat", "section": "Features"},
+                        {"type": "fix", "section": "Bug Fixes"},
+                        {"type": "chore", "section": "Routines", "hidden": false},
+                        {"type": "docs", "section": "Document", "hidden": false},
+                        {"type": "style", "section": "Style", "hidden": false},
+                        {"type": "refactor", "section": "Refactor", "hidden": false},
+                        {"type": "perf", "section": "Performance", "hidden": false},
+                        {"type": "test", "section": "Test", "hidden": false}
+                    ]
+                }
+            }
+        ],
+        [
+            "@semantic-release/github",
+                {
+                    "successComment": false,
+                    "failComment": false, 
+                    "labels": false, 
+                    "releasedLabels": false 
+                }
+        ],
+        "@semantic-release/changelog",
+        [
+            "semantic-release-ms-teams",
+            {
+                "webhookUrl": "https://countrygroupth.webhook.office.com/webhookb2/a88b2f4a-4b2a-4c73-aa93-fff43bd346bf@bfddd0fc-7ea7-4d70-adab-75e7bc3bb64a/IncomingWebhook/a9d38866786c4815b2934c53a8651cfe/f655b4e3-1c18-49b6-84c1-6215f10aa88d",
+                "title": "Hooray!!, A new version has been released",
+                "showContributors": true,
+                "notifyInDryRun": true
+            }
+        ]
+    ]
+}

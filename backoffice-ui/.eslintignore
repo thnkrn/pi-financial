@@ -1,0 +1,7 @@
+/.husky
+
+src/@core/*
+src/iconify-bundle/*
+src/layouts/*
+
+src/lib/*

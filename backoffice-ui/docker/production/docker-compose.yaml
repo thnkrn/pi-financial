@@ -1,0 +1,10 @@
+services:
+  backoffice-ui:
+    build:
+      context: ../../
+      dockerfile: docker/production/Dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+    image: backoffice-ui

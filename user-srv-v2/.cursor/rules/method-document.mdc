@@ -1,0 +1,32 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+Please add method documents link this in services
+
+// CreateUserInfo creates a new user.
+//
+// Parameters:
+//   - ctx: Context for request cancellation and tracing
+//   - req: Contains user info data
+//
+// Returns:
+//   - *dto.CreateUserInfoResponse: Contains the newly created user's ID
+//   - error: Error if creation fails (e.g., duplicate email, citizen ID, or phone number)
+//
+// Implementation:
+//  1. Calls UserInfoRepo.FindByEmail to check if the email already exists; returns error if found.
+//  2. Calls UserInfoRepo.FindByCitizenId to check if the citizen ID already exists; returns error if found.
+//  3. Calls UserInfoRepo.FindByPhoneNumber to check if the phone number already exists; returns error if found.
+//  4. Constructs a new domain.UserInfo object with normalized and formatted fields.
+//  5. Calls UserInfoRepo.Create.
+//  6. Returns the new user's ID on success.
+//
+// Error cases:
+//   - Returns constants.ErrEmailAlreadyExists if the email is already registered
+//   - Returns constants.ErrCitizenIdAlreadyExists if the citizen ID is already registered
+//   - Returns constants.ErrPhoneNumberAlreadyExists if the phone number is already registered
+//   - Returns error if database operation fails
+//
+// Notes: This method is idempotent. Calling it multiple times with the same data will not create duplicate users.

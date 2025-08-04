@@ -1,0 +1,107 @@
+{
+  "deposit-menu": {
+    "defaultValue": true
+  },
+  "withdraw-menu": {
+    "defaultValue": true
+  },
+  "central-workspace-menu": {
+    "defaultValue": true
+  },
+  "report-menu": {
+    "defaultValue": true
+  },
+  "report-auto-menu": {
+    "defaultValue": true
+  },
+  "report-on-demand-menu": {
+    "defaultValue": true
+  },
+  "report-pi-app-dw-daily-menu": {
+    "defaultValue": true
+  },
+  "blocktrade-menu": {
+    "defaultValue": true
+  },
+  "home-menu": {
+    "defaultValue": true
+  },
+  "document-portal-menu": {
+    "defaultValue": true
+  },
+  "application-summary-menu": {
+    "defaultValue": true
+  },
+  "deposit-ge-menu": {
+    "defaultValue": true
+  },
+  "deposit-non-ge-menu": {
+    "defaultValue": true
+  },
+  "withdraw-ge-menu": {
+    "defaultValue": true
+  },
+  "withdraw-non-ge-menu": {
+    "defaultValue": true
+  },
+  "blocktrade-dashboard-menu": {
+    "defaultValue": true
+  },
+  "blocktrade-calculator-menu": {
+    "defaultValue": true
+  },
+  "deposit-settrade-menu": {
+    "defaultValue": true
+  },
+  "blocktrade-allocation-menu": {
+    "defaultValue": true
+  },
+  "ocr-portal-menu": {
+    "defaultValue": true
+  },
+  "datadog-rum": {
+    "defaultValue": false
+  },
+  "ats-registration-report-menu": {
+    "defaultValue": true
+  },
+  "ats-registration-portal-menu": {
+    "defaultValue": true
+  },
+  "ats-registration-menu": {
+    "defaultValue": true
+  },
+  "sbl-menu": {
+    "defaultValue": true
+  },
+  "sbl-dashboard-menu": {
+    "defaultValue": true
+  },
+  "sbl-workspace-menu": {
+    "defaultValue": true
+  },
+  "sso-link-account": {
+    "defaultValue": true
+  },
+  "sso-account-management": {
+    "defaultValue": true
+  },
+  "curated-list-manager-menu": {
+    "defaultValue": true
+  },
+  "curated-list-manager-list-menu": {
+    "defaultValue": true
+  },
+  "curated-list-manager-filters-menu": {
+    "defaultValue": true
+  },
+  "customer-information-information-update-menu": {
+    "defaultValue": true
+  },
+  "customer-information-request-management-menu": {
+    "defaultValue": true
+  },
+  "cme-menu": {
+    "defaultValue": true
+  }
+}

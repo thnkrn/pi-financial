@@ -1,0 +1,8 @@
+{
+  "apiName": "CgsBank",
+  "targetFramework": "net6.0",
+  "netCoreProjectFile": true,
+  "sourceFolder": "/",
+  "packageName": "Pi.Client.CgsBank",
+  "library": "httpclient"
+}

@@ -1,0 +1,257 @@
+openapi: 3.0.0
+info:
+  title: Exante Trade
+  version: 1.0.0
+servers:
+  - url: https://api-demo.exante.eu
+paths:
+  /md/3.0/crossrates/{from}/{to}:
+    get:
+      description: Get Cross rate
+      tags:
+        - exante trade
+      parameters:
+        - name: from
+          in: path
+          description: From Currency
+          required: true
+          schema: 
+            type: string
+        - name: to
+          in: path
+          description: To Currency
+          required: true
+          schema:
+            type: string
+      responses:
+        200: 
+          description: Success Cross Rate Response
+          content: 
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CrossRateResponse"
+
+  /md/3.0/summary/{id}/{currency}:
+    get:
+      description: Account Summary
+      tags:
+        - exante trade
+      parameters:
+        - name: id
+          in: path
+          description: account id
+          required: true
+          schema:
+            type: string
+        - name: currency
+          in: path
+          description: currency to convert summary
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountSummaryResponse"
+  /trade/3.0/orders/active:
+    get:
+      description: Get list of active trading orders
+      tags:
+        - exante trade
+      parameters:
+        - name: limit
+          in: path
+          description: the limit for max items of the order list
+          schema: 
+            type: number
+        - name: accountId
+          in: path
+          description: the user account list
+          required: true
+          schema: 
+            type: string
+        - name: symbolId
+          in: path
+          description: the instrument identifier
+          schema: 
+            type: string
+      responses:
+        "200":
+          description: Success Response
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/GetActiveOrderResponse"
+      
+components:
+  securitySchemes:
+    JWTAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: header # can be "header", "query" or "cookie"
+      name: Authorization
+  schemas:
+    DefaultResponse:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        response:
+          type: object
+        debugStack:
+          type: string
+    AccountSummaryResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+        currency:
+          type: string
+        sessionDate:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        netAssetValue:
+          type: string
+        freeMoney:
+          type: string
+        moneyUsedForMargin:
+          type: string
+        marginUtilization:
+          type: string
+        currencies:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountSummaryCurrency"
+        positions:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountSummaryPosition"
+    AccountSummaryCurrency:
+      type: object
+      properties:
+        code:
+          type: string
+        value:
+          type: string
+        convertedValue:
+          type: string
+    AccountSummaryPosition:
+      type: object
+      properties:
+        symbolId:
+          type: string
+        symbolType:
+          type: string
+        quantity:
+          type: string
+        currency:
+          type: string
+        price:
+          type: string
+          nullable: true
+        averagePrice:
+          type: string
+          nullable: true
+        pnl:
+          type: string
+          nullable: true
+        convertedPnl:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+        convertedValue:
+          type: string
+          nullable: true
+    CrossRateResponse:
+      type: object
+      properties: 
+        pair:
+          type: string
+        symbolId:
+          type: string
+        rate:
+          type: string
+    GetActiveOrderResponse:
+      type: array
+      items:
+        type: object
+        properties: 
+          orderId:
+            type: string
+          placeTime:
+            type: string
+          currentModificationId:
+            type: string
+          accountId:
+            type: string
+          username:
+            type: string
+          orderState:
+            type: object
+            properties: 
+              status:
+                type: string
+                enum: ['placing', 'working', 'cancelled', 'pending', 'filled', 'rejected']
+              lastUpdate:
+                type: string
+              fills:
+                type: array
+                items:
+                  type: object
+                  properties: 
+                    time:
+                      type: string
+                    timestamp:
+                      type: string
+                    quantity:
+                      type: string
+                    price:
+                      type: string
+                    position:
+                      type: string
+              reason:
+                type: string
+          orderParameters:
+            type: object
+            properties: 
+              side:
+                type: string
+                enum: ['buy', 'sell']
+              quantity:
+                type: string
+              ocoGroup:
+                type: string
+              ifDoneParentId:
+                type: string
+              duration:
+                type: string
+              orderType:
+                type: string
+                enum: ['market', 'limit', 'stop', 'stop_limit', 'twap', 'trailing_stop', 'iceberg']
+              stopPrice:
+                type: string
+              limitPrice:
+                type: string
+              partQuantity:
+                type: string
+              placeInterval:
+                type: integer
+                format: int64
+              priceDistance:
+                type: string
+              gttExpiration:
+                type: string
+              instrument:
+                type: string
+              symbolId:
+                type: string
+
+security:
+  - JWTAuth: []

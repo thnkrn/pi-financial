@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Pi.WalletService.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

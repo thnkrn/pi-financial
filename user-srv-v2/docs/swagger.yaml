@@ -1,0 +1,2762 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Contain Generic Information.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Pi User Service V2
+  version: "1.0"
+paths:
+  /internal/v1/address:
+    get:
+      description: Get address by user id or create if not exists
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.Address'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get address by user id or create if not exists
+      tags:
+      - address
+    post:
+      description: Create or update address by user id
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.Address'
+        description: Address request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create or update address by user id
+      tags:
+      - address
+  /internal/v1/bank-account:
+    post:
+      description: Create a bank account for a user
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.BankAccountRequest'
+        description: BankAccountRequest request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create a bank account for a user
+      tags:
+      - bank-account
+  /internal/v1/bank-account/deposit-withdraw:
+    get:
+      description: Get bank account details for deposit or withdrawal purposes
+      parameters:
+      - description: Account ID
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+      - description: Purpose (deposit/withdrawal)
+        in: query
+        name: purpose
+        required: true
+        schema:
+          type: string
+      - description: Product
+        in: query
+        name: product
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.DepositWithdrawBankAccountResponse'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get bank account for deposit/withdraw (currently used by the app, but
+        will be deprecated soon in favor of /internal/v2/bank-account/deposit-withdraw)
+      tags:
+      - bank-account
+  /internal/v1/bank-accounts:
+    get:
+      description: Get all bank accounts for a user
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.BankAccountResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get all bank accounts for a user
+      tags:
+      - bank-account
+  /internal/v1/change-requests:
+    get:
+      description: Get a change request for user info.
+      parameters:
+      - in: query
+        name: date
+        schema:
+          type: string
+      - in: query
+        name: infoType
+        schema:
+          enum:
+          - ContactInfo
+          - IdCardInfo
+          - IdCardAddressInfo
+          - Signature
+          - CurrentAddress
+          - WorkplaceAddress
+          - Occupation
+          - IncomeSourceAndInvestmentPurpose
+          - Declaration
+          - SuitabilityTestResult
+          - BankAccountInfo
+          type: string
+        x-enum-varnames:
+        - ContactInfo
+        - IdCardInfo
+        - IdCardAddressInfo
+        - Signature
+        - CurrentAddress
+        - WorkplaceAddress
+        - Occupation
+        - IncomeSourceAndInvestmentPurpose
+        - Declaration
+        - SuitabilityTestResult
+        - BankAccountInfo
+      - in: query
+        name: limit
+        schema:
+          maximum: 20
+          minimum: 1
+          type: integer
+      - in: query
+        name: page
+        schema:
+          minimum: 1
+          type: integer
+      - in: query
+        name: status
+        schema:
+          enum:
+          - Pending
+          - Cancelled
+          - Approved
+          - Rejected
+          type: string
+        x-enum-varnames:
+        - PendingStatus
+        - CancelledStatus
+        - ApprovedStatus
+        - RejectedStatus
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.GetChangeRequestResponse'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get a change request for user info
+      tags:
+      - change-request
+    post:
+      description: Create a change request for user info. If all fields have no change,
+        returns 400.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateChangeRequireInfoRequest'
+        description: Change Request
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create a change request for user info
+      tags:
+      - change-request
+  /internal/v1/change-requests/{changeRequestId}:
+    get:
+      description: Get a change request by id
+      parameters:
+      - description: Change request id
+        in: path
+        name: changeRequestId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.GetChangeRequestByIdResponse'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get a change request by id
+      tags:
+      - change-request
+  /internal/v1/change-requests/{changeRequestId}/action:
+    get:
+      description: Get audit log by change request id
+      parameters:
+      - description: Change request id
+        in: path
+        name: changeRequestId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: action
+        schema:
+          enum:
+          - Create
+          - Approve
+          - Reject
+          - Cancel
+          type: string
+        x-enum-varnames:
+        - CreateAction
+        - ApproveAction
+        - RejectAction
+        - CancelAction
+      - in: query
+        name: date
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.GetChangeRequestActionResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get audit log by change request id
+      tags:
+      - change-request
+    post:
+      description: Insert a change request action.
+      parameters:
+      - description: Change request id
+        in: path
+        name: changeRequestId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.AuditAction'
+        description: Change request action
+        required: true
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Insert a change request action.
+      tags:
+      - change-request
+  /internal/v1/debug/hash:
+    post:
+      description: Convert input string to hash value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.HashRequest'
+        description: String to hash
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.HashResponse'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get hash of input string
+      tags:
+      - debug
+  /internal/v1/debug/try-feature-service:
+    get:
+      description: Try feature service
+      parameters:
+      - description: Feature Switch Name
+        in: query
+        name: featureSwitchName
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      type: boolean
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Try feature service
+      tags:
+      - debug
+  /internal/v1/debug/try-feature-service/with-headers:
+    get:
+      description: Try feature service with headers
+      parameters:
+      - description: Feature Switch Name
+        in: query
+        name: featureSwitchName
+        required: true
+        schema:
+          type: string
+      - description: User ID
+        in: header
+        name: user-id
+        schema:
+          type: string
+      - description: Device ID
+        in: header
+        name: deviceId
+        schema:
+          type: string
+      - description: Random
+        in: header
+        name: random
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      type: boolean
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Try feature service with headers
+      tags:
+      - debug
+  /internal/v1/external-account:
+    post:
+      description: Create or update external account for user.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateExternalAccountRequest'
+        description: Create External Account Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Create or update external account for user.
+      tags:
+      - external-account
+  /internal/v1/kycs:
+    get:
+      description: Get KYC for user or create if not exists.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.GetKycByUserIdResponse'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get KYC for user or create if not exists.
+      tags:
+      - kyc
+    post:
+      description: Create or update KYC for user.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateKycRequest'
+        description: KYC request
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create or update KYC for user.
+      tags:
+      - kyc
+  /internal/v1/suitability-test:
+    post:
+      description: Create new suitability test for user.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.SuitabilityTestRequest'
+        description: Suitability Test Create Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create new suitability test for user.
+      tags:
+      - suitability-test
+  /internal/v1/suitability-tests:
+    get:
+      description: Get all suitability tests for user or create if not exists.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.SuitabilityTestResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get all suitability tests for user or create if not exists.
+      tags:
+      - suitability-test
+  /internal/v1/trading-accounts:
+    get:
+      description: Get all trading accounts for a user
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      - description: N for normal, C for closed
+        in: query
+        name: status
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.TradeAccountResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get all trading accounts for a user
+      tags:
+      - trading-account
+  /internal/v1/trading-accounts/{customerCode}:
+    post:
+      description: Create or update trading account for a customer.
+      parameters:
+      - description: Customer code
+        in: path
+        name: customerCode
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/dto.CreateTradingAccountRequest'
+              type: array
+        description: Create trading account request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      type: object
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create or update trading account for a customer.
+      tags:
+      - trading-account
+  /internal/v1/trading-accounts/marketing-infos:
+    get:
+      description: Get trading accounts with marketing information from a list of
+        customer codes.
+      parameters:
+      - description: Customer Codes
+        in: query
+        name: customerCodes
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.TradingAccountsMarketingInfo'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get trading accounts with marketing information from a list of customer
+        codes.
+      tags:
+      - trading-account
+  /internal/v1/user-account:
+    post:
+      description: Link (upsert) user account id with user id for a user account type.
+        User account id can be either customer code or cash wallet id.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.LinkUserAccountRequest'
+        description: Link User Account Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      type: object
+                  type: object
+          description: Linked User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Error linking user account
+      summary: Link user account id with user id for a user account type.
+      tags:
+      - user-account
+  /internal/v1/user-accounts:
+    get:
+      description: Get user accounts by filters. User id and citizen id card must
+        exist in user info.
+      parameters:
+      - description: User ID
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: Citizen ID
+        in: query
+        name: citizenId
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.UserAccountResponse'
+                      type: array
+                  type: object
+          description: User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: User account not found
+      summary: Get user accounts by filters.
+      tags:
+      - user-account
+  /internal/v1/user-accounts/customer-info/{accountId}:
+    get:
+      description: Get customer info by account id.
+      parameters:
+      - description: Account ID
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.GetCustomerInfoByAccountIdResponse'
+                  type: object
+          description: Customer Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Customer info not found
+      summary: Get customer info by account id.
+      tags:
+      - user-account
+  /internal/v1/user-accounts/marketing/{marketingId}:
+    get:
+      description: Get user account by marketing id.
+      parameters:
+      - description: Marketing ID
+        in: path
+        name: marketingId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.GetUserAccountByMarketingIdResponse'
+                      type: array
+                  type: object
+          description: User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: User account not found
+      summary: Get user account by marketing id.
+      tags:
+      - user-account
+  /internal/v1/users:
+    get:
+      description: Get user info by filters for multiple users.
+      parameters:
+      - in: query
+        name: accountId
+        schema:
+          type: string
+      - in: query
+        name: citizenId
+        schema:
+          type: string
+      - in: query
+        name: email
+        schema:
+          type: string
+      - in: query
+        name: firstName
+        schema:
+          type: string
+      - in: query
+        name: ids
+        schema:
+          type: string
+      - in: query
+        name: lastName
+        schema:
+          type: string
+      - in: query
+        name: phoneNumber
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.UserInfo'
+                      type: array
+                  type: object
+          description: User Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Get user info by filters for multiple users.
+      tags:
+      - user
+    patch:
+      description: Update some fields for user.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.PatchUserInfoRequest'
+        description: Patch User Info Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Update some fields for user.
+      tags:
+      - user
+    post:
+      description: Create user info with the given details.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateUserInfoRequest'
+        description: Create User Info Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.CreateUserInfoResponse'
+                  type: object
+          description: Create User Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Create user info with the given details.
+      tags:
+      - user
+  /internal/v1/users/{user-id}/sub-users:
+    get:
+      description: Get sub-users associated with auser.
+      parameters:
+      - description: User ID
+        in: path
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        type: string
+                      type: array
+                  type: object
+          description: Sub User IDs
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+      summary: Get sub-users associated with a user.
+      tags:
+      - user
+    post:
+      description: Add sub-user to a user.
+      parameters:
+      - description: User ID
+        in: path
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: Map Sub User Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+      summary: Add sub-user to a user.
+      tags:
+      - user
+  /internal/v1/users/migrate:
+    post:
+      description: Create new user with info from BPM
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.MigrateUserRequest'
+        description: Migrate User Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.MigrateUserResponse'
+                  type: object
+          description: Migrate User
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Create new user with info from BPM
+      tags:
+      - user
+  /internal/v1/users/profile:
+    get:
+      description: Get user profile
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.ProfileInfo'
+                  type: object
+          description: User Profile
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Get user profile
+      tags:
+      - user
+  /internal/v1/users/sync:
+    post:
+      description: Synchronizes user data with external IT services (create and upsert
+        user info).
+      parameters:
+      - description: Customer Code (must be 7 characters long)
+        in: query
+        name: customerCode
+        required: true
+        schema:
+          type: string
+      - description: Sync Type
+        in: query
+        name: syncType
+        required: true
+        schema:
+          enum:
+          - kyc
+          - suitTest
+          - address
+          - tradingAccount
+          - userInfo
+          - all
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Invalid parameters
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Sync error
+      summary: Synchronizes user data with external IT services.
+      tags:
+      - user
+  /internal/v1/watchlists:
+    get:
+      description: Get all watchlists for a user.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      - description: Get watchlist request
+        in: query
+        name: venue
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.Watchlist'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get all watchlists for a user.
+      tags:
+      - watchlist
+  /internal/v2/bank-account/deposit-withdraw:
+    get:
+      description: Get bank accounts details for deposit or withdrawal purposes
+      parameters:
+      - description: Account ID. Must be either customer code (7 digits) or cash wallet
+          id (10 digits).
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+      - description: Purpose (deposit/withdrawal)
+        in: query
+        name: purpose
+        required: true
+        schema:
+          type: string
+      - description: Product. Optional if accountId is cash wallet id.
+        in: query
+        name: product
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.DepositWithdrawBankAccountResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get bank accounts details for deposit or withdrawal purposes
+      tags:
+      - bank-account
+  /secure/v1/trading-accounts:
+    get:
+      description: Get all trading accounts for a user
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      - description: N for normal, C for closed
+        in: query
+        name: status
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.TradeAccountResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get all trading accounts for a user
+      tags:
+      - trading-account
+  /secure/v1/trading-accounts/deposit-withdraw:
+    get:
+      description: Get user's deposit/withdrawal trading accounts.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.DepositWithdrawTradingAccountResponse'
+                      type: array
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get user's deposit/withdrawal trading accounts.
+      tags:
+      - trading-account
+  /secure/v1/user-accounts:
+    get:
+      description: Get user account details by user id.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/dto.UserAccountResponse'
+                      type: array
+                  type: object
+          description: User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: User account not found
+      summary: Get user account details by user id.
+      tags:
+      - user-account
+  /secure/v1/users:
+    get:
+      description: Get user info.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.UserInfo'
+                  type: object
+          description: User Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Get user info.
+      tags:
+      - user
+  /secure/v1/watchlists:
+    post:
+      description: Create or delete watchlist item.
+      parameters:
+      - description: User ID
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.OptWatchlistRequest'
+        description: Watchlist operation request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/result.ResponseSuccess'
+                - properties:
+                    data:
+                      $ref: '#/components/schemas/dto.OptWatchlistResponse'
+                  type: object
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create or delete watchlist item.
+      tags:
+      - watchlist
+components:
+  schemas:
+    domain.AuditLogAction:
+      enum:
+      - Create
+      - Approve
+      - Reject
+      - Cancel
+      type: string
+      x-enum-varnames:
+      - CreateAction
+      - ApproveAction
+      - RejectAction
+      - CancelAction
+    domain.ChangeRequestInfoType:
+      enum:
+      - ContactInfo
+      - IdCardInfo
+      - IdCardAddressInfo
+      - Signature
+      - CurrentAddress
+      - WorkplaceAddress
+      - Occupation
+      - IncomeSourceAndInvestmentPurpose
+      - Declaration
+      - SuitabilityTestResult
+      - BankAccountInfo
+      type: string
+      x-enum-varnames:
+      - ContactInfo
+      - IdCardInfo
+      - IdCardAddressInfo
+      - Signature
+      - CurrentAddress
+      - WorkplaceAddress
+      - Occupation
+      - IncomeSourceAndInvestmentPurpose
+      - Declaration
+      - SuitabilityTestResult
+      - BankAccountInfo
+    domain.ChangeRequestStatus:
+      enum:
+      - Pending
+      - Cancelled
+      - Approved
+      - Rejected
+      type: string
+      x-enum-varnames:
+      - PendingStatus
+      - CancelledStatus
+      - ApprovedStatus
+      - RejectedStatus
+    domain.TradeAccountStatus:
+      enum:
+      - "N"
+      - C
+      type: string
+      x-enum-varnames:
+      - NormalTradeAccountStatus
+      - ClosedTradeAccountStatus
+    domain.UserAccountStatus:
+      enum:
+      - "N"
+      - C
+      type: string
+      x-enum-varnames:
+      - NormalUserAccountStatus
+      - ClosedUserAccountStatus
+    domain.UserAccountType:
+      enum:
+      - CashWallet
+      - Freewill
+      type: string
+      x-enum-varnames:
+      - CashWallet
+      - Freewill
+    dto.Address:
+      properties:
+        building:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        district:
+          type: string
+        floor:
+          type: string
+        homeNo:
+          type: string
+        place:
+          type: string
+        province:
+          type: string
+        provinceCode:
+          type: string
+        road:
+          type: string
+        soi:
+          type: string
+        subDistrict:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        zipCode:
+          type: string
+      type: object
+    dto.AddressInfo:
+      properties:
+        building:
+          type: string
+        district:
+          type: string
+        houseNo:
+          type: string
+        moo:
+          type: string
+        postalCode:
+          type: string
+        province:
+          type: string
+        road:
+          type: string
+        soi:
+          type: string
+        subDistrict:
+          type: string
+        village:
+          type: string
+      type: object
+    dto.AuditAction:
+      properties:
+        action:
+          allOf:
+          - $ref: '#/components/schemas/domain.AuditLogAction'
+          enum:
+          - Create
+          - Approved
+          - Rejected
+          - Cancelled
+        checkerId:
+          type: string
+        checkerName:
+          type: string
+        note:
+          type: string
+      required:
+      - action
+      - checkerId
+      type: object
+    dto.BankAccountInfo:
+      properties:
+        accountName:
+          type: string
+        accountNo:
+          type: string
+        bankBranchName:
+          type: string
+        bankCode:
+          type: string
+        bankLogo:
+          type: string
+        bankName:
+          type: string
+        bookBankImage:
+          type: string
+        effectiveDate:
+          type: string
+        isPrimary:
+          type: boolean
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.BankAccountRequest:
+      properties:
+        accountName:
+          type: string
+        accountNo:
+          type: string
+        atsEffectiveDate:
+          type: string
+        bankCode:
+          type: string
+        branchCode:
+          type: string
+        paymentToken:
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+      required:
+      - accountName
+      - accountNo
+      - bankCode
+      - branchCode
+      - status
+      type: object
+    dto.BankAccountResponse:
+      properties:
+        atsEffectiveDate:
+          type: string
+        bankAccountName:
+          type: string
+        bankAccountNo:
+          type: string
+        bankBranchCode:
+          type: string
+        bankCode:
+          type: string
+        id:
+          type: string
+        paymentToken:
+          type: string
+        status:
+          type: string
+      type: object
+    dto.BankAccountsResponse:
+      properties:
+        atsEffectiveDate:
+          type: string
+        bankAccountNo:
+          type: string
+        bankBranchCode:
+          type: string
+        bankCode:
+          type: string
+        endDate:
+          type: string
+        payType:
+          type: string
+        paymentToken:
+          type: string
+        rpType:
+          type: string
+        transactionType:
+          type: string
+      type: object
+    dto.ChangeRequest:
+      properties:
+        checker:
+          type: string
+        citizenId:
+          type: string
+        createdAt:
+          type: string
+        customerCodes:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        infoType:
+          type: string
+        infos:
+          items:
+            $ref: '#/components/schemas/dto.ChangeRequestInfo'
+          type: array
+        maker:
+          type: string
+        status:
+          type: string
+        userId:
+          type: string
+      type: object
+    dto.ChangeRequestInfo:
+      properties:
+        fieldName:
+          type: string
+        fieldValue:
+          type: string
+      type: object
+    dto.ContactInfo:
+      properties:
+        customerCode:
+          type: string
+        documentRecipientEmail:
+          type: string
+      type: object
+    dto.CreateChangeRequireInfoRequest:
+      properties:
+        infoType:
+          allOf:
+          - $ref: '#/components/schemas/domain.ChangeRequestInfoType'
+          enum:
+          - ContactInfo
+          - IdCardInfo
+          - IdCardAddressInfo
+          - Signature
+          - CurrentAddress
+          - WorkplaceAddress
+          - Occupation
+          - IncomeSourceAndInvestmentPurpose
+          - Declaration
+          - SuitabilityTestResult
+          - BankAccountInfo
+        infos:
+          items:
+            $ref: '#/components/schemas/dto.ChangeRequestInfo'
+          type: array
+        makerId:
+          type: string
+        makerName:
+          type: string
+        userId:
+          type: string
+      required:
+      - infoType
+      type: object
+    dto.CreateExternalAccountRequest:
+      properties:
+        account:
+          type: string
+        customerCode:
+          type: string
+        id:
+          type: string
+        product:
+          type: string
+        providerId:
+          type: integer
+      type: object
+    dto.CreateKycRequest:
+      properties:
+        expiredDate:
+          type: string
+        reviewDate:
+          type: string
+      required:
+      - expiredDate
+      - reviewDate
+      type: object
+    dto.CreateTradingAccountRequest:
+      properties:
+        accountStatus:
+          allOf:
+          - $ref: '#/components/schemas/domain.TradeAccountStatus'
+          enum:
+          - "N"
+          - C
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        creditLine:
+          type: number
+        creditLineCurrency:
+          type: string
+        effectiveDate:
+          description: "2025-12-31"
+          type: string
+        enableBuy:
+          type: string
+        enableDeposit:
+          type: string
+        enableSell:
+          type: string
+        enableWithdraw:
+          type: string
+        endDate:
+          description: "2025-12-31"
+          type: string
+        exchangeMarketId:
+          type: string
+        frontName:
+          type: string
+        marketingId:
+          type: string
+        openDate:
+          description: "2025-12-31"
+          type: string
+        saleLicense:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.CreateUserInfoRequest:
+      properties:
+        citizenId:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        wealthType:
+          type: string
+      type: object
+    dto.CreateUserInfoResponse:
+      properties:
+        id:
+          type: string
+      type: object
+    dto.DeclarationInfo:
+      properties:
+        deniedTransactionFlag:
+          type: boolean
+        launderFlag:
+          type: boolean
+        politicalFlag:
+          type: boolean
+      type: object
+    dto.DepositWithdrawBankAccountResponse:
+      properties:
+        bankAccountNo:
+          type: string
+        bankBranchCode:
+          type: string
+        bankCode:
+          type: string
+        bankLogoUrl:
+          type: string
+        bankName:
+          type: string
+        bankShortName:
+          type: string
+        id:
+          type: string
+        paymentToken:
+          type: string
+        paymentTokenExpiry:
+          type: string
+      type: object
+    dto.DepositWithdrawTradingAccountResponse:
+      properties:
+        customerCode:
+          type: string
+        productName:
+          type: string
+        tradingAccountId:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.Device:
+      properties:
+        deviceId:
+          type: string
+        deviceIdentifier:
+          type: string
+        deviceToken:
+          type: string
+        language:
+          type: string
+        notificationPreference:
+          $ref: '#/components/schemas/dto.NotificationPreference'
+        platform:
+          type: string
+      type: object
+    dto.ExternalAccountResponse:
+      properties:
+        account:
+          type: string
+        id:
+          type: string
+        providerId:
+          type: integer
+      type: object
+    dto.GetChangeRequestActionResponse:
+      properties:
+        action:
+          type: string
+        createdAt:
+          type: string
+        id:
+          type: string
+        infoType:
+          type: string
+        maker:
+          type: string
+        note:
+          type: string
+      type: object
+    dto.GetChangeRequestByIdResponse:
+      properties:
+        checker:
+          type: string
+        citizenId:
+          type: string
+        createdAt:
+          type: string
+        customerCodes:
+          items:
+            type: string
+          type: array
+        id:
+          type: string
+        infoType:
+          type: string
+        infos:
+          items:
+            $ref: '#/components/schemas/dto.ChangeRequestInfo'
+          type: array
+        maker:
+          type: string
+        status:
+          type: string
+        userId:
+          type: string
+      type: object
+    dto.GetChangeRequestResponse:
+      properties:
+        item_count:
+          type: integer
+        items:
+          items:
+            $ref: '#/components/schemas/dto.ChangeRequest'
+          type: array
+        limit:
+          type: integer
+        page:
+          type: integer
+        total_items:
+          type: integer
+        total_pages:
+          type: integer
+      type: object
+    dto.GetCustomerInfoByAccountIdResponse:
+      properties:
+        customerSubType:
+          type: string
+        customerType:
+          type: string
+      type: object
+    dto.GetKycByUserIdResponse:
+      properties:
+        expiredDate:
+          type: string
+        reviewDate:
+          type: string
+      type: object
+    dto.GetUserAccountByMarketingIdResponse:
+      properties:
+        customerCode:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        userId:
+          type: string
+      type: object
+    dto.HashRequest:
+      properties:
+        input:
+          type: string
+      required:
+      - input
+      type: object
+    dto.HashResponse:
+      properties:
+        hash:
+          type: string
+      type: object
+    dto.IdCardInfo:
+      properties:
+        cardExpiry:
+          type: string
+        citizenId:
+          type: string
+        dateOfBirth:
+          type: string
+        firstNameEn:
+          type: string
+        firstNameTh:
+          type: string
+        image:
+          type: string
+        laserCode:
+          type: string
+        lastNameEn:
+          type: string
+        lastNameTh:
+          type: string
+        titleEn:
+          type: string
+        titleOther:
+          type: string
+        titleTh:
+          type: string
+      type: object
+    dto.InfoTypeStatus:
+      properties:
+        infoType:
+          $ref: '#/components/schemas/domain.ChangeRequestInfoType'
+        note:
+          type: string
+        status:
+          $ref: '#/components/schemas/domain.ChangeRequestStatus'
+      type: object
+    dto.InvestmentInfo:
+      properties:
+        income:
+          type: string
+        purposeOfInvestment:
+          items:
+            type: string
+          type: array
+        sourceOfIncome:
+          items:
+            type: string
+          type: array
+      type: object
+    dto.KycInfo:
+      properties:
+        address:
+          $ref: '#/components/schemas/dto.AddressInfo'
+        idCard:
+          $ref: '#/components/schemas/dto.IdCardInfo'
+        reviewDate:
+          type: string
+      type: object
+    dto.LinkUserAccountRequest:
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/domain.UserAccountStatus'
+          enum:
+          - "N"
+          - C
+        userAccountId:
+          type: string
+        userAccountType:
+          allOf:
+          - $ref: '#/components/schemas/domain.UserAccountType'
+          enum:
+          - CashWallet
+          - Freewill
+      required:
+      - userAccountId
+      - userAccountType
+      type: object
+    dto.MigrateUserExternalAccount:
+      properties:
+        id:
+          type: string
+        providerId:
+          type: integer
+        value:
+          type: string
+      type: object
+    dto.MigrateUserInfo:
+      properties:
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        placeOfBirthCity:
+          type: string
+        placeOfBirthCountry:
+          type: string
+        wealthType:
+          type: string
+      type: object
+    dto.MigrateUserKyc:
+      properties:
+        expiredDate:
+          type: string
+        reviewDate:
+          type: string
+      type: object
+    dto.MigrateUserRequest:
+      properties:
+        address:
+          properties:
+            building:
+              type: string
+            country:
+              type: string
+            countryCode:
+              type: string
+            district:
+              type: string
+            floor:
+              type: string
+            homeNo:
+              type: string
+            place:
+              type: string
+            province:
+              type: string
+            provinceCode:
+              type: string
+            road:
+              type: string
+            soi:
+              type: string
+            subDistrict:
+              type: string
+            town:
+              type: string
+            village:
+              type: string
+            zipCode:
+              type: string
+          type: object
+        kyc:
+          $ref: '#/components/schemas/dto.MigrateUserKyc'
+        suitabilityTests:
+          items:
+            properties:
+              expiredDate:
+                type: string
+              grade:
+                type: string
+              reviewDate:
+                type: string
+              score:
+                type: string
+              version:
+                type: string
+            type: object
+          type: array
+        tradeAccountBankAccounts:
+          items:
+            properties:
+              customerCode:
+                type: string
+              tradeAccount:
+                items:
+                  $ref: '#/components/schemas/dto.MigrateUserTradeAccount'
+                type: array
+            type: object
+          type: array
+        userInfo:
+          $ref: '#/components/schemas/dto.MigrateUserInfo'
+      type: object
+    dto.MigrateUserResponse:
+      type: object
+    dto.MigrateUserTradeAccount:
+      properties:
+        accountNumber:
+          type: string
+        accountStatus:
+          type: string
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        creditLine:
+          type: number
+        creditLineCurrency:
+          type: string
+        effectiveDate:
+          type: string
+        enableBuy:
+          type: string
+        enableDeposit:
+          type: string
+        enableSell:
+          type: string
+        enableWithdraw:
+          type: string
+        endDate:
+          type: string
+        exchangeMarketId:
+          type: string
+        externalAccount:
+          items:
+            $ref: '#/components/schemas/dto.MigrateUserExternalAccount'
+          type: array
+        frontName:
+          type: string
+        marketingId:
+          type: string
+        openDate:
+          type: string
+        saleLicense:
+          type: string
+      type: object
+    dto.NotificationPreference:
+      properties:
+        important:
+          type: boolean
+        market:
+          type: boolean
+        order:
+          type: boolean
+        portfolio:
+          type: boolean
+        wallet:
+          type: boolean
+      type: object
+    dto.OccupationInfo:
+      properties:
+        businessType:
+          type: string
+        businessTypeOther:
+          type: string
+        jobTitle:
+          type: string
+        occupation:
+          type: string
+        occupationOther:
+          type: string
+        workplaceNameEn:
+          type: string
+        workplaceNameTh:
+          type: string
+      type: object
+    dto.OptWatchlistRequest:
+      properties:
+        opt:
+          enum:
+          - add
+          - delete
+          type: string
+        symbol:
+          type: string
+        venue:
+          type: string
+      required:
+      - opt
+      - symbol
+      - venue
+      type: object
+    dto.OptWatchlistResponse:
+      type: object
+    dto.PatchUserInfoRequest:
+      properties:
+        citizenId:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        placeOfBirthCity:
+          type: string
+        placeOfBirthCountry:
+          type: string
+        wealthType:
+          type: string
+      type: object
+    dto.ProfileInfo:
+      properties:
+        bankAccountInfo:
+          items:
+            $ref: '#/components/schemas/dto.BankAccountInfo'
+          type: array
+        contactInfo:
+          items:
+            $ref: '#/components/schemas/dto.ContactInfo'
+          type: array
+        currentAddress:
+          $ref: '#/components/schemas/dto.AddressInfo'
+        declaration:
+          $ref: '#/components/schemas/dto.DeclarationInfo'
+        email:
+          type: string
+        infoTypeStatus:
+          items:
+            $ref: '#/components/schemas/dto.InfoTypeStatus'
+          type: array
+        investment:
+          $ref: '#/components/schemas/dto.InvestmentInfo'
+        kycInfo:
+          $ref: '#/components/schemas/dto.KycInfo'
+        occupation:
+          $ref: '#/components/schemas/dto.OccupationInfo'
+        phoneNumber:
+          type: string
+        signature:
+          type: string
+        suitTest:
+          $ref: '#/components/schemas/dto.SuitTestInfo'
+        workplaceAddress:
+          $ref: '#/components/schemas/dto.AddressInfo'
+      type: object
+    dto.SuitTestAnswer:
+      properties:
+        answerCmsId:
+          type: string
+        answerCode:
+          type: string
+      type: object
+    dto.SuitTestInfo:
+      properties:
+        latestDate:
+          type: string
+        questions:
+          items:
+            $ref: '#/components/schemas/dto.SuitTestQuestion'
+          type: array
+        score:
+          type: string
+        scoreDescription:
+          type: string
+      type: object
+    dto.SuitTestQuestion:
+      properties:
+        answers:
+          items:
+            $ref: '#/components/schemas/dto.SuitTestAnswer'
+          type: array
+        questionCmsId:
+          type: string
+        questionCode:
+          type: string
+      type: object
+    dto.SuitabilityTestRequest:
+      properties:
+        expiredDate:
+          type: string
+        grade:
+          type: string
+        reviewDate:
+          type: string
+        score:
+          type: integer
+        version:
+          type: string
+      type: object
+    dto.SuitabilityTestResponse:
+      properties:
+        expiredDate:
+          type: string
+        grade:
+          type: string
+        reviewDate:
+          type: string
+        score:
+          type: integer
+        version:
+          type: string
+      type: object
+    dto.TradeAccountResponse:
+      properties:
+        customerCode:
+          type: string
+        tradingAccounts:
+          items:
+            $ref: '#/components/schemas/dto.TradingAccountResponse'
+          type: array
+      type: object
+    dto.TradingAccountResponse:
+      properties:
+        accountStatus:
+          type: string
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        bankAccounts:
+          items:
+            $ref: '#/components/schemas/dto.BankAccountsResponse'
+          type: array
+        creditLine:
+          type: number
+        creditLineCurrency:
+          type: string
+        enableBuy:
+          type: string
+        enableDeposit:
+          type: string
+        enableSell:
+          type: string
+        enableWithdraw:
+          type: string
+        exchangeMarketId:
+          type: string
+        externalAccounts:
+          items:
+            $ref: '#/components/schemas/dto.ExternalAccountResponse'
+          type: array
+        frontName:
+          type: string
+        id:
+          type: string
+        productName:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.TradingAccountsMarketingInfo:
+      properties:
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        endDate:
+          type: string
+        exchangeMarketId:
+          type: string
+        id:
+          type: string
+        marketingId:
+          type: string
+        saleLicense:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.UserAccountResponse:
+      properties:
+        status:
+          $ref: '#/components/schemas/domain.UserAccountStatus'
+        userAccountId:
+          type: string
+        userAccountType:
+          $ref: '#/components/schemas/domain.UserAccountType'
+      type: object
+    dto.UserInfo:
+      properties:
+        citizenId:
+          type: string
+        custCodes:
+          items:
+            type: string
+          type: array
+        dateOfBirth:
+          description: "2024-12-27"
+          type: string
+        devices:
+          items:
+            $ref: '#/components/schemas/dto.Device'
+          type: array
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        id:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        placeOfBirthCity:
+          type: string
+        placeOfBirthCountry:
+          type: string
+        tradingAccounts:
+          items:
+            type: string
+          type: array
+        wealthType:
+          type: string
+      type: object
+    dto.Watchlist:
+      properties:
+        id:
+          type: string
+        sequence:
+          type: integer
+        symbol:
+          type: string
+        venue:
+          type: string
+      type: object
+    result.ResponseError:
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+      type: object
+    result.ResponseSuccess:
+      properties:
+        code:
+          type: string
+        msg:
+          type: string
+      type: object

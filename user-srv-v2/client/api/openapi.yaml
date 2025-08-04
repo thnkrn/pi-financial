@@ -1,0 +1,2887 @@
+openapi: 3.0.0
+info:
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Contain Generic Information.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Pi User Service V2
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /internal/v1/address:
+    get:
+      description: Get address
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get address
+      tags:
+      - address
+    post:
+      description: Upsert address
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.Address'
+        description: Address request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Upsert address
+      tags:
+      - address
+  /internal/v1/bank-account:
+    post:
+      description: Create a bank account for a user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.BankAccountRequest'
+        description: BankAccountRequest request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create a user's bank account
+      tags:
+      - bank-account
+  /internal/v1/bank-account/deposit-withdraw:
+    get:
+      description: Get bank account details for deposit or withdrawal purposes
+      parameters:
+      - description: Account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Purpose (deposit/withdrawal)
+        explode: true
+        in: query
+        name: purpose
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Product
+        explode: true
+        in: query
+        name: product
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_bank_account_deposit_withdraw_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: "Get bank account for deposit/withdraw (currently used by the app,\
+        \ but will be deprecated soon in favor of /internal/v2/bank-account/deposit-withdraw)"
+      tags:
+      - bank-account
+  /internal/v1/bank-accounts:
+    get:
+      description: Get all bank accounts for a user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_bank_accounts_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get user's bank accounts
+      tags:
+      - bank-account
+  /internal/v1/debug/hash:
+    post:
+      description: Convert input string to hash value
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.HashRequest'
+        description: String to hash
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_debug_hash_post_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get hash of input string
+      tags:
+      - debug
+  /internal/v1/debug/try-feature-service:
+    get:
+      description: Try feature service
+      parameters:
+      - description: Feature Switch Name
+        explode: true
+        in: query
+        name: featureSwitchName
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_debug_try_feature_service_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Try feature service
+      tags:
+      - debug
+  /internal/v1/debug/try-feature-service/with-headers:
+    get:
+      description: Try feature service with headers
+      parameters:
+      - description: Feature Switch Name
+        explode: true
+        in: query
+        name: featureSwitchName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Device ID
+        explode: false
+        in: header
+        name: deviceId
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Random
+        explode: false
+        in: header
+        name: random
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_debug_try_feature_service_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Try feature service with headers
+      tags:
+      - debug
+  /internal/v1/external-account:
+    post:
+      description: Create external account for user.
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateExternalAccountRequest'
+        description: Create External Account Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Create external account.
+      tags:
+      - external-account
+  /internal/v1/kycs:
+    get:
+      description: Get KYC by user ID
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_kycs_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get KYC by user ID
+      tags:
+      - kyc
+    post:
+      description: Create KYC
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateKycRequest'
+        description: KYC request
+        required: true
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create KYC
+      tags:
+      - kyc
+  /internal/v1/suitability-test:
+    post:
+      description: Create new suitability test for user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.SuitabilityTestRequest'
+        description: Suitability Test Create Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create new suitability test for user
+      tags:
+      - suitability-test
+  /internal/v1/suitability-tests:
+    get:
+      description: Get all suitability tests for user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_suitability_tests_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get all suitability tests for user
+      tags:
+      - suitability-test
+  /internal/v1/trading-accounts:
+    get:
+      description: Get all trading accounts for a user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "N for normal, C for closed"
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_trading_accounts_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get user's trading accounts
+      tags:
+      - trading-account
+  /internal/v1/trading-accounts/{customerCode}:
+    post:
+      description: Create trading account
+      parameters:
+      - description: Customer code
+        explode: false
+        in: path
+        name: customerCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/dto.CreateTradingAccountRequest'
+              type: array
+        description: Create trading account request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_trading_accounts__customerCode__post_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create trading account
+      tags:
+      - trading-account
+  /internal/v1/trading-accounts/marketing-infos:
+    get:
+      description: Get customer codes' trading accounts with marketing information
+      parameters:
+      - description: Customer Codes
+        explode: true
+        in: query
+        name: customerCodes
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_trading_accounts_marketing_infos_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get customer codes' trading accounts with marketing information
+      tags:
+      - trading-account
+  /internal/v1/user-account:
+    post:
+      description: Linking user account id with user id for a user account type. User
+        account id can be either customer code or cash wallet id.
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.LinkUserAccountRequest'
+        description: Link User Account Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_trading_accounts__customerCode__post_200_response'
+          description: Linked User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Error linking user account
+      summary: Linking user account id with user id for a user account type.
+      tags:
+      - user-account
+  /internal/v1/user-accounts:
+    get:
+      description: Get user accounts by filters. User id and citizen id card must
+        exist in user info.
+      parameters:
+      - description: User ID
+        explode: true
+        in: query
+        name: userId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Citizen ID
+        explode: true
+        in: query
+        name: citizenId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_user_accounts_get_200_response'
+          description: User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: User account not found
+      summary: Get user accounts by filters.
+      tags:
+      - user-account
+  /internal/v1/users:
+    get:
+      description: Get user info by filters
+      parameters:
+      - description: User IDs use comma to separate
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Account ID
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Citizen ID
+        explode: true
+        in: query
+        name: citizenId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Phone Number
+        explode: true
+        in: query
+        name: phoneNumber
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Email
+        explode: true
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: First Name
+        explode: true
+        in: query
+        name: firstName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Last Name
+        explode: true
+        in: query
+        name: lastName
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_users_get_200_response'
+          description: User Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Get user info by filters
+      tags:
+      - user
+    patch:
+      description: Update some fields by user-id
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.PatchUserInfoRequest'
+        description: Patch User Info Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Update some fields by user-id
+      tags:
+      - user
+    post:
+      description: Create user info
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.CreateUserInfoRequest'
+        description: Create User Info Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_users_post_200_response'
+          description: Create User Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Create user info
+      tags:
+      - user
+  /internal/v1/users/{user-id}/sub-users:
+    get:
+      description: Get sub users
+      parameters:
+      - description: User ID
+        explode: false
+        in: path
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_users__user_id__sub_users_get_200_response'
+          description: Sub User IDs
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+      summary: Get sub users
+      tags:
+      - user
+    post:
+      description: Add sub user
+      parameters:
+      - description: User ID
+        explode: false
+        in: path
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: Map Sub User Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+      summary: Add sub user
+      tags:
+      - user
+  /internal/v1/users/migrate:
+    post:
+      description: Create new user with info from BPM
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.MigrateUserRequest'
+        description: Migrate User Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_users_migrate_post_200_response'
+          description: Migrate User
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Create new user with info from BPM
+      tags:
+      - user
+  /internal/v1/users/sync:
+    post:
+      description: Sync user data from it services based on customer code and type
+      parameters:
+      - description: Customer Code
+        explode: true
+        in: query
+        name: customerCode
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Sync Type (kyc,suitTest,address,tradingAccount,userInfo,all)"
+        explode: true
+        in: query
+        name: syncType
+        required: true
+        schema:
+          enum:
+          - kyc
+          - suitTest
+          - address
+          - tradingAccount
+          - userInfo
+          - all
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseSuccess'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Sync user data from it services
+      tags:
+      - user
+  /internal/v1/watchlists:
+    get:
+      description: Get all watchlist items for a user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Get watchlist request
+        explode: true
+        in: query
+        name: venue
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_watchlists_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get user's watchlist
+      tags:
+      - watchlist
+  /internal/v2/bank-account/deposit-withdraw:
+    get:
+      description: Get bank accounts details for deposit or withdrawal purposes
+      parameters:
+      - description: Account ID. Must be either customer code (7 digits) or cash wallet
+          id (10 digits).
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Purpose (deposit/withdrawal)
+        explode: true
+        in: query
+        name: purpose
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Product. Optional if accountId is cash wallet id.
+        explode: true
+        in: query
+        name: product
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v2_bank_account_deposit_withdraw_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get bank accounts for deposit/withdraw
+      tags:
+      - bank-account
+  /secure/v1/trading-accounts:
+    get:
+      description: Get all trading accounts for a user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "N for normal, C for closed"
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_trading_accounts_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get user's trading accounts
+      tags:
+      - trading-account
+  /secure/v1/trading-accounts/deposit-withdraw:
+    get:
+      description: Get all deposit/withdrawal trading accounts for a user
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_secure_v1_trading_accounts_deposit_withdraw_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Get user's deposit/withdrawal trading accounts
+      tags:
+      - trading-account
+  /secure/v1/user-accounts:
+    get:
+      description: Get user account details by user id.
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_v1_user_accounts_get_200_response'
+          description: User Account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: User account not found
+      summary: Get user account by user id
+      tags:
+      - user-account
+  /secure/v1/users:
+    get:
+      description: Get user info
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_secure_v1_users_get_200_response'
+          description: User Info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Validation failed
+      summary: Get user info
+      tags:
+      - user
+  /secure/v1/watchlists:
+    post:
+      description: Add or remove symbol from user's watchlist
+      parameters:
+      - description: User ID
+        explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dto.OptWatchlistRequest'
+        description: Watchlist operation request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_secure_v1_watchlists_post_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Internal Server Error
+      summary: Create or delete watchlist item
+      tags:
+      - watchlist
+components:
+  schemas:
+    domain.TradeAccountStatus:
+      enum:
+      - "N"
+      - C
+      type: string
+      x-enum-varnames:
+      - NormalTradeAccountStatus
+      - ClosedTradeAccountStatus
+    domain.UserAccountStatus:
+      enum:
+      - "N"
+      - C
+      type: string
+      x-enum-varnames:
+      - NormalUserAccountStatus
+      - ClosedUserAccountStatus
+    domain.UserAccountType:
+      enum:
+      - CashWallet
+      - Freewill
+      type: string
+      x-enum-varnames:
+      - CashWallet
+      - Freewill
+    dto.Address:
+      example:
+        country: country
+        zipCode: zipCode
+        town: town
+        provinceCode: provinceCode
+        homeNo: homeNo
+        soi: soi
+        building: building
+        province: province
+        road: road
+        countryCode: countryCode
+        district: district
+        place: place
+        floor: floor
+        village: village
+        subDistrict: subDistrict
+      properties:
+        building:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        district:
+          type: string
+        floor:
+          type: string
+        homeNo:
+          type: string
+        place:
+          type: string
+        province:
+          type: string
+        provinceCode:
+          type: string
+        road:
+          type: string
+        soi:
+          type: string
+        subDistrict:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        zipCode:
+          type: string
+      type: object
+    dto.BankAccountRequest:
+      properties:
+        accountName:
+          type: string
+        accountNo:
+          type: string
+        atsEffectiveDate:
+          type: string
+        bankCode:
+          type: string
+        branchCode:
+          type: string
+        paymentToken:
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+      required:
+      - accountName
+      - accountNo
+      - bankCode
+      - branchCode
+      - status
+      type: object
+    dto.BankAccountResponse:
+      example:
+        bankAccountName: bankAccountName
+        paymentToken: paymentToken
+        bankCode: bankCode
+        bankBranchCode: bankBranchCode
+        atsEffectiveDate: atsEffectiveDate
+        bankAccountNo: bankAccountNo
+        id: id
+        status: status
+      properties:
+        atsEffectiveDate:
+          type: string
+        bankAccountName:
+          type: string
+        bankAccountNo:
+          type: string
+        bankBranchCode:
+          type: string
+        bankCode:
+          type: string
+        id:
+          type: string
+        paymentToken:
+          type: string
+        status:
+          type: string
+      type: object
+    dto.BankAccountsResponse:
+      example:
+        paymentToken: paymentToken
+        transactionType: transactionType
+        bankCode: bankCode
+        bankBranchCode: bankBranchCode
+        rpType: rpType
+        payType: payType
+        endDate: endDate
+        atsEffectiveDate: atsEffectiveDate
+        bankAccountNo: bankAccountNo
+      properties:
+        atsEffectiveDate:
+          type: string
+        bankAccountNo:
+          type: string
+        bankBranchCode:
+          type: string
+        bankCode:
+          type: string
+        endDate:
+          type: string
+        payType:
+          type: string
+        paymentToken:
+          type: string
+        rpType:
+          type: string
+        transactionType:
+          type: string
+      type: object
+    dto.CreateExternalAccountRequest:
+      properties:
+        account:
+          type: string
+        customerCode:
+          type: string
+        id:
+          type: string
+        product:
+          type: string
+        providerId:
+          type: integer
+      type: object
+    dto.CreateKycRequest:
+      properties:
+        expiredDate:
+          type: string
+        reviewDate:
+          type: string
+      required:
+      - expiredDate
+      - reviewDate
+      type: object
+    dto.CreateTradingAccountRequest:
+      properties:
+        accountStatus:
+          allOf:
+          - $ref: '#/components/schemas/domain.TradeAccountStatus'
+          enum:
+          - "N"
+          - C
+          type: string
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        creditLine:
+          type: number
+        creditLineCurrency:
+          type: string
+        effectiveDate:
+          description: 2025-12-31
+          type: string
+        enableBuy:
+          type: string
+        enableDeposit:
+          type: string
+        enableSell:
+          type: string
+        enableWithdraw:
+          type: string
+        endDate:
+          description: 2025-12-31
+          type: string
+        exchangeMarketId:
+          type: string
+        frontName:
+          type: string
+        marketingId:
+          type: string
+        openDate:
+          description: 2025-12-31
+          type: string
+        saleLicense:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.CreateUserInfoRequest:
+      properties:
+        citizenId:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        wealthType:
+          type: string
+      required:
+      - citizenId
+      - dateOfBirth
+      - email
+      - firstnameEn
+      - firstnameTh
+      - lastnameEn
+      - lastnameTh
+      - phoneNumber
+      - wealthType
+      type: object
+    dto.CreateUserInfoResponse:
+      example:
+        id: id
+      properties:
+        id:
+          type: string
+      type: object
+    dto.DepositWithdrawBankAccountResponse:
+      example:
+        bankLogoUrl: bankLogoUrl
+        paymentToken: paymentToken
+        bankCode: bankCode
+        bankBranchCode: bankBranchCode
+        bankShortName: bankShortName
+        bankAccountNo: bankAccountNo
+        bankName: bankName
+        id: id
+        paymentTokenExpiry: paymentTokenExpiry
+      properties:
+        bankAccountNo:
+          type: string
+        bankBranchCode:
+          type: string
+        bankCode:
+          type: string
+        bankLogoUrl:
+          type: string
+        bankName:
+          type: string
+        bankShortName:
+          type: string
+        id:
+          type: string
+        paymentToken:
+          type: string
+        paymentTokenExpiry:
+          type: string
+      type: object
+    dto.DepositWithdrawTradingAccountResponse:
+      example:
+        tradingAccountNo: tradingAccountNo
+        tradingAccountId: tradingAccountId
+        customerCode: customerCode
+        productName: productName
+      properties:
+        customerCode:
+          type: string
+        productName:
+          type: string
+        tradingAccountId:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.Device:
+      example:
+        deviceIdentifier: deviceIdentifier
+        notificationPreference:
+          important: true
+          market: true
+          wallet: true
+          portfolio: true
+          order: true
+        language: language
+        deviceId: deviceId
+        platform: platform
+        deviceToken: deviceToken
+      properties:
+        deviceId:
+          type: string
+        deviceIdentifier:
+          type: string
+        deviceToken:
+          type: string
+        language:
+          type: string
+        notificationPreference:
+          $ref: '#/components/schemas/dto.NotificationPreference'
+        platform:
+          type: string
+      type: object
+    dto.ExternalAccountResponse:
+      example:
+        providerId: 6
+        id: id
+        account: account
+      properties:
+        account:
+          type: string
+        id:
+          type: string
+        providerId:
+          type: integer
+      type: object
+    dto.GetKycByUserIdResponse:
+      example:
+        reviewDate: reviewDate
+        expiredDate: expiredDate
+      properties:
+        expiredDate:
+          type: string
+        reviewDate:
+          type: string
+      type: object
+    dto.HashRequest:
+      properties:
+        input:
+          type: string
+      required:
+      - input
+      type: object
+    dto.HashResponse:
+      example:
+        hash: hash
+      properties:
+        hash:
+          type: string
+      type: object
+    dto.LinkUserAccountRequest:
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/domain.UserAccountStatus'
+          enum:
+          - "N"
+          - C
+          type: string
+        userAccountId:
+          type: string
+        userAccountType:
+          allOf:
+          - $ref: '#/components/schemas/domain.UserAccountType'
+          enum:
+          - CashWallet
+          - Freewill
+          type: string
+      required:
+      - userAccountId
+      - userAccountType
+      type: object
+    dto.MigrateUserExternalAccount:
+      properties:
+        id:
+          type: string
+        providerId:
+          type: integer
+        value:
+          type: string
+      type: object
+    dto.MigrateUserInfo:
+      properties:
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        placeOfBirthCity:
+          type: string
+        placeOfBirthCountry:
+          type: string
+        wealthType:
+          type: string
+      type: object
+    dto.MigrateUserKyc:
+      properties:
+        expiredDate:
+          type: string
+        reviewDate:
+          type: string
+      type: object
+    dto.MigrateUserRequest:
+      properties:
+        address:
+          $ref: '#/components/schemas/dto_MigrateUserRequest_address'
+        kyc:
+          $ref: '#/components/schemas/dto.MigrateUserKyc'
+        suitabilityTests:
+          items:
+            $ref: '#/components/schemas/dto_MigrateUserRequest_suitabilityTests_inner'
+          type: array
+        tradeAccountBankAccounts:
+          items:
+            $ref: '#/components/schemas/dto_MigrateUserRequest_tradeAccountBankAccounts_inner'
+          type: array
+        userInfo:
+          $ref: '#/components/schemas/dto.MigrateUserInfo'
+      type: object
+    dto.MigrateUserResponse:
+      type: object
+    dto.MigrateUserTradeAccount:
+      properties:
+        accountNumber:
+          type: string
+        accountStatus:
+          type: string
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        creditLine:
+          type: number
+        creditLineCurrency:
+          type: string
+        effectiveDate:
+          type: string
+        enableBuy:
+          type: string
+        enableDeposit:
+          type: string
+        enableSell:
+          type: string
+        enableWithdraw:
+          type: string
+        endDate:
+          type: string
+        exchangeMarketId:
+          type: string
+        externalAccount:
+          items:
+            $ref: '#/components/schemas/dto.MigrateUserExternalAccount'
+          type: array
+        frontName:
+          type: string
+        marketingId:
+          type: string
+        openDate:
+          type: string
+        saleLicense:
+          type: string
+      type: object
+    dto.NotificationPreference:
+      example:
+        important: true
+        market: true
+        wallet: true
+        portfolio: true
+        order: true
+      properties:
+        important:
+          type: boolean
+        market:
+          type: boolean
+        order:
+          type: boolean
+        portfolio:
+          type: boolean
+        wallet:
+          type: boolean
+      type: object
+    dto.OptWatchlistRequest:
+      properties:
+        opt:
+          enum:
+          - add
+          - delete
+          type: string
+        symbol:
+          type: string
+        venue:
+          type: string
+      required:
+      - opt
+      - symbol
+      - venue
+      type: object
+    dto.OptWatchlistResponse:
+      type: object
+    dto.PatchUserInfoRequest:
+      properties:
+        citizenId:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        placeOfBirthCity:
+          type: string
+        placeOfBirthCountry:
+          type: string
+        wealthType:
+          type: string
+      type: object
+    dto.SuitabilityTestRequest:
+      properties:
+        expiredDate:
+          type: string
+        grade:
+          type: string
+        reviewDate:
+          type: string
+        score:
+          type: integer
+        version:
+          type: string
+      type: object
+    dto.SuitabilityTestResponse:
+      example:
+        score: 0
+        reviewDate: reviewDate
+        expiredDate: expiredDate
+        grade: grade
+        version: version
+      properties:
+        expiredDate:
+          type: string
+        grade:
+          type: string
+        reviewDate:
+          type: string
+        score:
+          type: integer
+        version:
+          type: string
+      type: object
+    dto.TradeAccountResponse:
+      example:
+        tradingAccounts:
+        - enableSell: enableSell
+          exchangeMarketId: exchangeMarketId
+          accountType: accountType
+          accountTypeCode: accountTypeCode
+          bankAccounts:
+          - paymentToken: paymentToken
+            transactionType: transactionType
+            bankCode: bankCode
+            bankBranchCode: bankBranchCode
+            rpType: rpType
+            payType: payType
+            endDate: endDate
+            atsEffectiveDate: atsEffectiveDate
+            bankAccountNo: bankAccountNo
+          - paymentToken: paymentToken
+            transactionType: transactionType
+            bankCode: bankCode
+            bankBranchCode: bankBranchCode
+            rpType: rpType
+            payType: payType
+            endDate: endDate
+            atsEffectiveDate: atsEffectiveDate
+            bankAccountNo: bankAccountNo
+          frontName: frontName
+          productName: productName
+          accountStatus: accountStatus
+          tradingAccountNo: tradingAccountNo
+          externalAccounts:
+          - providerId: 6
+            id: id
+            account: account
+          - providerId: 6
+            id: id
+            account: account
+          creditLine: 0.8008281904610115
+          creditLineCurrency: creditLineCurrency
+          enableWithdraw: enableWithdraw
+          enableBuy: enableBuy
+          enableDeposit: enableDeposit
+          id: id
+        - enableSell: enableSell
+          exchangeMarketId: exchangeMarketId
+          accountType: accountType
+          accountTypeCode: accountTypeCode
+          bankAccounts:
+          - paymentToken: paymentToken
+            transactionType: transactionType
+            bankCode: bankCode
+            bankBranchCode: bankBranchCode
+            rpType: rpType
+            payType: payType
+            endDate: endDate
+            atsEffectiveDate: atsEffectiveDate
+            bankAccountNo: bankAccountNo
+          - paymentToken: paymentToken
+            transactionType: transactionType
+            bankCode: bankCode
+            bankBranchCode: bankBranchCode
+            rpType: rpType
+            payType: payType
+            endDate: endDate
+            atsEffectiveDate: atsEffectiveDate
+            bankAccountNo: bankAccountNo
+          frontName: frontName
+          productName: productName
+          accountStatus: accountStatus
+          tradingAccountNo: tradingAccountNo
+          externalAccounts:
+          - providerId: 6
+            id: id
+            account: account
+          - providerId: 6
+            id: id
+            account: account
+          creditLine: 0.8008281904610115
+          creditLineCurrency: creditLineCurrency
+          enableWithdraw: enableWithdraw
+          enableBuy: enableBuy
+          enableDeposit: enableDeposit
+          id: id
+        customerCode: customerCode
+      properties:
+        customerCode:
+          type: string
+        tradingAccounts:
+          items:
+            $ref: '#/components/schemas/dto.TradingAccountResponse'
+          type: array
+      type: object
+    dto.TradingAccountResponse:
+      example:
+        enableSell: enableSell
+        exchangeMarketId: exchangeMarketId
+        accountType: accountType
+        accountTypeCode: accountTypeCode
+        bankAccounts:
+        - paymentToken: paymentToken
+          transactionType: transactionType
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          rpType: rpType
+          payType: payType
+          endDate: endDate
+          atsEffectiveDate: atsEffectiveDate
+          bankAccountNo: bankAccountNo
+        - paymentToken: paymentToken
+          transactionType: transactionType
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          rpType: rpType
+          payType: payType
+          endDate: endDate
+          atsEffectiveDate: atsEffectiveDate
+          bankAccountNo: bankAccountNo
+        frontName: frontName
+        productName: productName
+        accountStatus: accountStatus
+        tradingAccountNo: tradingAccountNo
+        externalAccounts:
+        - providerId: 6
+          id: id
+          account: account
+        - providerId: 6
+          id: id
+          account: account
+        creditLine: 0.8008281904610115
+        creditLineCurrency: creditLineCurrency
+        enableWithdraw: enableWithdraw
+        enableBuy: enableBuy
+        enableDeposit: enableDeposit
+        id: id
+      properties:
+        accountStatus:
+          type: string
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        bankAccounts:
+          items:
+            $ref: '#/components/schemas/dto.BankAccountsResponse'
+          type: array
+        creditLine:
+          type: number
+        creditLineCurrency:
+          type: string
+        enableBuy:
+          type: string
+        enableDeposit:
+          type: string
+        enableSell:
+          type: string
+        enableWithdraw:
+          type: string
+        exchangeMarketId:
+          type: string
+        externalAccounts:
+          items:
+            $ref: '#/components/schemas/dto.ExternalAccountResponse'
+          type: array
+        frontName:
+          type: string
+        id:
+          type: string
+        productName:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.TradingAccountsMarketingInfo:
+      example:
+        tradingAccountNo: tradingAccountNo
+        exchangeMarketId: exchangeMarketId
+        endDate: endDate
+        accountType: accountType
+        accountTypeCode: accountTypeCode
+        id: id
+        marketingId: marketingId
+      properties:
+        accountType:
+          type: string
+        accountTypeCode:
+          type: string
+        endDate:
+          type: string
+        exchangeMarketId:
+          type: string
+        id:
+          type: string
+        marketingId:
+          type: string
+        tradingAccountNo:
+          type: string
+      type: object
+    dto.UserAccountResponse:
+      example:
+        userAccountId: userAccountId
+        userAccountType: CashWallet
+        status: "N"
+      properties:
+        status:
+          $ref: '#/components/schemas/domain.UserAccountStatus'
+        userAccountId:
+          type: string
+        userAccountType:
+          $ref: '#/components/schemas/domain.UserAccountType'
+      type: object
+    dto.UserInfo:
+      example:
+        devices:
+        - deviceIdentifier: deviceIdentifier
+          notificationPreference:
+            important: true
+            market: true
+            wallet: true
+            portfolio: true
+            order: true
+          language: language
+          deviceId: deviceId
+          platform: platform
+          deviceToken: deviceToken
+        - deviceIdentifier: deviceIdentifier
+          notificationPreference:
+            important: true
+            market: true
+            wallet: true
+            portfolio: true
+            order: true
+          language: language
+          deviceId: deviceId
+          platform: platform
+          deviceToken: deviceToken
+        lastnameEn: lastnameEn
+        dateOfBirth: dateOfBirth
+        wealthType: wealthType
+        custCodes:
+        - custCodes
+        - custCodes
+        tradingAccounts:
+        - tradingAccounts
+        - tradingAccounts
+        phoneNumber: phoneNumber
+        firstnameEn: firstnameEn
+        lastnameTh: lastnameTh
+        citizenId: citizenId
+        id: id
+        email: email
+        firstnameTh: firstnameTh
+      properties:
+        citizenId:
+          type: string
+        custCodes:
+          items:
+            type: string
+          type: array
+        dateOfBirth:
+          description: 2024-12-27
+          type: string
+        devices:
+          items:
+            $ref: '#/components/schemas/dto.Device'
+          type: array
+        email:
+          type: string
+        firstnameEn:
+          type: string
+        firstnameTh:
+          type: string
+        id:
+          type: string
+        lastnameEn:
+          type: string
+        lastnameTh:
+          type: string
+        phoneNumber:
+          type: string
+        tradingAccounts:
+          items:
+            type: string
+          type: array
+        wealthType:
+          type: string
+      type: object
+    dto.Watchlist:
+      example:
+        sequence: 0
+        symbol: symbol
+        venue: venue
+        id: id
+      properties:
+        id:
+          type: string
+        sequence:
+          type: integer
+        symbol:
+          type: string
+        venue:
+          type: string
+      type: object
+    result.ResponseError:
+      example:
+        detail: detail
+        title: title
+        status: 0
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+      type: object
+    result.ResponseSuccess:
+      example:
+        msg: msg
+        code: code
+      properties:
+        code:
+          type: string
+        msg:
+          type: string
+      type: object
+    _internal_v1_address_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.Address'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+          country: country
+          zipCode: zipCode
+          town: town
+          provinceCode: provinceCode
+          homeNo: homeNo
+          soi: soi
+          building: building
+          province: province
+          road: road
+          countryCode: countryCode
+          district: district
+          place: place
+          floor: floor
+          village: village
+          subDistrict: subDistrict
+    _internal_v1_bank_account_deposit_withdraw_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.DepositWithdrawBankAccountResponse'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+          bankLogoUrl: bankLogoUrl
+          paymentToken: paymentToken
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          bankShortName: bankShortName
+          bankAccountNo: bankAccountNo
+          bankName: bankName
+          id: id
+          paymentTokenExpiry: paymentTokenExpiry
+    _internal_v1_bank_accounts_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.BankAccountResponse'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - bankAccountName: bankAccountName
+          paymentToken: paymentToken
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          atsEffectiveDate: atsEffectiveDate
+          bankAccountNo: bankAccountNo
+          id: id
+          status: status
+        - bankAccountName: bankAccountName
+          paymentToken: paymentToken
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          atsEffectiveDate: atsEffectiveDate
+          bankAccountNo: bankAccountNo
+          id: id
+          status: status
+    _internal_v1_debug_hash_post_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.HashResponse'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+          hash: hash
+    _internal_v1_debug_try_feature_service_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            type: boolean
+        type: object
+      example:
+        msg: msg
+        code: code
+        data: true
+    _internal_v1_kycs_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.GetKycByUserIdResponse'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+          reviewDate: reviewDate
+          expiredDate: expiredDate
+    _internal_v1_suitability_tests_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.SuitabilityTestResponse'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - score: 0
+          reviewDate: reviewDate
+          expiredDate: expiredDate
+          grade: grade
+          version: version
+        - score: 0
+          reviewDate: reviewDate
+          expiredDate: expiredDate
+          grade: grade
+          version: version
+    _internal_v1_trading_accounts_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.TradeAccountResponse'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - tradingAccounts:
+          - enableSell: enableSell
+            exchangeMarketId: exchangeMarketId
+            accountType: accountType
+            accountTypeCode: accountTypeCode
+            bankAccounts:
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            frontName: frontName
+            productName: productName
+            accountStatus: accountStatus
+            tradingAccountNo: tradingAccountNo
+            externalAccounts:
+            - providerId: 6
+              id: id
+              account: account
+            - providerId: 6
+              id: id
+              account: account
+            creditLine: 0.8008281904610115
+            creditLineCurrency: creditLineCurrency
+            enableWithdraw: enableWithdraw
+            enableBuy: enableBuy
+            enableDeposit: enableDeposit
+            id: id
+          - enableSell: enableSell
+            exchangeMarketId: exchangeMarketId
+            accountType: accountType
+            accountTypeCode: accountTypeCode
+            bankAccounts:
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            frontName: frontName
+            productName: productName
+            accountStatus: accountStatus
+            tradingAccountNo: tradingAccountNo
+            externalAccounts:
+            - providerId: 6
+              id: id
+              account: account
+            - providerId: 6
+              id: id
+              account: account
+            creditLine: 0.8008281904610115
+            creditLineCurrency: creditLineCurrency
+            enableWithdraw: enableWithdraw
+            enableBuy: enableBuy
+            enableDeposit: enableDeposit
+            id: id
+          customerCode: customerCode
+        - tradingAccounts:
+          - enableSell: enableSell
+            exchangeMarketId: exchangeMarketId
+            accountType: accountType
+            accountTypeCode: accountTypeCode
+            bankAccounts:
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            frontName: frontName
+            productName: productName
+            accountStatus: accountStatus
+            tradingAccountNo: tradingAccountNo
+            externalAccounts:
+            - providerId: 6
+              id: id
+              account: account
+            - providerId: 6
+              id: id
+              account: account
+            creditLine: 0.8008281904610115
+            creditLineCurrency: creditLineCurrency
+            enableWithdraw: enableWithdraw
+            enableBuy: enableBuy
+            enableDeposit: enableDeposit
+            id: id
+          - enableSell: enableSell
+            exchangeMarketId: exchangeMarketId
+            accountType: accountType
+            accountTypeCode: accountTypeCode
+            bankAccounts:
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            - paymentToken: paymentToken
+              transactionType: transactionType
+              bankCode: bankCode
+              bankBranchCode: bankBranchCode
+              rpType: rpType
+              payType: payType
+              endDate: endDate
+              atsEffectiveDate: atsEffectiveDate
+              bankAccountNo: bankAccountNo
+            frontName: frontName
+            productName: productName
+            accountStatus: accountStatus
+            tradingAccountNo: tradingAccountNo
+            externalAccounts:
+            - providerId: 6
+              id: id
+              account: account
+            - providerId: 6
+              id: id
+              account: account
+            creditLine: 0.8008281904610115
+            creditLineCurrency: creditLineCurrency
+            enableWithdraw: enableWithdraw
+            enableBuy: enableBuy
+            enableDeposit: enableDeposit
+            id: id
+          customerCode: customerCode
+    _internal_v1_trading_accounts__customerCode__post_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/_internal_v1_trading_accounts__customerCode__post_200_response_allOf_data'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data: null
+    _internal_v1_trading_accounts_marketing_infos_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.TradingAccountsMarketingInfo'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - tradingAccountNo: tradingAccountNo
+          exchangeMarketId: exchangeMarketId
+          endDate: endDate
+          accountType: accountType
+          accountTypeCode: accountTypeCode
+          id: id
+          marketingId: marketingId
+        - tradingAccountNo: tradingAccountNo
+          exchangeMarketId: exchangeMarketId
+          endDate: endDate
+          accountType: accountType
+          accountTypeCode: accountTypeCode
+          id: id
+          marketingId: marketingId
+    _internal_v1_user_accounts_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.UserAccountResponse'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - userAccountId: userAccountId
+          userAccountType: CashWallet
+          status: "N"
+        - userAccountId: userAccountId
+          userAccountType: CashWallet
+          status: "N"
+    _internal_v1_users_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.UserInfo'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - devices:
+          - deviceIdentifier: deviceIdentifier
+            notificationPreference:
+              important: true
+              market: true
+              wallet: true
+              portfolio: true
+              order: true
+            language: language
+            deviceId: deviceId
+            platform: platform
+            deviceToken: deviceToken
+          - deviceIdentifier: deviceIdentifier
+            notificationPreference:
+              important: true
+              market: true
+              wallet: true
+              portfolio: true
+              order: true
+            language: language
+            deviceId: deviceId
+            platform: platform
+            deviceToken: deviceToken
+          lastnameEn: lastnameEn
+          dateOfBirth: dateOfBirth
+          wealthType: wealthType
+          custCodes:
+          - custCodes
+          - custCodes
+          tradingAccounts:
+          - tradingAccounts
+          - tradingAccounts
+          phoneNumber: phoneNumber
+          firstnameEn: firstnameEn
+          lastnameTh: lastnameTh
+          citizenId: citizenId
+          id: id
+          email: email
+          firstnameTh: firstnameTh
+        - devices:
+          - deviceIdentifier: deviceIdentifier
+            notificationPreference:
+              important: true
+              market: true
+              wallet: true
+              portfolio: true
+              order: true
+            language: language
+            deviceId: deviceId
+            platform: platform
+            deviceToken: deviceToken
+          - deviceIdentifier: deviceIdentifier
+            notificationPreference:
+              important: true
+              market: true
+              wallet: true
+              portfolio: true
+              order: true
+            language: language
+            deviceId: deviceId
+            platform: platform
+            deviceToken: deviceToken
+          lastnameEn: lastnameEn
+          dateOfBirth: dateOfBirth
+          wealthType: wealthType
+          custCodes:
+          - custCodes
+          - custCodes
+          tradingAccounts:
+          - tradingAccounts
+          - tradingAccounts
+          phoneNumber: phoneNumber
+          firstnameEn: firstnameEn
+          lastnameTh: lastnameTh
+          citizenId: citizenId
+          id: id
+          email: email
+          firstnameTh: firstnameTh
+    _internal_v1_users_post_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.CreateUserInfoResponse'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+          id: id
+    _internal_v1_users__user_id__sub_users_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              type: string
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - data
+        - data
+    _internal_v1_users_migrate_post_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.MigrateUserResponse'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data: null
+    _internal_v1_watchlists_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.Watchlist'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - sequence: 0
+          symbol: symbol
+          venue: venue
+          id: id
+        - sequence: 0
+          symbol: symbol
+          venue: venue
+          id: id
+    _internal_v2_bank_account_deposit_withdraw_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.DepositWithdrawBankAccountResponse'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - bankLogoUrl: bankLogoUrl
+          paymentToken: paymentToken
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          bankShortName: bankShortName
+          bankAccountNo: bankAccountNo
+          bankName: bankName
+          id: id
+          paymentTokenExpiry: paymentTokenExpiry
+        - bankLogoUrl: bankLogoUrl
+          paymentToken: paymentToken
+          bankCode: bankCode
+          bankBranchCode: bankBranchCode
+          bankShortName: bankShortName
+          bankAccountNo: bankAccountNo
+          bankName: bankName
+          id: id
+          paymentTokenExpiry: paymentTokenExpiry
+    _secure_v1_trading_accounts_deposit_withdraw_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/dto.DepositWithdrawTradingAccountResponse'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - tradingAccountNo: tradingAccountNo
+          tradingAccountId: tradingAccountId
+          customerCode: customerCode
+          productName: productName
+        - tradingAccountNo: tradingAccountNo
+          tradingAccountId: tradingAccountId
+          customerCode: customerCode
+          productName: productName
+    _secure_v1_users_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.UserInfo'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+          devices:
+          - deviceIdentifier: deviceIdentifier
+            notificationPreference:
+              important: true
+              market: true
+              wallet: true
+              portfolio: true
+              order: true
+            language: language
+            deviceId: deviceId
+            platform: platform
+            deviceToken: deviceToken
+          - deviceIdentifier: deviceIdentifier
+            notificationPreference:
+              important: true
+              market: true
+              wallet: true
+              portfolio: true
+              order: true
+            language: language
+            deviceId: deviceId
+            platform: platform
+            deviceToken: deviceToken
+          lastnameEn: lastnameEn
+          dateOfBirth: dateOfBirth
+          wealthType: wealthType
+          custCodes:
+          - custCodes
+          - custCodes
+          tradingAccounts:
+          - tradingAccounts
+          - tradingAccounts
+          phoneNumber: phoneNumber
+          firstnameEn: firstnameEn
+          lastnameTh: lastnameTh
+          citizenId: citizenId
+          id: id
+          email: email
+          firstnameTh: firstnameTh
+    _secure_v1_watchlists_post_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            $ref: '#/components/schemas/dto.OptWatchlistResponse'
+        type: object
+      example:
+        msg: msg
+        code: code
+        data: null
+    dto_MigrateUserRequest_address:
+      properties:
+        building:
+          type: string
+        country:
+          type: string
+        countryCode:
+          type: string
+        district:
+          type: string
+        floor:
+          type: string
+        homeNo:
+          type: string
+        place:
+          type: string
+        province:
+          type: string
+        provinceCode:
+          type: string
+        road:
+          type: string
+        soi:
+          type: string
+        subDistrict:
+          type: string
+        town:
+          type: string
+        village:
+          type: string
+        zipCode:
+          type: string
+      type: object
+    dto_MigrateUserRequest_suitabilityTests_inner:
+      properties:
+        expiredDate:
+          type: string
+        grade:
+          type: string
+        reviewDate:
+          type: string
+        score:
+          type: string
+        version:
+          type: string
+      type: object
+    dto_MigrateUserRequest_tradeAccountBankAccounts_inner:
+      properties:
+        customerCode:
+          type: string
+        tradeAccount:
+          items:
+            $ref: '#/components/schemas/dto.MigrateUserTradeAccount'
+          type: array
+      type: object
+    _internal_v1_trading_accounts__customerCode__post_200_response_allOf_data:
+      type: object

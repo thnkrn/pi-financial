@@ -1,0 +1,55 @@
+version: '3.4'
+
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - SERVICES=sns,sqs
+      - DEBUG=${DEBUG- }
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=user_db
+    volumes:
+      - user_db_srv_mysql_data:/var/lib/mysql
+
+  user-api:
+    image: ${DOCKER_REGISTRY-}pifinancialuserserviceapi
+    build:
+      context: .
+      dockerfile: Pi.User.API/Dockerfile
+      args:
+        - GITHUB_PACKAGE_USER_NAME=$GITHUB_PACKAGE_USER_NAME
+        - GITHUB_PACKAGE_TOKEN=$GITHUB_PACKAGE_TOKEN
+    depends_on:
+      - localstack
+
+  user-worker:
+    image: ${DOCKER_REGISTRY-}pifinancialuserserviceworker
+    build:
+      context: .
+      dockerfile: Pi.User.Worker/Dockerfile
+      args:
+        - GITHUB_PACKAGE_USER_NAME=$GITHUB_PACKAGE_USER_NAME
+        - GITHUB_PACKAGE_TOKEN=$GITHUB_PACKAGE_TOKEN
+    depends_on:
+      - localstack
+
+volumes:
+  user_db_srv_mysql_data:

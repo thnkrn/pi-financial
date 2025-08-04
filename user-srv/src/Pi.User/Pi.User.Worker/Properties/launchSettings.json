@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Pi.User.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development",
+        "LEGACYITDB_TRADINGACCOUNT_TABLE": "tcas_test"
+      }
+    }
+  }
+}

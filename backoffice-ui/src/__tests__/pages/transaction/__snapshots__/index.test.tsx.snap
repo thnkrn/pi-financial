@@ -1,0 +1,685 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transaction should match with snapshot if loading transaction 1`] = `
+<DocumentFragment>
+  <div
+    style="display: flex; justify-content: center; align-items: center; height: 100%;"
+  >
+    <span
+      class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+      role="progressbar"
+      style="width: 40px; height: 40px;"
+    >
+      <svg
+        class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          stroke-width="3.6"
+        />
+      </svg>
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Transaction should match with snapshot if no error 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6 css-honmcm-MuiGrid-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+            >
+              Transaction ID: TEST0000
+            </span>
+          </div>
+        </div>
+        <div
+          class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6 css-honmcm-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+            >
+              <hr
+                class="MuiDivider-root MuiDivider-fullWidth css-1mwr4hz-MuiDivider-root"
+              />
+              <div>
+                <div
+                  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1gjfavo-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+                  >
+                    <div
+                      class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+                      >
+                        Overall Status and Required Action
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+                  >
+                    <table
+                      aria-label="Table"
+                      class="MuiTable-root css-1gyqvkt-MuiTable-root"
+                    >
+                      <thead
+                        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            STATUS
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            RESPONSE DESCRIPTION
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            FAIL REASON
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CALL TO ACTION
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            <div
+                              class="MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorWarning MuiChip-outlinedWarning css-1pjywbi-MuiChip-root"
+                            >
+                              <span
+                                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                              >
+                                Pending
+                              </span>
+                            </div>
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            <div
+                              class="MuiGrid-root MuiGrid-container css-1vam7s3-MuiGrid-root"
+                            >
+                              <div
+                                class="MuiGrid-root MuiGrid-item css-13i4rnv-MuiGrid-root"
+                              >
+                                <p
+                                  class="MuiTypography-root MuiTypography-body1 css-15jszgn-MuiTypography-root"
+                                >
+                                  Trading Account Deposit Fail
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            Manual allocation in SBA
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            Check Customer Trading Account Balance, before Manual Allocate
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1gjfavo-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+                  >
+                    <div
+                      class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+                      >
+                        Customer Profile
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+                  >
+                    <table
+                      aria-label="Table"
+                      class="MuiTable-root css-1gyqvkt-MuiTable-root"
+                    >
+                      <thead
+                        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CUSTOMER CODE
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CUSTOMER ACCOUNT NAME
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            0054xxx
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            ชื่อ 0054xxx นามสกุล 0054xxx (Name 0054xxx Surname 0054xxx)
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1gjfavo-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+                  >
+                    <div
+                      class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+                      >
+                        Product - Channel
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+                  >
+                    <table
+                      aria-label="Table"
+                      class="MuiTable-root css-1gyqvkt-MuiTable-root"
+                    >
+                      <thead
+                        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CHANNEL
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CUSTOMER ACCOUNT NUMBER
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            PRODUCT
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            QR
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            0054xxx
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            TFEX
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1gjfavo-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+                  >
+                    <div
+                      class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+                      >
+                        Transaction Summary
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+                  >
+                    <table
+                      aria-label="Table"
+                      class="MuiTable-root css-1gyqvkt-MuiTable-root"
+                    >
+                      <thead
+                        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            TRANSACTION NO
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            TRANSACTION TYPE
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            SENDER BANK / ACCOUNT NO
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            SENDER BANK ACCOUNT NAME
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            REQUESTED AMOUNT
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            EFFECTIVE DATE
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CREATED AT
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            DHDPxxxxx
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            deposit
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            SCB / 1112xxxx
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            SUPAN RUAN
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            ฿ 2,000,000.00
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            18/04/2024
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            <span
+                              aria-label="18/04/2024 06:03:46 UTC"
+                              class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                              data-mui-internal-clone-element="true"
+                            >
+                              18/04/2024 13:03:46
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1gjfavo-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+                  >
+                    <div
+                      class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+                      >
+                        QR Deposit Detail
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+                  >
+                    <table
+                      aria-label="Table"
+                      class="MuiTable-root css-1gyqvkt-MuiTable-root"
+                    >
+                      <thead
+                        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            STATE
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            PAYMENT RECEIVED AMOUNT
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            PAYMENT RECEIVED DATE TIME
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            FEE
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            FAILED REASON
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CREATED AT
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            QrDepositCompleted
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            ฿ 2,000,000.00
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            <span
+                              aria-label="18/04/2024 06:04:55 UTC"
+                              class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                              data-mui-internal-clone-element="true"
+                            >
+                              18/04/2024 13:04:55
+                            </span>
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            -
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            -
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            <span
+                              aria-label="18/04/2024 06:03:46 UTC"
+                              class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                              data-mui-internal-clone-element="true"
+                            >
+                              18/04/2024 13:03:46
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1gjfavo-MuiPaper-root-MuiCard-root"
+                >
+                  <div
+                    class="MuiCardHeader-root css-185gdzj-MuiCardHeader-root"
+                  >
+                    <div
+                      class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+                      >
+                        UpBack Detail
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-11xur9t-MuiPaper-root-MuiTableContainer-root"
+                  >
+                    <table
+                      aria-label="Table"
+                      class="MuiTable-root css-1gyqvkt-MuiTable-root"
+                    >
+                      <thead
+                        class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            STATE
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            FAILED REASON
+                          </th>
+                          <th
+                            class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium makeStyles-tableHead-1 css-1ygcj2i-MuiTableCell-root"
+                            scope="col"
+                          >
+                            CREATED AT
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody
+                        class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+                      >
+                        <tr
+                          class="MuiTableRow-root css-1q1u3t4-MuiTableRow-root"
+                        >
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            UpBackFailedRequireActionSba
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            Freewill update failed. ResultCode: 906
+                          </td>
+                          <td
+                            class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium makeStyles-tableBody-2 css-1ex1afd-MuiTableCell-root"
+                          >
+                            <span
+                              aria-label="18/04/2024 06:03:46 UTC"
+                              class="MuiTypography-root MuiTypography-body1 css-1d9ye53-MuiTypography-root"
+                              data-mui-internal-clone-element="true"
+                            >
+                              18/04/2024 13:03:46
+                            </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Transaction should match with snapshot if no transaction data 1`] = `
+<DocumentFragment>
+  <div
+    style="display: flex; justify-content: center; align-items: center; height: 100%;"
+  >
+    <span
+      class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+      role="progressbar"
+      style="width: 40px; height: 40px;"
+    >
+      <svg
+        class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          stroke-width="3.6"
+        />
+      </svg>
+    </span>
+  </div>
+</DocumentFragment>
+`;

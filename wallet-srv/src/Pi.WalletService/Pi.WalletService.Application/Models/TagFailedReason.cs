@@ -1,0 +1,35 @@
+namespace Pi.WalletService.Application.Models;
+
+public enum TagFailedReason
+{
+    Request,
+    Otp,
+    Kkp,
+    GenerateTransactionNo,
+    GenerateQr,
+    DepositPaymentFailed,
+    RefundSuccess,
+    ValidateGlobalRequest,
+    FxInitiate,
+    FxRateCompare,
+    FxFailed,
+    FxConfirm,
+    FxInsufficientBalance,
+    FxTransfer,
+    FxTransferValidation,
+    WithdrawFailed,
+    Tfex,
+    Freewill,
+    FreewillCallback,
+    UpBack,
+    InvalidSource,
+    NameMismatch,
+    AmountMismatch,
+    OperationSupport,
+    PaymentNotReceived,
+    OtpValidationNotReceived,
+    Global,
+    Recovery,
+    ManualAllocation,
+    OtpValidation
+}

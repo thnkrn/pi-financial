@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Cgs Bank
+  version: 1.0.0
+servers:
+  - url: https://api-uat-bpgw.pi.financial
+paths:
+  /KKPPayment/GenerateQR:
+    post:
+      description: Generate QR
+      tags:
+        - cgs bank
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+      requestBody:
+        description: Generate QR Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QRPaymentRequest"
+      responses:
+        "200":
+          description: Generate QR Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QRPaymentResponse"
+  /KKPPayment/Payment:
+    post:
+      description: Withdraw ATS KKP
+      tags:
+        - cgs bank
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+      requestBody:
+        description: Withdraw ATS KKP Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DDPaymentRequest"
+      responses:
+        "200":
+          description: Withdraw ATS KKP Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DDPaymentResponse"
+  /GetToken:
+    post:
+      tags:
+        - cgs bank
+      description: Generate JWT Token
+      parameters:
+        - name: x-api-key
+          in: header
+          description: api key
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetTokenResponse"
+  /KBANKPayment/Registration:
+    post:
+      description: KBANK ODD Registration
+      tags:
+        - cgs bank
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+      requestBody:
+        description: KBANK ODD Registration Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ODDRegistrationRequest"
+      responses:
+        "200":
+          description: KBANK ODD Registration Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ODDRegistrationResponse"
+  /SCBPayment/Registration:
+    post:
+      description: SCB ODD Registration
+      tags:
+        - cgs bank
+      parameters:
+        - in: header
+          name: Authorization
+          schema:
+            type: string
+      requestBody:
+        description: SCB ODD Registration Request
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ODDRegistrationRequest"
+      responses:
+        "200":
+          description: SCB ODD Registration Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ODDRegistrationResponse"
+components:
+  schemas:
+    DefaultResponse:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        response:
+          type: object
+        debugStack:
+          type: string
+    QRPaymentRequest:
+      type: object
+      properties:
+        transactionNo:
+          type: string
+        amount:
+          type: number
+        transactionRefCode:
+          type: string
+        expiredTimeInMinute:
+          type: number
+        internalRef:
+          type: object
+          properties:
+            customerCode:
+              type: string
+            product:
+              type: string
+    QRPaymentResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            externalStatusCode:
+              type: string
+              nullable: true
+            externalStatusDescription:
+              type: string
+              nullable: true
+            internalStatusCode:
+              type: string
+            internalStatusDescription:
+              type: string
+            status:
+              type: boolean
+        data:
+          type: object
+          properties:
+            QRValue:
+              type: string
+    DDPaymentRequest:
+      type: object
+      properties:
+        transactionNo:
+          type: string
+        transactionRefCode:
+          type: string
+        accountNo:
+          type: string
+        destinationBankCode:
+          type: string
+        amount:
+          type: number
+        internalRef:
+          type: object
+          properties:
+            customerCode:
+              type: string
+            product:
+              type: string
+    DDPaymentResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            externalStatusCode:
+              type: string
+              nullable: true
+            externalStatusDescription:
+              type: string
+              nullable: true
+            internalStatusCode:
+              type: string
+            internalStatusDescription:
+              type: string
+            status:
+              type: boolean
+        data:
+          type: object
+          properties:
+            transactionNo:
+              type: string
+            transactionRefCode:
+              type: string
+            amount:
+              type: number
+            externalRefTime:
+              type: string
+            externalRefCode:
+              type: string
+    GetTokenResponse:
+      type: object
+      properties:
+        Result:
+          type: string
+        Body:
+          type: object
+          properties:
+            message:
+              type: string
+            token:
+              type: string
+            type:
+              type: string
+            expires_in:
+              type: number
+              format: double
+    ODDRegistrationRequest:
+      type: object
+      properties:
+        registrationRefCode:
+          type: string
+        citizenId:
+          type: string
+        redirectUrl:
+          type: string
+        email:
+          type: string
+        mobileNo:
+          type: string
+        remarks:
+          type: string
+    ODDRegistrationResponse:
+      type: object
+      properties:
+        status:
+          type: object
+          properties:
+            externalStatusCode:
+              type: string
+            externalStatusDescription:
+              type: string
+            internalStatusCode:
+              type: string
+            internalStatusDescription:
+              type: string
+            status:
+              type: boolean
+        data:
+          type: object
+          properties:
+            webUrl:
+              type: string

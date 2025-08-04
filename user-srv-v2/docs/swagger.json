@@ -1,0 +1,4082 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Contain Generic Information.",
+        "title": "Pi User Service V2",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/internal/v1/address": {
+            "get": {
+                "description": "Get address by user id or create if not exists",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "address"
+                ],
+                "summary": "Get address by user id or create if not exists",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.Address"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create or update address by user id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "address"
+                ],
+                "summary": "Create or update address by user id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Address request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.Address"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/bank-account": {
+            "post": {
+                "description": "Create a bank account for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bank-account"
+                ],
+                "summary": "Create a bank account for a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "BankAccountRequest request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.BankAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/bank-account/deposit-withdraw": {
+            "get": {
+                "description": "Get bank account details for deposit or withdrawal purposes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bank-account"
+                ],
+                "summary": "Get bank account for deposit/withdraw (currently used by the app, but will be deprecated soon in favor of /internal/v2/bank-account/deposit-withdraw)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Account ID",
+                        "name": "accountId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Purpose (deposit/withdrawal)",
+                        "name": "purpose",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product",
+                        "name": "product",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.DepositWithdrawBankAccountResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/bank-accounts": {
+            "get": {
+                "description": "Get all bank accounts for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bank-account"
+                ],
+                "summary": "Get all bank accounts for a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.BankAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/change-requests": {
+            "get": {
+                "description": "Get a change request for user info.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change-request"
+                ],
+                "summary": "Get a change request for user info",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "date",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "ContactInfo",
+                            "IdCardInfo",
+                            "IdCardAddressInfo",
+                            "Signature",
+                            "CurrentAddress",
+                            "WorkplaceAddress",
+                            "Occupation",
+                            "IncomeSourceAndInvestmentPurpose",
+                            "Declaration",
+                            "SuitabilityTestResult",
+                            "BankAccountInfo"
+                        ],
+                        "type": "string",
+                        "x-enum-varnames": [
+                            "ContactInfo",
+                            "IdCardInfo",
+                            "IdCardAddressInfo",
+                            "Signature",
+                            "CurrentAddress",
+                            "WorkplaceAddress",
+                            "Occupation",
+                            "IncomeSourceAndInvestmentPurpose",
+                            "Declaration",
+                            "SuitabilityTestResult",
+                            "BankAccountInfo"
+                        ],
+                        "name": "infoType",
+                        "in": "query"
+                    },
+                    {
+                        "maximum": 20,
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "limit",
+                        "in": "query"
+                    },
+                    {
+                        "minimum": 1,
+                        "type": "integer",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "enum": [
+                            "Pending",
+                            "Cancelled",
+                            "Approved",
+                            "Rejected"
+                        ],
+                        "type": "string",
+                        "x-enum-varnames": [
+                            "PendingStatus",
+                            "CancelledStatus",
+                            "ApprovedStatus",
+                            "RejectedStatus"
+                        ],
+                        "name": "status",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.GetChangeRequestResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a change request for user info. If all fields have no change, returns 400.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change-request"
+                ],
+                "summary": "Create a change request for user info",
+                "parameters": [
+                    {
+                        "description": "Change Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateChangeRequireInfoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/change-requests/{changeRequestId}": {
+            "get": {
+                "description": "Get a change request by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change-request"
+                ],
+                "summary": "Get a change request by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Change request id",
+                        "name": "changeRequestId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.GetChangeRequestByIdResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/change-requests/{changeRequestId}/action": {
+            "get": {
+                "description": "Get audit log by change request id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change-request"
+                ],
+                "summary": "Get audit log by change request id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Change request id",
+                        "name": "changeRequestId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "Create",
+                            "Approve",
+                            "Reject",
+                            "Cancel"
+                        ],
+                        "type": "string",
+                        "x-enum-varnames": [
+                            "CreateAction",
+                            "ApproveAction",
+                            "RejectAction",
+                            "CancelAction"
+                        ],
+                        "name": "action",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.GetChangeRequestActionResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Insert a change request action.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "change-request"
+                ],
+                "summary": "Insert a change request action.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Change request id",
+                        "name": "changeRequestId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Change request action",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.AuditAction"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/debug/hash": {
+            "post": {
+                "description": "Convert input string to hash value",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "debug"
+                ],
+                "summary": "Get hash of input string",
+                "parameters": [
+                    {
+                        "description": "String to hash",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.HashRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.HashResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/debug/try-feature-service": {
+            "get": {
+                "description": "Try feature service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "debug"
+                ],
+                "summary": "Try feature service",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Feature Switch Name",
+                        "name": "featureSwitchName",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/debug/try-feature-service/with-headers": {
+            "get": {
+                "description": "Try feature service with headers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "debug"
+                ],
+                "summary": "Try feature service with headers",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Feature Switch Name",
+                        "name": "featureSwitchName",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Device ID",
+                        "name": "deviceId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Random",
+                        "name": "random",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/external-account": {
+            "post": {
+                "description": "Create or update external account for user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "external-account"
+                ],
+                "summary": "Create or update external account for user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Create External Account Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateExternalAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/kycs": {
+            "get": {
+                "description": "Get KYC for user or create if not exists.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kyc"
+                ],
+                "summary": "Get KYC for user or create if not exists.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.GetKycByUserIdResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create or update KYC for user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "kyc"
+                ],
+                "summary": "Create or update KYC for user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "KYC request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateKycRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/suitability-test": {
+            "post": {
+                "description": "Create new suitability test for user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "suitability-test"
+                ],
+                "summary": "Create new suitability test for user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Suitability Test Create Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.SuitabilityTestRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/suitability-tests": {
+            "get": {
+                "description": "Get all suitability tests for user or create if not exists.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "suitability-test"
+                ],
+                "summary": "Get all suitability tests for user or create if not exists.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.SuitabilityTestResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/trading-accounts": {
+            "get": {
+                "description": "Get all trading accounts for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "trading-account"
+                ],
+                "summary": "Get all trading accounts for a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "N for normal, C for closed",
+                        "name": "status",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.TradeAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/trading-accounts/marketing-infos": {
+            "get": {
+                "description": "Get trading accounts with marketing information from a list of customer codes.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "trading-account"
+                ],
+                "summary": "Get trading accounts with marketing information from a list of customer codes.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Codes",
+                        "name": "customerCodes",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.TradingAccountsMarketingInfo"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/trading-accounts/{customerCode}": {
+            "post": {
+                "description": "Create or update trading account for a customer.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "trading-account"
+                ],
+                "summary": "Create or update trading account for a customer.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer code",
+                        "name": "customerCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Create trading account request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.CreateTradingAccountRequest"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/user-account": {
+            "post": {
+                "description": "Link (upsert) user account id with user id for a user account type. User account id can be either customer code or cash wallet id.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user-account"
+                ],
+                "summary": "Link user account id with user id for a user account type.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Link User Account Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.LinkUserAccountRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Linked User Account",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Error linking user account",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/user-accounts": {
+            "get": {
+                "description": "Get user accounts by filters. User id and citizen id card must exist in user info.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user-account"
+                ],
+                "summary": "Get user accounts by filters.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "userId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Citizen ID",
+                        "name": "citizenId",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Account",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.UserAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "404": {
+                        "description": "User account not found",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/user-accounts/customer-info/{accountId}": {
+            "get": {
+                "description": "Get customer info by account id.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user-account"
+                ],
+                "summary": "Get customer info by account id.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Account ID",
+                        "name": "accountId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer Info",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.GetCustomerInfoByAccountIdResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "404": {
+                        "description": "Customer info not found",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/user-accounts/marketing/{marketingId}": {
+            "get": {
+                "description": "Get user account by marketing id.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user-account"
+                ],
+                "summary": "Get user account by marketing id.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Marketing ID",
+                        "name": "marketingId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Account",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.GetUserAccountByMarketingIdResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "404": {
+                        "description": "User account not found",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/users": {
+            "get": {
+                "description": "Get user info by filters for multiple users.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user info by filters for multiple users.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "accountId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "citizenId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "email",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "firstName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "ids",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "lastName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "phoneNumber",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Info",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.UserInfo"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create user info with the given details.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create user info with the given details.",
+                "parameters": [
+                    {
+                        "description": "Create User Info Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateUserInfoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create User Info",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.CreateUserInfoResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update some fields for user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Update some fields for user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Patch User Info Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.PatchUserInfoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/users/migrate": {
+            "post": {
+                "description": "Create new user with info from BPM",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Create new user with info from BPM",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Migrate User Request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.MigrateUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Migrate User",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.MigrateUserResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/users/profile": {
+            "get": {
+                "description": "Get user profile",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user profile",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Profile",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.ProfileInfo"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/users/sync": {
+            "post": {
+                "description": "Synchronizes user data with external IT services (create and upsert user info).",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Synchronizes user data with external IT services.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code (must be 7 characters long)",
+                        "name": "customerCode",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "kyc",
+                            "suitTest",
+                            "address",
+                            "tradingAccount",
+                            "userInfo",
+                            "all"
+                        ],
+                        "type": "string",
+                        "description": "Sync Type",
+                        "name": "syncType",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameters",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Sync error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/users/{user-id}/sub-users": {
+            "get": {
+                "description": "Get sub-users associated with auser.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get sub-users associated with a user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sub User IDs",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Add sub-user to a user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Add sub-user to a user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Map Sub User Request",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/watchlists": {
+            "get": {
+                "description": "Get all watchlists for a user.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "watchlist"
+                ],
+                "summary": "Get all watchlists for a user.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Get watchlist request",
+                        "name": "venue",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.Watchlist"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v2/bank-account/deposit-withdraw": {
+            "get": {
+                "description": "Get bank accounts details for deposit or withdrawal purposes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bank-account"
+                ],
+                "summary": "Get bank accounts details for deposit or withdrawal purposes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Account ID. Must be either customer code (7 digits) or cash wallet id (10 digits).",
+                        "name": "accountId",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Purpose (deposit/withdrawal)",
+                        "name": "purpose",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Product. Optional if accountId is cash wallet id.",
+                        "name": "product",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.DepositWithdrawBankAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/v1/trading-accounts": {
+            "get": {
+                "description": "Get all trading accounts for a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "trading-account"
+                ],
+                "summary": "Get all trading accounts for a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "N for normal, C for closed",
+                        "name": "status",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.TradeAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/v1/trading-accounts/deposit-withdraw": {
+            "get": {
+                "description": "Get user's deposit/withdrawal trading accounts.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "trading-account"
+                ],
+                "summary": "Get user's deposit/withdrawal trading accounts.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.DepositWithdrawTradingAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/v1/user-accounts": {
+            "get": {
+                "description": "Get user account details by user id.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user-account"
+                ],
+                "summary": "Get user account details by user id.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Account",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/dto.UserAccountResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "404": {
+                        "description": "User account not found",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/v1/users": {
+            "get": {
+                "description": "Get user info.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Get user info.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Info",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.UserInfo"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Validation failed",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/v1/watchlists": {
+            "post": {
+                "description": "Create or delete watchlist item.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "watchlist"
+                ],
+                "summary": "Create or delete watchlist item.",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User ID",
+                        "name": "user-id",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Watchlist operation request",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.OptWatchlistRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.OptWatchlistResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.AuditLogAction": {
+            "type": "string",
+            "enum": [
+                "Create",
+                "Approve",
+                "Reject",
+                "Cancel"
+            ],
+            "x-enum-varnames": [
+                "CreateAction",
+                "ApproveAction",
+                "RejectAction",
+                "CancelAction"
+            ]
+        },
+        "domain.ChangeRequestInfoType": {
+            "type": "string",
+            "enum": [
+                "ContactInfo",
+                "IdCardInfo",
+                "IdCardAddressInfo",
+                "Signature",
+                "CurrentAddress",
+                "WorkplaceAddress",
+                "Occupation",
+                "IncomeSourceAndInvestmentPurpose",
+                "Declaration",
+                "SuitabilityTestResult",
+                "BankAccountInfo"
+            ],
+            "x-enum-varnames": [
+                "ContactInfo",
+                "IdCardInfo",
+                "IdCardAddressInfo",
+                "Signature",
+                "CurrentAddress",
+                "WorkplaceAddress",
+                "Occupation",
+                "IncomeSourceAndInvestmentPurpose",
+                "Declaration",
+                "SuitabilityTestResult",
+                "BankAccountInfo"
+            ]
+        },
+        "domain.ChangeRequestStatus": {
+            "type": "string",
+            "enum": [
+                "Pending",
+                "Cancelled",
+                "Approved",
+                "Rejected"
+            ],
+            "x-enum-varnames": [
+                "PendingStatus",
+                "CancelledStatus",
+                "ApprovedStatus",
+                "RejectedStatus"
+            ]
+        },
+        "domain.TradeAccountStatus": {
+            "type": "string",
+            "enum": [
+                "N",
+                "C"
+            ],
+            "x-enum-varnames": [
+                "NormalTradeAccountStatus",
+                "ClosedTradeAccountStatus"
+            ]
+        },
+        "domain.UserAccountStatus": {
+            "type": "string",
+            "enum": [
+                "N",
+                "C"
+            ],
+            "x-enum-varnames": [
+                "NormalUserAccountStatus",
+                "ClosedUserAccountStatus"
+            ]
+        },
+        "domain.UserAccountType": {
+            "type": "string",
+            "enum": [
+                "CashWallet",
+                "Freewill"
+            ],
+            "x-enum-varnames": [
+                "CashWallet",
+                "Freewill"
+            ]
+        },
+        "dto.Address": {
+            "type": "object",
+            "properties": {
+                "building": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "floor": {
+                    "type": "string"
+                },
+                "homeNo": {
+                    "type": "string"
+                },
+                "place": {
+                    "type": "string"
+                },
+                "province": {
+                    "type": "string"
+                },
+                "provinceCode": {
+                    "type": "string"
+                },
+                "road": {
+                    "type": "string"
+                },
+                "soi": {
+                    "type": "string"
+                },
+                "subDistrict": {
+                    "type": "string"
+                },
+                "town": {
+                    "type": "string"
+                },
+                "village": {
+                    "type": "string"
+                },
+                "zipCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.AddressInfo": {
+            "type": "object",
+            "properties": {
+                "building": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "houseNo": {
+                    "type": "string"
+                },
+                "moo": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "province": {
+                    "type": "string"
+                },
+                "road": {
+                    "type": "string"
+                },
+                "soi": {
+                    "type": "string"
+                },
+                "subDistrict": {
+                    "type": "string"
+                },
+                "village": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.AuditAction": {
+            "type": "object",
+            "required": [
+                "action",
+                "checkerId"
+            ],
+            "properties": {
+                "action": {
+                    "enum": [
+                        "Create",
+                        "Approved",
+                        "Rejected",
+                        "Cancelled"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/domain.AuditLogAction"
+                        }
+                    ]
+                },
+                "checkerId": {
+                    "type": "string"
+                },
+                "checkerName": {
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.BankAccountInfo": {
+            "type": "object",
+            "properties": {
+                "accountName": {
+                    "type": "string"
+                },
+                "accountNo": {
+                    "type": "string"
+                },
+                "bankBranchName": {
+                    "type": "string"
+                },
+                "bankCode": {
+                    "type": "string"
+                },
+                "bankLogo": {
+                    "type": "string"
+                },
+                "bankName": {
+                    "type": "string"
+                },
+                "bookBankImage": {
+                    "type": "string"
+                },
+                "effectiveDate": {
+                    "type": "string"
+                },
+                "isPrimary": {
+                    "type": "boolean"
+                },
+                "tradingAccountNo": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.BankAccountRequest": {
+            "type": "object",
+            "required": [
+                "accountName",
+                "accountNo",
+                "bankCode",
+                "branchCode",
+                "status"
+            ],
+            "properties": {
+                "accountName": {
+                    "type": "string"
+                },
+                "accountNo": {
+                    "type": "string"
+                },
+                "atsEffectiveDate": {
+                    "type": "string"
+                },
+                "bankCode": {
+                    "type": "string"
+                },
+                "branchCode": {
+                    "type": "string"
+                },
+                "paymentToken": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ACTIVE",
+                        "INACTIVE"
+                    ]
+                }
+            }
+        },
+        "dto.BankAccountResponse": {
+            "type": "object",
+            "properties": {
+                "atsEffectiveDate": {
+                    "type": "string"
+                },
+                "bankAccountName": {
+                    "type": "string"
+                },
+                "bankAccountNo": {
+                    "type": "string"
+                },
+                "bankBranchCode": {
+                    "type": "string"
+                },
+                "bankCode": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "paymentToken": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.BankAccountsResponse": {
+            "type": "object",
+            "properties": {
+                "atsEffectiveDate": {
+                    "type": "string"
+                },
+                "bankAccountNo": {
+                    "type": "string"
+                },
+                "bankBranchCode": {
+                    "type": "string"
+                },
+                "bankCode": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "payType": {
+                    "type": "string"
+                },
+                "paymentToken": {
+                    "type": "string"
+                },
+                "rpType": {
+                    "type": "string"
+                },
+                "transactionType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ChangeRequest": {
+            "type": "object",
+            "properties": {
+                "checker": {
+                    "type": "string"
+                },
+                "citizenId": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "customerCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "infoType": {
+                    "type": "string"
+                },
+                "infos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ChangeRequestInfo"
+                    }
+                },
+                "maker": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ChangeRequestInfo": {
+            "type": "object",
+            "properties": {
+                "fieldName": {
+                    "type": "string"
+                },
+                "fieldValue": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ContactInfo": {
+            "type": "object",
+            "properties": {
+                "customerCode": {
+                    "type": "string"
+                },
+                "documentRecipientEmail": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateChangeRequireInfoRequest": {
+            "type": "object",
+            "required": [
+                "infoType"
+            ],
+            "properties": {
+                "infoType": {
+                    "enum": [
+                        "ContactInfo",
+                        "IdCardInfo",
+                        "IdCardAddressInfo",
+                        "Signature",
+                        "CurrentAddress",
+                        "WorkplaceAddress",
+                        "Occupation",
+                        "IncomeSourceAndInvestmentPurpose",
+                        "Declaration",
+                        "SuitabilityTestResult",
+                        "BankAccountInfo"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/domain.ChangeRequestInfoType"
+                        }
+                    ]
+                },
+                "infos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ChangeRequestInfo"
+                    }
+                },
+                "makerId": {
+                    "type": "string"
+                },
+                "makerName": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateExternalAccountRequest": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "product": {
+                    "type": "string"
+                },
+                "providerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.CreateKycRequest": {
+            "type": "object",
+            "required": [
+                "expiredDate",
+                "reviewDate"
+            ],
+            "properties": {
+                "expiredDate": {
+                    "type": "string"
+                },
+                "reviewDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateTradingAccountRequest": {
+            "type": "object",
+            "properties": {
+                "accountStatus": {
+                    "enum": [
+                        "N",
+                        "C"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/domain.TradeAccountStatus"
+                        }
+                    ]
+                },
+                "accountType": {
+                    "type": "string"
+                },
+                "accountTypeCode": {
+                    "type": "string"
+                },
+                "creditLine": {
+                    "type": "number"
+                },
+                "creditLineCurrency": {
+                    "type": "string"
+                },
+                "effectiveDate": {
+                    "description": "2025-12-31",
+                    "type": "string"
+                },
+                "enableBuy": {
+                    "type": "string"
+                },
+                "enableDeposit": {
+                    "type": "string"
+                },
+                "enableSell": {
+                    "type": "string"
+                },
+                "enableWithdraw": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "description": "2025-12-31",
+                    "type": "string"
+                },
+                "exchangeMarketId": {
+                    "type": "string"
+                },
+                "frontName": {
+                    "type": "string"
+                },
+                "marketingId": {
+                    "type": "string"
+                },
+                "openDate": {
+                    "description": "2025-12-31",
+                    "type": "string"
+                },
+                "saleLicense": {
+                    "type": "string"
+                },
+                "tradingAccountNo": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateUserInfoRequest": {
+            "type": "object",
+            "properties": {
+                "citizenId": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstnameEn": {
+                    "type": "string"
+                },
+                "firstnameTh": {
+                    "type": "string"
+                },
+                "lastnameEn": {
+                    "type": "string"
+                },
+                "lastnameTh": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "wealthType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateUserInfoResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.DeclarationInfo": {
+            "type": "object",
+            "properties": {
+                "deniedTransactionFlag": {
+                    "type": "boolean"
+                },
+                "launderFlag": {
+                    "type": "boolean"
+                },
+                "politicalFlag": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "dto.DepositWithdrawBankAccountResponse": {
+            "type": "object",
+            "properties": {
+                "bankAccountNo": {
+                    "type": "string"
+                },
+                "bankBranchCode": {
+                    "type": "string"
+                },
+                "bankCode": {
+                    "type": "string"
+                },
+                "bankLogoUrl": {
+                    "type": "string"
+                },
+                "bankName": {
+                    "type": "string"
+                },
+                "bankShortName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "paymentToken": {
+                    "type": "string"
+                },
+                "paymentTokenExpiry": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.DepositWithdrawTradingAccountResponse": {
+            "type": "object",
+            "properties": {
+                "customerCode": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "tradingAccountId": {
+                    "type": "string"
+                },
+                "tradingAccountNo": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Device": {
+            "type": "object",
+            "properties": {
+                "deviceId": {
+                    "type": "string"
+                },
+                "deviceIdentifier": {
+                    "type": "string"
+                },
+                "deviceToken": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "notificationPreference": {
+                    "$ref": "#/definitions/dto.NotificationPreference"
+                },
+                "platform": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ExternalAccountResponse": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "providerId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.GetChangeRequestActionResponse": {
+            "type": "object",
+            "properties": {
+                "action": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "infoType": {
+                    "type": "string"
+                },
+                "maker": {
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GetChangeRequestByIdResponse": {
+            "type": "object",
+            "properties": {
+                "checker": {
+                    "type": "string"
+                },
+                "citizenId": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "customerCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "infoType": {
+                    "type": "string"
+                },
+                "infos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ChangeRequestInfo"
+                    }
+                },
+                "maker": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GetChangeRequestResponse": {
+            "type": "object",
+            "properties": {
+                "item_count": {
+                    "type": "integer"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ChangeRequest"
+                    }
+                },
+                "limit": {
+                    "type": "integer"
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "total_items": {
+                    "type": "integer"
+                },
+                "total_pages": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.GetCustomerInfoByAccountIdResponse": {
+            "type": "object",
+            "properties": {
+                "customerSubType": {
+                    "type": "string"
+                },
+                "customerType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GetKycByUserIdResponse": {
+            "type": "object",
+            "properties": {
+                "expiredDate": {
+                    "type": "string"
+                },
+                "reviewDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GetUserAccountByMarketingIdResponse": {
+            "type": "object",
+            "properties": {
+                "customerCode": {
+                    "type": "string"
+                },
+                "firstnameEn": {
+                    "type": "string"
+                },
+                "firstnameTh": {
+                    "type": "string"
+                },
+                "lastnameEn": {
+                    "type": "string"
+                },
+                "lastnameTh": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.HashRequest": {
+            "type": "object",
+            "required": [
+                "input"
+            ],
+            "properties": {
+                "input": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.HashResponse": {
+            "type": "object",
+            "properties": {
+                "hash": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.IdCardInfo": {
+            "type": "object",
+            "properties": {
+                "cardExpiry": {
+                    "type": "string"
+                },
+                "citizenId": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "firstNameEn": {
+                    "type": "string"
+                },
+                "firstNameTh": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "laserCode": {
+                    "type": "string"
+                },
+                "lastNameEn": {
+                    "type": "string"
+                },
+                "lastNameTh": {
+                    "type": "string"
+                },
+                "titleEn": {
+                    "type": "string"
+                },
+                "titleOther": {
+                    "type": "string"
+                },
+                "titleTh": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.InfoTypeStatus": {
+            "type": "object",
+            "properties": {
+                "infoType": {
+                    "$ref": "#/definitions/domain.ChangeRequestInfoType"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/domain.ChangeRequestStatus"
+                }
+            }
+        },
+        "dto.InvestmentInfo": {
+            "type": "object",
+            "properties": {
+                "income": {
+                    "type": "string"
+                },
+                "purposeOfInvestment": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sourceOfIncome": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dto.KycInfo": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.AddressInfo"
+                },
+                "idCard": {
+                    "$ref": "#/definitions/dto.IdCardInfo"
+                },
+                "reviewDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.LinkUserAccountRequest": {
+            "type": "object",
+            "required": [
+                "userAccountId",
+                "userAccountType"
+            ],
+            "properties": {
+                "status": {
+                    "enum": [
+                        "N",
+                        "C"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/domain.UserAccountStatus"
+                        }
+                    ]
+                },
+                "userAccountId": {
+                    "type": "string"
+                },
+                "userAccountType": {
+                    "enum": [
+                        "CashWallet",
+                        "Freewill"
+                    ],
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/domain.UserAccountType"
+                        }
+                    ]
+                }
+            }
+        },
+        "dto.MigrateUserExternalAccount": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "providerId": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.MigrateUserInfo": {
+            "type": "object",
+            "properties": {
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstnameEn": {
+                    "type": "string"
+                },
+                "firstnameTh": {
+                    "type": "string"
+                },
+                "lastnameEn": {
+                    "type": "string"
+                },
+                "lastnameTh": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "placeOfBirthCity": {
+                    "type": "string"
+                },
+                "placeOfBirthCountry": {
+                    "type": "string"
+                },
+                "wealthType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.MigrateUserKyc": {
+            "type": "object",
+            "properties": {
+                "expiredDate": {
+                    "type": "string"
+                },
+                "reviewDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.MigrateUserRequest": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "object",
+                    "properties": {
+                        "building": {
+                            "type": "string"
+                        },
+                        "country": {
+                            "type": "string"
+                        },
+                        "countryCode": {
+                            "type": "string"
+                        },
+                        "district": {
+                            "type": "string"
+                        },
+                        "floor": {
+                            "type": "string"
+                        },
+                        "homeNo": {
+                            "type": "string"
+                        },
+                        "place": {
+                            "type": "string"
+                        },
+                        "province": {
+                            "type": "string"
+                        },
+                        "provinceCode": {
+                            "type": "string"
+                        },
+                        "road": {
+                            "type": "string"
+                        },
+                        "soi": {
+                            "type": "string"
+                        },
+                        "subDistrict": {
+                            "type": "string"
+                        },
+                        "town": {
+                            "type": "string"
+                        },
+                        "village": {
+                            "type": "string"
+                        },
+                        "zipCode": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "kyc": {
+                    "$ref": "#/definitions/dto.MigrateUserKyc"
+                },
+                "suitabilityTests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "expiredDate": {
+                                "type": "string"
+                            },
+                            "grade": {
+                                "type": "string"
+                            },
+                            "reviewDate": {
+                                "type": "string"
+                            },
+                            "score": {
+                                "type": "string"
+                            },
+                            "version": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "tradeAccountBankAccounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "customerCode": {
+                                "type": "string"
+                            },
+                            "tradeAccount": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/dto.MigrateUserTradeAccount"
+                                }
+                            }
+                        }
+                    }
+                },
+                "userInfo": {
+                    "$ref": "#/definitions/dto.MigrateUserInfo"
+                }
+            }
+        },
+        "dto.MigrateUserResponse": {
+            "type": "object"
+        },
+        "dto.MigrateUserTradeAccount": {
+            "type": "object",
+            "properties": {
+                "accountNumber": {
+                    "type": "string"
+                },
+                "accountStatus": {
+                    "type": "string"
+                },
+                "accountType": {
+                    "type": "string"
+                },
+                "accountTypeCode": {
+                    "type": "string"
+                },
+                "creditLine": {
+                    "type": "number"
+                },
+                "creditLineCurrency": {
+                    "type": "string"
+                },
+                "effectiveDate": {
+                    "type": "string"
+                },
+                "enableBuy": {
+                    "type": "string"
+                },
+                "enableDeposit": {
+                    "type": "string"
+                },
+                "enableSell": {
+                    "type": "string"
+                },
+                "enableWithdraw": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "exchangeMarketId": {
+                    "type": "string"
+                },
+                "externalAccount": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.MigrateUserExternalAccount"
+                    }
+                },
+                "frontName": {
+                    "type": "string"
+                },
+                "marketingId": {
+                    "type": "string"
+                },
+                "openDate": {
+                    "type": "string"
+                },
+                "saleLicense": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.NotificationPreference": {
+            "type": "object",
+            "properties": {
+                "important": {
+                    "type": "boolean"
+                },
+                "market": {
+                    "type": "boolean"
+                },
+                "order": {
+                    "type": "boolean"
+                },
+                "portfolio": {
+                    "type": "boolean"
+                },
+                "wallet": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "dto.OccupationInfo": {
+            "type": "object",
+            "properties": {
+                "businessType": {
+                    "type": "string"
+                },
+                "businessTypeOther": {
+                    "type": "string"
+                },
+                "jobTitle": {
+                    "type": "string"
+                },
+                "occupation": {
+                    "type": "string"
+                },
+                "occupationOther": {
+                    "type": "string"
+                },
+                "workplaceNameEn": {
+                    "type": "string"
+                },
+                "workplaceNameTh": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.OptWatchlistRequest": {
+            "type": "object",
+            "required": [
+                "opt",
+                "symbol",
+                "venue"
+            ],
+            "properties": {
+                "opt": {
+                    "type": "string",
+                    "enum": [
+                        "add",
+                        "delete"
+                    ]
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "venue": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.OptWatchlistResponse": {
+            "type": "object"
+        },
+        "dto.PatchUserInfoRequest": {
+            "type": "object",
+            "properties": {
+                "citizenId": {
+                    "type": "string"
+                },
+                "dateOfBirth": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstnameEn": {
+                    "type": "string"
+                },
+                "firstnameTh": {
+                    "type": "string"
+                },
+                "lastnameEn": {
+                    "type": "string"
+                },
+                "lastnameTh": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "placeOfBirthCity": {
+                    "type": "string"
+                },
+                "placeOfBirthCountry": {
+                    "type": "string"
+                },
+                "wealthType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ProfileInfo": {
+            "type": "object",
+            "properties": {
+                "bankAccountInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.BankAccountInfo"
+                    }
+                },
+                "contactInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ContactInfo"
+                    }
+                },
+                "currentAddress": {
+                    "$ref": "#/definitions/dto.AddressInfo"
+                },
+                "declaration": {
+                    "$ref": "#/definitions/dto.DeclarationInfo"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "infoTypeStatus": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.InfoTypeStatus"
+                    }
+                },
+                "investment": {
+                    "$ref": "#/definitions/dto.InvestmentInfo"
+                },
+                "kycInfo": {
+                    "$ref": "#/definitions/dto.KycInfo"
+                },
+                "occupation": {
+                    "$ref": "#/definitions/dto.OccupationInfo"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "signature": {
+                    "type": "string"
+                },
+                "suitTest": {
+                    "$ref": "#/definitions/dto.SuitTestInfo"
+                },
+                "workplaceAddress": {
+                    "$ref": "#/definitions/dto.AddressInfo"
+                }
+            }
+        },
+        "dto.SuitTestAnswer": {
+            "type": "object",
+            "properties": {
+                "answerCmsId": {
+                    "type": "string"
+                },
+                "answerCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SuitTestInfo": {
+            "type": "object",
+            "properties": {
+                "latestDate": {
+                    "type": "string"
+                },
+                "questions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.SuitTestQuestion"
+                    }
+                },
+                "score": {
+                    "type": "string"
+                },
+                "scoreDescription": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SuitTestQuestion": {
+            "type": "object",
+            "properties": {
+                "answers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.SuitTestAnswer"
+                    }
+                },
+                "questionCmsId": {
+                    "type": "string"
+                },
+                "questionCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SuitabilityTestRequest": {
+            "type": "object",
+            "properties": {
+                "expiredDate": {
+                    "type": "string"
+                },
+                "grade": {
+                    "type": "string"
+                },
+                "reviewDate": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.SuitabilityTestResponse": {
+            "type": "object",
+            "properties": {
+                "expiredDate": {
+                    "type": "string"
+                },
+                "grade": {
+                    "type": "string"
+                },
+                "reviewDate": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.TradeAccountResponse": {
+            "type": "object",
+            "properties": {
+                "customerCode": {
+                    "type": "string"
+                },
+                "tradingAccounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.TradingAccountResponse"
+                    }
+                }
+            }
+        },
+        "dto.TradingAccountResponse": {
+            "type": "object",
+            "properties": {
+                "accountStatus": {
+                    "type": "string"
+                },
+                "accountType": {
+                    "type": "string"
+                },
+                "accountTypeCode": {
+                    "type": "string"
+                },
+                "bankAccounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.BankAccountsResponse"
+                    }
+                },
+                "creditLine": {
+                    "type": "number"
+                },
+                "creditLineCurrency": {
+                    "type": "string"
+                },
+                "enableBuy": {
+                    "type": "string"
+                },
+                "enableDeposit": {
+                    "type": "string"
+                },
+                "enableSell": {
+                    "type": "string"
+                },
+                "enableWithdraw": {
+                    "type": "string"
+                },
+                "exchangeMarketId": {
+                    "type": "string"
+                },
+                "externalAccounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ExternalAccountResponse"
+                    }
+                },
+                "frontName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "tradingAccountNo": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.TradingAccountsMarketingInfo": {
+            "type": "object",
+            "properties": {
+                "accountType": {
+                    "type": "string"
+                },
+                "accountTypeCode": {
+                    "type": "string"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "exchangeMarketId": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "marketingId": {
+                    "type": "string"
+                },
+                "saleLicense": {
+                    "type": "string"
+                },
+                "tradingAccountNo": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UserAccountResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "$ref": "#/definitions/domain.UserAccountStatus"
+                },
+                "userAccountId": {
+                    "type": "string"
+                },
+                "userAccountType": {
+                    "$ref": "#/definitions/domain.UserAccountType"
+                }
+            }
+        },
+        "dto.UserInfo": {
+            "type": "object",
+            "properties": {
+                "citizenId": {
+                    "type": "string"
+                },
+                "custCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "dateOfBirth": {
+                    "description": "2024-12-27",
+                    "type": "string"
+                },
+                "devices": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.Device"
+                    }
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstnameEn": {
+                    "type": "string"
+                },
+                "firstnameTh": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lastnameEn": {
+                    "type": "string"
+                },
+                "lastnameTh": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "placeOfBirthCity": {
+                    "type": "string"
+                },
+                "placeOfBirthCountry": {
+                    "type": "string"
+                },
+                "tradingAccounts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "wealthType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Watchlist": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "sequence": {
+                    "type": "integer"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "venue": {
+                    "type": "string"
+                }
+            }
+        },
+        "result.ResponseError": {
+            "type": "object",
+            "properties": {
+                "detail": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "result.ResponseSuccess": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

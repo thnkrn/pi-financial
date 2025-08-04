@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Pi.User.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Commands\" />
+    <None Remove="Services\Models\" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.User.Domain\Pi.User.Domain.csproj" />
+    <ProjectReference Include="..\Pi.User.IntegrationEvents\Pi.User.IntegrationEvents.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.205" />
+    <PackageReference Include="EntityFrameworkCore.DataEncryption" Version="5.0.0" />
+    <PackageReference Include="MassTransit" Version="8.2.3" />
+    <PackageReference Include="MassTransit.AmazonSQS" Version="8.2.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Pi.Client.OnboardService" Version="1.0.41" />
+    <PackageReference Include="Pi.Common" Version="1.0.115" />
+    <PackageReference Include="Pi.Client.PiSsoV2" Version="1.0.124" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="pi.common.domain" Version="1.0.115" />
+    <PackageReference Include="Pi.Financial.Client.PdfService" Version="1.0.21" />
+    <PackageReference Include="Pi.OnboardService.IntegrationEvents" Version="1.0.11" />
+    <PackageReference Include="Pi.WalletService.IntegrationEvents" Version="1.0.9" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@assword
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=user_service_user
+
+  user-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - AwsSqs__Region=localstack
+      - AwsSqs__ServiceUrl=http://localstack:4566
+      - Seq__ServerUrl=http://host.docker.internal:5341
+      - ConnectionStrings__User=server=db;database=user_db;user=user_service_user;password=password
+      - OpenTelemetry__Exporter__Otlp__Endpoint=grafana-agent:12345
+      - LEGACYITDB_TRADINGACCOUNT_TABLE=tcas_test
+    ports:
+      - "80"
+    volumes:
+    - ~/.aws:/root/.aws:ro
+
+  user-worker:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - AwsSqs__Region=localstack
+      - AwsSqs__ServiceUrl=http://localstack:4566
+      - Seq__ServerUrl=http://host.docker.internal:5341
+      - ConnectionStrings__User=server=db;database=user_db;user=user_service_user;password=password
+      - Opentelemetry_Exporter_Otlp_Endpoint=grafana-agent:12345
+      - LEGACYITDB_TRADINGACCOUNT_TABLE=tcas_test
+    volumes:
+    - ~/.aws:/root/.aws:ro

@@ -1,0 +1,10 @@
+services:
+  backoffice-ui-staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+    image: backoffice-ui-staging

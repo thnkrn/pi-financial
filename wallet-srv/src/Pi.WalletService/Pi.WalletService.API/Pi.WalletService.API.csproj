@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pi.WalletService.API</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>d2a4af1f-494f-42f8-9665-a9312f80a492</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net7.0\Pi.WalletService.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\net7.0\Pi.WalletService.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EFCore.NamingConventions" Version="7.0.2" />
+    <PackageReference Include="MassTransit" Version="8.0.15" />
+    <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15" />
+    <PackageReference Include="MassTransit.Analyzers" Version="8.0.15">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="7.0.3" />
+    <PackageReference Include="Pi.Common.Serilog" Version="1.0.86" />
+    <PackageReference Include="pi.common.startup" Version="1.0.86" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.11" />
+    <PackageReference Include="Pi.Financial.Client.Freewill" Version="1.0.67" />
+    <PackageReference Include="pi.financial.client.settrade" Version="1.0.7" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="6.0.0" />
+    <PackageReference Include="Pi.Common" Version="1.0.86" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="7.0.3" />
+    <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Startup\" />
+    <None Remove="Serilog.AspNetCore" />
+    <None Remove="MassTransit.AmazonSQS" />
+    <None Remove="MassTransit.Analyzers" />
+    <None Remove="MassTransit.EntityFrameworkCore" />
+    <None Remove="MassTransit" />
+    <None Remove="Amazon.Extensions.Configuration.SystemsManager" />
+    <None Remove="Pi.Common" />
+    <None Remove="Serilog.Sinks.Seq" />
+    <None Remove="Pi.Financial.Client.Freewill" />
+    <None Remove="Microsoft.Extensions.Http.Polly" />
+    <None Remove="Polly.Contrib.WaitAndRetry" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Startup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.Client.CgsBank\Pi.Client.CgsBank.csproj" />
+    <ProjectReference Include="..\Pi.WalletService.Application\Pi.WalletService.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.WalletService.Infrastructure\Pi.WalletService.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.WalletService.IntegrationEvents\Pi.WalletService.IntegrationEvents.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.WalletService.Migrations\Pi.WalletService.Migrations.csproj" />
+  </ItemGroup>
+</Project>

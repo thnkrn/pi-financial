@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "pi-financial",
+        "projectKey": "pi-financial_wallet-srv"
+    }
+}

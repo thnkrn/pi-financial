@@ -1,0 +1,3 @@
+namespace Pi.WalletService.Domain.Events.ForeignExchange;
+
+public record GlobalManualAllocationRequestCompletedEvent(string TransactionNo);

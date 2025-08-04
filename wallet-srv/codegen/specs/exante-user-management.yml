@@ -1,0 +1,124 @@
+openapi: 3.0.0
+info:
+  title: Exante User Management
+  version: 1.0.0
+servers:
+  - url: https://my.samplebrokerzone.com
+paths:
+  /api/user/auth/:
+    post:
+      description: Exante Login
+      tags:
+        - exante user management
+      requestBody:
+        description: Login Request Body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+  /en/clientsarea/account/withdrawal/create/:
+    post:
+      description: Transfer money between account
+      tags:
+        - exante user management
+      security:
+        - TokenAuth: []
+      requestBody:
+        description: Transfer money request body
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferRequest"
+      responses:
+        "200":
+          description: Transfer money request response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferResponse"
+        "400":
+          description: Transfer money request error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferErrorResponse"
+components:
+  securitySchemes:
+    TokenAuth: # arbitrary name for the security scheme
+      type: apiKey
+      in: header # can be "header", "query" or "cookie"
+      name: Authorization
+  schemas:
+    DefaultResponse:
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        response:
+          type: object
+        debugStack:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    TransferRequest:
+      type: object
+      properties:
+        account:
+          type: string
+        second_account:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: number
+    TransferResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+        second_account:
+          type: string
+        asset:
+          type: string
+        amount:
+          type: number
+        sequenceId:
+          type: string
+        parentUuid:
+          type: string
+        uuid:
+          type: string
+        success:
+          type: boolean
+    TransferErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        errors:
+          $ref: "#/components/schemas/TransferErrorResponseDetails"
+    TransferErrorResponseDetails:
+      type: object
+      additionalProperties:
+        type: string

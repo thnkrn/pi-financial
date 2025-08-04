@@ -1,0 +1,8 @@
+{
+  "apiName": "ExanteUserManagement",
+  "targetFramework": "net6.0",
+  "netCoreProjectFile": true,
+  "sourceFolder": "/",
+  "packageName": "Pi.Client.ExanteUserManagement",
+  "library": "httpclient"
+}

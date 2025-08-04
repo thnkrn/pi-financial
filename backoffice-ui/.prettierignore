@@ -1,0 +1,13 @@
+/.git
+/.next
+/.vscode
+/out
+/coverage
+/node_modules
+/public
+
+/src/@core/*
+/src/iconify-bundle/*
+/src/layouts/*
+
+/src/lib/*

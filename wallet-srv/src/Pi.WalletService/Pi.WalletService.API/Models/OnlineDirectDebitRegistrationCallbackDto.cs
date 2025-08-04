@@ -1,0 +1,7 @@
+﻿
+
+namespace Pi.WalletService.API.Models;
+
+public record OnlineDirectDebitRegistrationCallbackDto(OnlineDirectDebitRegistrationCallbackData Data, OnlineDirectDebitRegistrationCallbackStatus Status);
+public record OnlineDirectDebitRegistrationCallbackData(string RegistrationRefCode, string BankAccountNo);
+public record OnlineDirectDebitRegistrationCallbackStatus(bool Status, string InternalStatusCode, string InternalStatusDescription, string ExternalStatusCode, string ExternalStatusDescription);

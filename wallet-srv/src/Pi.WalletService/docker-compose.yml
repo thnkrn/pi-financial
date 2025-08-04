@@ -1,0 +1,48 @@
+version: '3.4'
+
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - SERVICES=sns,sqs      
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=wallet_db
+    volumes:
+      - wallet_db_srv_mysql_data:/var/lib/mysql
+
+  pi.walletservice.api:
+    image: ${DOCKER_REGISTRY-}pi-financial-wallet-api
+    build:
+      context: .
+      dockerfile: Pi.WalletService.API/Dockerfile
+    depends_on:
+      - localstack
+
+  pi.walletservice.worker:
+    image: ${DOCKER_REGISTRY-}pi-financial-wallet-worker
+    build:
+      context: .
+      dockerfile: Pi.WalletService.Worker/Dockerfile
+    depends_on:
+      - localstack
+
+volumes:
+  wallet_db_srv_mysql_data:
