@@ -1,0 +1,82 @@
+version: '3.4'
+
+services:
+  awscli:
+    image: amazon/aws-cli
+    entrypoint: aws --endpoint-url http://localstack:4566
+    command: --version
+    environment:
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_REGION: us-east-1
+  
+  localstack:
+    image: localstack/localstack
+    container_name: localstack_main
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - SERVICES=sns,sqs,s3
+      - PERSISTENCE=1
+      - DATA_DIR=${LOCALSTACK_DATA_DIR:-/var/lib/localstack/data}
+      - DEBUG=${DEBUG- }
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=backoffice_db
+    volumes:
+      - backoffice_srv_mysql_data:/var/lib/mysql
+
+  pi.backoffice-service.api:
+    image: ${DOCKER_REGISTRY-}pi-financial-backoffice-api
+    build:
+      context: .
+      dockerfile: Pi.BackofficeService.API/Dockerfile
+    depends_on:
+      - localstack
+
+  pi.backoffice-service.worker:
+    image: ${DOCKER_REGISTRY-}pi-financial-backoffice-worker
+    build:
+      context: .
+      dockerfile: Pi.BackofficeService.Worker/Dockerfile
+    depends_on:
+      - localstack
+        
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1.1
+    command:
+      - start-dev
+    ports:
+      - "28080:8080"
+    environment:
+      KC_DB: mysql
+      KC_DB_URL_DATABASE: backoffice_user_db
+    restart: unless-stopped
+    depends_on:
+      - user-db
+        
+  user-db: 
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_DATABASE=backoffice_user_db
+    volumes:
+      - backoffice_keycloak_mysql_data:/var/lib/mysql
+
+volumes:
+  backoffice_keycloak_mysql_data:
+  backoffice_srv_mysql_data:

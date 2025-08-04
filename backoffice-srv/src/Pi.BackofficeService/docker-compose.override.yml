@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@assword
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=BackofficeService_service_user
+
+  pi.backoffice-service.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - AwsSqs__Region=localstack
+      - AwsSqs__ServiceUrl=http://localstack:4566
+      - Serilog__WriteTo__1__Args__serverUrl=http://host.docker.internal:5341
+      - ConnectionStrings__BackofficeService=server=db;database=backoffice_db;user=BackofficeService_service_user;password=password
+    ports:
+      - "80"
+    volumes:
+    - ~/.aws:/root/.aws:ro
+
+  pi.backoffice-service.worker:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - AwsSqs__Region=localstack
+      - AwsSqs__ServiceUrl=http://localstack:4566
+      - Serilog__WriteTo__1__Args__serverUrl=http://host.docker.internal:5341
+      - ConnectionStrings__BackofficeService=server=db;database=backoffice_db;user=BackofficeService_service_user;password=password
+    volumes:
+    - ~/.aws:/root/.aws:ro
+
+  keycloak:
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB_URL_HOST: user-db
+      KC_DB_URL_PORT: 3306
+      KC_DB_USERNAME: Backoffice_user_db
+      KC_DB_PASSWORD: password
+  
+  user-db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@assword
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=Backoffice_user_db

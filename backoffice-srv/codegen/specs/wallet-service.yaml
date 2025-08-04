@@ -1,0 +1,1482 @@
+openapi: 3.0.1
+info:
+  title: Pi.WalletService.API
+  version: '1.0'
+paths:
+  /secure/transaction/{product}/{transactionNo}:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: user-id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: product
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: transactionNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionDtoApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionDtoApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionDtoApiResponse'
+  /secure/transaction/{product}/qr/active:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: user-id
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: product
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ActiveTransactionListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveTransactionListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ActiveTransactionListApiResponse'
+  /secure/transaction/{product}:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: user-id
+          in: header
+          schema:
+            type: string
+        - name: product
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: Status
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionStatus'
+        - name: State
+          in: query
+          schema:
+            type: string
+        - name: TransactionType
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionType'
+        - name: CreatedAtFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: OrderBy
+          in: query
+          schema:
+            type: string
+        - name: OrderDir
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryPaginateListApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryPaginateListApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryPaginateListApiPaginateResponse'
+  /internal/transaction/{product}:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: user-id
+          in: header
+          schema:
+            type: string
+        - name: product
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: Status
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionStatus'
+        - name: State
+          in: query
+          schema:
+            type: string
+        - name: TransactionType
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionType'
+        - name: CreatedAtFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: OrderBy
+          in: query
+          schema:
+            type: string
+        - name: OrderDir
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryPaginateListApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryPaginateListApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionHistoryPaginateListApiPaginateResponse'
+  /internal/transactions/deposit:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: PaymentReceivedFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: PaymentReceivedTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Channel
+          in: query
+          schema:
+            $ref: '#/components/schemas/Channel'
+        - name: Product
+          in: query
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: State
+          in: query
+          schema:
+            type: string
+        - name: BankCode
+          in: query
+          schema:
+            type: string
+        - name: BankAccountNo
+          in: query
+          schema:
+            type: string
+        - name: CustomerCode
+          in: query
+          schema:
+            type: string
+        - name: AccountCode
+          in: query
+          schema:
+            type: string
+        - name: TransactionNo
+          in: query
+          schema:
+            type: string
+        - name: Status
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionStatus'
+        - name: ProductType
+          in: query
+          schema:
+            $ref: '#/components/schemas/ProductType'
+        - name: EffectiveDateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: EffectiveDateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: OrderBy
+          in: query
+          schema:
+            type: string
+        - name: OrderDir
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DepositTransactionListApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositTransactionListApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DepositTransactionListApiPaginateResponse'
+  /internal/transactions/withdraw:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: Channel
+          in: query
+          schema:
+            $ref: '#/components/schemas/Channel'
+        - name: Product
+          in: query
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: State
+          in: query
+          schema:
+            type: string
+        - name: BankCode
+          in: query
+          schema:
+            type: string
+        - name: BankAccountNo
+          in: query
+          schema:
+            type: string
+        - name: CustomerCode
+          in: query
+          schema:
+            type: string
+        - name: AccountCode
+          in: query
+          schema:
+            type: string
+        - name: TransactionNo
+          in: query
+          schema:
+            type: string
+        - name: Status
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionStatus'
+        - name: ProductType
+          in: query
+          schema:
+            $ref: '#/components/schemas/ProductType'
+        - name: EffectiveDateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: EffectiveDateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: OrderBy
+          in: query
+          schema:
+            type: string
+        - name: OrderDir
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WithdrawTransactionListApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawTransactionListApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawTransactionListApiPaginateResponse'
+  /internal/transactions/refund:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: Channel
+          in: query
+          schema:
+            $ref: '#/components/schemas/Channel'
+        - name: Product
+          in: query
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: State
+          in: query
+          schema:
+            type: string
+        - name: BankCode
+          in: query
+          schema:
+            type: string
+        - name: BankAccountNo
+          in: query
+          schema:
+            type: string
+        - name: CustomerCode
+          in: query
+          schema:
+            type: string
+        - name: AccountCode
+          in: query
+          schema:
+            type: string
+        - name: TransactionNo
+          in: query
+          schema:
+            type: string
+        - name: Status
+          in: query
+          schema:
+            $ref: '#/components/schemas/TransactionStatus'
+        - name: ProductType
+          in: query
+          schema:
+            $ref: '#/components/schemas/ProductType'
+        - name: EffectiveDateFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: EffectiveDateTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtFrom
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: CreatedAtTo
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: Page
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: PageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+        - name: OrderBy
+          in: query
+          schema:
+            type: string
+        - name: OrderDir
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RefundTransactionListApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefundTransactionListApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RefundTransactionListApiPaginateResponse'
+  /internal/transactions/{transactionNo}/deposit:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: transactionNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DepositTransactionApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositTransactionApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DepositTransactionApiResponse'
+        '404':
+          description: Not Found
+  /internal/transactions/{transactionNo}/withdraw:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: transactionNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WithdrawTransactionApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawTransactionApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WithdrawTransactionApiResponse'
+        '404':
+          description: Not Found
+  /internal/transactions/globalequities/{transactionNo}/{transactionType}:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: transactionNo
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: transactionType
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/TransactionType'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GlobalTransactionApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalTransactionApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GlobalTransactionApiResponse'
+        '404':
+          description: Not Found
+  /internal/transaction/summary:
+    get:
+      tags:
+        - Transaction
+      parameters:
+        - name: Product
+          in: query
+          schema:
+            $ref: '#/components/schemas/Product'
+        - name: Date
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: Type
+          in: query
+          schema:
+            $ref: '#/components/schemas/Period'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GlobalTransactionTransactionSummaryResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GlobalTransactionTransactionSummaryResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GlobalTransactionTransactionSummaryResponseApiResponse'
+        '404':
+          description: Not Found
+  /internal/global/manual-allocation:
+    post:
+      tags:
+        - Wallet
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/ManualAllocationRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManualAllocationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ManualAllocationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ManualAllocationRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TicketResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponseApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    ActiveTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        transactionNo:
+          type: string
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    ActiveTransactionListApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActiveTransaction'
+          nullable: true
+      additionalProperties: false
+    Channel:
+      enum:
+        - SetTrade
+        - QR
+        - ATS
+        - OnlineViaKKP
+        - EForm
+        - TransferApp
+      type: string
+    Currency:
+      enum:
+        - THB
+        - USD
+      type: string
+    DepositTransaction:
+      type: object
+      properties:
+        purpose:
+          $ref: '#/components/schemas/Purpose'
+        requestedAmount:
+          type: number
+          format: decimal
+        receivedAmount:
+          type: number
+          format: decimal
+          nullable: true
+        paymentReceivedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        paymentReceivedAmount:
+          type: number
+          format: decimal
+          nullable: true
+        customerName:
+          type: string
+          nullable: true
+        bankAccountName:
+          type: string
+          nullable: true
+        qrGenerateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        qrExpiredTime:
+          type: string
+          format: date-time
+          nullable: true
+        qrCodeExpiredTimeInMinute:
+          type: integer
+          format: int32
+        qrTransactionNo:
+          type: string
+          nullable: true
+        qrValue:
+          type: string
+          nullable: true
+        qrTransactionRef:
+          type: string
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          nullable: true
+        transactionNo:
+          type: string
+          nullable: true
+        accountCode:
+          type: string
+          nullable: true
+        customerCode:
+          type: string
+          nullable: true
+        amount:
+          type: number
+          format: decimal
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        currentState:
+          type: string
+          nullable: true
+        bankFee:
+          type: number
+          format: decimal
+          nullable: true
+        bankName:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        bankCode:
+          type: string
+          nullable: true
+        bankAccountNo:
+          type: string
+          nullable: true
+        effectiveDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/Currency'
+        channel:
+          $ref: '#/components/schemas/Channel'
+        createdAt:
+          type: string
+          format: date-time
+        failedReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DepositTransactionApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/DepositTransaction'
+      additionalProperties: false
+    DepositTransactionListApiPaginateResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DepositTransaction'
+          nullable: true
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+          nullable: true
+        orderDir:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GlobalTransaction:
+      type: object
+      properties:
+        requestedAmount:
+          type: number
+          format: decimal
+        qrExpiredTime:
+          type: string
+          format: date-time
+          nullable: true
+        requestedFxRate:
+          type: number
+          format: decimal
+          nullable: true
+        requestedFxCurrency:
+          $ref: '#/components/schemas/Currency'
+        fxRate:
+          type: number
+          format: decimal
+          nullable: true
+        fxRequestDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        fxConfirmDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        fxConfirmAmount:
+          type: number
+          format: decimal
+          nullable: true
+        transferFromAccount:
+          type: string
+          nullable: true
+        transferToAccount:
+          type: string
+          nullable: true
+        transferAmount:
+          type: number
+          format: decimal
+          nullable: true
+        transactionFee:
+          type: number
+          format: decimal
+          nullable: true
+        transferRequestDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        transferConfirmDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        refundAmountThb:
+          type: number
+          format: decimal
+          nullable: true
+        netAmountThb:
+          type: number
+          format: decimal
+          nullable: true
+        failedReason:
+          type: string
+          nullable: true
+        bankFee:
+          type: number
+          format: decimal
+          nullable: true
+        transferFee:
+          type: number
+          format: decimal
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          nullable: true
+        accountNo:
+          type: string
+          nullable: true
+        customerCode:
+          type: string
+          nullable: true
+        customerName:
+          type: string
+          nullable: true
+        currentState:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        transactionNo:
+          type: string
+          nullable: true
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        amount:
+          type: number
+          format: decimal
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/Currency'
+        qrValue:
+          type: string
+          nullable: true
+        qrGenerateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        receivedAmount:
+          type: number
+          format: decimal
+          nullable: true
+        paymentReceivedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        paymentDisbursedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        channel:
+          $ref: '#/components/schemas/Channel'
+        product:
+          $ref: '#/components/schemas/Product'
+        bankAccountNo:
+          type: string
+          nullable: true
+        bankAccountName:
+          type: string
+          nullable: true
+        bankName:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: false
+    GlobalTransactionApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GlobalTransaction'
+      additionalProperties: false
+    GlobalTransactionTransactionSummaryResponse:
+      type: object
+      properties:
+        transactionSummary:
+          $ref: '#/components/schemas/TransactionSummary'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/GlobalTransaction'
+          nullable: true
+      additionalProperties: false
+    GlobalTransactionTransactionSummaryResponseApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/GlobalTransactionTransactionSummaryResponse'
+      additionalProperties: false
+    ManualAllocationRequest:
+      type: object
+      properties:
+        transactionNo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Period:
+      enum:
+        - FirstIntraDay
+        - SecondIntraDay
+        - AllDay
+      type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: {}
+    Product:
+      enum:
+        - Cash
+        - CashBalance
+        - CreditBalanceSbl
+        - Crypto
+        - Derivatives
+        - GlobalEquities
+        - Funds
+      type: string
+    ProductType:
+      enum:
+        - ThaiEquity
+        - GlobalEquity
+      type: string
+    Purpose:
+      enum:
+        - Collateral
+        - Withdraw
+      type: string
+    RefundTransaction:
+      type: object
+      properties:
+        refundedAt:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          nullable: true
+        transactionNo:
+          type: string
+          nullable: true
+        accountCode:
+          type: string
+          nullable: true
+        customerCode:
+          type: string
+          nullable: true
+        amount:
+          type: number
+          format: decimal
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        currentState:
+          type: string
+          nullable: true
+        bankFee:
+          type: number
+          format: decimal
+          nullable: true
+        bankName:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        bankCode:
+          type: string
+          nullable: true
+        bankAccountNo:
+          type: string
+          nullable: true
+        effectiveDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/Currency'
+        channel:
+          $ref: '#/components/schemas/Channel'
+        createdAt:
+          type: string
+          format: date-time
+        failedReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    RefundTransactionListApiPaginateResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefundTransaction'
+          nullable: true
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+          nullable: true
+        orderDir:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketResponse:
+      type: object
+      properties:
+        ticketId:
+          type: string
+          format: uuid
+        transactionNo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TicketResponseApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TicketResponse'
+      additionalProperties: false
+    TransactionDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        accountNo:
+          type: string
+          nullable: true
+        transactionNo:
+          type: string
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        requestedAmount:
+          type: number
+          format: decimal
+        requestedCurrency:
+          $ref: '#/components/schemas/Currency'
+        qrValue:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          nullable: true
+        requestExpiredAt:
+          type: string
+          format: date-time
+          nullable: true
+        requestedFxRate:
+          type: number
+          format: decimal
+          nullable: true
+        requestedFxCurrency:
+          $ref: '#/components/schemas/Currency'
+        transferAmount:
+          type: number
+          format: decimal
+          nullable: true
+        exchangeRate:
+          type: number
+          format: decimal
+          nullable: true
+      additionalProperties: false
+    TransactionDtoApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/TransactionDto'
+      additionalProperties: false
+    TransactionHistoryPaginate:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        state:
+          type: string
+          nullable: true
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        createdAtFrom:
+          type: string
+          format: date-time
+          nullable: true
+        createdAtTo:
+          type: string
+          format: date-time
+          nullable: true
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+          nullable: true
+        orderDir:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TransactionHistoryPaginateListApiPaginateResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionHistoryPaginate'
+          nullable: true
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+          nullable: true
+        orderDir:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TransactionStatus:
+      enum:
+        - Success
+        - Pending
+        - Fail
+      type: string
+    TransactionSummary:
+      type: object
+      properties:
+        successDepositCount:
+          type: integer
+          format: int32
+        successWithdrawCount:
+          type: integer
+          format: int32
+        failedDepositCount:
+          type: integer
+          format: int32
+        exanteDepositCount:
+          type: integer
+          format: int32
+        exanteWithdrawCount:
+          type: integer
+          format: int32
+        refundCount:
+          type: integer
+          format: int32
+        netAmountDepositCount:
+          type: integer
+          format: int32
+        netAmountWithdrawCount:
+          type: integer
+          format: int32
+        transactionCount:
+          type: integer
+          format: int32
+        successDepositAmountThb:
+          type: number
+          format: decimal
+        successWithdrawAmountThb:
+          type: number
+          format: decimal
+        failedDepositAmountThb:
+          type: number
+          format: decimal
+        exanteDepositAmountThb:
+          type: number
+          format: decimal
+        exanteWithdrawAmountThb:
+          type: number
+          format: decimal
+        refundAmountThb:
+          type: number
+          format: decimal
+        netAmountDepositAmountThb:
+          type: number
+          format: decimal
+        netAmountWithdrawAmountThb:
+          type: number
+          format: decimal
+        transactionAmountThb:
+          type: number
+          format: decimal
+        successDepositAmountUsd:
+          type: number
+          format: decimal
+        successWithdrawAmountUsd:
+          type: number
+          format: decimal
+        failedDepositAmountUsd:
+          type: number
+          format: decimal
+        exanteDepositAmountUsd:
+          type: number
+          format: decimal
+        exanteWithdrawAmountUsd:
+          type: number
+          format: decimal
+        refundAmountUsd:
+          type: number
+          format: decimal
+        netAmountDepositAmountUsd:
+          type: number
+          format: decimal
+        netAmountWithdrawAmountUsd:
+          type: number
+          format: decimal
+        transactionAmountUsd:
+          type: number
+          format: decimal
+        totalPendingDepositCount:
+          type: integer
+          format: int32
+        totalPendingDepositAmountThb:
+          type: number
+          format: decimal
+        totalPendingDepositAmountUsd:
+          type: number
+          format: decimal
+        totalPendingWithdrawCount:
+          type: integer
+          format: int32
+        totalPendingWithdrawAmountThb:
+          type: number
+          format: decimal
+        totalPendingWithdrawAmountUsd:
+          type: number
+          format: decimal
+      additionalProperties: false
+    TransactionType:
+      enum:
+        - Deposit
+        - Withdraw
+        - Transfer
+        - Refund
+      type: string
+    WithdrawTransaction:
+      type: object
+      properties:
+        paymentDisbursedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        paymentDisbursedAmount:
+          type: number
+          format: decimal
+          nullable: true
+        otpRequestRef:
+          type: string
+          nullable: true
+        otpRequestId:
+          type: string
+          format: uuid
+          nullable: true
+        otpConfirmedDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          nullable: true
+        transactionNo:
+          type: string
+          nullable: true
+        accountCode:
+          type: string
+          nullable: true
+        customerCode:
+          type: string
+          nullable: true
+        amount:
+          type: number
+          format: decimal
+          nullable: true
+        product:
+          $ref: '#/components/schemas/Product'
+        transactionType:
+          $ref: '#/components/schemas/TransactionType'
+        currentState:
+          type: string
+          nullable: true
+        bankFee:
+          type: number
+          format: decimal
+          nullable: true
+        bankName:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+        bankCode:
+          type: string
+          nullable: true
+        bankAccountNo:
+          type: string
+          nullable: true
+        effectiveDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/Currency'
+        channel:
+          $ref: '#/components/schemas/Channel'
+        createdAt:
+          type: string
+          format: date-time
+        failedReason:
+          type: string
+          nullable: true
+      additionalProperties: false
+    WithdrawTransactionApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WithdrawTransaction'
+      additionalProperties: false
+    WithdrawTransactionListApiPaginateResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WithdrawTransaction'
+          nullable: true
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+          nullable: true
+        orderDir:
+          type: string
+          nullable: true
+      additionalProperties: false

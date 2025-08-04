@@ -1,0 +1,150 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain.Tests/Pi.BackofficeService.Domain.Tests.csproj": {}
+  },
+  "projects": {
+    "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain.Tests/Pi.BackofficeService.Domain.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain.Tests/Pi.BackofficeService.Domain.Tests.csproj",
+        "projectName": "Pi.BackofficeService.Domain.Tests",
+        "projectPath": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain.Tests/Pi.BackofficeService.Domain.Tests.csproj",
+        "packagesPath": "/Users/thanakornariyagusolsuthoi/.nuget/packages/",
+        "outputPath": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/NuGet.Config",
+          "/Users/thanakornariyagusolsuthoi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/pi-financial/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/Pi.BackofficeService.Domain.csproj": {
+                "projectPath": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/Pi.BackofficeService.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.4.1, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/Pi.BackofficeService.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/Pi.BackofficeService.Domain.csproj",
+        "projectName": "Pi.BackofficeService.Domain",
+        "projectPath": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/Pi.BackofficeService.Domain.csproj",
+        "packagesPath": "/Users/thanakornariyagusolsuthoi/.nuget/packages/",
+        "outputPath": "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/NuGet.Config",
+          "/Users/thanakornariyagusolsuthoi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/pi-financial/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.204/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

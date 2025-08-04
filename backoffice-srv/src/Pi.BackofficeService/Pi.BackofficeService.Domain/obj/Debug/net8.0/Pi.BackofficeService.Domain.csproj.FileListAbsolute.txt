@@ -1,0 +1,13 @@
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/bin/Debug/net8.0/Pi.BackofficeService.Domain.deps.json
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/bin/Debug/net8.0/Pi.BackofficeService.Domain.dll
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/bin/Debug/net8.0/Pi.BackofficeService.Domain.pdb
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.csproj.AssemblyReference.cache
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.AssemblyInfoInputs.cache
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.AssemblyInfo.cs
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.csproj.CoreCompileInputs.cache
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.sourcelink.json
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.dll
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/refint/Pi.BackofficeService.Domain.dll
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/Pi.BackofficeService.Domain.pdb
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.Domain/obj/Debug/net8.0/ref/Pi.BackofficeService.Domain.dll

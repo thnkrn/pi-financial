@@ -1,0 +1,12 @@
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/bin/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.deps.json
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/bin/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.dll
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/bin/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.pdb
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.AssemblyInfoInputs.cache
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.AssemblyInfo.cs
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.csproj.CoreCompileInputs.cache
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.sourcelink.json
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.dll
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/refint/Pi.BackofficeService.IntegrationEvents.dll
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/Pi.BackofficeService.IntegrationEvents.pdb
+/Users/thanakornariyagusolsuthoi/Desktop/code/backoffice-srv/src/Pi.BackofficeService/Pi.BackofficeService.IntegrationEvents/obj/Debug/net8.0/ref/Pi.BackofficeService.IntegrationEvents.dll
