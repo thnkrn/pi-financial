@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>Pi.MarketData.Application.Tests</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture.Xunit" Version="4.10.0"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1"/>
+        <PackageReference Include="xunit" Version="2.4.2"/>
+        <PackageReference Include="Moq" Version="4.20.70"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.2.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.MarketData.Application\Pi.MarketData.Application.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update=".\ItchMapper\Mocks\*\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update=".\ItchParser\Mocks\*\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Remove="ItchParser\**"/>
+        <None Remove="ItchMapper\**"/>
+        <None Remove="Services\ItchMapper\**"/>
+        <None Remove="Services\MarketOrderBook\**"/>
+        <None Remove="WriteBinlogsDataService\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Helper\"/>
+        <Folder Include="Services\"/>
+        <Folder Include="Utils\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="ItchParser\**"/>
+        <Compile Remove="ItchMapper\**"/>
+        <Compile Remove="Services\ItchMapper\**"/>
+        <Compile Remove="Services\MarketOrderBook\**"/>
+        <Compile Remove="WriteBinlogsDataService\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Remove="ItchParser\**"/>
+        <EmbeddedResource Remove="ItchMapper\**"/>
+        <EmbeddedResource Remove="Services\ItchMapper\**"/>
+        <EmbeddedResource Remove="Services\MarketOrderBook\**"/>
+        <EmbeddedResource Remove="WriteBinlogsDataService\**"/>
+    </ItemGroup>
+
+</Project>

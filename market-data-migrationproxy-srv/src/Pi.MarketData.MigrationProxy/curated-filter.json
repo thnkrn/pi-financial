@@ -1,0 +1,37 @@
+{
+  "Thai Equities": {
+    "Default": "SET",
+    "Stocks": "SET",
+    "Derivative Warrants": "SET",
+    "PF & REIT": "SET",
+    "Depositary Receipts": "SET",
+    "ETFs": "SET",
+    "Warrants": "SET"
+  },
+  "Global Equities": {
+    "Default": "GE",
+    "Stocks": "GE",
+    "ETFs": "GE",
+    "S&P 500": "GE",
+    "NASDAQ": "GE",
+    "Hong Kong": "GE"
+  },
+  "Derivatives": {
+    "Default": "SET",
+    "S50 Futures": "SET",
+    "S50 Options": "SET",
+    "Sectors": "SET",
+    "Stocks": "SET",
+    "Metals": "SET",
+    "Currency": "SET"
+  },
+  "Homepage": {
+    "Default": "Both",
+    "Home Carousel": "SET",
+    "Home SET": "SET",
+    "Home NASDAQ": "GE",
+    "Home HK": "GE",
+    "Home MAI": "SET",
+    "Home Funds": "Fund"
+  }
+}

@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pi.FundMarketData.API</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>d2a4af1f-494f-42f8-9665-a9312f80a492</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net8.0\Pi.FundMarketData.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\net8.0\Pi.FundMarketData.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="8.0.12" />
+    <PackageReference Include="MongoDB.Bson" Version="3.1.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
+    <PackageReference Include="Pi.Common" Version="1.0.121" />
+    <PackageReference Include="Pi.Common.Serilog" Version="1.0.121" />
+    <PackageReference Include="Pi.Common.Startup" Version="1.0.121" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15" />
+    <PackageReference Include="MassTransit.Analyzers" Version="8.0.15" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15" />
+    <PackageReference Include="MassTransit" Version="8.0.15" />
+    <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="6.2.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Startup\" />
+    <None Remove="Serilog.AspNetCore" />
+    <None Remove="MassTransit.AmazonSQS" />
+    <None Remove="MassTransit.Analyzers" />
+    <None Remove="MassTransit.EntityFrameworkCore" />
+    <None Remove="MassTransit" />
+    <None Remove="Amazon.Extensions.Configuration.SystemsManager" />
+    <None Remove="Pi.Common" />
+    <None Remove="Serilog.Sinks.Seq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Startup\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.FundMarketData.Repositories\Pi.FundMarketData.Repositories.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1275 @@
+openapi: 3.0.1
+info:
+  title: 'Pi.FundMarketData.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'
+  version: '1.0'
+paths:
+  /secure/funds/search:
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  /internal/funds/search:
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/secure/funds/{symbol}/profile':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/internal/funds/{symbol}/profile':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  /secure/funds/profiles:
+    post:
+      tags:
+        - Fund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponseIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+      deprecated: true
+  '/secure/funds/{marketBasket}/market-summaries':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: marketBasket
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsMarketBasket'
+        - name: interval
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsInterval'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/secure/funds/{marketBasket}/market-summaries/v2':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: marketBasket
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsMarketBasket'
+        - name: interval
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsInterval'
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 20
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiPaginateResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiPaginateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiPaginateResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  /secure/legacy/funds/summaries:
+    post:
+      tags:
+        - Fund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFundMarketDataAPIModelsRequestsLegacySymbolsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFundMarketDataAPIModelsRequestsLegacySymbolsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFundMarketDataAPIModelsRequestsLegacySymbolsRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesLegacyFundMarketSummaryResponseIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesLegacyFundMarketSummaryResponseIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesLegacyFundMarketSummaryResponseIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/secure/funds/{symbol}/historical-nav':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: interval
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundHistoricalNavResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundHistoricalNavResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundHistoricalNavResponseApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/secure/funds/{symbol}/switching-funds':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesSwitchingFundResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesSwitchingFundResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesSwitchingFundResponseApiResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/secure/funds/{symbol}/tradable-dates':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: TradeType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsTradeSide'
+        - name: SwitchSymbol
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SystemDateTimeIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemDateTimeIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SystemDateTimeIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  '/internal/funds/{symbol}/tradable-dates':
+    get:
+      tags:
+        - Fund
+      parameters:
+        - name: symbol
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: TradeType
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsTradeSide'
+        - name: SwitchSymbol
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SystemDateTimeIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemDateTimeIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SystemDateTimeIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+  /internal/funds/trading-profiles:
+    post:
+      tags:
+        - Fund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundTradingProfileResponseIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundTradingProfileResponseIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundTradingProfileResponseIEnumerableApiResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+components:
+  schemas:
+    MicrosoftAspNetCoreMvcProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    PiFundMarketDataAPIModelsRequestsLegacySymbolsRequest:
+      required:
+        - symbols
+      type: object
+      properties:
+        symbols:
+          type: array
+          items:
+            type: string
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesAmcProfileResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        logo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesAmcProfileTradingResponse:
+      type: object
+      properties:
+        amcCode:
+          type: string
+          nullable: true
+        amcLogo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesAssetAllocationResponse:
+      type: object
+      properties:
+        asOfDate:
+          type: string
+          format: date-time
+          nullable: true
+        assetClassAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemStringSystemDoubleCategoricalRecord'
+          nullable: true
+        regionalAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemStringSystemDoubleCategoricalRecord'
+          nullable: true
+        sectorAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemStringSystemDoubleCategoricalRecord'
+          nullable: true
+        topHoldings:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemStringSystemDoubleCategoricalRecord'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesAssetValueResponse:
+      type: object
+      properties:
+        nav:
+          type: number
+          format: decimal
+        navChange:
+          type: number
+          format: decimal
+          nullable: true
+        navChangePercentage:
+          type: number
+          format: double
+          nullable: true
+        asOfDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesDistributionResponse:
+      type: object
+      properties:
+        dividendPolicy:
+          type: string
+          nullable: true
+        exDivDate:
+          type: string
+          format: date-time
+          nullable: true
+        asOfDate:
+          type: string
+          format: date-time
+        historicalDividends:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesHistoricalDividendResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFeeResponse:
+      type: object
+      properties:
+        feeUnit:
+          $ref: '#/components/schemas/PiFundMarketDataDomainModelsFeeUnit'
+        switchInFee:
+          type: number
+          format: decimal
+          nullable: true
+        managementFee:
+          type: number
+          format: double
+          nullable: true
+        frontendFee:
+          type: number
+          format: double
+          nullable: true
+        backendFee:
+          type: number
+          format: double
+          nullable: true
+        totalExpense:
+          type: number
+          format: double
+          nullable: true
+        asOfDate:
+          type: string
+          format: date-time
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundHistoricalNavResponse:
+      type: object
+      properties:
+        navChange:
+          type: number
+          format: decimal
+          nullable: true
+        navChangePercentage:
+          type: number
+          format: double
+          nullable: true
+        navList:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesHistoricalNavResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundHistoricalNavResponseApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundHistoricalNavResponse'
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponse:
+      type: object
+      properties:
+        symbol:
+          type: string
+          nullable: true
+        asOfDate:
+          type: string
+          format: date-time
+        riskLevel:
+          type: integer
+          format: int32
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        nav:
+          type: number
+          format: decimal
+        returnPercentage:
+          type: number
+          format: decimal
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+        fundCategory:
+          type: string
+          nullable: true
+        amcLogo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiPaginateResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponse'
+          nullable: true
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+          nullable: true
+        orderDir:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponseIEnumerableApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundMarketSummaryResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundProfileResponse:
+      type: object
+      properties:
+        isin:
+          type: string
+          nullable: true
+        symbol:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        fundCategory:
+          type: string
+          nullable: true
+        factSheetUrl:
+          type: string
+          nullable: true
+        rating:
+          type: integer
+          format: int32
+          nullable: true
+        isInLegacyMarket:
+          type: boolean
+        asOfDate:
+          type: string
+          format: date-time
+        amcProfile:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesAmcProfileResponse'
+        fundamental:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundamentalResponse'
+        assetValue:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesAssetValueResponse'
+        assetAllocation:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesAssetAllocationResponse'
+        purchaseDetail:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesPurchaseDetailResponse'
+        feesAndExpense:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFeeResponse'
+        performance:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesPerformanceResponse'
+        distribution:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesDistributionResponse'
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundProfileResponseApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponse'
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundProfileResponseIEnumerableApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundProfileResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundSearchResponse:
+      type: object
+      properties:
+        symbol:
+          type: string
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        navChange:
+          type: number
+          format: decimal
+          nullable: true
+        nav:
+          type: number
+          format: decimal
+        navChangePercentage:
+          type: number
+          format: double
+          nullable: true
+        amcLogo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundSearchResponseIEnumerableApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundSearchResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundTradingProfileResponse:
+      type: object
+      properties:
+        symbol:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        fundCategory:
+          type: string
+          nullable: true
+        fundamental:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundamentalTradingResponse'
+        amcProfile:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesAmcProfileTradingResponse'
+        purchaseDetail:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesPurchaseDetailTradingResponse'
+        nav:
+          type: number
+          format: decimal
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundTradingProfileResponseIEnumerableApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesFundTradingProfileResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundamentalResponse:
+      type: object
+      properties:
+        riskLevel:
+          type: integer
+          format: int32
+        isForeignInvestment:
+          type: boolean
+        investmentPolicy:
+          type: string
+          nullable: true
+        hasCurrencyRisk:
+          type: boolean
+        assetClassFocus:
+          type: string
+          nullable: true
+        allowSwitchOut:
+          type: boolean
+        inceptionDate:
+          type: string
+          format: date-time
+          nullable: true
+        objective:
+          type: string
+          nullable: true
+        fundSize:
+          type: number
+          format: decimal
+          nullable: true
+        isDividend:
+          type: boolean
+        taxType:
+          type: string
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+        asOfDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesFundamentalTradingResponse:
+      type: object
+      properties:
+        taxType:
+          type: string
+          nullable: true
+        fundRiskLevel:
+          type: integer
+          format: int32
+          nullable: true
+        fundType:
+          $ref: '#/components/schemas/PiFundMarketDataConstantsFundType'
+        projectType:
+          $ref: '#/components/schemas/PiFundMarketDataConstantsProjectType'
+        isFatcaAllow:
+          type: boolean
+          nullable: true
+        hasCurrencyRisk:
+          type: boolean
+          nullable: true
+        isDerivative:
+          type: boolean
+          nullable: true
+        hasHealthInsuranceBenefit:
+          type: boolean
+          nullable: true
+        investorAlerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataConstantsInvestorAlert'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesHistoricalDividendResponse:
+      type: object
+      properties:
+        payDate:
+          type: string
+          format: date-time
+        dividend:
+          type: number
+          format: double
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesHistoricalNavResponse:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        nav:
+          type: number
+          format: decimal
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesHistoricalReturnPercentageResponse:
+      type: object
+      properties:
+        interval:
+          type: string
+          nullable: true
+        returnPercentage:
+          type: number
+          format: double
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesLegacyFundMarketSummaryResponse:
+      type: object
+      properties:
+        venue:
+          type: string
+          nullable: true
+        symbol:
+          type: string
+          nullable: true
+        friendlyName:
+          type: string
+          nullable: true
+        logo:
+          type: string
+          nullable: true
+        price:
+          type: number
+          format: decimal
+        priceChangeRatio:
+          type: number
+          format: double
+        currency:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesLegacyFundMarketSummaryResponseIEnumerableApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesLegacyFundMarketSummaryResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesPerformanceResponse:
+      type: object
+      properties:
+        yield1Y:
+          type: number
+          format: double
+          nullable: true
+        historicalReturnPercentages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesHistoricalReturnPercentageResponse'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesPurchaseDetailResponse:
+      type: object
+      properties:
+        minInitialBuy:
+          type: number
+          format: decimal
+          nullable: true
+        minAdditionalBuy:
+          type: number
+          format: decimal
+          nullable: true
+        minSellUnit:
+          type: number
+          format: decimal
+          nullable: true
+        minSellAmount:
+          type: number
+          format: decimal
+          nullable: true
+        minHoldUnit:
+          type: number
+          format: decimal
+          nullable: true
+        minHoldAmount:
+          type: number
+          format: decimal
+          nullable: true
+        settlementPeriod:
+          type: integer
+          format: int32
+          nullable: true
+        piBuyCutOffTime:
+          type: string
+          nullable: true
+        piSellCutOffTime:
+          type: string
+          nullable: true
+        asOfDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesPurchaseDetailTradingResponse:
+      type: object
+      properties:
+        minInitialBuy:
+          type: number
+          format: decimal
+          nullable: true
+        minAdditionalBuy:
+          type: number
+          format: decimal
+          nullable: true
+        minSellUnit:
+          type: number
+          format: decimal
+          nullable: true
+        minSellAmount:
+          type: number
+          format: decimal
+          nullable: true
+        minHoldUnit:
+          type: number
+          format: decimal
+          nullable: true
+        minHoldAmount:
+          type: number
+          format: decimal
+          nullable: true
+        buyCutOffTime:
+          type: string
+          format: date-time
+          nullable: true
+        sellCutOffTime:
+          type: string
+          format: date-time
+          nullable: true
+        piBuyCutOffTime:
+          type: string
+          format: date-time
+        piSellCutOffTime:
+          type: string
+          format: date-time
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesSwitchFunds:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        nav:
+          type: number
+          format: decimal
+        symbol:
+          type: string
+          nullable: true
+        returnPercentage:
+          type: number
+          format: double
+          nullable: true
+        logo:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesSwitchingFundResponse:
+      type: object
+      properties:
+        switchFunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesSwitchFunds'
+          nullable: true
+      additionalProperties: false
+    PiFundMarketDataAPIModelsResponsesSwitchingFundResponseApiResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/PiFundMarketDataAPIModelsResponsesSwitchingFundResponse'
+      additionalProperties: false
+    PiFundMarketDataConstantsFundType:
+      enum:
+        - Unknown
+        - Plain
+        - Complex
+      type: string
+    PiFundMarketDataConstantsInterval:
+      enum:
+        - Over3Months
+        - Over6Months
+        - Over1Year
+        - Over3Years
+        - Over5Years
+        - YearToDate
+        - SinceInception
+      type: string
+    PiFundMarketDataConstantsInvestorAlert:
+      enum:
+        - Unknown
+        - RiskFromConcentratedInvestment
+        - ConsolidationFund
+      type: string
+    PiFundMarketDataConstantsMarketBasket:
+      enum:
+        - TopFund
+        - Category
+        - NewFund
+      type: string
+    PiFundMarketDataConstantsProjectType:
+      enum:
+        - Unknown
+        - GeneralInvestorsFund
+        - InstitutionalInvestorsFund
+        - NonRetailInvestorsFund
+        - NonRetailAndHighNetWorthInvestorsFund
+        - InstitutionalAndSpecialLargeInvestorsFund
+        - HighNetWorthInvestorsFund
+        - CorporateInvestorsFund
+        - ThaiGovernmentFund
+        - PensionReserveFund
+      type: string
+    PiFundMarketDataConstantsTradeSide:
+      enum:
+        - Buy
+        - Sell
+        - Switch
+      type: string
+    PiFundMarketDataDomainModelsFeeUnit:
+      enum:
+        - AumPercentage
+        - THB
+        - TradingAmountPercentage
+      type: string
+    SystemDateTimeIEnumerableApiResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+            format: date-time
+          nullable: true
+      additionalProperties: false
+    SystemStringSystemDoubleCategoricalRecord:
+      type: object
+      properties:
+        dimension:
+          type: string
+          nullable: true
+        value:
+          type: number
+          format: double
+      additionalProperties: false

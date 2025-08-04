@@ -1,0 +1,10 @@
+{
+    "profiles": {
+        "Pi.FundMarketData.Worker": {
+            "commandName": "Project",
+            "environmentVariables": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        }
+    }
+}

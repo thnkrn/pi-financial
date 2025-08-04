@@ -1,0 +1,6 @@
+@Pi.MarketData.SearchAPI_HostAddress = http://localhost:5243
+
+GET {{Pi.MarketData.SearchAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

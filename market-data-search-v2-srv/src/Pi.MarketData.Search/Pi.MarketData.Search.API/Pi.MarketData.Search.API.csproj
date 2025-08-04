@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pi.MarketData.Search.API</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="7.0.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0" />
+    <PackageReference Include="Pi.Common" Version="1.0.73" />
+    <PackageReference Include="Pi.Common.Serilog" Version="1.0.73" />
+    <PackageReference Include="pi.common.startup" Version="1.0.73" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.8"/>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.MarketData.Search.Application\Pi.MarketData.Search.Application.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.MarketData.Search.Domain\Pi.MarketData.Search.Domain.csproj" />
+    <ProjectReference Include="..\Pi.MarketData.Search.Infrastructure\Pi.MarketData.Search.Infrastructure.csproj">
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.MarketData.Search.IntegrationEvents\Pi.MarketData.Search.IntegrationEvents.csproj">
+    </ProjectReference>
+  </ItemGroup>
+</Project>

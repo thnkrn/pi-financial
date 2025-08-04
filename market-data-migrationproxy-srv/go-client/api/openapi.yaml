@@ -1,0 +1,5271 @@
+openapi: 3.0.1
+info:
+  title: MarketData Migration Proxy API
+  version: v1
+servers:
+- url: /
+paths:
+  /cgs/v2/market/ticker:
+    post:
+      operationId: MarketTicker
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsVenuePayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsVenuePayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsVenuePayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketTickerResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketTickerResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketTickerResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/home/instruments:
+    post:
+      operationId: HomeInstruments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsHomeInstrumentPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsHomeInstrumentPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsHomeInstrumentPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseHomeInstrumentsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseHomeInstrumentsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseHomeInstrumentsResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/marketstatus:
+    post:
+      operationId: MarketStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsMarketStatusRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsMarketStatusRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsMarketStatusRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketStatusResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketStatusResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketStatusResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/derivative/information:
+    post:
+      operationId: MarketDerivativeInformation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketDerivativeInformationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketDerivativeInformationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketDerivativeInformationRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketDerivativeInformationResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketDerivativeInformationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketDerivativeInformationResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/global/equity/instrument/info:
+    post:
+      operationId: MarketGlobalEquityInstrumentInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseGlobalMarketInstrumentInfoResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseGlobalMarketInstrumentInfoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseGlobalMarketInstrumentInfoResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/instrument/info:
+    post:
+      operationId: MarketInstrumentInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketInstrumentInfoResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketInstrumentInfoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketInstrumentInfoResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/profile/overview:
+    post:
+      operationId: MarketProfileOverview
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileOverviewResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileOverviewResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileOverviewResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/market/filter/instruments:
+    post:
+      operationId: MarketFilterInstruments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsFiltersRequestPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsFiltersRequestPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsFiltersRequestPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketFilterInstrumentsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketFilterInstrumentsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketFilterInstrumentsResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/market/filters:
+    post:
+      operationId: MarketFilters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketFiltersRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketFiltersRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketFiltersRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketFiltersResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketFiltersResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketFiltersResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/market/indicator:
+    post:
+      operationId: MarketIndicator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsMarketIndicatorRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsMarketIndicatorRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsMarketIndicatorRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketIndicatorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketIndicatorResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketIndicatorResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/market/orderbook:
+    post:
+      operationId: MarketOrderBook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsSymbolVenuePayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsSymbolVenuePayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsSymbolVenuePayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketOrderBookResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketOrderBookResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketOrderBookResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/market/timeline/rendered:
+    post:
+      operationId: MarketTimelineRendered
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketTimelineRenderedResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketTimelineRenderedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketTimelineRenderedResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/user/instrument/favourite:
+    post:
+      operationId: UserInstrumentFavourite
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Cgs
+  /cgs/v1/market/profile/financials:
+    post:
+      operationId: MarketProfileFinancials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileFinancialsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileFinancialsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileFinancialsResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+      tags:
+      - Cgs
+  /cgs/v1/market/profile/fundamentals:
+    post:
+      operationId: MarketProfileFundamentals
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileFundamentalsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileFundamentalsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileFundamentalsResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/profile/description:
+    post:
+      operationId: MarketProfileDescription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileDescriptionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileDescriptionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketProfileDescriptionResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v2/market/schedules:
+    post:
+      operationId: MarketSchedules
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketSchedulesResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketSchedulesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketSchedulesResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/initialmargin:
+    post:
+      operationId: MarketInitialMargin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketInitialMarginRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketInitialMarginRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestMarketInitialMarginRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketInitialMarginResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketInitialMarginResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMarketInitialMarginResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /cgs/v1/market/brokerinfo:
+    post:
+      operationId: MarketBrokerInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestBrokerInfoRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestBrokerInfoRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataDomainModelsRequestBrokerInfoRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseBrokerInfoResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseBrokerInfoResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiMarketDataDomainModelsResponseBrokerInfoResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "401":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unauthorized
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+        "500":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Internal Server Error
+      tags:
+      - Cgs
+  /market-data-management/set/curated-filters:
+    post:
+      operationId: PostSetCuratedFilter
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              $ref: '#/components/schemas/PostSetCuratedFilter_request'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - MarketDataManagement
+  /market-data-management/ge/curated-filters:
+    post:
+      operationId: PostGeCuratedFilter
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              $ref: '#/components/schemas/PostSetCuratedFilter_request'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - MarketDataManagement
+  /market-data-management/set/curated-lists:
+    post:
+      operationId: PostSetCuratedList
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              $ref: '#/components/schemas/PostSetCuratedFilter_request'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - MarketDataManagement
+  /market-data-management/ge/curated-lists:
+    post:
+      operationId: PostGeCuratedList
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              $ref: '#/components/schemas/PostSetCuratedFilter_request'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - MarketDataManagement
+  /market-data-management/set/curated-members:
+    post:
+      operationId: PostSetCuratedMember
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              $ref: '#/components/schemas/PostSetCuratedFilter_request'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - MarketDataManagement
+  /market-data-management/ge/curated-members:
+    post:
+      operationId: PostGeCuratedMember
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              $ref: '#/components/schemas/PostSetCuratedFilter_request'
+      responses:
+        "200":
+          description: OK
+      tags:
+      - MarketDataManagement
+  /{path}:
+    delete:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+    head:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+    options:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+    patch:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+    post:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+    put:
+      parameters:
+      - explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: ^(?!/cgs|/market-data).*$
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Proxy
+  /market-data/streaming:
+    get:
+      description: Use this endpoint to establish a WebSocket connection and use following
+        request body as a subscription request message over SignalR.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataWSSDomainModelsRequestMarketStreamingRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataWSSDomainModelsRequestMarketStreamingRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiMarketDataWSSDomainModelsRequestMarketStreamingRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiSMarketDataWSSDomainModelsResponseMarketStreamingResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiSMarketDataWSSDomainModelsResponseMarketStreamingResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiSMarketDataWSSDomainModelsResponseMarketStreamingResponse'
+          description: OK
+      summary: WebSocket Endpoint for Market Data
+      tags:
+      - WebSocket
+components:
+  schemas:
+    MicrosoftAspNetCoreMvcProblemDetails:
+      additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: 5
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsCommonPayload:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        venue: venue
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsFiltersRequestPayload:
+      additionalProperties: false
+      example:
+        subGroupName: subGroupName
+        groupName: groupName
+        filterList:
+        - 0
+        - 0
+      properties:
+        filterList:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+        groupName:
+          nullable: true
+          type: string
+        subGroupName:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsHomeInstrumentPayload:
+      additionalProperties: false
+      example:
+        relevantTo: relevantTo
+        listName: listName
+      properties:
+        relevantTo:
+          nullable: true
+          type: string
+        listName:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsRequestBrokerData:
+      additionalProperties: false
+      example:
+        brokerCode: brokerCode
+        brokerId: brokerId
+      properties:
+        brokerCode:
+          nullable: true
+          type: string
+        brokerId:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsRequestBrokerInfoRequest:
+      additionalProperties: false
+      example:
+        data:
+        - brokerCode: brokerCode
+          brokerId: brokerId
+        - brokerCode: brokerCode
+          brokerId: brokerId
+        asOfDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        asOfDate:
+          format: date-time
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsRequestBrokerData'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsRequestInitialMarginData:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        im: im
+        productType: productType
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        im:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsRequestMarketDerivativeInformationRequest:
+      additionalProperties: false
+      example:
+        symbol: symbol
+      properties:
+        symbol:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsRequestMarketFiltersRequest:
+      additionalProperties: false
+      example:
+        subGroupName: subGroupName
+        groupName: groupName
+      properties:
+        groupName:
+          nullable: true
+          type: string
+        subGroupName:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsRequestMarketInitialMarginRequest:
+      additionalProperties: false
+      example:
+        data:
+        - symbol: symbol
+          im: im
+          productType: productType
+        - symbol: symbol
+          im: im
+          productType: productType
+        asOfDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        asOfDate:
+          format: date-time
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsRequestInitialMarginData'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsRequestsIndicators:
+      additionalProperties: false
+      example:
+        kdj: kdj
+        boll: boll
+        ma: ma
+        macd: macd
+        ema: ema
+        rsi: rsi
+      properties:
+        boll:
+          nullable: true
+          type: string
+        ema:
+          nullable: true
+          type: string
+        kdj:
+          nullable: true
+          type: string
+        ma:
+          nullable: true
+          type: string
+        macd:
+          nullable: true
+          type: string
+        rsi:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsRequestsMarketIndicatorRequest:
+      additionalProperties: false
+      example:
+        candleType: candleType
+        symbol: symbol
+        venue: venue
+        completeTradingDay: true
+        fromTimestamp: 6
+        limit: 0
+        indicators:
+          kdj: kdj
+          boll: boll
+          ma: ma
+          macd: macd
+          ema: ema
+          rsi: rsi
+        toTimestamp: 1
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        candleType:
+          nullable: true
+          type: string
+        completeTradingDay:
+          type: boolean
+        limit:
+          format: int32
+          nullable: true
+          type: integer
+        fromTimestamp:
+          format: int32
+          type: integer
+        indicators:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsRequestsIndicators'
+        toTimestamp:
+          format: int32
+          type: integer
+      type: object
+    PiMarketDataDomainModelsRequestsMarketStatusRequest:
+      additionalProperties: false
+      example:
+        market: market
+      properties:
+        market:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseAverageShareCount:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseBidOfferList:
+      additionalProperties: false
+      example:
+        offer: offer
+        symbol: symbol
+        venue: venue
+        bid: bid
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        bid:
+          nullable: true
+          type: string
+        offer:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseBody:
+      additionalProperties: false
+      example:
+        filterCategory: filterCategory
+        filters:
+        - filterId: 0
+          isDefault: true
+          nav: nav
+          isHighLight: true
+          navChange: navChange
+          filterName: filterName
+          navChangePercentage: navChangePercentage
+          order: 6
+        - filterId: 0
+          isDefault: true
+          nav: nav
+          isHighLight: true
+          navChange: navChange
+          filterName: filterName
+          navChangePercentage: navChangePercentage
+          order: 6
+        filterType: filterType
+        supportSecondaryFilter: true
+        order: 1
+      properties:
+        filterCategory:
+          nullable: true
+          type: string
+        filterType:
+          nullable: true
+          type: string
+        supportSecondaryFilter:
+          type: boolean
+        filters:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseFilter'
+          nullable: true
+          type: array
+        order:
+          format: int32
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseBrokerInfoResponse:
+      additionalProperties: false
+      example:
+        data:
+          totalProcessed: 0
+          asOfDate: 2000-01-23T04:56:07.000+00:00
+        error:
+          code: code
+          message: message
+        status: true
+      properties:
+        status:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseResponseData'
+        error:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseErrorResponse'
+      type: object
+    PiMarketDataDomainModelsResponseCashflowPerShare:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseCorporateActionResponse:
+      additionalProperties: false
+      example:
+        date: date
+        type: type
+      properties:
+        date:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseDerivativeInformationResponse:
+      additionalProperties: false
+      example:
+        tradingUnit: tradingUnit
+        securityType: securityType
+        minBidUnit: minBidUnit
+        multiplier: multiplier
+        initialMargin: initialMargin
+      properties:
+        securityType:
+          nullable: true
+          type: string
+        tradingUnit:
+          nullable: true
+          type: string
+        minBidUnit:
+          nullable: true
+          type: string
+        multiplier:
+          nullable: true
+          type: string
+        initialMargin:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseDividendPerShare:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseEarningsPerShare:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseErrorResponse:
+      additionalProperties: false
+      example:
+        code: code
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseFilter:
+      additionalProperties: false
+      example:
+        filterId: 0
+        isDefault: true
+        nav: nav
+        isHighLight: true
+        navChange: navChange
+        filterName: filterName
+        navChangePercentage: navChangePercentage
+        order: 6
+      properties:
+        filterId:
+          format: int32
+          type: integer
+        filterName:
+          nullable: true
+          type: string
+        isHighLight:
+          type: boolean
+        isDefault:
+          type: boolean
+        order:
+          format: int32
+          type: integer
+        nav:
+          nullable: true
+          type: string
+        navChange:
+          nullable: true
+          type: string
+        navChangePercentage:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseFilterInstrumentList:
+      additionalProperties: false
+      example:
+        priceChange: priceChange
+        totalValue: totalValue
+        totalVolume: totalVolume
+        venue: venue
+        symbol: symbol
+        nav: nav
+        navChange: navChange
+        latestNavTimestamp: 6
+        navChangePercentage: navChangePercentage
+        unit: unit
+        price: price
+        isMainSession: true
+        logo: logo
+        friendlyName: friendlyName
+        priceChangeRatio: priceChangeRatio
+        isFavorite: true
+      properties:
+        venue:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        logo:
+          nullable: true
+          type: string
+        price:
+          nullable: true
+          type: string
+        priceChange:
+          nullable: true
+          type: string
+        priceChangeRatio:
+          nullable: true
+          type: string
+        isFavorite:
+          type: boolean
+        unit:
+          nullable: true
+          type: string
+        latestNavTimestamp:
+          format: int32
+          type: integer
+        isMainSession:
+          type: boolean
+        totalValue:
+          nullable: true
+          type: string
+        totalVolume:
+          nullable: true
+          type: string
+        nav:
+          nullable: true
+          type: string
+        navChange:
+          nullable: true
+          type: string
+        navChangePercentage:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseFilterInstrumentsResponse:
+      additionalProperties: false
+      example:
+        instrumentCategoryList:
+        - instrumentType: instrumentType
+          instrumentCategory: instrumentCategory
+          instrumentList:
+          - priceChange: priceChange
+            totalValue: totalValue
+            totalVolume: totalVolume
+            venue: venue
+            symbol: symbol
+            nav: nav
+            navChange: navChange
+            latestNavTimestamp: 6
+            navChangePercentage: navChangePercentage
+            unit: unit
+            price: price
+            isMainSession: true
+            logo: logo
+            friendlyName: friendlyName
+            priceChangeRatio: priceChangeRatio
+            isFavorite: true
+          - priceChange: priceChange
+            totalValue: totalValue
+            totalVolume: totalVolume
+            venue: venue
+            symbol: symbol
+            nav: nav
+            navChange: navChange
+            latestNavTimestamp: 6
+            navChangePercentage: navChangePercentage
+            unit: unit
+            price: price
+            isMainSession: true
+            logo: logo
+            friendlyName: friendlyName
+            priceChangeRatio: priceChangeRatio
+            isFavorite: true
+          order: 0
+        - instrumentType: instrumentType
+          instrumentCategory: instrumentCategory
+          instrumentList:
+          - priceChange: priceChange
+            totalValue: totalValue
+            totalVolume: totalVolume
+            venue: venue
+            symbol: symbol
+            nav: nav
+            navChange: navChange
+            latestNavTimestamp: 6
+            navChangePercentage: navChangePercentage
+            unit: unit
+            price: price
+            isMainSession: true
+            logo: logo
+            friendlyName: friendlyName
+            priceChangeRatio: priceChangeRatio
+            isFavorite: true
+          - priceChange: priceChange
+            totalValue: totalValue
+            totalVolume: totalVolume
+            venue: venue
+            symbol: symbol
+            nav: nav
+            navChange: navChange
+            latestNavTimestamp: 6
+            navChangePercentage: navChangePercentage
+            unit: unit
+            price: price
+            isMainSession: true
+            logo: logo
+            friendlyName: friendlyName
+            priceChangeRatio: priceChangeRatio
+            isFavorite: true
+          order: 0
+      properties:
+        instrumentCategoryList:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseInstrumentCategoryList'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseFiltersResponse:
+      additionalProperties: false
+      example:
+        data:
+        - filterCategory: filterCategory
+          filters:
+          - filterId: 0
+            isDefault: true
+            nav: nav
+            isHighLight: true
+            navChange: navChange
+            filterName: filterName
+            navChangePercentage: navChangePercentage
+            order: 6
+          - filterId: 0
+            isDefault: true
+            nav: nav
+            isHighLight: true
+            navChange: navChange
+            filterName: filterName
+            navChangePercentage: navChangePercentage
+            order: 6
+          filterType: filterType
+          supportSecondaryFilter: true
+          order: 1
+        - filterCategory: filterCategory
+          filters:
+          - filterId: 0
+            isDefault: true
+            nav: nav
+            isHighLight: true
+            navChange: navChange
+            filterName: filterName
+            navChangePercentage: navChangePercentage
+            order: 6
+          - filterId: 0
+            isDefault: true
+            nav: nav
+            isHighLight: true
+            navChange: navChange
+            filterName: filterName
+            navChangePercentage: navChangePercentage
+            order: 6
+          filterType: filterType
+          supportSecondaryFilter: true
+          order: 1
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseBody'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseGlobalInstrumentInfoResponse:
+      additionalProperties: false
+      example:
+        minimalPriceIncrement: minimalPriceIncrement
+        currency: currency
+        minimalQuantityIncrement: minimalQuantityIncrement
+      properties:
+        minimalPriceIncrement:
+          nullable: true
+          type: string
+        minimalQuantityIncrement:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseGlobalMarketInstrumentInfoResponse:
+      additionalProperties: false
+      example:
+        code: code
+        response:
+          minimalPriceIncrement: minimalPriceIncrement
+          currency: currency
+          minimalQuantityIncrement: minimalQuantityIncrement
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseGlobalInstrumentInfoResponse'
+      type: object
+    PiMarketDataDomainModelsResponseHomeInstrumentsResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          instrumentList:
+          - priceChange: priceChange
+            totalValue: totalValue
+            totalVolume: totalVolume
+            venue: venue
+            symbol: symbol
+            instrumentType: instrumentType
+            instrumentCategory: instrumentCategory
+            unit: unit
+            price: price
+            logo: logo
+            friendlyName: friendlyName
+            priceChangeRatio: priceChangeRatio
+            order: 0
+          - priceChange: priceChange
+            totalValue: totalValue
+            totalVolume: totalVolume
+            venue: venue
+            symbol: symbol
+            instrumentType: instrumentType
+            instrumentCategory: instrumentCategory
+            unit: unit
+            price: price
+            logo: logo
+            friendlyName: friendlyName
+            priceChangeRatio: priceChangeRatio
+            order: 0
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseInstrumentsResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseIndicatorResponse:
+      additionalProperties: false
+      example:
+        candleType: candleType
+        venue: venue
+        symbol: symbol
+        meta:
+          country: country
+          exchange: exchange
+          exchangeTimezone: exchangeTimezone
+          offsetSeconds: 0
+        candles:
+        - - ""
+          - ""
+        - - ""
+          - ""
+        indicators:
+          kdj:
+          - ""
+          - ""
+          boll:
+          - ""
+          - ""
+          ma:
+          - ""
+          - ""
+          macd:
+          - ""
+          - ""
+          ema:
+          - ""
+          - ""
+          rsi:
+          - ""
+          - ""
+        firstCandleTime: 6
+      properties:
+        meta:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseMeta'
+        venue:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        candleType:
+          nullable: true
+          type: string
+        candles:
+          items:
+            items: {}
+            type: array
+          nullable: true
+          type: array
+        indicators:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTechnicalIndicatorsResponse'
+        firstCandleTime:
+          format: int32
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseInstrumentCategoryList:
+      additionalProperties: false
+      example:
+        instrumentType: instrumentType
+        instrumentCategory: instrumentCategory
+        instrumentList:
+        - priceChange: priceChange
+          totalValue: totalValue
+          totalVolume: totalVolume
+          venue: venue
+          symbol: symbol
+          nav: nav
+          navChange: navChange
+          latestNavTimestamp: 6
+          navChangePercentage: navChangePercentage
+          unit: unit
+          price: price
+          isMainSession: true
+          logo: logo
+          friendlyName: friendlyName
+          priceChangeRatio: priceChangeRatio
+          isFavorite: true
+        - priceChange: priceChange
+          totalValue: totalValue
+          totalVolume: totalVolume
+          venue: venue
+          symbol: symbol
+          nav: nav
+          navChange: navChange
+          latestNavTimestamp: 6
+          navChangePercentage: navChangePercentage
+          unit: unit
+          price: price
+          isMainSession: true
+          logo: logo
+          friendlyName: friendlyName
+          priceChangeRatio: priceChangeRatio
+          isFavorite: true
+        order: 0
+      properties:
+        order:
+          format: int32
+          type: integer
+        instrumentType:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+        instrumentList:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseFilterInstrumentList'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseInstrumentInfoResponse:
+      additionalProperties: false
+      example:
+        tradingSign:
+        - tradingSign
+        - tradingSign
+        minimumPurchaseAmount: minimumPurchaseAmount
+        amountStepSize: amountStepSize
+        isNew: true
+        spreadSize: spreadSize
+        minimumPrice: minimumPrice
+      properties:
+        spreadSize:
+          nullable: true
+          type: string
+        amountStepSize:
+          nullable: true
+          type: string
+        minimumPurchaseAmount:
+          nullable: true
+          type: string
+        minimumPrice:
+          nullable: true
+          type: string
+        isNew:
+          type: boolean
+        tradingSign:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseInstrumentList:
+      additionalProperties: false
+      example:
+        priceChange: priceChange
+        totalValue: totalValue
+        totalVolume: totalVolume
+        venue: venue
+        symbol: symbol
+        instrumentType: instrumentType
+        instrumentCategory: instrumentCategory
+        unit: unit
+        price: price
+        logo: logo
+        friendlyName: friendlyName
+        priceChangeRatio: priceChangeRatio
+        order: 0
+      properties:
+        order:
+          format: int32
+          type: integer
+        instrumentType:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        logo:
+          nullable: true
+          type: string
+        unit:
+          nullable: true
+          type: string
+        price:
+          nullable: true
+          type: string
+        priceChange:
+          nullable: true
+          type: string
+        priceChangeRatio:
+          nullable: true
+          type: string
+        totalValue:
+          nullable: true
+          type: string
+        totalVolume:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseInstrumentsResponse:
+      additionalProperties: false
+      example:
+        instrumentList:
+        - priceChange: priceChange
+          totalValue: totalValue
+          totalVolume: totalVolume
+          venue: venue
+          symbol: symbol
+          instrumentType: instrumentType
+          instrumentCategory: instrumentCategory
+          unit: unit
+          price: price
+          logo: logo
+          friendlyName: friendlyName
+          priceChangeRatio: priceChangeRatio
+          order: 0
+        - priceChange: priceChange
+          totalValue: totalValue
+          totalVolume: totalVolume
+          venue: venue
+          symbol: symbol
+          instrumentType: instrumentType
+          instrumentCategory: instrumentCategory
+          unit: unit
+          price: price
+          logo: logo
+          friendlyName: friendlyName
+          priceChangeRatio: priceChangeRatio
+          order: 0
+      properties:
+        instrumentList:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseInstrumentList'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseIntermission:
+      additionalProperties: false
+      example:
+        from: 0
+        to: 6
+      properties:
+        from:
+          format: int32
+          type: integer
+        to:
+          format: int32
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseLiabilitiesToAssets:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketDerivativeInformationResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          tradingUnit: tradingUnit
+          securityType: securityType
+          minBidUnit: minBidUnit
+          multiplier: multiplier
+          initialMargin: initialMargin
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseDerivativeInformationResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketFilterInstrumentsResponse:
+      additionalProperties: false
+      example:
+        code: code
+        response:
+          instrumentCategoryList:
+          - instrumentType: instrumentType
+            instrumentCategory: instrumentCategory
+            instrumentList:
+            - priceChange: priceChange
+              totalValue: totalValue
+              totalVolume: totalVolume
+              venue: venue
+              symbol: symbol
+              nav: nav
+              navChange: navChange
+              latestNavTimestamp: 6
+              navChangePercentage: navChangePercentage
+              unit: unit
+              price: price
+              isMainSession: true
+              logo: logo
+              friendlyName: friendlyName
+              priceChangeRatio: priceChangeRatio
+              isFavorite: true
+            - priceChange: priceChange
+              totalValue: totalValue
+              totalVolume: totalVolume
+              venue: venue
+              symbol: symbol
+              nav: nav
+              navChange: navChange
+              latestNavTimestamp: 6
+              navChangePercentage: navChangePercentage
+              unit: unit
+              price: price
+              isMainSession: true
+              logo: logo
+              friendlyName: friendlyName
+              priceChangeRatio: priceChangeRatio
+              isFavorite: true
+            order: 0
+          - instrumentType: instrumentType
+            instrumentCategory: instrumentCategory
+            instrumentList:
+            - priceChange: priceChange
+              totalValue: totalValue
+              totalVolume: totalVolume
+              venue: venue
+              symbol: symbol
+              nav: nav
+              navChange: navChange
+              latestNavTimestamp: 6
+              navChangePercentage: navChangePercentage
+              unit: unit
+              price: price
+              isMainSession: true
+              logo: logo
+              friendlyName: friendlyName
+              priceChangeRatio: priceChangeRatio
+              isFavorite: true
+            - priceChange: priceChange
+              totalValue: totalValue
+              totalVolume: totalVolume
+              venue: venue
+              symbol: symbol
+              nav: nav
+              navChange: navChange
+              latestNavTimestamp: 6
+              navChangePercentage: navChangePercentage
+              unit: unit
+              price: price
+              isMainSession: true
+              logo: logo
+              friendlyName: friendlyName
+              priceChangeRatio: priceChangeRatio
+              isFavorite: true
+            order: 0
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseFilterInstrumentsResponse'
+      type: object
+    PiMarketDataDomainModelsResponseMarketFiltersResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          data:
+          - filterCategory: filterCategory
+            filters:
+            - filterId: 0
+              isDefault: true
+              nav: nav
+              isHighLight: true
+              navChange: navChange
+              filterName: filterName
+              navChangePercentage: navChangePercentage
+              order: 6
+            - filterId: 0
+              isDefault: true
+              nav: nav
+              isHighLight: true
+              navChange: navChange
+              filterName: filterName
+              navChangePercentage: navChangePercentage
+              order: 6
+            filterType: filterType
+            supportSecondaryFilter: true
+            order: 1
+          - filterCategory: filterCategory
+            filters:
+            - filterId: 0
+              isDefault: true
+              nav: nav
+              isHighLight: true
+              navChange: navChange
+              filterName: filterName
+              navChangePercentage: navChangePercentage
+              order: 6
+            - filterId: 0
+              isDefault: true
+              nav: nav
+              isHighLight: true
+              navChange: navChange
+              filterName: filterName
+              navChangePercentage: navChangePercentage
+              order: 6
+            filterType: filterType
+            supportSecondaryFilter: true
+            order: 1
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseFiltersResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketIndicatorResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          candleType: candleType
+          venue: venue
+          symbol: symbol
+          meta:
+            country: country
+            exchange: exchange
+            exchangeTimezone: exchangeTimezone
+            offsetSeconds: 0
+          candles:
+          - - ""
+            - ""
+          - - ""
+            - ""
+          indicators:
+            kdj:
+            - ""
+            - ""
+            boll:
+            - ""
+            - ""
+            ma:
+            - ""
+            - ""
+            macd:
+            - ""
+            - ""
+            ema:
+            - ""
+            - ""
+            rsi:
+            - ""
+            - ""
+          firstCandleTime: 6
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseIndicatorResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketInitialMarginResponse:
+      additionalProperties: false
+      example:
+        data: ""
+        error: ""
+        status: status
+      properties:
+        status:
+          nullable: true
+          type: string
+        data:
+          nullable: true
+        error:
+          nullable: true
+      type: object
+    PiMarketDataDomainModelsResponseMarketInstrumentInfoResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          tradingSign:
+          - tradingSign
+          - tradingSign
+          minimumPurchaseAmount: minimumPurchaseAmount
+          amountStepSize: amountStepSize
+          isNew: true
+          spreadSize: spreadSize
+          minimumPrice: minimumPrice
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseInstrumentInfoResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketOrderBookResponse:
+      additionalProperties: false
+      example:
+        code: code
+        response:
+          bidOfferList:
+          - offer: offer
+            symbol: symbol
+            venue: venue
+            bid: bid
+          - offer: offer
+            symbol: symbol
+            venue: venue
+            bid: bid
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseOrderBookResponse'
+      type: object
+    PiMarketDataDomainModelsResponseMarketProfileDescriptionResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          websiteLink: websiteLink
+          amcLogo: amcLogo
+          description: description
+          amcCode: amcCode
+          amcFriendlyName: amcFriendlyName
+          websiteLinkName: websiteLinkName
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseProfileDescriptionResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketProfileFinancialsResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          operatingIncome:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          earningsPerShare:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          operatingMargin:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          totalAssets:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          dividendPerShare:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          totalLiabilities:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          units: units
+          source: source
+          sales:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          liabilitiesToAssets:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          cashflowPerShare:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          averageShareCount:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+          latestFinancials: latestFinancials
+          netIncome:
+            yy: yy
+            statementType: statementType
+            list:
+            - list
+            - list
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseProfileFinancialsResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketProfileFundamentalsResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          country: country
+          underlyingPrice: underlyingPrice
+          shareFreeFloat: shareFreeFloat
+          openInterest: openInterest
+          daysToExercise: daysToExercise
+          industry: industry
+          exercisePrice: exercisePrice
+          exerciseDate: exerciseDate
+          units: units
+          source: source
+          priceToSalesRatio: priceToSalesRatio
+          priceToEarningsRatio: priceToEarningsRatio
+          lastNavPerShare: lastNavPerShare
+          objective: objective
+          dividendYieldPercentage: dividendYieldPercentage
+          expenseRatioPercentage: expenseRatioPercentage
+          theoreticalPrice: theoreticalPrice
+          underlyingSymbol: underlyingSymbol
+          underlyingLogo: underlyingLogo
+          maturityDate: maturityDate
+          impliedVolatilityPercentage: impliedVolatilityPercentage
+          contractSize: contractSize
+          priceToBookRatio: priceToBookRatio
+          sector: sector
+          direction: direction
+          conversionRatio: conversionRatio
+          marketCapitalization: marketCapitalization
+          exDividendDate: exDividendDate
+          multiplier: multiplier
+          foreignCurrency: foreignCurrency
+          assetClassFocus: assetClassFocus
+          basis: basis
+          underlyingVenue: underlyingVenue
+          daysToLastTrade: daysToLastTrade
+          underlyingInstrumentCategory: underlyingInstrumentCategory
+          issuerSeries: issuerSeries
+          underlyingInstrumentType: underlyingInstrumentType
+          isClickable: true
+          exerciseRatio: exerciseRatio
+          intrinsicValue: intrinsicValue
+          moneyness: moneyness
+          strikePrice: strikePrice
+          lastTradingDate: lastTradingDate
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseProfileFundamentalsResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketProfileOverviewResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          priceChange: priceChange
+          exchangeTime: exchangeTime
+          high52W: high52W
+          minimumOrderSize: minimumOrderSize
+          market: market
+          tradingSign:
+          - tradingSign
+          - tradingSign
+          low52W: low52W
+          exchange: exchange
+          currency: currency
+          priorClose: priorClose
+          priceChangePercentage: priceChangePercentage
+          contractMonth: contractMonth
+          corporateActions:
+          - date: date
+            type: type
+          - date: date
+            type: type
+          lastPrice: lastPrice
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseProfileOverviewResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketSchedulesResponse:
+      additionalProperties: false
+      example:
+        code: code
+        response:
+          serverTimestamp: 0
+          schedules:
+          - date: date
+            statusName: statusName
+            startTime: 6
+            endTime: 1
+          - date: date
+            statusName: statusName
+            startTime: 6
+            endTime: 1
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseSchedulesResponse'
+      type: object
+    PiMarketDataDomainModelsResponseMarketStatusResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          marketStatus: marketStatus
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseStatusResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMarketTickerResponse:
+      additionalProperties: false
+      example:
+        code: code
+        response:
+          data:
+          - totalVolume: totalVolume
+            symbol: symbol
+            country: country
+            auctionVolume: auctionVolume
+            isProjected: true
+            lastTrade: lastTrade
+            offsetSeconds: 6
+            price: price
+            maturityDate: maturityDate
+            lastPriceTime: 1
+            low52W: low52W
+            logo: logo
+            exchangeTimezone: exchangeTimezone
+            tradableEquity: tradableEquity
+            multiplier: multiplier
+            eps: eps
+            totalAmountK: totalAmountK
+            underlying: underlying
+            basis: basis
+            volume: volume
+            market: market
+            totalAmount: totalAmount
+            publicTrades:
+            - - ""
+              - ""
+            - - ""
+              - ""
+            instrumentCategory: instrumentCategory
+            averageBuy: averageBuy
+            securityType: securityType
+            changeVolume: changeVolume
+            status: status
+            venue: venue
+            average: average
+            aggressor: aggressor
+            tradableAmount: tradableAmount
+            settle: settle
+            totalVolumeK: totalVolumeK
+            exercisePrice: exercisePrice
+            poi: poi
+            changeAmount: changeAmount
+            preClose: preClose
+            yield: yield
+            currency: currency
+            floor: floor
+            friendlyName: friendlyName
+            ceiling: ceiling
+            amount: amount
+            instrumentType: instrumentType
+            high52W: high52W
+            priceChangedRate: priceChangedRate
+            priceChanged: priceChanged
+            low24H: low24H
+            averageSell: averageSell
+            pb: pb
+            high24H: high24H
+            pe: pe
+            open0: open0
+            orderBook:
+              offer:
+              - - offer
+                - offer
+              - - offer
+                - offer
+              bid:
+              - - bid
+                - bid
+              - - bid
+                - bid
+            open1: open1
+            turnoverRate: turnoverRate
+            open2: open2
+            auctionPrice: auctionPrice
+            pSettle: pSettle
+            toLastTrade: 0
+            intrinsicValue: intrinsicValue
+            open: open
+            moneyness: moneyness
+          - totalVolume: totalVolume
+            symbol: symbol
+            country: country
+            auctionVolume: auctionVolume
+            isProjected: true
+            lastTrade: lastTrade
+            offsetSeconds: 6
+            price: price
+            maturityDate: maturityDate
+            lastPriceTime: 1
+            low52W: low52W
+            logo: logo
+            exchangeTimezone: exchangeTimezone
+            tradableEquity: tradableEquity
+            multiplier: multiplier
+            eps: eps
+            totalAmountK: totalAmountK
+            underlying: underlying
+            basis: basis
+            volume: volume
+            market: market
+            totalAmount: totalAmount
+            publicTrades:
+            - - ""
+              - ""
+            - - ""
+              - ""
+            instrumentCategory: instrumentCategory
+            averageBuy: averageBuy
+            securityType: securityType
+            changeVolume: changeVolume
+            status: status
+            venue: venue
+            average: average
+            aggressor: aggressor
+            tradableAmount: tradableAmount
+            settle: settle
+            totalVolumeK: totalVolumeK
+            exercisePrice: exercisePrice
+            poi: poi
+            changeAmount: changeAmount
+            preClose: preClose
+            yield: yield
+            currency: currency
+            floor: floor
+            friendlyName: friendlyName
+            ceiling: ceiling
+            amount: amount
+            instrumentType: instrumentType
+            high52W: high52W
+            priceChangedRate: priceChangedRate
+            priceChanged: priceChanged
+            low24H: low24H
+            averageSell: averageSell
+            pb: pb
+            high24H: high24H
+            pe: pe
+            open0: open0
+            orderBook:
+              offer:
+              - - offer
+                - offer
+              - - offer
+                - offer
+              bid:
+              - - bid
+                - bid
+              - - bid
+                - bid
+            open1: open1
+            turnoverRate: turnoverRate
+            open2: open2
+            auctionPrice: auctionPrice
+            pSettle: pSettle
+            toLastTrade: 0
+            intrinsicValue: intrinsicValue
+            open: open
+            moneyness: moneyness
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTickerResponse'
+      type: object
+    PiMarketDataDomainModelsResponseMarketTimelineRenderedResponse:
+      additionalProperties: false
+      example:
+        debugStack: debugStack
+        code: code
+        response:
+          venue: venue
+          symbol: symbol
+          data:
+          - - ""
+            - ""
+          - - ""
+            - ""
+          meta:
+            country: country
+            exchange: exchange
+            exchangeTimezone: exchangeTimezone
+            offsetSeconds: 1
+          intermissions:
+          - from: 0
+            to: 6
+          - from: 0
+            to: 6
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTimelineRenderedResponse'
+        debugStack:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseMeta:
+      additionalProperties: false
+      example:
+        country: country
+        exchange: exchange
+        exchangeTimezone: exchangeTimezone
+        offsetSeconds: 0
+      properties:
+        exchange:
+          nullable: true
+          type: string
+        exchangeTimezone:
+          nullable: true
+          type: string
+        country:
+          nullable: true
+          type: string
+        offsetSeconds:
+          format: int32
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseNetIncome:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseOperatingIncome:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseOperatingMargin:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseOrderBookResponse:
+      additionalProperties: false
+      example:
+        bidOfferList:
+        - offer: offer
+          symbol: symbol
+          venue: venue
+          bid: bid
+        - offer: offer
+          symbol: symbol
+          venue: venue
+          bid: bid
+      properties:
+        bidOfferList:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseBidOfferList'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseProfileDescriptionResponse:
+      additionalProperties: false
+      example:
+        websiteLink: websiteLink
+        amcLogo: amcLogo
+        description: description
+        amcCode: amcCode
+        amcFriendlyName: amcFriendlyName
+        websiteLinkName: websiteLinkName
+      properties:
+        description:
+          nullable: true
+          type: string
+        websiteLink:
+          nullable: true
+          type: string
+        websiteLinkName:
+          nullable: true
+          type: string
+        amcCode:
+          nullable: true
+          type: string
+        amcLogo:
+          nullable: true
+          type: string
+        amcFriendlyName:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseProfileFinancialsResponse:
+      additionalProperties: false
+      example:
+        operatingIncome:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        earningsPerShare:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        operatingMargin:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        totalAssets:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        dividendPerShare:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        totalLiabilities:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        units: units
+        source: source
+        sales:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        liabilitiesToAssets:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        cashflowPerShare:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        averageShareCount:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+        latestFinancials: latestFinancials
+        netIncome:
+          yy: yy
+          statementType: statementType
+          list:
+          - list
+          - list
+      properties:
+        sales:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseSales'
+        operatingIncome:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseOperatingIncome'
+        netIncome:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseNetIncome'
+        earningsPerShare:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseEarningsPerShare'
+        dividendPerShare:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseDividendPerShare'
+        cashflowPerShare:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseCashflowPerShare'
+        totalAssets:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTotalAssets'
+        totalLiabilities:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTotalLiabilities'
+        operatingMargin:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseOperatingMargin'
+        liabilitiesToAssets:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseLiabilitiesToAssets'
+        averageShareCount:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseAverageShareCount'
+        units:
+          nullable: true
+          type: string
+        latestFinancials:
+          nullable: true
+          type: string
+        source:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseProfileFundamentalsResponse:
+      additionalProperties: false
+      example:
+        country: country
+        underlyingPrice: underlyingPrice
+        shareFreeFloat: shareFreeFloat
+        openInterest: openInterest
+        daysToExercise: daysToExercise
+        industry: industry
+        exercisePrice: exercisePrice
+        exerciseDate: exerciseDate
+        units: units
+        source: source
+        priceToSalesRatio: priceToSalesRatio
+        priceToEarningsRatio: priceToEarningsRatio
+        lastNavPerShare: lastNavPerShare
+        objective: objective
+        dividendYieldPercentage: dividendYieldPercentage
+        expenseRatioPercentage: expenseRatioPercentage
+        theoreticalPrice: theoreticalPrice
+        underlyingSymbol: underlyingSymbol
+        underlyingLogo: underlyingLogo
+        maturityDate: maturityDate
+        impliedVolatilityPercentage: impliedVolatilityPercentage
+        contractSize: contractSize
+        priceToBookRatio: priceToBookRatio
+        sector: sector
+        direction: direction
+        conversionRatio: conversionRatio
+        marketCapitalization: marketCapitalization
+        exDividendDate: exDividendDate
+        multiplier: multiplier
+        foreignCurrency: foreignCurrency
+        assetClassFocus: assetClassFocus
+        basis: basis
+        underlyingVenue: underlyingVenue
+        daysToLastTrade: daysToLastTrade
+        underlyingInstrumentCategory: underlyingInstrumentCategory
+        issuerSeries: issuerSeries
+        underlyingInstrumentType: underlyingInstrumentType
+        isClickable: true
+        exerciseRatio: exerciseRatio
+        intrinsicValue: intrinsicValue
+        moneyness: moneyness
+        strikePrice: strikePrice
+        lastTradingDate: lastTradingDate
+      properties:
+        marketCapitalization:
+          nullable: true
+          type: string
+        shareFreeFloat:
+          nullable: true
+          type: string
+        industry:
+          nullable: true
+          type: string
+        sector:
+          nullable: true
+          type: string
+        country:
+          nullable: true
+          type: string
+        priceToEarningsRatio:
+          nullable: true
+          type: string
+        priceToBookRatio:
+          nullable: true
+          type: string
+        priceToSalesRatio:
+          nullable: true
+          type: string
+        dividendYieldPercentage:
+          nullable: true
+          type: string
+        exDividendDate:
+          nullable: true
+          type: string
+        units:
+          nullable: true
+          type: string
+        source:
+          nullable: true
+          type: string
+        underlyingSymbol:
+          nullable: true
+          type: string
+        isClickable:
+          type: boolean
+        underlyingVenue:
+          nullable: true
+          type: string
+        underlyingInstrumentType:
+          nullable: true
+          type: string
+        underlyingInstrumentCategory:
+          nullable: true
+          type: string
+        underlyingLogo:
+          nullable: true
+          type: string
+        exerciseRatio:
+          nullable: true
+          type: string
+        exercisePrice:
+          nullable: true
+          type: string
+        exerciseDate:
+          nullable: true
+          type: string
+        daysToExercise:
+          nullable: true
+          type: string
+        moneyness:
+          nullable: true
+          type: string
+        direction:
+          nullable: true
+          type: string
+        multiplier:
+          nullable: true
+          type: string
+        lastTradingDate:
+          nullable: true
+          type: string
+        daysToLastTrade:
+          nullable: true
+          type: string
+        maturityDate:
+          nullable: true
+          type: string
+        issuerSeries:
+          nullable: true
+          type: string
+        foreignCurrency:
+          nullable: true
+          type: string
+        conversionRatio:
+          nullable: true
+          type: string
+        underlyingPrice:
+          nullable: true
+          type: string
+        basis:
+          nullable: true
+          type: string
+        openInterest:
+          nullable: true
+          type: string
+        contractSize:
+          nullable: true
+          type: string
+        lastNavPerShare:
+          nullable: true
+          type: string
+        objective:
+          nullable: true
+          type: string
+        assetClassFocus:
+          nullable: true
+          type: string
+        expenseRatioPercentage:
+          nullable: true
+          type: string
+        strikePrice:
+          nullable: true
+          type: string
+        theoreticalPrice:
+          nullable: true
+          type: string
+        intrinsicValue:
+          nullable: true
+          type: string
+        impliedVolatilityPercentage:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseProfileOverviewResponse:
+      additionalProperties: false
+      example:
+        priceChange: priceChange
+        exchangeTime: exchangeTime
+        high52W: high52W
+        minimumOrderSize: minimumOrderSize
+        market: market
+        tradingSign:
+        - tradingSign
+        - tradingSign
+        low52W: low52W
+        exchange: exchange
+        currency: currency
+        priorClose: priorClose
+        priceChangePercentage: priceChangePercentage
+        contractMonth: contractMonth
+        corporateActions:
+        - date: date
+          type: type
+        - date: date
+          type: type
+        lastPrice: lastPrice
+      properties:
+        market:
+          nullable: true
+          type: string
+        exchange:
+          nullable: true
+          type: string
+        exchangeTime:
+          nullable: true
+          type: string
+        lastPrice:
+          nullable: true
+          type: string
+        priorClose:
+          nullable: true
+          type: string
+        priceChange:
+          nullable: true
+          type: string
+        priceChangePercentage:
+          nullable: true
+          type: string
+        minimumOrderSize:
+          nullable: true
+          type: string
+        high52W:
+          nullable: true
+          type: string
+        low52W:
+          nullable: true
+          type: string
+        contractMonth:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        corporateActions:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseCorporateActionResponse'
+          nullable: true
+          type: array
+        tradingSign:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseResponseData:
+      additionalProperties: false
+      example:
+        totalProcessed: 0
+        asOfDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        totalProcessed:
+          format: int32
+          type: integer
+        asOfDate:
+          format: date-time
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseSales:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseSchedules:
+      additionalProperties: false
+      example:
+        date: date
+        statusName: statusName
+        startTime: 6
+        endTime: 1
+      properties:
+        statusName:
+          nullable: true
+          type: string
+        date:
+          nullable: true
+          type: string
+        startTime:
+          format: int64
+          type: integer
+        endTime:
+          format: int64
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseSchedulesResponse:
+      additionalProperties: false
+      example:
+        serverTimestamp: 0
+        schedules:
+        - date: date
+          statusName: statusName
+          startTime: 6
+          endTime: 1
+        - date: date
+          statusName: statusName
+          startTime: 6
+          endTime: 1
+      properties:
+        serverTimestamp:
+          format: int64
+          type: integer
+        schedules:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseSchedules'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseStatusResponse:
+      additionalProperties: false
+      example:
+        marketStatus: marketStatus
+      properties:
+        marketStatus:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseTechnicalIndicatorsResponse:
+      additionalProperties: false
+      example:
+        kdj:
+        - ""
+        - ""
+        boll:
+        - ""
+        - ""
+        ma:
+        - ""
+        - ""
+        macd:
+        - ""
+        - ""
+        ema:
+        - ""
+        - ""
+        rsi:
+        - ""
+        - ""
+      properties:
+        boll:
+          items: {}
+          nullable: true
+          type: array
+        ema:
+          items: {}
+          nullable: true
+          type: array
+        kdj:
+          items: {}
+          nullable: true
+          type: array
+        ma:
+          items: {}
+          nullable: true
+          type: array
+        macd:
+          items: {}
+          nullable: true
+          type: array
+        rsi:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseTickerBody:
+      additionalProperties: false
+      example:
+        totalVolume: totalVolume
+        symbol: symbol
+        country: country
+        auctionVolume: auctionVolume
+        isProjected: true
+        lastTrade: lastTrade
+        offsetSeconds: 6
+        price: price
+        maturityDate: maturityDate
+        lastPriceTime: 1
+        low52W: low52W
+        logo: logo
+        exchangeTimezone: exchangeTimezone
+        tradableEquity: tradableEquity
+        multiplier: multiplier
+        eps: eps
+        totalAmountK: totalAmountK
+        underlying: underlying
+        basis: basis
+        volume: volume
+        market: market
+        totalAmount: totalAmount
+        publicTrades:
+        - - ""
+          - ""
+        - - ""
+          - ""
+        instrumentCategory: instrumentCategory
+        averageBuy: averageBuy
+        securityType: securityType
+        changeVolume: changeVolume
+        status: status
+        venue: venue
+        average: average
+        aggressor: aggressor
+        tradableAmount: tradableAmount
+        settle: settle
+        totalVolumeK: totalVolumeK
+        exercisePrice: exercisePrice
+        poi: poi
+        changeAmount: changeAmount
+        preClose: preClose
+        yield: yield
+        currency: currency
+        floor: floor
+        friendlyName: friendlyName
+        ceiling: ceiling
+        amount: amount
+        instrumentType: instrumentType
+        high52W: high52W
+        priceChangedRate: priceChangedRate
+        priceChanged: priceChanged
+        low24H: low24H
+        averageSell: averageSell
+        pb: pb
+        high24H: high24H
+        pe: pe
+        open0: open0
+        orderBook:
+          offer:
+          - - offer
+            - offer
+          - - offer
+            - offer
+          bid:
+          - - bid
+            - bid
+          - - bid
+            - bid
+        open1: open1
+        turnoverRate: turnoverRate
+        open2: open2
+        auctionPrice: auctionPrice
+        pSettle: pSettle
+        toLastTrade: 0
+        intrinsicValue: intrinsicValue
+        open: open
+        moneyness: moneyness
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        price:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        auctionPrice:
+          nullable: true
+          type: string
+        auctionVolume:
+          nullable: true
+          type: string
+        open:
+          nullable: true
+          type: string
+        high24H:
+          nullable: true
+          type: string
+        low24H:
+          nullable: true
+          type: string
+        high52W:
+          nullable: true
+          type: string
+        low52W:
+          nullable: true
+          type: string
+        priceChanged:
+          nullable: true
+          type: string
+        priceChangedRate:
+          nullable: true
+          type: string
+        volume:
+          nullable: true
+          type: string
+        amount:
+          nullable: true
+          type: string
+        changeAmount:
+          nullable: true
+          type: string
+        changeVolume:
+          nullable: true
+          type: string
+        turnoverRate:
+          nullable: true
+          type: string
+        open2:
+          nullable: true
+          type: string
+        ceiling:
+          nullable: true
+          type: string
+        floor:
+          nullable: true
+          type: string
+        average:
+          nullable: true
+          type: string
+        averageBuy:
+          nullable: true
+          type: string
+        averageSell:
+          nullable: true
+          type: string
+        aggressor:
+          nullable: true
+          type: string
+        preClose:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        yield:
+          nullable: true
+          type: string
+        pe:
+          nullable: true
+          type: string
+        pb:
+          nullable: true
+          type: string
+        totalAmount:
+          nullable: true
+          type: string
+        totalAmountK:
+          nullable: true
+          type: string
+        totalVolume:
+          nullable: true
+          type: string
+        totalVolumeK:
+          nullable: true
+          type: string
+        tradableEquity:
+          nullable: true
+          type: string
+        tradableAmount:
+          nullable: true
+          type: string
+        eps:
+          nullable: true
+          type: string
+        publicTrades:
+          items:
+            items: {}
+            type: array
+          nullable: true
+          type: array
+        orderBook:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTickerOrderBook'
+        securityType:
+          nullable: true
+          type: string
+        instrumentType:
+          nullable: true
+          type: string
+        market:
+          nullable: true
+          type: string
+        lastTrade:
+          nullable: true
+          type: string
+        toLastTrade:
+          format: int32
+          type: integer
+        moneyness:
+          nullable: true
+          type: string
+        maturityDate:
+          nullable: true
+          type: string
+        multiplier:
+          nullable: true
+          type: string
+        exercisePrice:
+          nullable: true
+          type: string
+        intrinsicValue:
+          nullable: true
+          type: string
+        pSettle:
+          nullable: true
+          type: string
+        poi:
+          nullable: true
+          type: string
+        underlying:
+          nullable: true
+          type: string
+        open0:
+          nullable: true
+          type: string
+        open1:
+          nullable: true
+          type: string
+        basis:
+          nullable: true
+          type: string
+        settle:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+        friendlyName:
+          nullable: true
+          type: string
+        logo:
+          nullable: true
+          type: string
+        exchangeTimezone:
+          nullable: true
+          type: string
+        country:
+          nullable: true
+          type: string
+        offsetSeconds:
+          format: int32
+          type: integer
+        isProjected:
+          type: boolean
+        lastPriceTime:
+          format: int64
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseTickerOrderBook:
+      additionalProperties: false
+      example:
+        offer:
+        - - offer
+          - offer
+        - - offer
+          - offer
+        bid:
+        - - bid
+          - bid
+        - - bid
+          - bid
+      properties:
+        bid:
+          items:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: array
+        offer:
+          items:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseTickerResponse:
+      additionalProperties: false
+      example:
+        data:
+        - totalVolume: totalVolume
+          symbol: symbol
+          country: country
+          auctionVolume: auctionVolume
+          isProjected: true
+          lastTrade: lastTrade
+          offsetSeconds: 6
+          price: price
+          maturityDate: maturityDate
+          lastPriceTime: 1
+          low52W: low52W
+          logo: logo
+          exchangeTimezone: exchangeTimezone
+          tradableEquity: tradableEquity
+          multiplier: multiplier
+          eps: eps
+          totalAmountK: totalAmountK
+          underlying: underlying
+          basis: basis
+          volume: volume
+          market: market
+          totalAmount: totalAmount
+          publicTrades:
+          - - ""
+            - ""
+          - - ""
+            - ""
+          instrumentCategory: instrumentCategory
+          averageBuy: averageBuy
+          securityType: securityType
+          changeVolume: changeVolume
+          status: status
+          venue: venue
+          average: average
+          aggressor: aggressor
+          tradableAmount: tradableAmount
+          settle: settle
+          totalVolumeK: totalVolumeK
+          exercisePrice: exercisePrice
+          poi: poi
+          changeAmount: changeAmount
+          preClose: preClose
+          yield: yield
+          currency: currency
+          floor: floor
+          friendlyName: friendlyName
+          ceiling: ceiling
+          amount: amount
+          instrumentType: instrumentType
+          high52W: high52W
+          priceChangedRate: priceChangedRate
+          priceChanged: priceChanged
+          low24H: low24H
+          averageSell: averageSell
+          pb: pb
+          high24H: high24H
+          pe: pe
+          open0: open0
+          orderBook:
+            offer:
+            - - offer
+              - offer
+            - - offer
+              - offer
+            bid:
+            - - bid
+              - bid
+            - - bid
+              - bid
+          open1: open1
+          turnoverRate: turnoverRate
+          open2: open2
+          auctionPrice: auctionPrice
+          pSettle: pSettle
+          toLastTrade: 0
+          intrinsicValue: intrinsicValue
+          open: open
+          moneyness: moneyness
+        - totalVolume: totalVolume
+          symbol: symbol
+          country: country
+          auctionVolume: auctionVolume
+          isProjected: true
+          lastTrade: lastTrade
+          offsetSeconds: 6
+          price: price
+          maturityDate: maturityDate
+          lastPriceTime: 1
+          low52W: low52W
+          logo: logo
+          exchangeTimezone: exchangeTimezone
+          tradableEquity: tradableEquity
+          multiplier: multiplier
+          eps: eps
+          totalAmountK: totalAmountK
+          underlying: underlying
+          basis: basis
+          volume: volume
+          market: market
+          totalAmount: totalAmount
+          publicTrades:
+          - - ""
+            - ""
+          - - ""
+            - ""
+          instrumentCategory: instrumentCategory
+          averageBuy: averageBuy
+          securityType: securityType
+          changeVolume: changeVolume
+          status: status
+          venue: venue
+          average: average
+          aggressor: aggressor
+          tradableAmount: tradableAmount
+          settle: settle
+          totalVolumeK: totalVolumeK
+          exercisePrice: exercisePrice
+          poi: poi
+          changeAmount: changeAmount
+          preClose: preClose
+          yield: yield
+          currency: currency
+          floor: floor
+          friendlyName: friendlyName
+          ceiling: ceiling
+          amount: amount
+          instrumentType: instrumentType
+          high52W: high52W
+          priceChangedRate: priceChangedRate
+          priceChanged: priceChanged
+          low24H: low24H
+          averageSell: averageSell
+          pb: pb
+          high24H: high24H
+          pe: pe
+          open0: open0
+          orderBook:
+            offer:
+            - - offer
+              - offer
+            - - offer
+              - offer
+            bid:
+            - - bid
+              - bid
+            - - bid
+              - bid
+          open1: open1
+          turnoverRate: turnoverRate
+          open2: open2
+          auctionPrice: auctionPrice
+          pSettle: pSettle
+          toLastTrade: 0
+          intrinsicValue: intrinsicValue
+          open: open
+          moneyness: moneyness
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTickerBody'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsResponseTimelineMeta:
+      additionalProperties: false
+      example:
+        country: country
+        exchange: exchange
+        exchangeTimezone: exchangeTimezone
+        offsetSeconds: 1
+      properties:
+        exchange:
+          nullable: true
+          type: string
+        exchangeTimezone:
+          nullable: true
+          type: string
+        country:
+          nullable: true
+          type: string
+        offsetSeconds:
+          format: int32
+          type: integer
+      type: object
+    PiMarketDataDomainModelsResponseTimelineRenderedResponse:
+      additionalProperties: false
+      example:
+        venue: venue
+        symbol: symbol
+        data:
+        - - ""
+          - ""
+        - - ""
+          - ""
+        meta:
+          country: country
+          exchange: exchange
+          exchangeTimezone: exchangeTimezone
+          offsetSeconds: 1
+        intermissions:
+        - from: 0
+          to: 6
+        - from: 0
+          to: 6
+      properties:
+        venue:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        data:
+          items:
+            items: {}
+            type: array
+          nullable: true
+          type: array
+        intermissions:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsResponseIntermission'
+          nullable: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/PiMarketDataDomainModelsResponseTimelineMeta'
+      type: object
+    PiMarketDataDomainModelsResponseTotalAssets:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsResponseTotalLiabilities:
+      additionalProperties: false
+      example:
+        yy: yy
+        statementType: statementType
+        list:
+        - list
+        - list
+      properties:
+        yy:
+          nullable: true
+          type: string
+        list:
+          items:
+            type: string
+          nullable: true
+          type: array
+        statementType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataDomainModelsSymbolVenuePayload:
+      additionalProperties: false
+      example:
+        symbolVenueList:
+        - symbol: symbol
+          venue: venue
+        - symbol: symbol
+          venue: venue
+        param:
+        - symbol: symbol
+          venue: venue
+        - symbol: symbol
+          venue: venue
+      properties:
+        param:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          nullable: true
+          type: array
+        symbolVenueList:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataDomainModelsVenuePayload:
+      additionalProperties: false
+      example:
+        param:
+        - symbol: symbol
+          venue: venue
+        - symbol: symbol
+          venue: venue
+      properties:
+        param:
+          items:
+            $ref: '#/components/schemas/PiMarketDataDomainModelsCommonPayload'
+          nullable: true
+          type: array
+      type: object
+    PiMarketDataWSSDomainModelsRequestData:
+      additionalProperties: false
+      example:
+        subscribeType: subscribeType
+        param:
+        - market: market
+          symbol: symbol
+        - market: market
+          symbol: symbol
+      properties:
+        param:
+          items:
+            $ref: '#/components/schemas/PiMarketDataWSSDomainModelsRequestMarketStreamingParameter'
+          nullable: true
+          type: array
+        subscribeType:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataWSSDomainModelsRequestMarketStreamingParameter:
+      additionalProperties: false
+      example:
+        market: market
+        symbol: symbol
+      properties:
+        market:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+      type: object
+    PiMarketDataWSSDomainModelsRequestMarketStreamingRequest:
+      additionalProperties: false
+      example:
+        op: op
+        data:
+          subscribeType: subscribeType
+          param:
+          - market: market
+            symbol: symbol
+          - market: market
+            symbol: symbol
+        sessionId: sessionId
+      properties:
+        data:
+          $ref: '#/components/schemas/PiMarketDataWSSDomainModelsRequestData'
+        op:
+          nullable: true
+          type: string
+        sessionId:
+          nullable: true
+          type: string
+      type: object
+    PiSMarketDataWSSDomainModelsResponseMarketStreamingResponse:
+      additionalProperties: false
+      example:
+        op: op
+        code: code
+        response:
+          data:
+          - totalVolume: totalVolume
+            symbol: symbol
+            venue: venue
+            average: average
+            aggressor: aggressor
+            auctionVolume: auctionVolume
+            settle: settle
+            isProjected: true
+            totalVolumeK: totalVolumeK
+            lastTrade: lastTrade
+            exercisePrice: exercisePrice
+            poi: poi
+            preClose: preClose
+            price: price
+            maturityDate: maturityDate
+            lastPriceTime: 0
+            yield: yield
+            floor: floor
+            ceiling: ceiling
+            amount: amount
+            instrumentType: instrumentType
+            multiplier: multiplier
+            priceChangedRate: priceChangedRate
+            totalAmountK: totalAmountK
+            priceChanged: priceChanged
+            underlying: underlying
+            low24H: low24H
+            basis: basis
+            volume: volume
+            market: market
+            totalAmount: totalAmount
+            publicTrades:
+            - - ""
+              - ""
+            - - ""
+              - ""
+            averageSell: averageSell
+            high24H: high24H
+            averageBuy: averageBuy
+            securityType: securityType
+            open0: open0
+            open1: open1
+            orderBook:
+              offer:
+              - - offer
+                - offer
+              - - offer
+                - offer
+              bid:
+              - - bid
+                - bid
+              - - bid
+                - bid
+            open2: open2
+            auctionPrice: auctionPrice
+            pSettle: pSettle
+            toLastTrade: 6
+            intrinsicValue: intrinsicValue
+            open: open
+            moneyness: moneyness
+            status: status
+          - totalVolume: totalVolume
+            symbol: symbol
+            venue: venue
+            average: average
+            aggressor: aggressor
+            auctionVolume: auctionVolume
+            settle: settle
+            isProjected: true
+            totalVolumeK: totalVolumeK
+            lastTrade: lastTrade
+            exercisePrice: exercisePrice
+            poi: poi
+            preClose: preClose
+            price: price
+            maturityDate: maturityDate
+            lastPriceTime: 0
+            yield: yield
+            floor: floor
+            ceiling: ceiling
+            amount: amount
+            instrumentType: instrumentType
+            multiplier: multiplier
+            priceChangedRate: priceChangedRate
+            totalAmountK: totalAmountK
+            priceChanged: priceChanged
+            underlying: underlying
+            low24H: low24H
+            basis: basis
+            volume: volume
+            market: market
+            totalAmount: totalAmount
+            publicTrades:
+            - - ""
+              - ""
+            - - ""
+              - ""
+            averageSell: averageSell
+            high24H: high24H
+            averageBuy: averageBuy
+            securityType: securityType
+            open0: open0
+            open1: open1
+            orderBook:
+              offer:
+              - - offer
+                - offer
+              - - offer
+                - offer
+              bid:
+              - - bid
+                - bid
+              - - bid
+                - bid
+            open2: open2
+            auctionPrice: auctionPrice
+            pSettle: pSettle
+            toLastTrade: 6
+            intrinsicValue: intrinsicValue
+            open: open
+            moneyness: moneyness
+            status: status
+        message: message
+      properties:
+        code:
+          nullable: true
+          type: string
+        op:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        response:
+          $ref: '#/components/schemas/PiSMarketDataWSSDomainModelsResponseStreamingResponse'
+      type: object
+    PiSMarketDataWSSDomainModelsResponseStreamingBody:
+      additionalProperties: false
+      example:
+        totalVolume: totalVolume
+        symbol: symbol
+        venue: venue
+        average: average
+        aggressor: aggressor
+        auctionVolume: auctionVolume
+        settle: settle
+        isProjected: true
+        totalVolumeK: totalVolumeK
+        lastTrade: lastTrade
+        exercisePrice: exercisePrice
+        poi: poi
+        preClose: preClose
+        price: price
+        maturityDate: maturityDate
+        lastPriceTime: 0
+        yield: yield
+        floor: floor
+        ceiling: ceiling
+        amount: amount
+        instrumentType: instrumentType
+        multiplier: multiplier
+        priceChangedRate: priceChangedRate
+        totalAmountK: totalAmountK
+        priceChanged: priceChanged
+        underlying: underlying
+        low24H: low24H
+        basis: basis
+        volume: volume
+        market: market
+        totalAmount: totalAmount
+        publicTrades:
+        - - ""
+          - ""
+        - - ""
+          - ""
+        averageSell: averageSell
+        high24H: high24H
+        averageBuy: averageBuy
+        securityType: securityType
+        open0: open0
+        open1: open1
+        orderBook:
+          offer:
+          - - offer
+            - offer
+          - - offer
+            - offer
+          bid:
+          - - bid
+            - bid
+          - - bid
+            - bid
+        open2: open2
+        auctionPrice: auctionPrice
+        pSettle: pSettle
+        toLastTrade: 6
+        intrinsicValue: intrinsicValue
+        open: open
+        moneyness: moneyness
+        status: status
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        price:
+          nullable: true
+          type: string
+        auctionPrice:
+          nullable: true
+          type: string
+        auctionVolume:
+          nullable: true
+          type: string
+        isProjected:
+          type: boolean
+        lastPriceTime:
+          format: int64
+          type: integer
+        open:
+          nullable: true
+          type: string
+        high24H:
+          nullable: true
+          type: string
+        low24H:
+          nullable: true
+          type: string
+        priceChanged:
+          nullable: true
+          type: string
+        priceChangedRate:
+          nullable: true
+          type: string
+        volume:
+          nullable: true
+          type: string
+        amount:
+          nullable: true
+          type: string
+        totalAmount:
+          nullable: true
+          type: string
+        totalAmountK:
+          nullable: true
+          type: string
+        totalVolume:
+          nullable: true
+          type: string
+        totalVolumeK:
+          nullable: true
+          type: string
+        open1:
+          nullable: true
+          type: string
+        open2:
+          nullable: true
+          type: string
+        ceiling:
+          nullable: true
+          type: string
+        floor:
+          nullable: true
+          type: string
+        average:
+          nullable: true
+          type: string
+        averageBuy:
+          nullable: true
+          type: string
+        averageSell:
+          nullable: true
+          type: string
+        aggressor:
+          nullable: true
+          type: string
+        preClose:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        yield:
+          nullable: true
+          type: string
+        publicTrades:
+          items:
+            items: {}
+            type: array
+          nullable: true
+          type: array
+        orderBook:
+          $ref: '#/components/schemas/PiSMarketDataWSSDomainModelsResponseStreamingOrderBook'
+        securityType:
+          nullable: true
+          type: string
+        instrumentType:
+          nullable: true
+          type: string
+        market:
+          nullable: true
+          type: string
+        lastTrade:
+          nullable: true
+          type: string
+        toLastTrade:
+          format: int32
+          type: integer
+        moneyness:
+          nullable: true
+          type: string
+        maturityDate:
+          nullable: true
+          type: string
+        multiplier:
+          nullable: true
+          type: string
+        exercisePrice:
+          nullable: true
+          type: string
+        intrinsicValue:
+          nullable: true
+          type: string
+        pSettle:
+          nullable: true
+          type: string
+        poi:
+          nullable: true
+          type: string
+        underlying:
+          nullable: true
+          type: string
+        open0:
+          nullable: true
+          type: string
+        basis:
+          nullable: true
+          type: string
+        settle:
+          nullable: true
+          type: string
+      type: object
+    PiSMarketDataWSSDomainModelsResponseStreamingOrderBook:
+      additionalProperties: false
+      example:
+        offer:
+        - - offer
+          - offer
+        - - offer
+          - offer
+        bid:
+        - - bid
+          - bid
+        - - bid
+          - bid
+      properties:
+        bid:
+          items:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: array
+        offer:
+          items:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: array
+      type: object
+    PiSMarketDataWSSDomainModelsResponseStreamingResponse:
+      additionalProperties: false
+      example:
+        data:
+        - totalVolume: totalVolume
+          symbol: symbol
+          venue: venue
+          average: average
+          aggressor: aggressor
+          auctionVolume: auctionVolume
+          settle: settle
+          isProjected: true
+          totalVolumeK: totalVolumeK
+          lastTrade: lastTrade
+          exercisePrice: exercisePrice
+          poi: poi
+          preClose: preClose
+          price: price
+          maturityDate: maturityDate
+          lastPriceTime: 0
+          yield: yield
+          floor: floor
+          ceiling: ceiling
+          amount: amount
+          instrumentType: instrumentType
+          multiplier: multiplier
+          priceChangedRate: priceChangedRate
+          totalAmountK: totalAmountK
+          priceChanged: priceChanged
+          underlying: underlying
+          low24H: low24H
+          basis: basis
+          volume: volume
+          market: market
+          totalAmount: totalAmount
+          publicTrades:
+          - - ""
+            - ""
+          - - ""
+            - ""
+          averageSell: averageSell
+          high24H: high24H
+          averageBuy: averageBuy
+          securityType: securityType
+          open0: open0
+          open1: open1
+          orderBook:
+            offer:
+            - - offer
+              - offer
+            - - offer
+              - offer
+            bid:
+            - - bid
+              - bid
+            - - bid
+              - bid
+          open2: open2
+          auctionPrice: auctionPrice
+          pSettle: pSettle
+          toLastTrade: 6
+          intrinsicValue: intrinsicValue
+          open: open
+          moneyness: moneyness
+          status: status
+        - totalVolume: totalVolume
+          symbol: symbol
+          venue: venue
+          average: average
+          aggressor: aggressor
+          auctionVolume: auctionVolume
+          settle: settle
+          isProjected: true
+          totalVolumeK: totalVolumeK
+          lastTrade: lastTrade
+          exercisePrice: exercisePrice
+          poi: poi
+          preClose: preClose
+          price: price
+          maturityDate: maturityDate
+          lastPriceTime: 0
+          yield: yield
+          floor: floor
+          ceiling: ceiling
+          amount: amount
+          instrumentType: instrumentType
+          multiplier: multiplier
+          priceChangedRate: priceChangedRate
+          totalAmountK: totalAmountK
+          priceChanged: priceChanged
+          underlying: underlying
+          low24H: low24H
+          basis: basis
+          volume: volume
+          market: market
+          totalAmount: totalAmount
+          publicTrades:
+          - - ""
+            - ""
+          - - ""
+            - ""
+          averageSell: averageSell
+          high24H: high24H
+          averageBuy: averageBuy
+          securityType: securityType
+          open0: open0
+          open1: open1
+          orderBook:
+            offer:
+            - - offer
+              - offer
+            - - offer
+              - offer
+            bid:
+            - - bid
+              - bid
+            - - bid
+              - bid
+          open2: open2
+          auctionPrice: auctionPrice
+          pSettle: pSettle
+          toLastTrade: 6
+          intrinsicValue: intrinsicValue
+          open: open
+          moneyness: moneyness
+          status: status
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiSMarketDataWSSDomainModelsResponseStreamingBody'
+          nullable: true
+          type: array
+      type: object
+    PostSetCuratedFilter_request:
+      properties:
+        file:
+          format: binary
+          type: string
+      type: object

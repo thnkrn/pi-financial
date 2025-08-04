@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.FundMarketData.API", "Pi.FundMarketData.API\Pi.FundMarketData.API.csproj", "{3E9B10AE-C5E9-469B-9586-FDA356E455C5}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CAD11C21-1DE2-49C7-BD14-3717F202E20A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.FundMarketData.Worker", "Pi.FundMarketData.Worker\Pi.FundMarketData.Worker.csproj", "{FEEBB777-0703-4D85-B64B-B510AF83B144}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.FundMarketData", "Pi.FundMarketData\Pi.FundMarketData.csproj", "{BEF9F9FE-ADFC-4585-BC72-C7A1F78A457C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pi.FundMarketData.Repositories", "Pi.FundMarketData.Repositories\Pi.FundMarketData.Repositories.csproj", "{1A43D219-60EA-4EF4-A5CB-99C0BFC6556F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.FundMarketData.Test", "Pi.FundMarketData.Test\Pi.FundMarketData.Test.csproj", "{46726579-C1DA-4593-B257-70FC0B9556FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AF3ACEF3-4A66-4532-8608-5ED4657B0717}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E9B10AE-C5E9-469B-9586-FDA356E455C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9B10AE-C5E9-469B-9586-FDA356E455C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9B10AE-C5E9-469B-9586-FDA356E455C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9B10AE-C5E9-469B-9586-FDA356E455C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEEBB777-0703-4D85-B64B-B510AF83B144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEEBB777-0703-4D85-B64B-B510AF83B144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEEBB777-0703-4D85-B64B-B510AF83B144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEEBB777-0703-4D85-B64B-B510AF83B144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEF9F9FE-ADFC-4585-BC72-C7A1F78A457C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEF9F9FE-ADFC-4585-BC72-C7A1F78A457C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEF9F9FE-ADFC-4585-BC72-C7A1F78A457C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEF9F9FE-ADFC-4585-BC72-C7A1F78A457C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A43D219-60EA-4EF4-A5CB-99C0BFC6556F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A43D219-60EA-4EF4-A5CB-99C0BFC6556F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A43D219-60EA-4EF4-A5CB-99C0BFC6556F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A43D219-60EA-4EF4-A5CB-99C0BFC6556F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46726579-C1DA-4593-B257-70FC0B9556FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46726579-C1DA-4593-B257-70FC0B9556FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46726579-C1DA-4593-B257-70FC0B9556FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46726579-C1DA-4593-B257-70FC0B9556FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B26BA303-2640-4776-A294-866E6ED85FD9}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{46726579-C1DA-4593-B257-70FC0B9556FC} = {AF3ACEF3-4A66-4532-8608-5ED4657B0717}
+	EndGlobalSection
+EndGlobal

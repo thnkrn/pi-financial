@@ -1,0 +1,69 @@
+version: '3.4'
+
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - SERVICES=sns,sqs
+      - DEBUG=${DEBUG- }
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=fund_marketdata_db
+    volumes:
+      - fund_marketdata_srv_mysql_data:/var/lib/mysql
+
+  pi.FundMarketData.api:
+    image: ${DOCKER_REGISTRY-}pifinancialFundMarketDataserviceapi
+    build:
+      context: .
+      dockerfile: Pi.FundMarketData.API/Dockerfile
+    depends_on:
+      - localstack
+
+  pi.FundMarketDataservice.worker:
+    image: ${DOCKER_REGISTRY-}pifinancialFundMarketDataserviceworker
+    build:
+      context: .
+      dockerfile: Pi.FundMarketData.Worker/Dockerfile
+    depends_on:
+      - localstack
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+
+volumes:
+  fund_marketdata_srv_mysql_data:

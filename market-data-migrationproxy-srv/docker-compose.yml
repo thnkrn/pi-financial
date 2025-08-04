@@ -1,0 +1,55 @@
+version: '3'
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.18.0
+    environment:
+      - cluster.name=opensearch-cluster
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      # - "http_compression.enabled=true"
+      - "OPENSEARCH_INITIAL_ADMIN_PASSWORD=Search7214!"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:2.18.0
+    environment:
+      OPENSEARCH_HOSTS  : '["https://opensearch:9200"]'
+    ports:
+      - "5601:5601"
+    depends_on:
+      - opensearch
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --save 60 1 --loglevel warning
+
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - "5540:5540"
+    volumes:
+      - redisinsight-data:/db
+
+volumes:
+  opensearch-data:
+  mongodb-data:
+  redis-data:
+  redisinsight-data:
