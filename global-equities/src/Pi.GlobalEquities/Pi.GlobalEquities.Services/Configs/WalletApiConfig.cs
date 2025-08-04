@@ -1,0 +1,8 @@
+namespace Pi.GlobalEquities.Services.Configs;
+
+public class WalletApiConfig
+{
+    public string Url { get; init; }
+    public string Token { get; init; }
+    public TimeSpan Timeout { get; init; }
+}

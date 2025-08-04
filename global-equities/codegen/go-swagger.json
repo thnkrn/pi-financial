@@ -1,0 +1,1727 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Pi.GlobalEquities.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/secure/accounts/summary": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "AccountId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Currencies",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Currency"
+              }
+            }
+          },
+          {
+            "name": "sid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountSummaryResponseApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/secure/accounts/overview": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Currency"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAccountOverviewResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAccountOverviewResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAccountOverviewResponseApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/accounts/overview": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "currency",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Currency"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAccountOverviewResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAccountOverviewResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiAccountOverviewResponseApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/secure/accounts/corporate-actions": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporateActionResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporateActionResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporateActionResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusCodeResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusCodeResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusCodeResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trading/orders": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/trading/orders/{orderId}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/active": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/secure/orders": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "side",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/OrderSide"
+            }
+          },
+          {
+            "name": "hasFilled",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusCodeResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusCodeResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusCodeResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountOverviewResponse": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNoDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "description": "Format as {CustCode}-2",
+            "nullable": true
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "exchangeRate": {
+            "$ref": "#/components/schemas/ExchangeRate"
+          },
+          "netAssetValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "marketValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "cost": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "upnl": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "upnlPercentage": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "accountLimit": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "cashBalance": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "lineAvailable": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "tradingAccountNo": {
+            "type": "string",
+            "description": "CustCode-2",
+            "nullable": true
+          },
+          "tradingAccountNoDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "upnlPercentage": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "exchangeRate": {
+            "$ref": "#/components/schemas/ExchangeRate"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountSummaryValueResponse"
+            },
+            "nullable": true
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PositionResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountSummaryResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/AccountSummaryResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountSummaryValueResponse": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "netAssetValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "marketValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "cost": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "upnl": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "unusedCash": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "accountLimit": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "lineAvailable": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CorporateActionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "venue": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbolId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "operationType": {
+            "$ref": "#/components/schemas/OperationType"
+          },
+          "assetType": {
+            "$ref": "#/components/schemas/CorporateAssetType"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "value": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "valueUSD": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CorporateActionResponseArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CorporateActionResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CorporateAssetType": {
+        "enum": [
+          "Instrument",
+          "Cash",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "Currency": {
+        "enum": [
+          "AED",
+          "AFN",
+          "ALL",
+          "AMD",
+          "ANG",
+          "AOA",
+          "ARS",
+          "AUD",
+          "AWG",
+          "AZN",
+          "BAM",
+          "BBD",
+          "BDT",
+          "BGN",
+          "BHD",
+          "BIF",
+          "BMD",
+          "BND",
+          "BOB",
+          "BRL",
+          "BSD",
+          "BTN",
+          "BWP",
+          "BYR",
+          "BZD",
+          "CAD",
+          "CDF",
+          "CHF",
+          "CLP",
+          "CNY",
+          "COP",
+          "CRC",
+          "CUC",
+          "CUP",
+          "CVE",
+          "CZK",
+          "DJF",
+          "DKK",
+          "DOP",
+          "DZD",
+          "EGP",
+          "ERN",
+          "ETB",
+          "EUR",
+          "FJD",
+          "FKP",
+          "GBP",
+          "GEL",
+          "GGP",
+          "GHS",
+          "GIP",
+          "GMD",
+          "GNF",
+          "GTQ",
+          "GYD",
+          "HKD",
+          "HNL",
+          "HRK",
+          "HTG",
+          "HUF",
+          "IDR",
+          "ILS",
+          "IMP",
+          "INR",
+          "IQD",
+          "IRR",
+          "ISK",
+          "JEP",
+          "JMD",
+          "JOD",
+          "JPY",
+          "KES",
+          "KGS",
+          "KHR",
+          "KMF",
+          "KPW",
+          "KRW",
+          "KWD",
+          "KYD",
+          "KZT",
+          "LAK",
+          "LBP",
+          "LKR",
+          "LRD",
+          "LSL",
+          "LYD",
+          "MAD",
+          "MDL",
+          "MGA",
+          "MKD",
+          "MMK",
+          "MNT",
+          "MOP",
+          "MRO",
+          "MUR",
+          "MVR",
+          "MWK",
+          "MXN",
+          "MYR",
+          "MZN",
+          "NAD",
+          "NGN",
+          "NIO",
+          "NOK",
+          "NPR",
+          "NZD",
+          "OMR",
+          "PAB",
+          "PEN",
+          "PGK",
+          "PHP",
+          "PKR",
+          "PLN",
+          "PYG",
+          "QAR",
+          "RON",
+          "RSD",
+          "RUB",
+          "RWF",
+          "SAR",
+          "SBD",
+          "SCR",
+          "SDG",
+          "SEK",
+          "SGD",
+          "SHP",
+          "SLL",
+          "SOS",
+          "SPL",
+          "SRD",
+          "STD",
+          "SVC",
+          "SYP",
+          "SZL",
+          "THB",
+          "TJS",
+          "TMT",
+          "TND",
+          "TOP",
+          "TRY",
+          "TTD",
+          "TVD",
+          "TWD",
+          "TZS",
+          "UAH",
+          "UGX",
+          "USD",
+          "UYU",
+          "UZS",
+          "VEF",
+          "VND",
+          "VUV",
+          "WST",
+          "XAF",
+          "XCD",
+          "XOF",
+          "XPF",
+          "YER",
+          "ZAR",
+          "ZMW",
+          "ZWD"
+        ],
+        "type": "string"
+      },
+      "ExchangeRate": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "to": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "rate": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FailedAccountResponse": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNoDisplay": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "custCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MultiAccountOverviewResponse": {
+        "type": "object",
+        "properties": {
+          "accountsOverview": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountOverviewResponse"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "failedToFetchAccounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FailedAccountResponse"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "hasFailedAccounts": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MultiAccountOverviewResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/MultiAccountOverviewResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OperationType": {
+        "enum": [
+          "Trade",
+          "Commission",
+          "AutoConversion",
+          "StockSplit",
+          "Dividend",
+          "DividendTax",
+          "Tax",
+          "CorporateAction",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "OrderReason": {
+        "enum": [
+          "Unknown",
+          "InsufficientFund",
+          "IncorrectQuantity",
+          "InvalidPrice",
+          "OperationRejected",
+          "WaitingParentExecution",
+          "WaitingNextTradingSession"
+        ],
+        "type": "string"
+      },
+      "OrderResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "venue": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbolId": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "orderType": {
+            "$ref": "#/components/schemas/OrderType"
+          },
+          "side": {
+            "$ref": "#/components/schemas/OrderSide"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "limitPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "stopPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "averageFillPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "quantityFilled": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "quantityCancelled": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "provider": {
+            "$ref": "#/components/schemas/Provider"
+          },
+          "statusReason": {
+            "$ref": "#/components/schemas/OrderReason"
+          },
+          "asOfDate": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "deprecated": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "transactionInfo": {
+            "$ref": "#/components/schemas/OrderTransactionResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderResponseApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/OrderResponse"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderResponseArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderSide": {
+        "enum": [
+          "Buy",
+          "Sell"
+        ],
+        "type": "string"
+      },
+      "OrderStatus": {
+        "enum": [
+          "Queued",
+          "Processing",
+          "PartiallyMatched",
+          "Matched",
+          "Cancelled",
+          "Rejected",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "OrderTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "commission": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "commissionUSD": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "totalCost": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "totalCostUSD": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "cost": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "costUSD": {
+            "type": "number",
+            "format": "decimal"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrderType": {
+        "enum": [
+          "Market",
+          "Limit",
+          "StopLimit",
+          "Unknown"
+        ],
+        "type": "string"
+      },
+      "PlaceOrderRequest": {
+        "required": [
+          "accountId",
+          "orderType",
+          "quantity",
+          "side",
+          "symbol",
+          "venue"
+        ],
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "venue": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "symbol": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string"
+          },
+          "orderType": {
+            "$ref": "#/components/schemas/OrderType"
+          },
+          "side": {
+            "$ref": "#/components/schemas/OrderSide"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "limitPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "stopPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PositionResponse": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "venue": {
+            "type": "string",
+            "nullable": true
+          },
+          "currency": {
+            "$ref": "#/components/schemas/Currency"
+          },
+          "entireQuantity": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "availableQuantity": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "lastPrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "marketValue": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "averagePrice": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "upnl": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "cost": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "upnlPercentage": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "Provider": {
+        "enum": [
+          "Velexa"
+        ],
+        "type": "string"
+      },
+      "StatusCodeResult": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateOrderRequest": {
+        "type": "object",
+        "properties": {
+          "quantity": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "limitPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          },
+          "stopPrice": {
+            "type": "number",
+            "format": "decimal",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      }
+    }
+  }
+}

@@ -1,0 +1,1682 @@
+openapi: 3.0.1
+info:
+  title: "Pi.GlobalEquities.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /secure/accounts/summary:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: AccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Currencies
+        required: true
+        schema:
+          items:
+            $ref: '#/components/schemas/Currency'
+          type: array
+        style: form
+      - explode: false
+        in: header
+        name: sid
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountSummaryResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountSummaryResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountSummaryResponseApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Account
+  /secure/accounts/overview:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          $ref: '#/components/schemas/Currency'
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MultiAccountOverviewResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiAccountOverviewResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MultiAccountOverviewResponseApiResponse'
+          description: OK
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Account
+  /internal/accounts/overview:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          $ref: '#/components/schemas/Currency'
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MultiAccountOverviewResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiAccountOverviewResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MultiAccountOverviewResponseApiResponse'
+          description: OK
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Account
+  /secure/accounts/corporate-actions:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CorporateActionResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorporateActionResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CorporateActionResponseArrayApiResponse'
+          description: OK
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/StatusCodeResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusCodeResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StatusCodeResult'
+          description: Forbidden
+      tags:
+      - Account
+  /trading/orders:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PlaceOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PlaceOrderRequest'
+      responses:
+        "201":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+          description: Created
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Payment Required
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Order
+  /trading/orders/{orderId}:
+    delete:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Payment Required
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "500":
+          description: Internal Server Error
+      tags:
+      - Order
+    put:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+          description: Bad Request
+        "402":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Payment Required
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - Order
+  /secure/orders/active:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseArrayApiResponse'
+          description: OK
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      tags:
+      - Order
+  /secure/orders:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: side
+        required: false
+        schema:
+          $ref: '#/components/schemas/OrderSide'
+        style: form
+      - explode: true
+        in: query
+        name: hasFilled
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OrderResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponseArrayApiResponse'
+          description: OK
+        "403":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/StatusCodeResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusCodeResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StatusCodeResult'
+          description: Forbidden
+      tags:
+      - Order
+components:
+  schemas:
+    AccountOverviewResponse:
+      additionalProperties: false
+      example:
+        lineAvailable: 9.301444243932576
+        netAssetValue: 0.8008281904610115
+        cost: 1.4658129805029452
+        marketValue: 6.027456183070403
+        upnl: 5.962133916683182
+        accountId: accountId
+        tradingAccountNo: tradingAccountNo
+        upnlPercentage: 5.637376656633329
+        accountLimit: 2.3021358869347655
+        exchangeRate:
+          rate: 6.027456183070403
+          from: AED
+          to: null
+        cashBalance: 7.061401241503109
+        currency: AED
+        tradingAccountNoDisplay: tradingAccountNoDisplay
+      properties:
+        accountId:
+          nullable: true
+          type: string
+        tradingAccountNoDisplay:
+          nullable: true
+          type: string
+        tradingAccountNo:
+          description: "Format as {CustCode}-2"
+          nullable: true
+          type: string
+        currency:
+          $ref: '#/components/schemas/Currency'
+        exchangeRate:
+          $ref: '#/components/schemas/ExchangeRate'
+        netAssetValue:
+          format: decimal
+          type: number
+        marketValue:
+          format: decimal
+          type: number
+        cost:
+          format: decimal
+          type: number
+        upnl:
+          format: decimal
+          type: number
+        upnlPercentage:
+          format: decimal
+          type: number
+        accountLimit:
+          format: decimal
+          type: number
+        cashBalance:
+          format: decimal
+          type: number
+        lineAvailable:
+          format: decimal
+          type: number
+      type: object
+    AccountSummaryResponse:
+      additionalProperties: false
+      example:
+        tradingAccountNo: tradingAccountNo
+        upnlPercentage: 0.8008281904610115
+        exchangeRate:
+          rate: 6.027456183070403
+          from: AED
+          to: null
+        values:
+        - unusedCash: 7.061401241503109
+          lineAvailable: 3.616076749251911
+          netAssetValue: 1.4658129805029452
+          cost: 5.637376656633329
+          accountLimit: 9.301444243932576
+          marketValue: 5.962133916683182
+          currency: null
+          upnl: 2.3021358869347655
+        - unusedCash: 7.061401241503109
+          lineAvailable: 3.616076749251911
+          netAssetValue: 1.4658129805029452
+          cost: 5.637376656633329
+          accountLimit: 9.301444243932576
+          marketValue: 5.962133916683182
+          currency: null
+          upnl: 2.3021358869347655
+        positions:
+        - symbol: symbol
+          venue: venue
+          availableQuantity: 4.145608029883936
+          cost: 6.84685269835264
+          upnlPercentage: 7.457744773683766
+          marketValue: 1.2315135367772556
+          logo: logo
+          currency: null
+          averagePrice: 1.0246457001441578
+          entireQuantity: 2.027123023002322
+          lastPrice: 7.386281948385884
+          upnl: 1.4894159098541704
+        - symbol: symbol
+          venue: venue
+          availableQuantity: 4.145608029883936
+          cost: 6.84685269835264
+          upnlPercentage: 7.457744773683766
+          marketValue: 1.2315135367772556
+          logo: logo
+          currency: null
+          averagePrice: 1.0246457001441578
+          entireQuantity: 2.027123023002322
+          lastPrice: 7.386281948385884
+          upnl: 1.4894159098541704
+        tradingAccountNoDisplay: tradingAccountNoDisplay
+      properties:
+        tradingAccountNo:
+          description: CustCode-2
+          nullable: true
+          type: string
+        tradingAccountNoDisplay:
+          nullable: true
+          type: string
+        upnlPercentage:
+          format: decimal
+          type: number
+        exchangeRate:
+          $ref: '#/components/schemas/ExchangeRate'
+        values:
+          items:
+            $ref: '#/components/schemas/AccountSummaryValueResponse'
+          nullable: true
+          type: array
+        positions:
+          items:
+            $ref: '#/components/schemas/PositionResponse'
+          nullable: true
+          type: array
+      type: object
+    AccountSummaryResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          tradingAccountNo: tradingAccountNo
+          upnlPercentage: 0.8008281904610115
+          exchangeRate:
+            rate: 6.027456183070403
+            from: AED
+            to: null
+          values:
+          - unusedCash: 7.061401241503109
+            lineAvailable: 3.616076749251911
+            netAssetValue: 1.4658129805029452
+            cost: 5.637376656633329
+            accountLimit: 9.301444243932576
+            marketValue: 5.962133916683182
+            currency: null
+            upnl: 2.3021358869347655
+          - unusedCash: 7.061401241503109
+            lineAvailable: 3.616076749251911
+            netAssetValue: 1.4658129805029452
+            cost: 5.637376656633329
+            accountLimit: 9.301444243932576
+            marketValue: 5.962133916683182
+            currency: null
+            upnl: 2.3021358869347655
+          positions:
+          - symbol: symbol
+            venue: venue
+            availableQuantity: 4.145608029883936
+            cost: 6.84685269835264
+            upnlPercentage: 7.457744773683766
+            marketValue: 1.2315135367772556
+            logo: logo
+            currency: null
+            averagePrice: 1.0246457001441578
+            entireQuantity: 2.027123023002322
+            lastPrice: 7.386281948385884
+            upnl: 1.4894159098541704
+          - symbol: symbol
+            venue: venue
+            availableQuantity: 4.145608029883936
+            cost: 6.84685269835264
+            upnlPercentage: 7.457744773683766
+            marketValue: 1.2315135367772556
+            logo: logo
+            currency: null
+            averagePrice: 1.0246457001441578
+            entireQuantity: 2.027123023002322
+            lastPrice: 7.386281948385884
+            upnl: 1.4894159098541704
+          tradingAccountNoDisplay: tradingAccountNoDisplay
+      properties:
+        data:
+          $ref: '#/components/schemas/AccountSummaryResponse'
+      type: object
+    AccountSummaryValueResponse:
+      additionalProperties: false
+      example:
+        unusedCash: 7.061401241503109
+        lineAvailable: 3.616076749251911
+        netAssetValue: 1.4658129805029452
+        cost: 5.637376656633329
+        accountLimit: 9.301444243932576
+        marketValue: 5.962133916683182
+        currency: null
+        upnl: 2.3021358869347655
+      properties:
+        currency:
+          $ref: '#/components/schemas/Currency'
+        netAssetValue:
+          format: decimal
+          type: number
+        marketValue:
+          format: decimal
+          type: number
+        cost:
+          format: decimal
+          type: number
+        upnl:
+          format: decimal
+          type: number
+        unusedCash:
+          format: decimal
+          type: number
+        accountLimit:
+          format: decimal
+          type: number
+        lineAvailable:
+          format: decimal
+          type: number
+      type: object
+    CorporateActionResponse:
+      additionalProperties: false
+      example:
+        venue: venue
+        symbol: symbol
+        symbolId: symbolId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        valueUSD: 6.027456183070403
+        operationType: Trade
+        currency: AED
+        id: id
+        value: 0.8008281904610115
+        assetType: Instrument
+      properties:
+        id:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        symbolId:
+          nullable: true
+          readOnly: true
+          type: string
+        operationType:
+          $ref: '#/components/schemas/OperationType'
+        assetType:
+          $ref: '#/components/schemas/CorporateAssetType'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        value:
+          format: decimal
+          nullable: true
+          type: number
+        valueUSD:
+          format: decimal
+          nullable: true
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+      type: object
+    CorporateActionResponseArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - venue: venue
+          symbol: symbol
+          symbolId: symbolId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          valueUSD: 6.027456183070403
+          operationType: Trade
+          currency: AED
+          id: id
+          value: 0.8008281904610115
+          assetType: Instrument
+        - venue: venue
+          symbol: symbol
+          symbolId: symbolId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          valueUSD: 6.027456183070403
+          operationType: Trade
+          currency: AED
+          id: id
+          value: 0.8008281904610115
+          assetType: Instrument
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CorporateActionResponse'
+          nullable: true
+          type: array
+      type: object
+    CorporateAssetType:
+      enum:
+      - Instrument
+      - Cash
+      - Unknown
+      type: string
+    Currency:
+      enum:
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYR
+      - BZD
+      - CAD
+      - CDF
+      - CHF
+      - CLP
+      - CNY
+      - COP
+      - CRC
+      - CUC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ERN
+      - ETB
+      - EUR
+      - FJD
+      - FKP
+      - GBP
+      - GEL
+      - GGP
+      - GHS
+      - GIP
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HRK
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - IMP
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JEP
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KPW
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRO
+      - MUR
+      - MVR
+      - MWK
+      - MXN
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RUB
+      - RWF
+      - SAR
+      - SBD
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SHP
+      - SLL
+      - SOS
+      - SPL
+      - SRD
+      - STD
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TVD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - USD
+      - UYU
+      - UZS
+      - VEF
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XCD
+      - XOF
+      - XPF
+      - YER
+      - ZAR
+      - ZMW
+      - ZWD
+      type: string
+    ExchangeRate:
+      additionalProperties: false
+      example:
+        rate: 6.027456183070403
+        from: AED
+        to: null
+      properties:
+        from:
+          $ref: '#/components/schemas/Currency'
+        to:
+          $ref: '#/components/schemas/Currency'
+        rate:
+          format: decimal
+          type: number
+      type: object
+    FailedAccountResponse:
+      additionalProperties: false
+      example:
+        accountId: accountId
+        tradingAccountNo: tradingAccountNo
+        error: error
+        custCode: custCode
+        tradingAccountNoDisplay: tradingAccountNoDisplay
+      properties:
+        accountId:
+          nullable: true
+          type: string
+        tradingAccountNoDisplay:
+          nullable: true
+          type: string
+        tradingAccountNo:
+          nullable: true
+          type: string
+        custCode:
+          nullable: true
+          type: string
+        error:
+          nullable: true
+          type: string
+      type: object
+    MultiAccountOverviewResponse:
+      additionalProperties: false
+      example:
+        failedToFetchAccounts:
+        - accountId: accountId
+          tradingAccountNo: tradingAccountNo
+          error: error
+          custCode: custCode
+          tradingAccountNoDisplay: tradingAccountNoDisplay
+        - accountId: accountId
+          tradingAccountNo: tradingAccountNo
+          error: error
+          custCode: custCode
+          tradingAccountNoDisplay: tradingAccountNoDisplay
+        hasFailedAccounts: true
+        accountsOverview:
+        - lineAvailable: 9.301444243932576
+          netAssetValue: 0.8008281904610115
+          cost: 1.4658129805029452
+          marketValue: 6.027456183070403
+          upnl: 5.962133916683182
+          accountId: accountId
+          tradingAccountNo: tradingAccountNo
+          upnlPercentage: 5.637376656633329
+          accountLimit: 2.3021358869347655
+          exchangeRate:
+            rate: 6.027456183070403
+            from: AED
+            to: null
+          cashBalance: 7.061401241503109
+          currency: AED
+          tradingAccountNoDisplay: tradingAccountNoDisplay
+        - lineAvailable: 9.301444243932576
+          netAssetValue: 0.8008281904610115
+          cost: 1.4658129805029452
+          marketValue: 6.027456183070403
+          upnl: 5.962133916683182
+          accountId: accountId
+          tradingAccountNo: tradingAccountNo
+          upnlPercentage: 5.637376656633329
+          accountLimit: 2.3021358869347655
+          exchangeRate:
+            rate: 6.027456183070403
+            from: AED
+            to: null
+          cashBalance: 7.061401241503109
+          currency: AED
+          tradingAccountNoDisplay: tradingAccountNoDisplay
+      properties:
+        accountsOverview:
+          items:
+            $ref: '#/components/schemas/AccountOverviewResponse'
+          nullable: true
+          readOnly: true
+          type: array
+        failedToFetchAccounts:
+          items:
+            $ref: '#/components/schemas/FailedAccountResponse'
+          nullable: true
+          readOnly: true
+          type: array
+        hasFailedAccounts:
+          readOnly: true
+          type: boolean
+      type: object
+    MultiAccountOverviewResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          failedToFetchAccounts:
+          - accountId: accountId
+            tradingAccountNo: tradingAccountNo
+            error: error
+            custCode: custCode
+            tradingAccountNoDisplay: tradingAccountNoDisplay
+          - accountId: accountId
+            tradingAccountNo: tradingAccountNo
+            error: error
+            custCode: custCode
+            tradingAccountNoDisplay: tradingAccountNoDisplay
+          hasFailedAccounts: true
+          accountsOverview:
+          - lineAvailable: 9.301444243932576
+            netAssetValue: 0.8008281904610115
+            cost: 1.4658129805029452
+            marketValue: 6.027456183070403
+            upnl: 5.962133916683182
+            accountId: accountId
+            tradingAccountNo: tradingAccountNo
+            upnlPercentage: 5.637376656633329
+            accountLimit: 2.3021358869347655
+            exchangeRate:
+              rate: 6.027456183070403
+              from: AED
+              to: null
+            cashBalance: 7.061401241503109
+            currency: AED
+            tradingAccountNoDisplay: tradingAccountNoDisplay
+          - lineAvailable: 9.301444243932576
+            netAssetValue: 0.8008281904610115
+            cost: 1.4658129805029452
+            marketValue: 6.027456183070403
+            upnl: 5.962133916683182
+            accountId: accountId
+            tradingAccountNo: tradingAccountNo
+            upnlPercentage: 5.637376656633329
+            accountLimit: 2.3021358869347655
+            exchangeRate:
+              rate: 6.027456183070403
+              from: AED
+              to: null
+            cashBalance: 7.061401241503109
+            currency: AED
+            tradingAccountNoDisplay: tradingAccountNoDisplay
+      properties:
+        data:
+          $ref: '#/components/schemas/MultiAccountOverviewResponse'
+      type: object
+    OperationType:
+      enum:
+      - Trade
+      - Commission
+      - AutoConversion
+      - StockSplit
+      - Dividend
+      - DividendTax
+      - Tax
+      - CorporateAction
+      - Unknown
+      type: string
+    OrderReason:
+      enum:
+      - Unknown
+      - InsufficientFund
+      - IncorrectQuantity
+      - InvalidPrice
+      - OperationRejected
+      - WaitingParentExecution
+      - WaitingNextTradingSession
+      type: string
+    OrderResponse:
+      additionalProperties: false
+      example:
+        averageFillPrice: 1.4658129805029452
+        venue: venue
+        symbol: symbol
+        symbolId: symbolId
+        orderType: Market
+        side: Buy
+        quantity: 5.962133916683182
+        limitPrice: 0.8008281904610115
+        quantityCancelled: 2.3021358869347655
+        transactionInfo:
+          commissionUSD: 9.301444243932576
+          cost: 4.145608029883936
+          costUSD: 7.386281948385884
+          totalCostUSD: 2.027123023002322
+          commission: 7.061401241503109
+          totalCost: 3.616076749251911
+        quantityFilled: 5.637376656633329
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        stopPrice: 6.027456183070403
+        statusReason: Unknown
+        provider: Velexa
+        logo: logo
+        currency: AED
+        id: id
+        asOfDate: 2000-01-23T04:56:07.000+00:00
+        status: Queued
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          nullable: true
+          type: string
+        accountId:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        symbolId:
+          nullable: true
+          readOnly: true
+          type: string
+        orderType:
+          $ref: '#/components/schemas/OrderType'
+        side:
+          $ref: '#/components/schemas/OrderSide'
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        limitPrice:
+          format: decimal
+          nullable: true
+          type: number
+        stopPrice:
+          format: decimal
+          nullable: true
+          type: number
+        averageFillPrice:
+          format: decimal
+          nullable: true
+          type: number
+        quantity:
+          format: decimal
+          type: number
+        quantityFilled:
+          format: decimal
+          type: number
+        quantityCancelled:
+          format: decimal
+          type: number
+        provider:
+          $ref: '#/components/schemas/Provider'
+        statusReason:
+          $ref: '#/components/schemas/OrderReason'
+        asOfDate:
+          deprecated: true
+          format: date-time
+          readOnly: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        logo:
+          nullable: true
+          readOnly: true
+          type: string
+        transactionInfo:
+          $ref: '#/components/schemas/OrderTransactionResponse'
+      type: object
+    OrderResponseApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          averageFillPrice: 1.4658129805029452
+          venue: venue
+          symbol: symbol
+          symbolId: symbolId
+          orderType: Market
+          side: Buy
+          quantity: 5.962133916683182
+          limitPrice: 0.8008281904610115
+          quantityCancelled: 2.3021358869347655
+          transactionInfo:
+            commissionUSD: 9.301444243932576
+            cost: 4.145608029883936
+            costUSD: 7.386281948385884
+            totalCostUSD: 2.027123023002322
+            commission: 7.061401241503109
+            totalCost: 3.616076749251911
+          quantityFilled: 5.637376656633329
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          stopPrice: 6.027456183070403
+          statusReason: Unknown
+          provider: Velexa
+          logo: logo
+          currency: AED
+          id: id
+          asOfDate: 2000-01-23T04:56:07.000+00:00
+          status: Queued
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          $ref: '#/components/schemas/OrderResponse'
+      type: object
+    OrderResponseArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - averageFillPrice: 1.4658129805029452
+          venue: venue
+          symbol: symbol
+          symbolId: symbolId
+          orderType: Market
+          side: Buy
+          quantity: 5.962133916683182
+          limitPrice: 0.8008281904610115
+          quantityCancelled: 2.3021358869347655
+          transactionInfo:
+            commissionUSD: 9.301444243932576
+            cost: 4.145608029883936
+            costUSD: 7.386281948385884
+            totalCostUSD: 2.027123023002322
+            commission: 7.061401241503109
+            totalCost: 3.616076749251911
+          quantityFilled: 5.637376656633329
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          stopPrice: 6.027456183070403
+          statusReason: Unknown
+          provider: Velexa
+          logo: logo
+          currency: AED
+          id: id
+          asOfDate: 2000-01-23T04:56:07.000+00:00
+          status: Queued
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - averageFillPrice: 1.4658129805029452
+          venue: venue
+          symbol: symbol
+          symbolId: symbolId
+          orderType: Market
+          side: Buy
+          quantity: 5.962133916683182
+          limitPrice: 0.8008281904610115
+          quantityCancelled: 2.3021358869347655
+          transactionInfo:
+            commissionUSD: 9.301444243932576
+            cost: 4.145608029883936
+            costUSD: 7.386281948385884
+            totalCostUSD: 2.027123023002322
+            commission: 7.061401241503109
+            totalCost: 3.616076749251911
+          quantityFilled: 5.637376656633329
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          stopPrice: 6.027456183070403
+          statusReason: Unknown
+          provider: Velexa
+          logo: logo
+          currency: AED
+          id: id
+          asOfDate: 2000-01-23T04:56:07.000+00:00
+          status: Queued
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/OrderResponse'
+          nullable: true
+          type: array
+      type: object
+    OrderSide:
+      enum:
+      - Buy
+      - Sell
+      type: string
+    OrderStatus:
+      enum:
+      - Queued
+      - Processing
+      - PartiallyMatched
+      - Matched
+      - Cancelled
+      - Rejected
+      - Unknown
+      type: string
+    OrderTransactionResponse:
+      additionalProperties: false
+      example:
+        commissionUSD: 9.301444243932576
+        cost: 4.145608029883936
+        costUSD: 7.386281948385884
+        totalCostUSD: 2.027123023002322
+        commission: 7.061401241503109
+        totalCost: 3.616076749251911
+      properties:
+        commission:
+          format: decimal
+          type: number
+        commissionUSD:
+          format: decimal
+          type: number
+        totalCost:
+          format: decimal
+          type: number
+        totalCostUSD:
+          format: decimal
+          type: number
+        cost:
+          format: decimal
+          type: number
+        costUSD:
+          format: decimal
+          type: number
+      type: object
+    OrderType:
+      enum:
+      - Market
+      - Limit
+      - StopLimit
+      - Unknown
+      type: string
+    PlaceOrderRequest:
+      additionalProperties: false
+      example:
+        accountId: accountId
+        venue: venue
+        symbol: symbol
+        orderType: Market
+        side: Buy
+        stopPrice: 1.4658129805029452
+        quantity: 0.8008281904610115
+        limitPrice: 6.027456183070403
+      properties:
+        accountId:
+          minLength: 1
+          type: string
+        venue:
+          maxLength: 20
+          minLength: 0
+          type: string
+        symbol:
+          maxLength: 20
+          minLength: 0
+          type: string
+        orderType:
+          $ref: '#/components/schemas/OrderType'
+        side:
+          $ref: '#/components/schemas/OrderSide'
+        quantity:
+          format: decimal
+          type: number
+        limitPrice:
+          format: decimal
+          nullable: true
+          type: number
+        stopPrice:
+          format: decimal
+          nullable: true
+          type: number
+      required:
+      - accountId
+      - orderType
+      - quantity
+      - side
+      - symbol
+      - venue
+      type: object
+    PositionResponse:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        venue: venue
+        availableQuantity: 4.145608029883936
+        cost: 6.84685269835264
+        upnlPercentage: 7.457744773683766
+        marketValue: 1.2315135367772556
+        logo: logo
+        currency: null
+        averagePrice: 1.0246457001441578
+        entireQuantity: 2.027123023002322
+        lastPrice: 7.386281948385884
+        upnl: 1.4894159098541704
+      properties:
+        symbol:
+          nullable: true
+          type: string
+        venue:
+          nullable: true
+          type: string
+        currency:
+          $ref: '#/components/schemas/Currency'
+        entireQuantity:
+          format: decimal
+          type: number
+        availableQuantity:
+          format: decimal
+          type: number
+        lastPrice:
+          format: decimal
+          type: number
+        marketValue:
+          format: decimal
+          type: number
+        averagePrice:
+          format: decimal
+          type: number
+        upnl:
+          format: decimal
+          type: number
+        cost:
+          format: decimal
+          type: number
+        upnlPercentage:
+          format: decimal
+          type: number
+        logo:
+          nullable: true
+          readOnly: true
+          type: string
+      type: object
+    ProblemDetails:
+      additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: 4
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    Provider:
+      enum:
+      - Velexa
+      type: string
+    StatusCodeResult:
+      additionalProperties: false
+      example:
+        statusCode: 1
+      properties:
+        statusCode:
+          format: int32
+          type: integer
+      type: object
+    UpdateOrderRequest:
+      additionalProperties: false
+      example:
+        stopPrice: 1.4658129805029452
+        quantity: 0.8008281904610115
+        limitPrice: 6.027456183070403
+      properties:
+        quantity:
+          format: decimal
+          type: number
+        limitPrice:
+          format: decimal
+          nullable: true
+          type: number
+        stopPrice:
+          format: decimal
+          nullable: true
+          type: number
+      type: object
+    ValidationProblemDetails:
+      additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        errors:
+          key:
+          - errors
+          - errors
+        status: 1
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        errors:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: object
+      type: object

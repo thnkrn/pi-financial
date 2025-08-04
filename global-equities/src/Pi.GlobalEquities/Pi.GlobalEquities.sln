@@ -1,0 +1,88 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{CAD11C21-1DE2-49C7-BD14-3717F202E20A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.API", "Pi.GlobalEquities.API\Pi.GlobalEquities.API.csproj", "{393E5306-F409-45FC-BA8D-BD67956621CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.Worker", "Pi.GlobalEquities.Worker\Pi.GlobalEquities.Worker.csproj", "{9F29309A-77CC-4A97-8AD1-C52CBC8C074D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.Repositories", "Pi.GlobalEquities.Repositories\Pi.GlobalEquities.Repositories.csproj", "{5A55A294-730B-4912-8DEF-61B2F5B41AA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities", "Pi.GlobalEquities\Pi.GlobalEquities.csproj", "{DF1D5915-63C9-4B94-8FFF-888582196C8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.Services", "Pi.GlobalEquities.Services\Pi.GlobalEquities.Services.csproj", "{38D11D6D-1932-41CF-AF99-4DF42CCFBDB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.App", "1.App", "{B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Tests", "2.Tests", "{C12585A1-6E07-461C-ADA4-F7B1D83037BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.Tests", "Pi.GlobalEquities.Tests\Pi.GlobalEquities.Tests.csproj", "{E746A45C-E826-4EE9-8919-68ADFABCDB8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.Infrastructure", "Pi.GlobalEquities.Infrastructure\Pi.GlobalEquities.Infrastructure.csproj", "{BD341503-D577-4B21-BF69-54C6BA1F6E40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pi.GlobalEquities.Application", "Pi.GlobalEquities.Application\Pi.GlobalEquities.Application.csproj", "{53CDD322-0F90-49F1-9489-2E15A58A79D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{393E5306-F409-45FC-BA8D-BD67956621CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{393E5306-F409-45FC-BA8D-BD67956621CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{393E5306-F409-45FC-BA8D-BD67956621CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{393E5306-F409-45FC-BA8D-BD67956621CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F29309A-77CC-4A97-8AD1-C52CBC8C074D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F29309A-77CC-4A97-8AD1-C52CBC8C074D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F29309A-77CC-4A97-8AD1-C52CBC8C074D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F29309A-77CC-4A97-8AD1-C52CBC8C074D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A55A294-730B-4912-8DEF-61B2F5B41AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A55A294-730B-4912-8DEF-61B2F5B41AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A55A294-730B-4912-8DEF-61B2F5B41AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A55A294-730B-4912-8DEF-61B2F5B41AA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF1D5915-63C9-4B94-8FFF-888582196C8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF1D5915-63C9-4B94-8FFF-888582196C8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF1D5915-63C9-4B94-8FFF-888582196C8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF1D5915-63C9-4B94-8FFF-888582196C8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38D11D6D-1932-41CF-AF99-4DF42CCFBDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38D11D6D-1932-41CF-AF99-4DF42CCFBDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38D11D6D-1932-41CF-AF99-4DF42CCFBDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38D11D6D-1932-41CF-AF99-4DF42CCFBDB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E746A45C-E826-4EE9-8919-68ADFABCDB8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E746A45C-E826-4EE9-8919-68ADFABCDB8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E746A45C-E826-4EE9-8919-68ADFABCDB8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E746A45C-E826-4EE9-8919-68ADFABCDB8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD341503-D577-4B21-BF69-54C6BA1F6E40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD341503-D577-4B21-BF69-54C6BA1F6E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD341503-D577-4B21-BF69-54C6BA1F6E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD341503-D577-4B21-BF69-54C6BA1F6E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53CDD322-0F90-49F1-9489-2E15A58A79D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53CDD322-0F90-49F1-9489-2E15A58A79D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53CDD322-0F90-49F1-9489-2E15A58A79D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53CDD322-0F90-49F1-9489-2E15A58A79D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B26BA303-2640-4776-A294-866E6ED85FD9}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CAD11C21-1DE2-49C7-BD14-3717F202E20A} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{DF1D5915-63C9-4B94-8FFF-888582196C8C} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{393E5306-F409-45FC-BA8D-BD67956621CA} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{5A55A294-730B-4912-8DEF-61B2F5B41AA5} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{38D11D6D-1932-41CF-AF99-4DF42CCFBDB3} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{9F29309A-77CC-4A97-8AD1-C52CBC8C074D} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{E746A45C-E826-4EE9-8919-68ADFABCDB8A} = {C12585A1-6E07-461C-ADA4-F7B1D83037BF}
+		{BD341503-D577-4B21-BF69-54C6BA1F6E40} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+		{53CDD322-0F90-49F1-9489-2E15A58A79D9} = {B0073FCA-9DD7-49E6-AC04-9B7345FBFA67}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pi.GlobalEquities.API</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>d2a4af1f-494f-42f8-9665-a9312f80a492</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net8.0\Pi.GlobalEquities.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\net8.0\Pi.GlobalEquities.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="8.0.12" />
+    <PackageReference Include="MongoDB.Bson" Version="3.1.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.1.0" />
+    <PackageReference Include="Pi.Client.GlobalMarketData" Version="1.0.5" />
+    <PackageReference Include="Pi.Client.WalletService" Version="1.0.29" />
+    <PackageReference Include="Pi.Common.Web" Version="1.0.115" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15" />
+    <PackageReference Include="MassTransit.Analyzers" Version="8.0.15" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15" />
+    <PackageReference Include="MassTransit" Version="8.0.15" />
+    <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="6.2.2" />
+    <PackageReference Include="Pi.Common.Serilog" Version="1.0.90" />
+    <PackageReference Include="pi.common.startup" Version="1.0.90" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.GlobalEquities.Application\Pi.GlobalEquities.Application.csproj" />
+    <ProjectReference Include="..\Pi.GlobalEquities.Infrastructure\Pi.GlobalEquities.Infrastructure.csproj" />
+    <ProjectReference Include="..\Pi.GlobalEquities.Repositories\Pi.GlobalEquities.Repositories.csproj" />
+    <ProjectReference Include="..\Pi.GlobalEquities.Services\Pi.GlobalEquities.Services.csproj" />
+  </ItemGroup>
+</Project>

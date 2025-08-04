@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pi.GlobalEquities.Application\Pi.GlobalEquities.Application.csproj" />
+      <ProjectReference Include="..\Pi.GlobalEquities.Repositories\Pi.GlobalEquities.Repositories.csproj" />
+      <ProjectReference Include="..\Pi.GlobalEquities.Services\Pi.GlobalEquities.Services.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Pi.Client.GlobalMarketData" Version="1.0.5" />
+      <PackageReference Include="Pi.Client.UserSrvV2" Version="1.0.142" />
+      <PackageReference Include="Pi.Client.WalletService" Version="1.0.29" />
+    </ItemGroup>
+
+</Project>
