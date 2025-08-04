@@ -1,0 +1,28 @@
+name: Golang Docker Push
+
+inputs:
+  docker_load_path:
+    type: string
+    required: true
+  old_tags:
+    type: string
+    required: true
+  tags:
+    type: string
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Load Image Docker
+      shell: bash
+      run: |
+        docker load --input ${{ inputs.docker_load_path }}
+    - name: Retag Docker image
+      shell: bash
+      run: |
+          docker tag ${{ inputs.old_tags }} ${{ inputs.tags }}
+    - name: Push
+      shell: bash
+      run: |
+        docker push ${{ inputs.tags }}

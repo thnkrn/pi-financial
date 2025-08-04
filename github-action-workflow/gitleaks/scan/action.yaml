@@ -1,0 +1,61 @@
+
+name: Gitleaks Scan
+description: To catch those pesky git secrets in your repo.
+
+inputs:
+  gitleaks_licence:
+    description: Github Access Token needed for the checkout of other repositories
+    required: true
+  github_token: 
+    description: the repository that the tag change will happen in
+    required: true 
+  infra_repo_config: 
+    description: the application name
+    required: true
+  application_name: 
+    description: the application name
+    required: true  
+runs:
+  using: composite
+  steps:
+      # - uses: gitleaks/gitleaks-action@v2
+      #   env:
+      #     GITHUB_TOKEN: ${{ inputs.github_token }}
+      #     GITLEAKS_LICENSE: ${{ inputs.gitleaks_licence}} # Only required for Organizations, not personal accounts.
+      #     GITLEAKS_ENABLE_UPLOAD_ARTIFACT: false
+      #   with:
+      #     args: --report-path=results-service.sarif
+      #     # GITLEAKS_CONFIG: ./gitleaks.toml
+    - name: Download Gitleaks config
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      shell: bash
+      run: |
+        mkdir -p gitleaks-config
+        curl -H "Authorization: token ${GITHUB_TOKEN}" -o gitleaks-config/gitleaks.toml https://raw.githubusercontent.com/pi-financial/pi-platform-configs/main/gitleaks/gitleaks.toml
+
+    # - name: check config
+    #   shell: bash
+    #   run: |
+    #     echo "Contents of gitleaks/gitleaks.toml:"
+    #     cat gitleaks-config/gitleaks.toml
+    #     echo "Directory structure:"
+    #     tree
+
+    - name: Install Gitleaks
+      shell: bash
+      run: |
+        curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.18.4/gitleaks_8.18.4_linux_x64.tar.gz | tar -xz
+        sudo mv gitleaks /usr/local/bin/
+        
+
+    - name: Run Gitleaks
+      shell: bash
+      run: gitleaks detect --redact -v --exit-code=0 --report-format=sarif --report-path=${{ inputs.application_name }}-${{inputs.infra_repo_config}}-gitleak-results.sarif --log-level=debug --log-opts=--no-merges --config gitleaks-config/gitleaks.toml
+
+    - name: Upload PR Info Artifact
+      if: success() || failure()  
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.application_name }}-${{inputs.infra_repo_config}}-gitleak-results.sarif
+        path: ${{ inputs.application_name }}-${{inputs.infra_repo_config}}-gitleak-results.sarif

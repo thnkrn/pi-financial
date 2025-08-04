@@ -1,0 +1,170 @@
+name: Release App
+
+inputs:
+  iosRepoBranch:
+    description: Branch name of the iOS repo
+    required: true
+    default: "develop"
+    type: string
+  flutterRepoBranch:
+    description: Branch name of the pi-module repo
+    required: true
+    default: "develop"
+    type: string
+  config:
+    description: "Build configuration"
+    required: true
+    default: "uat"
+    type: string
+  ghAccessToken:
+    description: "Github access token"
+    required: true
+    type: string
+  appStoreConnectKey:
+    description: "AppStore Connect API Key"
+    required: true
+    type: string
+  appCenterKey:
+    description: "AppCenter API Key"
+    required: true
+    type: string
+  awsAccessKeyID:
+    description: "AWS access key ID"
+    required: true
+    type: string
+  awsSecretAccessKey:
+    description: "AWS secret access key"
+    required: true
+    type: string
+  awsRegion:
+    description: "AWS region"
+    required: true
+    type: string
+  awsRoleToAssume:
+    description: "AWS role-to-assume"
+    required: true
+    type: string
+  awsRoleSessionName:
+    description: "AWS role-session-name"
+    required: true
+    type: string
+
+outputs:
+  uploaded-version:
+    description: "Uploaded Version Info"
+    value: ${{ steps.release-info.outputs.uploaded-version }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Checkout main repo
+      uses: actions/checkout@v4
+      with:
+        repository: "pi-financial/pi-financial-ios-app"
+        ref: ${{ inputs.iosRepoBranch || 'develop' }}
+        token: ${{ inputs.ghAccessToken }}
+    - name: Create folders
+      run: |
+        mkdir pi-module && \
+        mkdir flutter-ios-module
+      shell: bash
+    - name: Checkout pi-module repo
+      uses: actions/checkout@v4
+      with:
+        repository: "pi-financial/pi-module"
+        ref: ${{ inputs.flutterRepoBranch || 'develop' }}
+        token: ${{ inputs.ghAccessToken }}
+        path: "./pi-module"
+    - name: Checkout flutter artifact repo
+      uses: actions/checkout@v4
+      with:
+        repository: "pi-financial/flutter-ios-module"
+        ref: "main"
+        token: ${{ inputs.ghAccessToken }}
+        path: "./flutter-ios-module"
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1.7.0
+      with:
+        aws-access-key-id: ${{ inputs.awsAccessKeyID }}
+        aws-secret-access-key: ${{ inputs.awsSecretAccessKey }}
+        aws-region: ${{ inputs.awsRegion }}
+        role-to-assume: ${{ inputs.awsRoleToAssume}}
+        role-duration-seconds: 1200
+        role-session-name: ci-run-${{ inputs.awsRoleSessionName }}
+    - name: Sync ENV configs
+      run: |
+        rbenv exec bundle exec fastlane syncSecrets
+      shell: bash
+    - name: Run script to build module
+      shell: bash
+      run: |
+        if [[ ${{ inputs.config }} == "uat" ]]; then
+          cd pi-module && \
+          python3 scripts/build_script.py build_ios_uat_internal --path ../flutter-ios-module
+        elif [[ ${{ inputs.config }} == "prodInternal" ]]; then
+          cd pi-module && \
+          python3 scripts/build_script.py build_ios_prod_internal --path ../flutter-ios-module
+        elif [[ ${{ inputs.config }} == "prodExternal" ]]; then
+          cd pi-module && \
+          python3 scripts/build_script.py build_ios_prod_external --path ../flutter-ios-module
+        else
+          echo "Label not recognized."
+          exit 1
+        fi
+    - name: Migrate to flutter module
+      run: |
+        rbenv exec ruby migrate_to_flutter_module.rb
+      shell: bash
+    - name: Update Podfile
+      shell: bash
+      run: |
+        if [[ ${{ inputs.config }} == "uat" ]]; then
+          swift ModifyPodfile.swift -variant uatInternal -flutterModulePath ./flutter-ios-module
+        elif [[ ${{ inputs.config }} == "prodInternal" ]]; then
+          swift ModifyPodfile.swift -variant prodInternal -flutterModulePath ./flutter-ios-module
+        elif [[ ${{ inputs.config }} == "prodExternal" ]]; then
+          swift ModifyPodfile.swift -variant prodExternal -flutterModulePath ./flutter-ios-module
+        else
+          echo "Label not recognized."
+          exit 1
+        fi
+    - name: Pod install
+      shell: bash
+      run: |
+        rbenv exec bundle exec pod install
+    - name: Configure AppStoreConnect API Key
+      env:
+        ASC_API_KEY: ${{ inputs.appStoreConnectKey }}
+      shell: bash
+      run: |
+        echo "-----BEGIN PRIVATE KEY-----" >> AuthKey_4KLZ383FVZ.p8
+        echo $ASC_API_KEY >> AuthKey_4KLZ383FVZ.p8
+        echo "-----END PRIVATE KEY-----" >> AuthKey_4KLZ383FVZ.p8
+    - name: Distribute App
+      shell: bash
+      run: |
+        echo '' > build.log # Clean build.log
+        if [[ ${{ inputs.config }} == "uat" ]]; then
+          rbenv exec bundle exec fastlane distributeTestflightUat flutter_repo_path:../pi-module | tee build.log
+        elif [[ ${{ inputs.config }} == "prodInternal" ]]; then
+          rbenv exec bundle exec fastlane distributeTestflightProdInternal flutter_repo_path:../pi-module | tee build.log
+        elif [[ ${{ inputs.config }} == "prodExternal" ]]; then
+          rbenv exec bundle exec fastlane distributeTestflightProd flutter_repo_path:../pi-module | tee build.log
+        else
+          echo "Label not recognized."
+          exit 1
+        fi
+    - name: Set outputs
+      id: release-info
+      shell: bash
+      run: |
+        APP_VERSION=$(xcodebuild -showBuildSettings | grep MARKETING_VERSION | cut -d '=' -f 2 | tr -d ' ')
+        BUILD_NUMBER=$(xcodebuild -showBuildSettings | grep CURRENT_PROJECT_VERSION | cut -d '=' -f 2 | tr -d ' ')
+        version="$APP_VERSION ($BUILD_NUMBER)"
+        echo "uploaded-version=$version" >> $GITHUB_OUTPUT
+    - name: Clean up
+      shell: bash
+      run: |
+        rm AuthKey_4KLZ383FVZ.p8

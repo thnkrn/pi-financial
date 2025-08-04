@@ -1,0 +1,231 @@
+name: Release Android AAB 
+
+inputs:
+  androidRepoBranch:
+    description: Branch name of the Android repo
+    required: true
+    default: "develop"
+    type: string
+  flutterRepoBranch:
+    description: Branch name of the pi-module repo
+    required: true
+    default: "develop"
+    type: string
+  piProperties:
+    description: Base64 encoded value of pi.properties file
+    required: true
+    type: string
+  googleServiceJsonUAT:
+    description: Base64 encoded value of GoogleService.json file (UAT) 
+    required: true
+    type: string
+  googleServiceJsonProd:
+    description: Base64 encoded value of GoogleService.json file (Prod) 
+    required: true
+    type: string
+  androidScriptConstants:
+    description: Base64 encoded value of Constant file 
+    required: true
+    type: string
+  config:
+    description: "Build configuration"
+    required: true
+    default: "uatInternal"
+    type: string
+  ghAccessToken:
+    description: "Github access token"
+    required: true
+    type: string
+  awsAccessKeyID:
+    description: "AWS access key ID"
+    required: true
+    type: string
+  awsSecretAccessKey:
+    description: "AWS secret access key"
+    required: true
+    type: string
+  awsRegion:
+    description: "AWS region"
+    required: true
+    type: string
+  awsRoleToAssume:
+    description: "AWS role-to-assume"
+    required: true
+    type: string
+  awsRoleSessionName:
+    description: "AWS role-session-name"
+    required: true
+    type: string
+  mailServerEmail:
+    description: "Email of the mail server"
+    required: true
+    type: string
+  mailServerPassword:
+    description: "Password of the mail server"
+    required: true
+    type: string
+  receiverEmail:
+    description: "Email to notify the release" 
+    required: true 
+    type: string
+  shouldUploadPlayStore:
+    descriptoin: "Upload to Play Store for prodExternal"
+    required: false
+    default: 'false'
+    type: boolean
+
+outputs:
+  app-link:
+    description: "Download link"
+    value: ${{ steps.extract_url.outputs.url }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout main repo
+      uses: actions/checkout@v4
+      with:
+        repository: "pi-financial/pi-financial-android-app"
+        ref: ${{ inputs.androidRepoBranch || 'develop' }}
+        token: ${{ inputs.ghAccessToken }}
+
+    - name: Setup Java Zulu 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '17'
+
+    - name: Check Java version
+      run: java --version
+      shell: bash
+
+    # Give access to ./gradlew for using command lines
+    - name: Change wrapper permissions
+      run: chmod +x ./gradlew
+      shell: bash
+
+    - name: Clone pi-module
+      uses: actions/checkout@v4
+      with:
+        repository: "pi-financial/pi-module"
+        ref: ${{ inputs.flutterRepoBranch || 'develop' }}
+        token: ${{ inputs.ghAccessToken }}
+        path: "./pi-module"
+    
+    - name: Fetch Property keys and Decode from base64
+      uses: timheuer/base64-to-file@v1.2
+      with:
+        fileName: 'pi.properties'
+        fileDir: './'
+        encodedString: ${{ inputs.piProperties }}
+    
+    - name: Fetch Local properties
+      run: echo "sdk.dir=/Users/pimac-mini-x1p2/Library/Android/sdk" > ./local.properties
+      shell: bash
+
+    - name: Fetch Google-Service (UAT) and Decode from base64
+      uses: timheuer/base64-to-file@v1.2
+      with:
+        fileName: 'google-services.json'
+        fileDir: './app/src/uat/'
+        encodedString: ${{ inputs.googleServiceJsonUAT }}
+
+    - name: Fetch Google-Service (Prod) and Decode from base64
+      uses: timheuer/base64-to-file@v1.2
+      with:
+        fileName: 'google-services.json'
+        fileDir: './app/src/production/'
+        encodedString: ${{ inputs.googleServiceJsonProd }}
+
+    - name: Fetch constants for Python script
+      uses: timheuer/base64-to-file@v1.2
+      with:
+        fileName: 'constants.py'
+        fileDir: './scripts/utils/'
+        encodedString: ${{ inputs.androidScriptConstants }}
+
+    - name: Authenticate AWS
+      id: authen-aws
+      uses: pi-financial/github-action-workflow/authen-aws@main
+      with:
+        aws_access_key_id: ${{ inputs.awsAccessKeyID }}
+        aws_secret_access_key: ${{ inputs.awsSecretAccessKey }}
+        aws_region: ${{ inputs.awsRegion }}
+        role_to_assume: ${{ inputs.awsRoleToAssume }}
+        aws_only: true
+
+    - name: Fetch PROD credentials
+      run: | 
+        if [[ ${{ inputs.config }} == "prodExternal" || ${{ inputs.config }} == "uatExternal" ]]; then
+          aws s3 cp "s3://pi-financial-app-53b0627a/android/pi-platforms-0557f99eeca1.json" "fastlane/pi-platforms-0557f99eeca1.json" 
+          aws s3 cp "s3://pi-financial-app-53b0627a/android/pi-prod.keystore" "pi-prod.keystore"
+        else
+          echo '[INFO] Skipping prod credentials fetch for non-prod environments.'
+        fi
+      shell: bash
+
+    - name: Fetch Firebase app distrubtion key 
+      run: | 
+        if [[ ${{ inputs.config }} == "prodExternal" || ${{ inputs.config }} == "prodInternal" ]]; then
+          aws s3 cp "s3://pi-financial-app-53b0627a/android/pi-financial-app-prod-d86a3566d9c7.json" "fastlane/pi-financial-app-prod-d86a3566d9c7.json" 
+          echo 'GOOGLE_APPLICATION_CREDENTIALS=fastlane/pi-financial-app-prod-d86a3566d9c7.json' >> fastlane/.env
+        else
+          aws s3 cp "s3://pi-financial-app-53b0627a/android/pi-financial-app-uat-0d4a778edf5a.json" "fastlane/pi-financial-app-uat-0d4a778edf5a.json"
+          echo 'GOOGLE_APPLICATION_CREDENTIALS=fastlane/pi-financial-app-uat-0d4a778edf5a.json' >> fastlane/.env
+        fi
+      shell: bash
+
+    - name: Build and upload APKs using config
+      run: |
+        echo '' > build.log # Clean build.log
+        if [[ ${{ inputs.config }} == "uatInternal" ]]; then
+          python3 scripts/aar_apk_app_center.py --release_notes="UAT INTERNAL" --build_aar --environment="uat_internal" | tee build.log
+        elif [[ ${{ inputs.config }} == "uatExternal" ]]; then
+          python3 scripts/aar_apk_app_center.py --release_notes="UAT EXTERNAL" --build_aar --environment="uat_external" | tee build.log
+        elif [[ ${{ inputs.config }} == "prodInternal" ]]; then
+          python3 scripts/aar_apk_app_center.py --release_notes="PROD INTERNAL" --build_aar --environment="prod_internal" | tee build.log
+        elif [[ ${{ inputs.config }} == "prodExternal" ]]; then
+          if [[ "${{ inputs.shouldUploadPlayStore }}" == "true" ]]; then
+            python3 scripts/aar_apk_app_center.py --release_notes="PROD EXTERNAL" --build_aar --environment="prod_external" --upload_play_store | tee build.log
+          else
+            python3 scripts/aar_apk_app_center.py --release_notes="PROD EXTERNAL" --build_aar --environment="prod_external" | tee build.log
+          fi
+        else
+          echo "[ERROR]: Invalid configuration provided."
+          exit 1
+        fi
+      shell: bash
+
+    # Extract the Firebase app distribution URL from the build.log
+    - name: Extract Firebase URL
+      id: extract_url
+      run: |
+        if [[ ${{ inputs.config }} == "prodExternal" && "${{ inputs.shouldUploadPlayStore }}" == "true" ]]; then
+          # TODO: Figure out play store URL
+          echo "url=https://play.google.com/console/u/0/developers/9079903395662873528/app/4975856040099077727/tracks/internal-testing" >> $GITHUB_OUTPUT
+        else
+          url=$(grep -o 'https://console\.firebase\.google\.com/project/[a-zA-Z0-9\-]\+/appdistribution/app/android:[a-zA-Z0-9\.]\+/releases/[a-zA-Z0-9]\+' build.log)
+          echo "url=$url" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
+
+    # Send an email to notify the uploaded build
+    # If input receiver email is invalid or empty, default to random email to silently bypass the step. Usually, we could have added an `if` condition. But, since we are using composite reusable action and we are depending on third party workflow action, it's tricky to do it in proper way.  
+    - name: Send Email
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ inputs.mailServerEmail }}
+        password: ${{ inputs.mailServerPassword }}
+        subject: "CI/CD AppCenter download url"
+        to: ${{ inputs.receiverEmail || 'test123test88@pi.financial' }} 
+        from: ${{ inputs.mailServerEmail }}
+        body: |
+          You have specified this email to retrieve appCenter APK download url.
+
+          Environment: ${{ inputs.config }} 
+          You can download the APK here: ${{ steps.extract_url.outputs.url }}
+          
+          Best regards,
+          your favorite Android team.

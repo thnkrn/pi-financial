@@ -1,0 +1,9 @@
+name: flutter Restore
+
+runs:
+  using: composite
+  steps:
+    - name: Install Dependencies
+      working-directory: ./
+      shell: bash
+      run: flutter pub get

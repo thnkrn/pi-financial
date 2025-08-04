@@ -1,0 +1,150 @@
+#generate-manifest/action.yaml
+name: build-workflow-manifest
+description: ''
+
+inputs:
+  image:
+    description: a
+    required: true
+  group_name:
+    description: a
+    required: true
+  deployment_env:
+    description: the environment to deploy
+  workflow_configs:
+    description: >-
+      JSON array of config object { name: string, cron: string, command: string, arg1: string?, arg2: string?, arg3: string?, arg4: string? }
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - name: Write arguments to value file and generate manifest
+    working-directory: config
+    shell: bash
+    run: |
+      IMAGE="${{ inputs.image }}"
+      REPO="${{ inputs.group_name }}"
+      JSON='${{ inputs.workflow_configs }}'
+
+      value_file_path_prefix="values/${{ inputs.deployment_env }}"
+      if [ ! -d "$value_file_path_prefix" ]; then
+        mkdir "$value_file_path_prefix"
+      fi
+      if [ ! -d output ]; then
+        mkdir output
+      fi
+
+      count=$(jq -r ". | length" <(echo "$JSON"))
+      for (( i = 0; i < "$count"; i++ )); do
+        # Setup vars
+        json=$(jq -r '.['"$i"']' <(echo "$JSON"))
+
+        name=$(jq -r '.name' <(echo "$json"))
+        full_name="$REPO-$name"
+        type=$(jq -r '.type // empty' <(echo "$json"))
+
+        disabled="$(jq -r '.disabled // empty' <(echo "$json"))"
+        if [ "$disabled" != true ]; then
+          disabled=false
+        fi
+
+        value_file_path="$value_file_path_prefix/$full_name"
+
+        # Log variables to file
+        cat > "$value_file_path" << EOF
+      REPO="$REPO"
+      NAME="$full_name"
+      TYPE="${type:-medium}"
+      CRON="$(jq -r '.cron' <(echo "$json"))"
+      IMAGE="$IMAGE"
+      DISABLED="$disabled"
+      COMMAND="$(jq -r '.command' <(echo "$json"))"
+      ARG1="$(jq -r '.argument_1 // empty' <(echo "$json"))"
+      ARG2="$(jq -r '.argument_2 // empty' <(echo "$json"))"
+      ARG3="$(jq -r '.argument_3 // empty' <(echo "$json"))"
+      ARG4="$(jq -r '.argument_4 // empty' <(echo "$json"))"
+      EOF
+
+        # Template using variables in file
+        source "$value_file_path" && sed \
+          -e "s|@@REPO@@|${REPO%q}|g" \
+          -e "s|@@NAME@@|${NAME%q}|g" \
+          -e "s|@@TYPE@@|${TYPE%q}|g" \
+          -e "s|@@CRON@@|${CRON%q}|g" \
+          -e "s|@@IMAGE@@|${IMAGE%q}|g" \
+          -e "s|@@DISABLED@@|${DISABLED%q}|g" \
+          -e "s|@@COMMAND@@|${COMMAND%q}|g" \
+          -e "s|@@ARG1@@|${ARG1%q:-}|g" \
+          -e "s|@@ARG2@@|${ARG2%q:-}|g" \
+          -e "s|@@ARG3@@|${ARG3%q:-}|g" \
+          -e "s|@@ARG4@@|${ARG4%q:-}|g" \
+          templates/cron-workflow.yaml > "output/$full_name.yaml"
+      done
+
+  ########### Gitops Repo ###########  
+
+  - name: Write arguments to value file and generate manifest gitops
+    working-directory: config_gitops
+    shell: bash
+    run: |
+      IMAGE="${{ inputs.image }}"
+      REPO="${{ inputs.group_name }}"
+      JSON='${{ inputs.workflow_configs }}'
+      ENV="${{ inputs.deployment_env }}"
+      ENV="${ENV%%/*}"
+      OUTPUT="registry/environments/$ENV/argo-workflows/templates/output"
+
+      value_file_path_prefix="registry/environments/$ENV/argo-workflows/templates/values/${{ inputs.group_name }}"
+      mkdir -p "$value_file_path_prefix"
+
+      if [ ! -d "$OUTPUT" ]; then
+        mkdir -p "$OUTPUT"
+      fi
+
+      count=$(jq -r ". | length" <(echo "$JSON"))
+      for (( i = 0; i < "$count"; i++ )); do
+        # Setup vars
+        json=$(jq -r '.['"$i"']' <(echo "$JSON"))
+
+        name=$(jq -r '.name' <(echo "$json"))
+        full_name="$REPO-$name"
+        type=$(jq -r '.type // empty' <(echo "$json"))
+
+        disabled="$(jq -r '.disabled // empty' <(echo "$json"))"
+        if [ "$disabled" != true ]; then
+          disabled=false
+        fi
+
+        value_file_path="$value_file_path_prefix/$full_name"
+
+        # Log variables to file
+        cat > "$value_file_path" << EOF
+      REPO="$REPO"
+      NAME="$full_name"
+      TYPE="${type:-medium}"
+      CRON="$(jq -r '.cron' <(echo "$json"))"
+      IMAGE="$IMAGE"
+      DISABLED="$disabled"
+      COMMAND="$(jq -r '.command' <(echo "$json"))"
+      ARG1="$(jq -r '.argument_1 // empty' <(echo "$json"))"
+      ARG2="$(jq -r '.argument_2 // empty' <(echo "$json"))"
+      ARG3="$(jq -r '.argument_3 // empty' <(echo "$json"))"
+      ARG4="$(jq -r '.argument_4 // empty' <(echo "$json"))"
+      EOF
+
+        # Template using variables in file
+        source "$value_file_path" && sed \
+          -e "s|@@REPO@@|${REPO%q}|g" \
+          -e "s|@@NAME@@|${NAME%q}|g" \
+          -e "s|@@TYPE@@|${TYPE%q}|g" \
+          -e "s|@@CRON@@|${CRON%q}|g" \
+          -e "s|@@IMAGE@@|${IMAGE%q}|g" \
+          -e "s|@@DISABLED@@|${DISABLED%q}|g" \
+          -e "s|@@COMMAND@@|${COMMAND%q}|g" \
+          -e "s|@@ARG1@@|${ARG1%q:-}|g" \
+          -e "s|@@ARG2@@|${ARG2%q:-}|g" \
+          -e "s|@@ARG3@@|${ARG3%q:-}|g" \
+          -e "s|@@ARG4@@|${ARG4%q:-}|g" \
+          registry/environments/$ENV/argo-workflows/templates/cron-workflow.yaml > "$OUTPUT/$full_name.yaml"
+      done

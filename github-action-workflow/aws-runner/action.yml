@@ -1,0 +1,36 @@
+name: Start EC2 Runner 
+inputs:
+
+  gh_access_token:
+    description: Github Access Token
+    required: true
+outputs:
+  label:
+    description: label from the ec2 runner
+    value: ${{ steps.start-ec2-runner.outputs.label }}
+  ec2-instance-id: 
+    description: EC2 Runner name attached.
+    value: ${{ steps.start-ec2-runner.outputs.ec2-instance-id }}
+
+
+
+runs:
+  using: composite
+  steps:
+    - name: Start EC2 runner
+      uses: machulav/ec2-github-runner@v2.3.2
+      id: start-ec2-runner
+      with:
+        mode: start
+        github-token: ${{ inputs.gh_access_token }}
+        ec2-image-id: ami-0c0e97533d741dbf7
+        ec2-instance-type: t3.large
+        subnet-id: subnet-006d8e77661411fcc
+        security-group-id: sg-0d2f4a8a4e401ce88
+        # iam-role-name: ${{ secrets.role_to_assume}} # optional, requires additional permissions
+        aws-resource-tags: > # optional, requires additional permissions
+          [
+            {"Key": "Name", "Value": "ec2-github-runner - ${{ github.repository }} - runner ${{runner.os}} "},
+            {"Key": "GitHubRepository", "Value": "${{ github.repository }}"},
+            {"Key": "Project", "Value": "Github Runner for ${{ github.repository }}"}
+          ]

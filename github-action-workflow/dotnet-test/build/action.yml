@@ -1,0 +1,18 @@
+name: dotnet Build
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Build
+      shell: bash
+      env:
+        HOME: /tmp
+        DOTNET_CLI_HOME: /tmp
+      working-directory: ./src/${{ inputs.application_name }}
+      run: |
+        dotnet build ${{ inputs.application_name }}.sln --configuration Release --no-restore

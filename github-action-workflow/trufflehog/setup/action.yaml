@@ -1,0 +1,38 @@
+name: dotnet Setup
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+  base_ref:
+    description: branch, tag or commit SHA to be base code
+    required: false
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  dotnet_version:
+    description: dotnet version
+    default: "8.0.x"
+
+runs:
+  using: composite
+  steps:
+    - uses: pi-financial/github-action-workflow/trufflehog/checkout@main
+      with:
+        repository: ${{ inputs.repository }}
+        base_ref: ${{ inputs.base_ref }}
+        target_ref: ${{ inputs.target_ref }}
+
+    - uses: pi-financial/github-action-workflow/authen-gh@main
+      with:
+        gh_access_token: ${{ inputs.gh_access_token }}
+
+    - name: Setup dotnet version ${{ inputs.dotnet_version }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ inputs.dotnet_version }}

@@ -1,0 +1,73 @@
+name: Argocd tag and deploy
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+    default: ${{ github.repository }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  version: 
+    description: branch, tag or commit SHA to merge into base code   
+  pr_only:
+    required: false
+    default: false
+  applicationset_enabled:
+    required: false
+    default: false
+  copy_workflow_to_target_repo:
+    required: false
+    default: false
+
+runs:
+  using: composite
+  steps:
+    - uses: EndBug/add-and-commit@v9.1.4
+      if: ${{ inputs.pr_only == 'false' }}
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config1/'
+        fetch: true
+        
+    # - uses: EndBug/add-and-commit@v9.1.4
+    #   if: ${{ inputs.pr_only == 'false' }}
+    #   with:
+    #     message: 'Automatic CI run for ${{ inputs.repository }}'
+    #     add: '.'
+    #     cwd: './config2/'
+    #     fetch: true
+
+    - uses: EndBug/add-and-commit@v9.1.4
+      if: ${{ inputs.pr_only == 'false' }}
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config2/platform/eks-1-nonprod/projects/'
+        fetch: true
+      
+    - uses: EndBug/add-and-commit@v9.1.4
+      if: ${{ inputs.pr_only == 'true' }}
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config1/pr'
+        fetch: true
+
+    - uses: EndBug/add-and-commit@v9.1.4
+      if: ${{ inputs.applicationset_enabled == 'true' }}
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config2/platform/eks-1-nonprod/applicationset/'
+        fetch: true
+
+    - uses: EndBug/add-and-commit@v9.1.4
+      if: ${{ inputs.copy_workflow_to_target_repo == 'true' }}
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config3/'
+        fetch: true

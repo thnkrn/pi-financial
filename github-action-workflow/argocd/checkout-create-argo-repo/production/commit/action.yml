@@ -1,0 +1,38 @@
+name: Argocd tag and deploy
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+    default: ${{ github.repository }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  version: 
+    description: branch, tag or commit SHA to merge into base code   
+
+runs:
+  using: composite
+  steps:
+    - uses: EndBug/add-and-commit@v9.1.4
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config1/'
+        fetch: true
+        
+    # - uses: EndBug/add-and-commit@v9.1.4
+    #   if: ${{ inputs.pr_only == 'false' }}
+    #   with:
+    #     message: 'Automatic CI run for ${{ inputs.repository }}'
+    #     add: '.'
+    #     cwd: './config2/'
+    #     fetch: true
+
+    - uses: EndBug/add-and-commit@v9.1.4
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }}'
+        add: '.'
+        cwd: './config2/platform/eks-1-prod/projects/'
+        fetch: true

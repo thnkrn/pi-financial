@@ -1,0 +1,26 @@
+name: dotnet add nuget source
+description: Add nuget source
+
+inputs:
+  application_path:
+    description: Application Path to csproj
+    required: true
+  gh_access_token:
+    description: Github Access Token
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Remove (if) existing Nuget Registry Source
+      working-directory: ${{ inputs.application_path }}
+      shell: bash
+      continue-on-error: true
+      run: |-
+        dotnet nuget remove source github
+
+    - name: Add Nuget Registry Source
+      working-directory: ${{ inputs.application_path }}
+      shell: bash
+      run: |-
+        dotnet nuget add source --name github "https://nuget.pkg.github.com/pi-financial/index.json" --username USERNAME --store-password-in-clear-text --password ${{ inputs.gh_access_token }}

@@ -1,0 +1,72 @@
+name: Docker Build
+description: ''
+
+inputs:
+  docker_file_path:
+    description: dockerfile Path from root directory
+    required: true
+  docker_context:
+    description: path for docker context
+    required: true
+  ecr_registry:
+    description: ECR Login Registry output
+    required: true
+  ecr_repository:
+    description: ECR Repository
+    required: true
+  labels:
+    description: Docker Labels
+    required: true
+  tags:
+    description: Docker Tags
+    required: true
+  version:
+    description: Docker version
+    required: true
+  npm_read_token:
+    description: npm read token
+    required: false
+  datadog_application_id:
+    description: Datadog App ID for NextJS runtime
+    required: false
+  datadog_client_token:
+    description: Datadog Client Token for browser runtime
+    required: false
+  datadog_api_key:
+    description: Datadog API Key for Backend Services
+    required: false
+  directus_project_url:
+    description: Directus CMS Project URL
+    required: false
+  directus_token:
+    description: Directus CMS token
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3.3.0
+
+      
+    - name: Build and push
+      uses: docker/build-push-action@v5.4.0
+      with:
+          file: ${{ inputs.docker_file_path }}
+          tags: ${{ inputs.tags }}
+          labels: ${{ inputs.labels }}
+          push: true
+          build-args: TAG=${{inputs.tag}}
+          context: ${{ inputs.docker_context }}
+          secrets: |
+            GIT_AUTH_TOKEN=${{inputs.npm_read_token}}
+            DATADOG_APPLICATION_ID=${{inputs.datadog_application_id}}
+            DATADOG_CLIENT_TOKEN=${{inputs.datadog_client_token}}
+            DATADOG_API_KEY=${{inputs.datadog_api_key}}
+            DIRECTUS_PROJECT_URL=${{inputs.directus_project_url}}
+            DIRECTUS_TOKEN=${{inputs.directus_token}}
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max

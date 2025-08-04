@@ -1,0 +1,25 @@
+name: Argocd tag and deploy
+
+inputs:
+  token_image_update:
+    description: Github Access Token needed for the checkout of other repositories
+    required: true
+  infra: 
+    description: the repository that the tag change will happen in
+    required: false  
+ 
+
+runs:
+  using: composite
+    steps:
+      - name: Create pr
+        shell: bash
+        working-directory: ${{ inputs.working_directory }}
+        run: |-
+          gh pr create \
+              --base ${{ inputs.base_branch_name }} \
+              --head ${{ inputs.branch_name }} \
+              --title '${{ inputs.pr_title }}' \
+              --body '${{ inputs.pr_description }}'
+        env:
+          GITHUB_TOKEN: ${{ inputs.gh_access_token }}

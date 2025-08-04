@@ -1,0 +1,59 @@
+name: Generate Swagger file
+description: Generate swagger file from controller
+
+inputs:
+  application_name:
+    description: application name
+    required: true
+  base_path:
+    description: base path to operate on
+    required: true
+  swagger_path:
+    description: path to swagger file relative to base path
+    required: false
+    default: tmp/swagger.yml
+  swagger_flags:
+    description: flags to be passed to swashbuckle
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Prepare target directory
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: mkdir -p $(dirname '${{ inputs.swagger_path }}') || true
+
+    - name: Get version of `Swashbuckle.AspNetCore` currently installed
+      shell: bash
+      id: extract-swashbuckle-version
+      working-directory: ${{ inputs.base_path }}
+      run: |-
+        cat ${{ inputs.application_name }}.csproj \
+          | sed -ne 's/.*<PackageReference Include="Swashbuckle.AspNetCore" Version="\([^"]*\)".*/SWASHBUCKLE_VERSION=\1/p' \
+          >> $GITHUB_ENV
+
+    - name: Install dependencies
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: |-
+        # new tool-manifest will throw error but can be safely ignore
+        dotnet new tool-manifest 2>/dev/null || true
+        dotnet tool install Swashbuckle.AspNetCore.Cli --version ${{ env.SWASHBUCKLE_VERSION }}
+
+    - name: Build
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: dotnet build .
+
+    - name: Generate swagger
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: |-
+        ASPNETCORE_ENVIRONMENT=Development \
+          dotnet tool run swagger tofile \
+          --yaml \
+          --output ${{ inputs.swagger_path }} \
+          ${{ inputs.swagger_flags }} \
+          $(find bin | grep ${{ inputs.application_name }}.dll) \
+          v1

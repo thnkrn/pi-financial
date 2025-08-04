@@ -1,0 +1,42 @@
+name: Flutter Setup
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+  base_ref:
+    description: branch, tag or commit SHA to be base code
+    required: false
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  ssh_key:
+    description: SSH Private Key
+    required: true
+  flutter_version:
+    description: flutter_version
+    default: "3.3.4"
+
+runs:
+  using: composite
+  steps:
+    - uses: pi-financial/github-action-workflow/checkout@main
+      with:
+        repository: ${{ inputs.repository }}
+        base_ref: ${{ inputs.base_ref }}
+        target_ref: ${{ inputs.target_ref }}
+
+    # - uses: pi-financial/github-action-workflow/authen-gh@main
+    #   with:
+    #     gh_access_token: ${{ inputs.gh_access_token }}
+    - uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ inputs.ssh_key }}
+
+    - name: Use Flutter ${{ inputs.flutter_version }}
+      uses: subosito/flutter-action@v2.18.0
+      with:
+        flutter-version: ${{ inputs.flutter_version }}
+        channel: "stable"

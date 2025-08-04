@@ -1,0 +1,56 @@
+name: Checkout to new branch and push to remote
+description: Checkout to new branch and push to remote
+
+inputs:
+  branch_name:
+    description: Name of branch to merge from
+    required: true
+  base_branch_name:
+    description: Name of branch to merge into
+    required: false
+    default: main
+  pr_title:
+    description: Title of PR to create
+    required: true
+  pr_description:
+    description: Body of PR to create
+    required: false
+    default: ''
+  working_directory:
+    description: Base path to work on
+    required: false
+    default: .
+  gh_access_token:
+    description: Github PAT
+    required: true
+  squash:
+    description: Squash merge
+    required: false
+    default: 'true'
+
+
+runs:
+  using: composite
+  steps:
+    - name: Create pr
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: |-
+        gh pr create \
+            --base ${{ inputs.base_branch_name }} \
+            --head ${{ inputs.branch_name }} \
+            --title '${{ inputs.pr_title }}' \
+            --body '${{ inputs.pr_description }}'
+      env:
+        GITHUB_TOKEN: ${{ inputs.gh_access_token }}
+
+    - name: Merge PR
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: |-
+        gh pr merge ${{ inputs.branch_name }} \
+          ${{ inputs.squash == 'true' && '--squash' || '' }} \
+          --auto \
+          --delete-branch
+      env:
+        GITHUB_TOKEN: ${{ inputs.gh_access_token }}

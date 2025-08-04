@@ -1,0 +1,304 @@
+# dotnet/promote-to-prod/action.yml
+name: promote-to-prod
+description: 'Promote Docker image from non-prod to production'
+
+inputs:
+  repository:
+    description: The owner and repository name
+    required: false
+    type: string
+    default: ${{ github.repository }}
+  target_ref:
+    description: The branch or tag ref or commit SHA that will be merged to base code.
+    required: false
+    type: string
+    default: ${{ github.head_ref || github.ref_name }}
+  aws_access_key_id:
+    description: AWS access key id
+    required: true
+  aws_secret_access_key:
+    description: AWS Secret access key
+    required: true
+  aws_region:
+    description: AWS Region
+    required: true
+  role_to_assume_source:
+    description: Role to assume for non-production environment
+    required: true
+  role_to_assume_target:
+    description: Role to assume for production environment
+    required: true
+  commit_sha:
+    description: Commit SHA to find the staging image
+    required: false
+    default: ${{ github.sha }}
+  ecr_repository_source:
+    description: ECR repository for non-production
+    required: true
+  ecr_repository_target:
+    description: ECR repository for production
+    required: true
+  gh_access_token:
+    description: GitHub Access Token for authentication
+    required: true
+  token_image_update:
+    description: Token for image update
+    required: true
+  docker_file_path:
+    description: Dockerfile path (not used but kept for compatibility)
+    required: false
+    default: "Dockerfile"
+  infra:
+    description: infra repo (argocd)
+    required: true
+  tfex_enable:
+    description: duplicate service for tfex deployment
+    type: string
+    required: false
+    default: 'false'
+  cronjob_enabled:
+    description: for cronjob value update
+    type: string
+    required: false
+    default: 'false'
+  multiple_deployment:
+    description: for deployment value update
+    type: string
+    required: false
+    default: 'false'
+  infra_gitops:
+    description: whether to use gitops for infra
+    type: string
+    required: false
+    default: 'pi-financial/gitops'
+  infra_repo_config:
+    description: the config folder that will be changed
+    type: string
+
+runs:
+  using: composite
+  steps:
+  # login aws non-production to get ecr registry 
+  - name: Authenticate AWS Non-Production
+    id: authen-aws-nonprod
+    uses: pi-financial/github-action-workflow/authen-aws@main
+    with:
+      aws_access_key_id: ${{ inputs.aws_access_key_id }}
+      aws_secret_access_key: ${{ inputs.aws_secret_access_key }}
+      aws_region: ${{ inputs.aws_region }}
+      role_to_assume: ${{ inputs.role_to_assume_source }}
+
+  # Generate metadata for non-production images
+  - name: Docker MetaData Non-Production (Find Staging Image)
+    id: metadata-nonprod
+    uses: pi-financial/github-action-workflow/docker/metadata@main
+    with:
+      ecr_registry: ${{ steps.authen-aws-nonprod.outputs.ecr-registry }}
+      ecr_repository: ${{ inputs.ecr_repository_source }}
+
+  # find staging image by commit SHA
+  - name: Find Staging Image by SHA
+    id: find_staging
+    shell: bash
+    run: |
+      SHORT_SHA="${{ inputs.commit_sha }}"
+      SHORT_SHA="${SHORT_SHA:0:7}"
+
+      echo "Searching for staging image with SHA: $SHORT_SHA"
+      echo "Repository: ${{ inputs.ecr_repository_source }}"
+      echo "Region: ${{ inputs.aws_region }}"
+
+      # Verify we can access the repository
+      echo "Checking repository access..."
+      if ! aws ecr describe-repositories \
+        --repository-names "${{ inputs.ecr_repository_source }}" \
+        --region "${{ inputs.aws_region }}" > /dev/null 2>&1; then
+        echo "❌ ERROR: Cannot access repository '${{ inputs.ecr_repository_source }}'"
+        echo ""
+        echo "Possible causes:"
+        echo "- Repository does not exist in staging account"
+        echo "- Insufficient permissions to access ECR"
+        echo "- Wrong repository name"
+        echo ""
+        echo "Available repositories in staging account:"
+        aws ecr describe-repositories \
+          --region "${{ inputs.aws_region }}" \
+          --query "repositories[].repositoryName" \
+          --output text 2>/dev/null || echo "No repositories found or no access"
+        exit 1
+      fi
+
+      # Search for staging images with this SHA pattern  
+      echo "Querying images in repository..."
+      STAGING_TAGS=$(aws ecr describe-images \
+        --repository-name "${{ inputs.ecr_repository_source }}" \
+        --region "${{ inputs.aws_region }}" \
+        --query "imageDetails[].imageTags[]" \
+        --output text 2>/dev/null | tr '\t' '\n' | grep -E ".*-${SHORT_SHA}-[0-9]{8}" || true)
+
+      if [ -n "$STAGING_TAGS" ] && [ "$STAGING_TAGS" != "None" ]; then
+        STAGING_TAG=$(echo "$STAGING_TAGS" | grep "^main-" | head -n1)
+        if [ -z "$STAGING_TAG" ]; then
+          # If no main- prefix, try any tag
+          STAGING_TAG=$(echo "$STAGING_TAGS" | head -n1)
+        fi
+        
+        if [ -n "$STAGING_TAG" ]; then
+          echo "✅ Found staging tag: $STAGING_TAG"
+          echo "staging-tag=$STAGING_TAG" >> $GITHUB_OUTPUT
+        else
+          echo "❌ ERROR: Found tags with SHA but none are valid"
+          echo "Found tags: $STAGING_TAGS"
+          exit 1
+        fi
+      else
+        echo ""
+        echo "❌ ERROR: No staging image found with SHA pattern: ${SHORT_SHA}"
+        echo ""
+        echo "💡 This service may not have been built yet in this release cycle."
+        echo ""
+        echo "📋 Available tags in staging repository (last 20):"
+        ALL_TAGS=$(aws ecr describe-images \
+          --repository-name "${{ inputs.ecr_repository_source }}" \
+          --region "${{ inputs.aws_region }}" \
+          --query "imageDetails[].imageTags[]" \
+          --output text 2>/dev/null | tr '\t' '\n' | grep -v "^$" | sort -r | head -20)
+        
+        if [ -n "$ALL_TAGS" ]; then
+          echo "$ALL_TAGS"
+          echo ""
+          echo "💡 POSSIBLE SOLUTIONS:"
+          echo "- Ensure the service has been built in staging on this commit"
+          echo "- Verify the commit SHA exists: ${{ inputs.commit_sha }}"
+          echo "- Check if staging workflow ran for this commit"
+          echo "- Ensure staging builds use the pattern: main-{sha}-{date}"
+          echo "- Check if the staging image was built successfully"
+        else
+          echo "No tags found in repository"
+          echo ""
+          echo "💡 POSSIBLE SOLUTIONS:"
+          echo "- Repository is empty - no images have been pushed"
+          echo "- Check staging workflow logs for build failures"
+          echo "- Verify staging workflow is configured correctly"
+        fi
+        
+        echo ""
+        echo "🔗 NEXT STEPS:"
+        echo "1. Go to staging workflow runs and verify image was built"
+        echo "2. Check ECR console for available images"
+        echo "3. Ensure commit ${{ inputs.commit_sha }} triggered staging build"
+        exit 1
+      fi
+
+  # Pull the staging image from non-production ECR if found     
+  - name: Pull Staging Image
+    id: docker_pull
+    shell: bash
+    run: |
+      STAGING_TAG="${{ steps.find_staging.outputs.staging-tag }}"
+      STAGING_IMAGE="${{ steps.authen-aws-nonprod.outputs.ecr-registry }}/${{ inputs.ecr_repository_source }}:${STAGING_TAG}"
+
+      echo "Pulling staging image: $STAGING_IMAGE"
+
+      if docker pull "$STAGING_IMAGE"; then
+        echo "Successfully pulled staging image"
+        echo "staging-image=$STAGING_IMAGE" >> $GITHUB_OUTPUT
+      else
+        echo "Error: Failed to pull staging image: $STAGING_IMAGE"
+        exit 1
+      fi
+
+  # login aws prod to get ecr registry 
+  - name: Authenticate AWS Production
+    id: authen-aws-prod
+    uses: pi-financial/github-action-workflow/authen-aws@main
+    with:
+      aws_access_key_id: ${{ inputs.aws_access_key_id }}
+      aws_secret_access_key: ${{ inputs.aws_secret_access_key }}
+      aws_region: ${{ inputs.aws_region }}
+      role_to_assume: ${{ inputs.role_to_assume_target }}
+
+  # Generate metadata for production images
+  - name: Docker MetaData Production (Generate Prod Tag)
+    id: metadata-prod
+    uses: pi-financial/github-action-workflow/docker/metadata@main
+    with:
+      ecr_registry: ${{ steps.authen-aws-prod.outputs.ecr-registry }}
+      ecr_repository: ${{ inputs.ecr_repository_target }}
+
+  # Re-tag image name and push to production ECR
+  - name: Tag and Push to Production
+    id: docker_push
+    shell: bash
+    run: |
+      STAGING_IMAGE="${{ steps.docker_pull.outputs.staging-image }}"
+      PROD_IMAGE="${{ steps.metadata-prod.outputs.tags }}"
+
+      echo "Tagging for production:"
+      echo "  Source: $STAGING_IMAGE"
+      echo "  Target: $PROD_IMAGE"
+
+      # Tag for production
+      if docker tag "$STAGING_IMAGE" "$PROD_IMAGE"; then
+        echo "Successfully tagged for production"
+      else
+        echo "Error: Failed to tag for production"
+        exit 1
+      fi
+
+      # Push to production
+      echo "Pushing to production ECR: $PROD_IMAGE"
+      if docker push "$PROD_IMAGE"; then
+        echo "Successfully pushed to production"
+        echo "prod-image=$PROD_IMAGE" >> $GITHUB_OUTPUT
+      else
+        echo "Error: Failed to push to production"
+        exit 1
+      fi
+
+  # Update gitops
+  - name: checkout for infra repo
+    uses: pi-financial/github-action-workflow/argocd/checkout@main
+    id: argocd-checkout
+    with:
+      infra: ${{ inputs.infra }}
+      token_image_update: ${{ inputs.token_image_update }}
+      ref: ${{ inputs.target_ref }}
+      infra_gitops: ${{ inputs.infra_gitops }}
+
+  - name: tag-and-deploy
+    uses: pi-financial/github-action-workflow/argocd/taganddeploy@main
+    id: tag-and-deploy
+    with:
+      infra: ${{ inputs.infra }}
+      target_ref: ${{ inputs.target_ref }}
+      repository: ${{ inputs.repository }}
+      infra_repo_config: ${{ inputs.infra_repo_config }}
+      tags: ${{ steps.metadata-prod.outputs.tags }}
+      labels: ${{ steps.metadata-prod.outputs.labels }}
+      version: ${{ steps.metadata-prod.outputs.version }}
+      multiple_application: ${{ inputs.tfex_enable }}
+      cronjob_enabled: ${{ inputs.cronjob_enabled }}
+      multiple_deployment: ${{ inputs.multiple_deployment }}
+
+  - name: commit
+    uses: pi-financial/github-action-workflow/argocd/commit@main
+    id: commit-tag
+    with:
+      target_ref: ${{ inputs.target_ref }}
+      repository: ${{ inputs.repository }}
+      version: ${{ steps.metadata-prod.outputs.version }}
+
+  # print summary
+  - name: Summary
+    shell: bash
+    run: |
+      echo "## 🚀 Image Promotion Summary" >> $GITHUB_STEP_SUMMARY
+      echo "" >> $GITHUB_STEP_SUMMARY
+      echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+      echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+      echo "| Staging Image | \`${{ steps.docker_pull.outputs.staging-image }}\` |" >> $GITHUB_STEP_SUMMARY
+      echo "| Production Image | \`${{ steps.docker_push.outputs.prod-image }}\` |" >> $GITHUB_STEP_SUMMARY
+      echo "| Commit SHA | \`${{ inputs.commit_sha }}\` |" >> $GITHUB_STEP_SUMMARY
+      echo "" >> $GITHUB_STEP_SUMMARY
+      echo "✅ Image successfully promoted from staging to production!" >> $GITHUB_STEP_SUMMARY

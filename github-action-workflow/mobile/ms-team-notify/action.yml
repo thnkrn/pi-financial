@@ -1,0 +1,104 @@
+name: "Notify to MS Team channel"
+description: "Send messages to specific MS Team channels"
+inputs:
+  webhook-url:
+    description: "MS Team Incoming Webhook URL"
+    required: true
+  title:
+    description: "Message title"
+    required: true
+  content:
+    description: "Content of the message"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get subscribers
+      shell: bash
+      run: |
+        # Path to the CSV file
+        csv_file="pi_qa_notification_list.csv"
+
+        # If the CSV file is missing, end the script silently with an empty output
+        if [ ! -f "$csv_file" ]; then
+          echo "Not found: pi_qa_notification_list.csv"
+          exit 0
+        fi
+
+        # Initialize the JSON structure
+        mentions="{\"type\": \"TextBlock\", \"text\": \""
+        json_output="\"msteams\": {\"entities\": ["
+
+        # Flag to check if we added any valid records
+        records_added=false
+
+        # Read the CSV file line by line
+        while IFS=, read -r name email display_name; do
+          # Skip the header row
+          if [ "$name" == "name" ]; then
+            continue
+          fi
+
+          # Ensure all required fields are present
+          if [ -n "$name" ] && [ -n "$email" ] && [ -n "$display_name" ]; then
+            # Append each valid record to JSON
+            mentions+="<at>$name</at> | "
+            json_output+="{\"type\": \"mention\", \"text\": \"<at>$name</at>\", \"mentioned\": {\"id\": \"$email\", \"name\": \"$display_name\"}},"
+            records_added=true
+          fi
+        done < "$csv_file"
+
+        # Finalize the JSON output
+        if [ "$records_added" = true ]; then
+          # Remove the trailing comma and close the JSON structure if records were added
+          mentions=",${mentions%,}\"}"
+          json_output=",${json_output%,}]}"
+        else
+          # Output an empty string if no valid records were found
+          mentions=""
+          json_output=""
+        fi
+
+        # Print the JSON output
+        echo "subscribers=$json_output" >> $GITHUB_ENV
+        echo "mention_tags=$mentions" >> $GITHUB_ENV
+
+    - name: Set up env
+      shell: bash
+      run: |
+        message="Workflow run from [GitHub](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+        echo "workflow_ref=$message" >> $GITHUB_ENV
+    - name: Send Http request
+      shell: bash
+      run: |
+        curl --request POST \
+          --url '${{ inputs.webhook-url }}' \
+          --header 'Accept: application/json' \
+          --header 'Content-Type: application/json' \
+          --data '{
+           "type": "message",
+           "attachments": [
+               {
+               "contentType": "application/vnd.microsoft.card.adaptive",
+               "content": {
+                   "type": "AdaptiveCard",
+                   "body": [
+                        {
+                            "type": "TextBlock",
+                            "size": "Large",
+                            "weight": "Bolder",
+                            "text": "${{ inputs.title }}"
+                        },
+                        ${{ inputs.content }},
+                        {
+                            "type": "TextBlock",
+                            "size": "Small",
+                            "text": "${{ env.workflow_ref }}"
+                        }${{ env.mention_tags }}
+                   ],
+                   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+                   "version": "1.0"${{ env.subscribers }}
+               }
+           }]
+        }'

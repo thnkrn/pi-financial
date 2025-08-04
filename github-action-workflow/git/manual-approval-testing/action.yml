@@ -1,0 +1,28 @@
+name: Checkout to new branch and push to remote
+description: Checkout to new branch and push to remote
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+    default: ${{ github.repository }}
+  version: 
+    description: branch, tag or commit SHA to merge into base code 
+  token_image_update:
+    description: Github Access Token needed for the checkout of other repositories
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: trstringer/manual-approval@v1
+      with:
+        secret: ${{ inputs.token_image_update }}
+        approvers: Deployment-Approvers
+        minimum-approvals: 1
+        issue-title: "Deploying ${{ inputs.repository }} . ${{ inputs.version }}"
+        issue-body: "Please approve or deny the deployment of version ${{ inputs.version }}."
+        exclude-workflow-initiator-as-approver: false
+        additional-approved-words: ''
+        additional-denied-words: ''
+

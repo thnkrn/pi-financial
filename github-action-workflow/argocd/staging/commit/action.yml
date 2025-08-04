@@ -1,0 +1,32 @@
+name: Argocd tag and deploy
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+    default: ${{ github.repository }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  version:
+    description: branch, tag or commit SHA to merge into base code
+
+runs:
+  using: composite
+  steps:
+  - uses: EndBug/add-and-commit@v9.1.4
+    with:
+      message: 'Automatic CI run for ${{ inputs.repository }} . ${{ inputs.version }}'
+      add: '.'
+      cwd: './config/'
+      fetch: true
+      pull: '--rebase --autostash'
+
+  - uses: EndBug/add-and-commit@v9.1.4
+    with:
+      message: 'Automatic CI run for ${{ inputs.repository }} . ${{ inputs.version }}'
+      add: '.'
+      cwd: './config_gitops/'
+      fetch: true
+      pull: '--rebase --autostash'

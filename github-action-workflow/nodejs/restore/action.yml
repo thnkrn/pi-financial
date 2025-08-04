@@ -1,0 +1,36 @@
+name: nodejs Restore
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  npm_read_token:
+    description: npm read token
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: pass npm token
+      shell: bash
+      run: echo "npm_read_token=${{inputs.npm_read_token}}" >> $GITHUB_ENV
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v4
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: Install Dependencies
+      working-directory: ./
+      shell: bash
+      run: NODE_ENV=production && yarn install && yarn add --dev jest@29.7.0

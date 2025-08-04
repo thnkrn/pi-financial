@@ -1,0 +1,107 @@
+name: Argocd tag and deploy
+
+inputs:
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  infra_repo_config:
+    description: the config value folder that will change
+    required: true
+  ecr_repository_create:
+    description: the config value folder that will change
+    required: false
+  ecr_repository_source:
+    description: the config value folder that will change
+    required: false
+  project_name:
+    description: the config value folder that will change
+    required: false
+
+
+
+
+    
+
+runs:
+  using: composite
+  steps:
+      - name: tree to see
+        shell: bash
+        run: tree
+
+      - name: Create destination directory
+        shell: bash
+        run: |
+            mkdir -p config1/config/${{ inputs.service_name }}
+            mkdir -p config1/apps/applications/${{ inputs.service_name }}
+            mkdir -p config2/platform/eks-1-prod/projects/app-projects/
+
+
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+          rsync -av --ignore-existing config/production/example/* config1/config/${{ inputs.service_name }}/
+           
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+          rsync -av --ignore-existing apps/production/* config1/apps/applications/${{ inputs.service_name }}/
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+          rsync -av --ignore-existing project/production/example/* config2/platform/eks-1-prod/projects/app-projects/
+
+      - name: tree to see
+        shell: bash
+        run: tree
+
+      - name: Update YAML configurations
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+              yq -i '.helm-generic-chart.nameOverride = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+              yq -i '.name = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/Chart.yaml' &&
+              yq -i '.helm-generic-chart.ingress.rules[0].http.paths[0].backend.service.name = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.ingress.rules[0].host[0] = "${{ inputs.service_name }}.prod.pi.internal"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create }}"' 'config1/config/${{ inputs.service_name }}/values.yaml'
+      - name: Update YAML configurations for project
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+              yq -i '.metadata.name = "${{ inputs.project_name }}"' 'config2/platform/eks-1-prod/projects/app-projects/appproject.yaml' &&
+              yq -i '(.spec.roles[].policies[] |= sub("proj:platform", "proj:${{ inputs.project_name }}"))' 'config2/platform/eks-1-prod/projects/app-projects/appproject.yaml' &&
+              yq -i '(.spec.roles[].policies[] |= sub("platform/", "proj:${{ inputs.project_name }}/"))' 'config2/platform/eks-1-prod/projects/app-projects/appproject.yaml' &&
+              yq -i '(.spec.roles[].policies[] |= sub("proj:examplefordevapplications", "proj:${{ inputs.project_name }}"))' 'config2/platform/eks-1-prod/projects/app-projects/appproject.yaml'
+     
+     
+      - name: Update YAML configurations for apps/applications
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.metadata.name = "${{ inputs.service_name }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml" &&
+            yq -i '.spec.source.path = "config/${{ inputs.service_name }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml" &&
+            yq -i '.spec.project = "${{ inputs.project_name }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml" &&
+            yq -i '.spec.destination.namespace = "${{ inputs.project_name }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml"
+      
+      - name: Update YAML configurations for apps/applications appofapps.yaml
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.metadata.name = "${{ inputs.service_name }}-app"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" &&
+            yq -i '.spec.source.path = "apps/applications/${{ inputs.service_name }}/applications/service"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" &&
+            yq -i '.spec.project = "${{ inputs.project_name }}"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" &&
+            yq -i '.spec.destination.namespace = "${{ inputs.project_name }}"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml"
+
+      - name: change the name o f the app.yaml for applicationset folder in platform
+        shell: bash
+        run: | 
+          mv "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" ""config1/apps/applications/${{ inputs.service_name }}-appofapps.yaml""
+
+      - name: change the name of the app.yaml for applicationset folder in platform
+        shell: bash
+        run: | 
+          mv "config2/platform/eks-1-prod/projects/app-projects/appproject.yaml" "config2/platform/eks-1-prod/projects/app-projects/${{ inputs.service_name }}-app-project.yaml"

@@ -1,0 +1,14 @@
+name: golang build
+
+inputs:
+  application_name:
+    description: name of application
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Build
+      shell: bash
+      run: |
+        go build -o ./build/${{ inputs.application_name }} -v ./cmd

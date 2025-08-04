@@ -1,0 +1,553 @@
+name: Argocd tag and deploy
+
+inputs:
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  infra_repo_config:
+    description: the config value folder that will change
+    required: true
+  version:
+    description: the config value folder that will change
+    required: true
+  labels:
+    description: the config value folder that will change
+    required: true
+  tags:
+    description: the config value folder that will change
+    required: true
+  ecr_repository_create_worker:
+    description: the config value folder that will change
+    required: false
+  ecr_repository_create_api:
+    description: the config value folder that will change
+    required: false
+  ecr_repository_source:
+    description: the config value folder that will change
+    required: false
+  applicationset_repo:
+    description: the config value folder that will change
+    required: false
+  copy_workflow_to_target_repo:
+    description: the config value folder that will change
+    required: false
+  workflow_worker_or_api:
+    description: the config value folder that will change
+    required: false
+  workflow_application_name:
+    description: the config value folder that will change
+    required: false
+  workflow_datadog_service_name:
+    description: the config value folder that will change
+    required: false
+  workflow_code_language:
+    description: the config value folder that will change
+    required: false
+  api_service_name:
+    description: the config value folder that will change
+    required: false
+  worker_service_name:
+    description: the config value folder that will change
+    required: false
+  enable_worker:
+    description: the config value folder that will change
+    required: true
+
+
+
+
+runs:
+  using: composite
+  steps:
+      - name: tree to see
+        shell: bash
+        run: tree
+
+      - name: Create destination directory
+        shell: bash
+        run: |
+            mkdir -p config1/config/${{ inputs.api_service_name }}
+            mkdir -p config1/apps/${{ inputs.api_service_name }}
+            mkdir -p config1/pr/${{ inputs.api_service_name }}/example
+            mkdir -p config2/platform/eks-1-nonprod/applicationset/applicationset/
+            mkdir -p config2/platform/eks-1-nonprod/projects/app-projects/
+            mkdir -p config3/.github/workflows
+
+      - name: Create destination directory
+        shell: bash
+        if: inputs.enable_worker == 'true'
+        run: |
+            mkdir -p config1/config/${{ inputs.worker_service_name }}
+            mkdir -p config1/apps/${{ inputs.worker_service_name }}
+            mkdir -p config1/pr/${{ inputs.worker_service_name }}/example
+
+      # - name: move staging config folder into servicename folder
+      #   uses: mikefarah/yq@master
+      #   with:
+      #     cmd: mv config/example/* config1/config/${{ inputs.service_name }}/
+
+      # - name: move staging config folder into servicename folder
+      #   uses: mikefarah/yq@master
+      #   with:
+      #     cmd: mv apps/example/* config1/apps/${{ inputs.service_name }}/
+
+      # - name: move PR folder into servicename folder
+      #   uses: mikefarah/yq@master
+      #   with:
+      #     cmd: mv pr/servicename/* config1/pr/${{ inputs.service_name }}/
+
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+           rsync -av --ignore-existing config/example/* config1/config/${{ inputs.api_service_name }}/
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        if: inputs.enable_worker == 'true'
+        run: |
+           rsync -av --ignore-existing config/example/* config1/config/${{ inputs.worker_service_name }}/
+           
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+          rsync -av --ignore-existing apps/* config1/apps/applications/${{ inputs.api_service_name }}/
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        if: inputs.enable_worker == 'true'
+        run: |
+          rsync -av --ignore-existing apps/* config1/apps/applications/${{ inputs.worker_service_name }}/
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+          rsync -av --ignore-existing pr/servicename/* config1/pr/${{ inputs.service_name }}/
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        if: inputs.enable_worker == 'true'
+        run: |
+          rsync -av --ignore-existing pr/servicename/* config1/pr/${{ inputs.worker_service_name }}/
+          
+      - name: moving the application example into the checkout for the platform repo
+        shell: bash
+        run: |
+           rsync -av --ignore-existing applicationset/example/* config2/platform/eks-1-nonprod/applicationset/applicationset/
+
+
+      - name: move staging config folder into servicename folder
+        shell: bash
+        run: |
+          rsync -av --ignore-existing project/example/* config2/platform/eks-1-nonprod/projects/app-projects/
+
+
+      - name: moving the workflows files into the correct spot
+        shell: bash
+        run: |
+           rsync -av --ignore-existing workflows/* config3/.github/workflows
+
+      - name: tree to see
+        shell: bash
+        run: tree
+
+      - name: Update YAML configurations
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+           yq -i '.helm-generic-chart.nameOverride = "${{ inputs.api_service_name }}"' 'config1/config/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.api_service_name }}"' 'config1/config/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.api_service_name }}"' 'config1/pr/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.nameOverride = "${{ inputs.api_service_name }}"' 'config1/pr/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.name = "${{ inputs.api_service_name }}"' 'config1/pr/${{ inputs.api_service_name }}/Chart.yaml' &&
+              yq -i '.name = "${{ inputs.api_service_name }}"' 'config1/config/${{ inputs.api_service_name }}/Chart.yaml' &&
+              yq -i '.helm-generic-chart.ingress.rules[0].http.paths[0].backend.service.name = "${{ inputs.api_service_name }}"' 'config1/pr/${{ inputs.api_service_name }}/example/values.yaml' &&
+              yq -i '.helm-generic-chart.ingress.rules[0].http.paths[0].backend.service.name = "${{ inputs.api_service_name }}"' 'config1/config/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.ingress.rules[0].host[0] = "${{ inputs.api_service_name }}-pr.nonprod.pi.internal"' 'config1/pr/${{ inputs.api_service_name }}/example/values.yaml' &&
+              yq -i '.helm-generic-chart.ingress.rules[0].host[0] = "${{ inputs.api_service_name }}.nonprod.pi.internal"' 'config1/config/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create_api }}"' 'config1/config/${{ inputs.api_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create_api }}"' 'config1/pr/${{ inputs.api_service_name }}/example/values.yaml'
+              yq -i '.metadata.name = "${{ inputs.api_service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml' &&
+              yq -i '.spec.template.metadata.name = "api-pr-{{number}}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml' &&
+              yq -i '.spec.template.spec.destination.namespace = "${{ inputs.service_name }}-pr"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml'
+              yq -i '.spec.template.spec.source.path = "pr/${{ inputs.api_service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml'
+              yq -i '.spec.template.spec.project = "${{ inputs.service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml'
+              yq -i '.spec.generators[0].pullRequest.github.repo = "${{ inputs.applicationset_repo }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml' 
+      
+      
+      - name: Update YAML configurations for worker
+        uses: mikefarah/yq@master
+        if: inputs.enable_worker == 'true'
+        with:
+          cmd: |
+           yq -i '.helm-generic-chart.nameOverride = "${{ inputs.worker_service_name }}"' 'config1/config/${{ inputs.worker_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.worker_service_name }}"' 'config1/config/${{ inputs.worker_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.worker_service_name }}"' 'config1/pr/${{ inputs.worker_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.nameOverride = "${{ inputs.worker_service_name }}"' 'config1/pr/${{ inputs.worker_service_name }}/values.yaml' &&
+              yq -i '.name = "${{ inputs.worker_service_name }}"' 'config1/pr/${{ inputs.worker_service_name }}/Chart.yaml' &&
+              yq -i '.name = "${{ inputs.worker_service_name }}"' 'config1/config/${{ inputs.worker_service_name }}/Chart.yaml' &&
+              yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create_worker }}"' 'config1/config/${{ inputs.worker_service_name }}/values.yaml' &&
+              yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create_worker }}"' 'config1/pr/${{ inputs.worker_service_name }}/example/values.yaml'
+              yq -i '.metadata.name = "${{ inputs.worker_service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml' &&
+              yq -i '.spec.template.metadata.name = "worker-pr-{{number}}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml' &&
+              yq -i '.spec.template.spec.destination.namespace = "${{ inputs.service_name }}-pr"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml'
+              yq -i '.spec.template.spec.source.path = "pr/${{ inputs.worker_service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml'
+              yq -i '.spec.template.spec.project = "${{ inputs.service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml'
+              yq -i '.spec.generators[0].pullRequest.github.repo = "${{ inputs.applicationset_repo }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml'  
+      
+      - name: Update YAML configurations for project
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+              yq -i '.metadata.name = "${{ inputs.applicationset_repo }}"' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml' &&
+              yq -i '(.spec.roles[].policies[] |= sub("proj:platform", "proj:${{ inputs.applicationset_repo }}"))' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml' &&
+              yq -i '(.spec.roles[].policies[] |= sub("platform/", "proj:${{ inputs.applicationset_repo }}/"))' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml' &&
+              yq -i '(.spec.roles[].policies[] |= sub("proj:examplefordevapplications", "proj:${{ inputs.applicationset_repo }}"))' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml'
+     
+     
+      - name: Update YAML configurations for apps/applications
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.metadata.name = "${{ inputs.api_service_name }}"' "config1/apps/applications/${{ inputs.api_service_name }}/applications/service/app.yaml" &&
+            yq -i '.spec.source.path = "config/${{ inputs.api_service_name }}"' "config1/apps/applications/${{ inputs.api_service_name }}/applications/service/app.yaml" &&
+            yq -i '.spec.project = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.api_service_name }}/applications/service/app.yaml" &&
+            yq -i '.spec.destination.namespace = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.api_service_name }}/applications/service/app.yaml"
+      
+      
+      ## here
+      - name: Update YAML configurations for apps/applications appofapps.yaml
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.metadata.name = "${{ inputs.api_service_name }}-app"' "config1/apps/applications/${{ inputs.api_service_name }}/appofapps.yaml" &&
+            yq -i '.spec.source.path = "apps/applications/${{ inputs.api_service_name }}/applications/service"' "config1/apps/applications/${{ inputs.api_service_name }}/appofapps.yaml" &&
+            yq -i '.spec.project = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.api_service_name }}/appofapps.yaml" &&
+            yq -i '.spec.destination.namespace = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.api_service_name }}/appofapps.yaml"
+     
+      - name: Update YAML configurations for apps/applications appofapps.yaml
+        if: inputs.enable_worker == 'true'
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.metadata.name = "${{ inputs.worker_service_name }}-app"' "config1/apps/applications/${{ inputs.worker_service_name }}/appofapps-2.yaml" &&
+            yq -i '.spec.source.path = "apps/applications/${{ inputs.worker_service_name }}/applications/service"' "config1/apps/applications/${{ inputs.worker_service_name }}/appofapps-2.yaml" &&
+            yq -i '.spec.project = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.worker_service_name }}/appofapps-2.yaml" &&
+            yq -i '.spec.destination.namespace = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.worker_service_name }}/appofapps-2.yaml"
+
+
+      - name: change the name o f the app.yaml for applicationset folder in platform
+        shell: bash
+        run: | 
+          mv "config1/apps/applications/${{ inputs.api_service_name }}/appofapps.yaml" ""config1/apps/applications/${{ inputs.api_service_name }}-appofapps.yaml""
+
+      - name: change the name o f the app.yaml for applicationset folder in platform
+        shell: bash
+        if: inputs.enable_worker == 'true'
+        run: | 
+          mv "config1/apps/applications/${{ inputs.worker_service_name }}/appofapps-2.yaml" ""config1/apps/applications/${{ inputs.worker_service_name }}-appofapps.yaml""
+
+      - name: change the name of the app.yaml for applicationset folder in platform
+        shell: bash
+        run: | 
+          mv "config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml" "config2/platform/eks-1-nonprod/applicationset/applicationset/${{ inputs.api_service_name }}-applicationset.yaml"
+     
+      - name: change the name of the app.yaml for applicationset folder in platform
+        shell: bash
+        if: inputs.enable_worker == 'true'
+        run: | 
+          mv "config2/platform/eks-1-nonprod/applicationset/applicationset/app-2.yaml" "config2/platform/eks-1-nonprod/applicationset/applicationset/${{ inputs.worker_service_name }}-applicationset.yaml"
+
+      
+      - name: change the name of the app.yaml for applicationset folder in platform
+        shell: bash
+        run: | 
+          mv "config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml" "config2/platform/eks-1-nonprod/projects/app-projects/${{ inputs.service_name }}-app-project.yaml"
+      
+      
+      
+      - name: Update YAML configurations for workflows 1st workflow
+        if: inputs.copy_workflow_to_target_repo == 'true' || inputs.enable_worker == 'false'
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.jobs.pull_request_api.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.pull_request_api.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.Api/Dockerfile" |
+                  .jobs.pull_request_api.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+                  .jobs.pull_request_api.with.code_language = "${{ inputs.workflow_code_language }}" |
+                  .jobs.pull_request_api.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}.Api" |
+                  .jobs.pull_request_api.name = "Pull Request ${{ inputs.api_service_name }}" |
+                  .jobs.pull_request_api.with.infra_repo_config = "${{ inputs.api_service_name }}"' "config3/.github/workflows/1-deploy-to-pr.yaml"
+
+
+      - name: Update YAML configurations for workflows 1st workflow
+        if: inputs.copy_workflow_to_target_repo == 'true' || inputs.enable_worker == 'true'
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.jobs.pull_request_worker.name = "Pull Request ${{ inputs.worker_service_name }}" |
+                  .jobs.pull_request_worker.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.pull_request_worker.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.Worker/Dockerfile" |
+                  .jobs.pull_request_worker.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+                  .jobs.pull_request_worker.with.code_language = "${{ inputs.workflow_code_language }}" |
+                  .jobs.pull_request_worker.with.infra_repo_config = "${{ inputs.worker_service_name }}" |
+                  .jobs.pull_request_worker.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}.Worker"' "config3/.github/workflows/1-deploy-to-pr.yaml"
+
+          
+      - name: Update YAML configurations for workflows staging environment 2-deploy-to-staging.yaml
+        if: inputs.copy_workflow_to_target_repo == 'true' || inputs.enable_worker == 'false'
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.jobs.deploy-to-staging-listener.name = "deploy-to-staging ${{ inputs.api_service_name }}" |
+                  .jobs.deploy-to-staging-listener.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-staging-listener.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.Api/Dockerfile" |
+                  .jobs.deploy-to-staging-listener.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-staging-listener.with.code_language = "${{ inputs.workflow_code_language }}" |
+                  .jobs.deploy-to-staging-listener.with.infra_repo_config = "${{ inputs.api_service_name }}" |
+                  .jobs.deploy-to-staging-listener.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-api"' "config3/.github/workflows/2-deploy-to-staging.yaml"
+      
+      
+      - name: Update YAML configurations for workflows staging environment 2-deploy-to-staging.yaml
+        if: inputs.copy_workflow_to_target_repo == 'true' || inputs.enable_worker == 'true'
+        uses: mikefarah/yq@master
+        with:
+          cmd: | 
+            yq -i '.jobs.deploy-to-staging-worker.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-staging-worker.name = "deploy-to-staging ${{ inputs.worker_service_name }}" |
+                  .jobs.deploy-to-staging-worker.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.Worker/Dockerfile" |
+                  .jobs.deploy-to-staging-worker.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-staging-worker.with.code_language = "${{ inputs.workflow_code_language }}" |
+                  .jobs.deploy-to-staging-worker.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-worker" |
+                  .jobs.deploy-to-staging-worker.with.infra_repo_config = "${{ inputs.worker_service_name }}"' "config3/.github/workflows/2-deploy-to-staging.yaml"
+
+
+      - name: Update YAML configurations for workflows production environment 3-deploy-to-production.yaml
+        if: inputs.copy_workflow_to_target_repo == 'true' || inputs.enable_worker == 'true'
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.jobs.bumping-github-version.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-production-worker.name = "deploy-to-production ${{ inputs.worker_service_name }}" |
+                  .jobs.deploy-to-production-worker.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-production-worker.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.Worker/Dockerfile" |
+                  .jobs.deploy-to-production-worker.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-production-worker.with.code_language = "${{ inputs.workflow_code_language }}" |
+                  .jobs.deploy-to-production-worker.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-worker" |
+                  .jobs.deploy-to-production-worker.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-worker"' "config3/.github/workflows/3-deploy-to-production.yaml"
+
+
+
+      - name: Update YAML configurations for workflows production environment 3-deploy-to-production.yaml
+        if: inputs.copy_workflow_to_target_repo == 'true' || inputs.enable_worker == 'false'
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
+            yq -i '.jobs.deploy-to-production-listener.name = "deploy-to-production ${{ inputs.api_service_name }}" |
+                  .jobs.deploy-to-production-listener.with.infra_repo_config = "${{ inputs.api_service_name }}" |
+                  .jobs.deploy-to-production-listener.with.application_name = "${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-production-listener.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.Api/Dockerfile" |
+                  .jobs.deploy-to-production-listener.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+                  .jobs.deploy-to-production-listener.with.code_language = "${{ inputs.workflow_code_language }}" |
+                  .jobs.deploy-to-production-listener.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-api"' "config3/.github/workflows/3-deploy-to-production.yaml"
+
+
+
+
+# runs:
+#   using: composite
+#   steps:
+#       - name: tree to see
+#         shell: bash
+#         run: tree
+
+#       - name: Create destination directory
+#         shell: bash
+#         run: |
+#             mkdir -p config1/config/${{ inputs.service_name }}
+#             mkdir -p config1/apps/${{ inputs.service_name }}
+#             mkdir -p config1/pr/${{ inputs.service_name }}/example
+#             mkdir -p config2/platform/eks-1-nonprod/applicationset/applicationset/
+#             mkdir -p config2/platform/eks-1-nonprod/projects/app-projects/
+#             mkdir -p config3/.github/workflows
+
+#       # - name: move staging config folder into servicename folder
+#       #   uses: mikefarah/yq@master
+#       #   with:
+#       #     cmd: mv config/example/* config1/config/${{ inputs.service_name }}/
+
+#       # - name: move staging config folder into servicename folder
+#       #   uses: mikefarah/yq@master
+#       #   with:
+#       #     cmd: mv apps/example/* config1/apps/${{ inputs.service_name }}/
+
+#       # - name: move PR folder into servicename folder
+#       #   uses: mikefarah/yq@master
+#       #   with:
+#       #     cmd: mv pr/servicename/* config1/pr/${{ inputs.service_name }}/
+
+
+#       - name: move staging config folder into servicename folder
+#         shell: bash
+#         run: |
+#            rsync -av --ignore-existing config/example/* config1/config/${{ inputs.service_name }}/
+           
+#       - name: move staging config folder into servicename folder
+#         shell: bash
+#         run: |
+#           rsync -av --ignore-existing apps/* config1/apps/applications/${{ inputs.service_name }}/
+
+#       - name: move staging config folder into servicename folder
+#         shell: bash
+#         run: |
+#           rsync -av --ignore-existing pr/servicename/* config1/pr/${{ inputs.service_name }}/
+
+#       - name: moving the application example into the checkout for the platform repo
+#         shell: bash
+#         run: |
+#            rsync -av --ignore-existing applicationset/example/* config2/platform/eks-1-nonprod/applicationset/applicationset/
+
+
+#       - name: move staging config folder into servicename folder
+#         shell: bash
+#         run: |
+#           rsync -av --ignore-existing project/example/* config2/platform/eks-1-nonprod/projects/app-projects/
+
+
+#       - name: moving the workflows files into the correct spot
+#         shell: bash
+#         run: |
+#            rsync -av --ignore-existing workflows/* config3/.github/workflows
+
+#       - name: tree to see
+#         shell: bash
+#         run: tree
+
+#       - name: Update YAML configurations
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#               yq -i '.helm-generic-chart.nameOverride = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.service_name }}"' 'config1/pr/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.helm-generic-chart.nameOverride = "${{ inputs.service_name }}"' 'config1/pr/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.name = "${{ inputs.service_name }}"' 'config1/pr/${{ inputs.service_name }}/Chart.yaml' &&
+#               yq -i '.name = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/Chart.yaml' &&
+#               yq -i '.helm-generic-chart.ingress.rules[0].http.paths[0].backend.service.name = "${{ inputs.service_name }}"' 'config1/pr/${{ inputs.service_name }}/example/values.yaml' &&
+#               yq -i '.helm-generic-chart.ingress.rules[0].http.paths[0].backend.service.name = "${{ inputs.service_name }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.helm-generic-chart.ingress.rules[0].host[0] = "${{ inputs.service_name }}.staging.nonprod.pi.internal"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create }}"' 'config1/config/${{ inputs.service_name }}/values.yaml' &&
+#               yq -i '.helm-generic-chart.image.repository = "${{inputs.ecr_repository_source}}/${{ inputs.ecr_repository_create }}"' 'config1/pr/${{ inputs.service_name }}/example/values.yaml'
+#               yq -i '.metadata.name = "${{ inputs.service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml' &&
+#               yq -i '.spec.template.metadata.name = "api-pr-{{number}}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml' &&
+#               yq -i '.spec.template.spec.destination.namespace = "${{ inputs.service_name }}-pr"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml'
+#               yq -i '.spec.template.spec.source.path = "pr/${{ inputs.service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml'
+#               yq -i '.spec.template.spec.project = "${{ inputs.service_name }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml'
+#               yq -i '.spec.generators[0].pullRequest.github.repo = "${{ inputs.applicationset_repo }}"' 'config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml' 
+
+#       - name: Update YAML configurations for project
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#               yq -i '.metadata.name = "${{ inputs.applicationset_repo }}"' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml' &&
+#               yq -i '(.spec.roles[].policies[] |= sub("proj:platform", "proj:${{ inputs.applicationset_repo }}"))' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml' &&
+#               yq -i '(.spec.roles[].policies[] |= sub("platform/", "proj:${{ inputs.applicationset_repo }}/"))' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml' &&
+#               yq -i '(.spec.roles[].policies[] |= sub("proj:examplefordevapplications", "proj:${{ inputs.applicationset_repo }}"))' 'config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml'
+     
+     
+#       - name: Update YAML configurations for apps/applications
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#             yq -i '.metadata.name = "${{ inputs.service_name }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml" &&
+#             yq -i '.spec.source.path = "config/${{ inputs.service_name }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml" &&
+#             yq -i '.spec.project = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml" &&
+#             yq -i '.spec.destination.namespace = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.service_name }}/applications/service/app.yaml"
+      
+#       - name: Update YAML configurations for apps/applications appofapps.yaml
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#             yq -i '.metadata.name = "${{ inputs.service_name }}-app"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" &&
+#             yq -i '.spec.source.path = "apps/applications/${{ inputs.service_name }}/applications/service"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" &&
+#             yq -i '.spec.project = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" &&
+#             yq -i '.spec.destination.namespace = "${{ inputs.applicationset_repo }}"' "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml"
+
+#       - name: change the name o f the app.yaml for applicationset folder in platform
+#         shell: bash
+#         run: | 
+#           mv "config1/apps/applications/${{ inputs.service_name }}/appofapps.yaml" ""config1/apps/applications/${{ inputs.service_name }}-appofapps.yaml""
+
+#       - name: change the name of the app.yaml for applicationset folder in platform
+#         shell: bash
+#         run: | 
+#           mv "config2/platform/eks-1-nonprod/applicationset/applicationset/app.yaml" "config2/platform/eks-1-nonprod/applicationset/applicationset/${{ inputs.service_name }}-applicationset.yaml"
+     
+#       - name: change the name of the app.yaml for applicationset folder in platform
+#         shell: bash
+#         run: | 
+#           mv "config2/platform/eks-1-nonprod/projects/app-projects/appproject.yaml" "config2/platform/eks-1-nonprod/projects/app-projects/${{ inputs.service_name }}-app-project.yaml"
+      
+#       - name: Update YAML configurations for workflows 1st workflow
+#         if: inputs.copy_workflow_to_target_repo == 'true'
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#             yq -i '.jobs.pull_request_api.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.pull_request_api.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.${{ inputs.workflow_worker_or_api }}/Dockerfile" |
+#                   .jobs.pull_request_api.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+#                   .jobs.pull_request_api.with.code_language = "${{ inputs.workflow_code_language }}" |
+#                   .jobs.pull_request_api.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-api" |
+#                   .jobs.pull_request_api.name = "Pull Request ${{ inputs.workflow_datadog_service_name }}-api" |
+#                   .jobs.pull_request_api.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-api" |
+#                   .jobs.pull_request_worker.name = "Pull Request ${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.pull_request_worker.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.pull_request_worker.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.${{ inputs.workflow_worker_or_api }}/Dockerfile" |
+#                   .jobs.pull_request_worker.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+#                   .jobs.pull_request_worker.with.code_language = "${{ inputs.workflow_code_language }}" |
+#                   .jobs.pull_request_worker.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.pull_request_worker.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-worker"' "config3/.github/workflows/1-deploy-to-pr.yaml"
+
+          
+#       - name: Update YAML configurations for workflows staging environment 2-deploy-to-staging.yaml
+#         if: inputs.copy_workflow_to_target_repo == 'true'
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#             yq -i '.jobs.deploy-to-staging-worker.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-staging-worker.name = "deploy-to-staging ${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.deploy-to-staging-worker.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.${{ inputs.workflow_worker_or_api }}/Dockerfile" |
+#                   .jobs.deploy-to-staging-worker.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-staging-worker.with.code_language = "${{ inputs.workflow_code_language }}" |
+#                   .jobs.deploy-to-staging-worker.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.deploy-to-staging-worker.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.deploy-to-staging-listener.name = "deploy-to-staging ${{ inputs.workflow_datadog_service_name }} -api" |
+#                   .jobs.deploy-to-staging-listener.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-staging-listener.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.${{ inputs.workflow_worker_or_api }}/Dockerfile" |
+#                   .jobs.deploy-to-staging-listener.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-staging-listener.with.code_language = "${{ inputs.workflow_code_language }}" |
+#                   .jobs.deploy-to-staging-listener.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-api" |
+#                   .jobs.deploy-to-staging-listener.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-api"' "config3/.github/workflows/2-deploy-to-staging.yaml"
+
+
+#       - name: Update YAML configurations for workflows production environment 3-deploy-to-production.yaml
+#         if: inputs.copy_workflow_to_target_repo == 'true'
+#         uses: mikefarah/yq@master
+#         with:
+#           cmd: |
+#             yq -i '.jobs.bumping-github-version.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-production-worker.name = "deploy-to-production ${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.deploy-to-production-worker.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-production-worker.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.${{ inputs.workflow_worker_or_api }}/Dockerfile" |
+#                   .jobs.deploy-to-production-worker.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-production-worker.with.code_language = "${{ inputs.workflow_code_language }}" |
+#                   .jobs.deploy-to-production-worker.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.deploy-to-production-worker.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-worker" |
+#                   .jobs.deploy-to-production-listener.name = "deploy-to-production ${{ inputs.workflow_datadog_service_name }}-api" |
+#                   .jobs.deploy-to-production-listener.with.infra_repo_config = "${{ inputs.workflow_datadog_service_name }}-api" |
+#                   .jobs.deploy-to-production-listener.with.application_name = "${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-production-listener.with.docker_file_path = "src/${{ inputs.workflow_application_name }}/${{ inputs.workflow_application_name }}.${{ inputs.workflow_worker_or_api }}/Dockerfile" |
+#                   .jobs.deploy-to-production-listener.with.docker_context = "src/${{ inputs.workflow_application_name }}" |
+#                   .jobs.deploy-to-production-listener.with.code_language = "${{ inputs.workflow_code_language }}" |
+#                   .jobs.deploy-to-production-listener.with.datadog_apm_name = "${{ inputs.workflow_datadog_service_name }}-api"' "config3/.github/workflows/3-deploy-to-production.yaml"

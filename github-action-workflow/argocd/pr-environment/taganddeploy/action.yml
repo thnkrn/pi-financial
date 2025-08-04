@@ -1,0 +1,480 @@
+name: Argocd tag and deploy
+
+inputs:
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  infra_repo_config:
+    description: the config value folder that will change
+    required: true
+  version:
+    description: the config value folder that will change
+    required: true
+  labels:
+    description: the config value folder that will change
+    required: true
+  tags:
+    description: the config value folder that will change
+    required: true
+  application_name:
+    description: the config value folder that will change
+    required: true
+  mass_transit_enabled:
+    description: will change the mass transit endpoint env to branch
+    required: false
+  kafka_enabled:
+    description: will change the kafka group ID env to branch
+    required: false
+  external_secrets_enabled:
+    description: will not change the name and envfrom for external secrets
+    required: false
+  nextjs_enabled:
+    description: if you are using nextjs enable this
+    required: false
+  nextjs_namespace:
+    description: it will be part of the ENV that will be added but I have no way to automate it
+    required: false
+  datadog_apm_name:
+    description: This will be the name that is set inside of APM Datadog
+    required: true
+  cors_origins_enabled:
+    description: want to use nginx ingress cors?
+    required: false
+  cors_origins:
+    description: Comma-separated list of URLs
+    required: false
+  cors_methods:
+    description: Comma-separated list of URLs
+    required: false
+  cors_headers:
+    description: Comma-separated list of URLs
+    required: false
+  enable_certificate:
+    description: will change the certificate dynamically
+    required: false
+  mass_transit_prefix:
+    description: the prefix before that will be used for masstransit $prefix-pr-$prnumber
+    required: false
+
+runs:
+  using: composite
+  steps:
+  # - name: Check 1
+  #   shell: bash
+  #   run: |
+  #     echo ${{github.base_ref}}
+  #     echo ${{github.event.pull_request.number}}
+  #     echo ${{github.head_ref}}
+  #     echo ${{github.sha}}
+
+  - name: Copy the Readmes
+    shell: bash
+    run: |
+      mkdir -p 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}'
+      cp "config/pr/${{ inputs.infra_repo_config }}/example/values.yaml" "config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}"
+
+  - name: Set up environment variables
+    run: |
+      echo "INPUT_INFRA_REPO_CONFIG=${{ inputs.infra_repo_config }}" >> $GITHUB_ENV
+    shell: bash
+
+  - name: Set up environment variables for service
+    run: |
+      echo "SERVICE_NAME=${{inputs.datadog_apm_name}}" >> $GITHUB_ENV 
+    shell: bash
+
+  # - name: check 2
+  #   shell: bash
+  #   run: |
+  #     tree -D    
+
+  - name: Change Image Tag for tags
+    id: change-tag-main
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i '.helm-generic-chart.image.tag = "${{ inputs.version }}"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Change ingress Tag for tags
+    id: change-ingress-main
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i  '.helm-generic-chart.ingress.rules[0].host = "${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Convert uppercase to lowercase and replace any / with -
+    shell: bash
+    run: |
+      echo "REF=$(echo '${{ github.head_ref }}-${{ github.event.pull_request.number }}' | tr '[:upper:]/' '[:lower:]-')" >> $GITHUB_ENV
+      echo "NAMEREF=$(echo '${{ github.head_ref }}-${{ github.event.pull_request.number }}' | tr '[:upper:]_/' '[:lower:]-')" >> $GITHUB_ENV
+
+  - name: Prepare NGINX CORS Configuration
+    id: prep-cors
+    if: inputs.cors_origins_enabled == 'true'
+    shell: bash
+    run: |
+      cors_origins="${{ inputs.cors_origins }}"
+      nginx_config="set \$cors_origin \\\"\\\";\\n"
+      IFS=',' read -r -a cors_origins_array <<< "$cors_origins"
+      for origin in "${cors_origins_array[@]}"
+      do
+        nginx_config+="if (\$http_origin = \\\"$origin\\\") { set \$cors_origin \$http_origin; }\\n"
+      done
+
+      nginx_config+="add_header 'Access-Control-Allow-Origin' \$cors_origin always;\\n"
+      nginx_config+="add_header 'Access-Control-Allow-Methods' '${{ inputs.cors_methods }}' always;\\n"
+      nginx_config+="add_header 'Access-Control-Allow-Headers' '${{ inputs.cors_headers }}' always;\\n"
+      nginx_config+="add_header 'Access-Control-Allow-Credentials' 'true' always;\\n"
+      nginx_config+="add_header 'Vary' 'Origin' always;\\n"
+
+      echo "nginx_config=$nginx_config" >> $GITHUB_ENV
+      echo "nginx_config before yq: $nginx_config"
+
+      if ! grep -q "nginx.ingress.kubernetes.io/configuration-snippet" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        echo "Updating configuration-snippet..."
+        yq e -i ".helm-generic-chart.ingress.annotations.\"nginx.ingress.kubernetes.io/configuration-snippet\" = \"$nginx_config\"" "config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml"
+      else
+        echo "The nginx.ingress.kubernetes.io/configuration-snippet annotation already exists and is not empty."
+      fi
+
+  - name: Update the nameoverride and fullnameoverride
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        yq -i '.helm-generic-chart.nameOverride = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' ''config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'' &&
+        yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Update the externalsecrets
+    if: ${{ inputs.external_secrets_enabled == 'true'}}
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        yq -i '.helm-generic-chart.externalSecret.name = "${{ inputs.infra_repo_config }}-pr-externalsecret-${{ env.NAMEREF }}"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml' &&
+        yq -i '.helm-generic-chart.externalSecret.target.name = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml' &&
+        yq -i '.helm-generic-chart.envFrom.secretName = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Update the certification
+    if: ${{ inputs.enable_certificate == 'true'}}
+    shell: bash
+    run: |
+      yq -i  '.helm-generic-chart.ingress.tls[0].hosts[0] = "${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+      yq -i  '.helm-generic-chart.ingress.tls[0].secretName =  "${{ inputs.infra_repo_config }}.${{ inputs.version }}-tls"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'              
+      yq -i  '.helm-generic-chart.ingress.annotations."cert-manager.io/cluster-issuer" = "pi-financial-clusterissuer"' 'config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml'
+
+  - name: Adds NextJS preview URL to PR ENV
+    if: ${{ inputs.nextjs_enabled == 'true'}}
+    run: |
+      if ! grep -q "NEXTAUTH_PREVIEW_URL" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "NEXTAUTH_PREVIEW_URL", "value": "https://${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Adds NextJS AUTH URL to PR ENV
+    if: ${{ inputs.nextjs_enabled == 'true'}}
+    run: |
+      if ! grep -q "NEXTAUTH_URL" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "NEXTAUTH_URL", "value": "https://${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Adds NextJS internal URL to PR ENV
+    if: ${{ inputs.nextjs_enabled == 'true'}}
+    run: |
+      if ! grep -q "NEXTAUTH_URL_INTERNAL" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "NEXTAUTH_URL_INTERNAL", "value": "https://${{ inputs.infra_repo_config }}.${{ inputs.version }}.${{ inputs.nextjs_namespace }}.svc.cluster.local"}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  # - name: Change datadog stuff
+  #   id: change-datadogadannotations-main
+  #   uses: mikefarah/yq@master
+  #   with:
+  #     # cmd: yq -i  '.helm-generic-chart.customPodAnnotations.["ad.datadoghq.com/${{ inputs.infra_repo_config }}.logs"] = "[{source:${{ inputs.infra_repo_config }},service:pi.${{ inputs.infra_repo_config }},tags: [env:pr-environment]}]"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+  #       cmd: yq e -i '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/\(${{ inputs.infra_repo_config }}).logs": "[{\"source\":\"\(${{ inputs.infra_repo_config }})\",\"service\":\"pi.\(${{ inputs.infra_repo_config }})\",\"tags\": [\"env:pr-environment\"]}]"}' config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+
+  - name: Update values.yaml with env information to link to labels
+    run: |
+      if ! grep -q "DD_SERVICE" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "DD_SERVICE", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/service'\'']"}},
+          {"name": "DD_VERSION", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/version'\'']"}},
+          {"name": "DD_ENV", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/env'\'']"}},
+          {"name": "DD_COMPONENT", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/component'\'']"}},
+          {"name": "DD_AGENT_HOST", "field": {"fieldPath": "status.hostIP"}}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: checks masstransit values and changes them to the branch number
+    if: ${{ inputs.mass_transit_enabled == 'true'}}
+    run: |
+      if ! grep -q "MassTransit__EndpointNamePrefix" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "MassTransit__EndpointNamePrefix", "value": "${{ inputs.mass_transit_prefix }}-pr-${{ github.event.pull_request.number }}"}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: checks masstransit values and adds is PR env = true
+    if: ${{ inputs.mass_transit_enabled == 'true'}}
+    run: |
+      if ! grep -q "IsPrEnv" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "IsPrEnv", "value": "true"}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: checks kafka values and changes them to the branch number
+    if: ${{ inputs.kafka_enabled == 'true'}}
+    run: |
+      if ! grep -q "Kafka__GroupId" config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "Kafka__GroupId", "value": "${{ inputs.infra_repo_config }}-${{ github.head_ref }}-${{ github.event.pull_request.number }}"}]' config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Update values.yaml with container exclusion for datadog
+    run: |
+      cat config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/exclude": "true"}' - -M > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with customPodAnnotations
+    run: |
+      cat config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/${{ inputs.infra_repo_config }}.logs": "[{\"source\":\"${{ inputs.infra_repo_config }}\",\"service\":\"${{inputs.datadog_apm_name}}\",\"tags\": [\"env:pr-environment\"]}]"}' - -M > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with github information
+    run: |
+      cat config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/tags": "[{\"git.commit.sha\":\"${{github.sha}}\",\"git.repository_url\":\"github.com/${{ github.repository }}\"}]"}' - -M > temp.yaml && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with customLabel version
+    run: |
+      cat config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml \
+      | yq eval '.helm-generic-chart.customLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "pr-environment", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with custompodLabel
+    run: |
+      cat config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml \
+      | yq eval '.helm-generic-chart.customPodLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "pr-environment", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml config/pr/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  # - name: Change datadog stuff
+  #   id: change-ingress-main
+  #   uses: mikefarah/yq@master
+  #   with:
+  #     cmd: yq e '.helm-generic-chart.customPodAnnotations = {"ad.datadoghq.com/test-worker.logs": "[{\"source\":\"test-worker\",\"service\":\"pi.test.worker\",\"tags\": [\"env:pr-environment\"]}]"}' -i 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  # - name: Change datadog stuff
+  #   id: change-ingress-main
+  #   uses: mikefarah/yq@master
+  #   with:
+  #     cmd: yq -i  '.helm-generic-chart.customLabel."ad.datadoghq.com/"${{inputs.infra_repo_config}}".logs" = "'[{"source":"${{inputs.infra_repo_config}}","service":"pi.${{inputs.infra_repo_config}}","tags": ["env:pr-environment"]}]'"' 'config/pr/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  # - name: Change Image Tag for main
+  #   if: ${{ github.ref == 'refs/heads/main' }}
+  #   id: change-tag-push
+  #   uses: mikefarah/yq@master
+  #   with:
+  #     cmd: yq -i '.helm-generic-chart.image.tag = "${{ github.ref_name }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+  # # - name: Change Image Tag for pull requests merged and closed
+  # #   if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
+  # #   id: change-tag-pr-merge-closed
+  # #   uses: mikefarah/yq@master
+  # #   with:
+  # #     cmd: yq -i '.helm-generic-chart.image.tag = "prclosed-merged-${{ github.ref_name }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+  # - name: Change Image Tag for pull requests
+  #   if: ${{ github.event_name == 'pull_request'}}
+  #   id: change-tag-pull
+  #   uses: mikefarah/yq@master
+  #   with:
+  #     cmd: yq -i '.helm-generic-chart.image.tag = "pr-${{ github.event.pull_request.number }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+  # - name: Change Image Tag for pull requests that are merged
+  #   if: github.event.pull_request.merged == 'true'
+  #   id: change-tag-pull-merged
+  #   uses: mikefarah/yq@master
+  #   with:
+  #     cmd: yq -i '.helm-generic-chart.image.tag = "prmerged-${{ github.event.pull_request.number }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+
+  ########################################################################################################################################################
+  ### GitOps Repo ########################################################################################################################################
+  ########################################################################################################################################################
+
+  - name: Copy the Readmes GitOps
+    shell: bash
+    run: |
+      mkdir -p 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}'
+      cp "config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/example/values.yaml" "config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}"
+
+  - name: Set up environment variables GitOps
+    run: |
+      echo "INPUT_INFRA_REPO_CONFIG=${{ inputs.infra_repo_config }}" >> $GITHUB_ENV
+    shell: bash
+
+  - name: Set up environment variables for service GitOps
+    run: |
+      echo "SERVICE_NAME=${{inputs.datadog_apm_name}}" >> $GITHUB_ENV 
+    shell: bash
+
+  - name: Change Image Tag for tags GitOps
+    id: change-tag-main-gitops
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i '.helm-generic-chart.image.tag = "${{ inputs.version }}"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Change ingress Tag for tags GitOps
+    id: change-ingress-main-gitops
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i  '.helm-generic-chart.ingress.rules[0].host = "${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Convert uppercase to lowercase and replace any / with - GitOps
+    shell: bash
+    run: |
+      echo "REF=$(echo '${{ github.head_ref }}-${{ github.event.pull_request.number }}' | tr '[:upper:]/' '[:lower:]-')" >> $GITHUB_ENV
+      echo "NAMEREF=$(echo '${{ github.head_ref }}-${{ github.event.pull_request.number }}' | tr '[:upper:]_/' '[:lower:]-')" >> $GITHUB_ENV
+
+  - name: Prepare NGINX CORS Configuration GitOps
+    id: prep-cors-gitops
+    if: inputs.cors_origins_enabled == 'true'
+    shell: bash
+    run: |
+      cors_origins="${{ inputs.cors_origins }}"
+      nginx_config="set \$cors_origin \\\"\\\";\\n"
+      IFS=',' read -r -a cors_origins_array <<< "$cors_origins"
+      for origin in "${cors_origins_array[@]}"
+      do
+        nginx_config+="if (\$http_origin = \\\"$origin\\\") { set \$cors_origin \$http_origin; }\\n"
+      done
+
+      nginx_config+="add_header 'Access-Control-Allow-Origin' \$cors_origin always;\\n"
+      nginx_config+="add_header 'Access-Control-Allow-Methods' '${{ inputs.cors_methods }}' always;\\n"
+      nginx_config+="add_header 'Access-Control-Allow-Headers' '${{ inputs.cors_headers }}' always;\\n"
+      nginx_config+="add_header 'Access-Control-Allow-Credentials' 'true' always;\\n"
+      nginx_config+="add_header 'Vary' 'Origin' always;\\n"
+
+      echo "nginx_config=$nginx_config" >> $GITHUB_ENV
+      echo "nginx_config before yq: $nginx_config"
+
+      if ! grep -q "nginx.ingress.kubernetes.io/configuration-snippet" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        echo "Updating configuration-snippet..."
+        yq e -i ".helm-generic-chart.ingress.annotations.\"nginx.ingress.kubernetes.io/configuration-snippet\" = \"$nginx_config\"" "config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml"
+      else
+        echo "The nginx.ingress.kubernetes.io/configuration-snippet annotation already exists and is not empty."
+      fi
+
+  - name: Update the nameoverride and fullnameoverride GitOps
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        yq -i '.helm-generic-chart.nameOverride = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' ''config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'' &&
+        yq -i '.helm-generic-chart.fullnameOverride = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Update the externalsecrets GitOps
+    if: ${{ inputs.external_secrets_enabled == 'true'}}
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        yq -i '.helm-generic-chart.externalSecret.name = "${{ inputs.infra_repo_config }}-pr-externalsecret-${{ env.NAMEREF }}"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml' &&
+        yq -i '.helm-generic-chart.externalSecret.target.name = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml' &&
+        yq -i '.helm-generic-chart.envFrom.secretName = "${{ inputs.infra_repo_config }}-pr-${{ env.NAMEREF }}"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+
+  - name: Update the certification GitOps
+    if: ${{ inputs.enable_certificate == 'true'}}
+    shell: bash
+    run: |
+      yq -i  '.helm-generic-chart.ingress.tls[0].hosts[0] = "${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'
+      yq -i  '.helm-generic-chart.ingress.tls[0].secretName =  "${{ inputs.infra_repo_config }}.${{ inputs.version }}-tls"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml'              
+      yq -i  '.helm-generic-chart.ingress.annotations."cert-manager.io/cluster-issuer" = "pi-financial-clusterissuer"' 'config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml'
+
+  - name: Adds NextJS preview URL to PR ENV GitOps
+    if: ${{ inputs.nextjs_enabled == 'true'}}
+    run: |
+      if ! grep -q "NEXTAUTH_PREVIEW_URL" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "NEXTAUTH_PREVIEW_URL", "value": "https://${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Adds NextJS AUTH URL to PR ENV GitOps
+    if: ${{ inputs.nextjs_enabled == 'true'}}
+    run: |
+      if ! grep -q "NEXTAUTH_URL" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "NEXTAUTH_URL", "value": "https://${{ inputs.infra_repo_config }}.${{ inputs.version }}.nonprod.pi.internal"}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Adds NextJS internal URL to PR ENV GitOps
+    if: ${{ inputs.nextjs_enabled == 'true'}}
+    run: |
+      if ! grep -q "NEXTAUTH_URL_INTERNAL" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "NEXTAUTH_URL_INTERNAL", "value": "https://${{ inputs.infra_repo_config }}.${{ inputs.version }}.${{ inputs.nextjs_namespace }}.svc.cluster.local"}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Update values.yaml with env information to link to labels GitOps
+    run: |
+      if ! grep -q "DD_SERVICE" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "DD_SERVICE", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/service'\'']"}},
+          {"name": "DD_VERSION", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/version'\'']"}},
+          {"name": "DD_ENV", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/env'\'']"}},
+          {"name": "DD_COMPONENT", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/component'\'']"}},
+          {"name": "DD_AGENT_HOST", "field": {"fieldPath": "status.hostIP"}}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: checks masstransit values and changes them to the branch number GitOps
+    if: ${{ inputs.mass_transit_enabled == 'true'}}
+    run: |
+      if ! grep -q "MassTransit__EndpointNamePrefix" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "MassTransit__EndpointNamePrefix", "value": "${{ inputs.mass_transit_prefix }}-pr-${{ github.event.pull_request.number }}"}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: checks masstransit values and adds is PR env = true GitOps
+    if: ${{ inputs.mass_transit_enabled == 'true'}}
+    run: |
+      if ! grep -q "IsPrEnv" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "IsPrEnv", "value": "true"}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: checks kafka values and changes them to the branch number GitOps
+    if: ${{ inputs.kafka_enabled == 'true'}}
+    run: |
+      if ! grep -q "Kafka__GroupId" config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "Kafka__GroupId", "value": "${{ inputs.infra_repo_config }}-${{ github.head_ref }}-${{ github.event.pull_request.number }}"}]' config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{github.head_ref}}-${{github.event.pull_request.number}}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Update values.yaml with container exclusion for datadog GitOps
+    run: |
+      cat config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/exclude": "true"}' - -M > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with customPodAnnotations GitOps
+    run: |
+      cat config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/${{ inputs.infra_repo_config }}.logs": "[{\"source\":\"${{ inputs.infra_repo_config }}\",\"service\":\"${{inputs.datadog_apm_name}}\",\"tags\": [\"env:pr-environment\"]}]"}' - -M > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with github information GitOps
+    run: |
+      cat config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/tags": "[{\"git.commit.sha\":\"${{github.sha}}\",\"git.repository_url\":\"github.com/${{ github.repository }}\"}]"}' - -M > temp.yaml && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with customLabel version GitOps
+    run: |
+      cat config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml \
+      | yq eval '.helm-generic-chart.customLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "pr-environment", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with custompodLabel GitOps
+    run: |
+      cat config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml \
+      | yq eval '.helm-generic-chart.customPodLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "pr-environment", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml config_gitops/registry/environments/development/pr/config/${{ inputs.infra_repo_config }}/${{ github.head_ref }}-${{ github.event.pull_request.number }}/values.yaml
+    shell: bash

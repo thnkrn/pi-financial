@@ -1,0 +1,142 @@
+name: Argocd tag and deploy FOR V3 Dotnet/Node
+
+inputs:
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  infra_repo_config:
+    description: the config value folder that will change
+    required: true
+  version:
+    description: the config value folder that will change
+    required: true
+  labels:
+    description: the config value folder that will change
+    required: true
+  tags:
+    description: the config value folder that will change
+    required: true
+  migration_version:
+    description: db migration image tag
+    required: false
+    default: ''
+  cronjob_enabled:
+    description: for cronjobs appsynth
+    required: false
+    default: false
+  infra:
+    description: the repository that the tag change will happen in
+    required: true
+
+#############################
+######## legacy repo ########
+#############################
+
+runs:
+  using: composite
+  steps:
+  - name: Change Image Tag for tags
+    id: change-tag-main
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i '.helm-generic-chart.image.tag = "${{ inputs.version }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+  - name: Change Image Tag for Migration Tags
+    if: ${{ inputs.migration_version && inputs.migration_version != '' }}
+    id: change-migration-tag-main
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i '.helm-generic-chart.dbMigration.image.tag = "${{ inputs.migration_version }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+    # - name: Change Image Tag for CronJob
+    #   if: inputs.cronjob_enabled == 'true'
+    #   id: change-tag-main
+    #   uses: mikefarah/yq@master
+    #   with:
+    #     cmd: yq -i '.spec.jobTemplate.spec.template.spec.containers[0].image = "${{ inputs.version }}"' 'config/config/${{ inputs.infra_repo_config }}/cronjob.yaml'
+
+  - name: Change Image Tag for CronJobs
+    if: ${{ inputs.cronjob_enabled == 'true' }}
+    id: change-tag-cronjobs
+    run: |
+      for file in config/config/${{ inputs.infra_repo_config }}/*cronjob.yaml; do
+        echo "Updating image in $file"
+        yq -i '.spec.jobTemplate.spec.template.spec.containers[0].image = "${{ inputs.tags }}"' "$file"
+      done
+    shell: bash
+    # - name: Change Image Tag for main
+    #   if: ${{ github.ref == 'refs/heads/main' }}
+    #   id: change-tag-push
+    #   uses: mikefarah/yq@master
+    #   with:
+    #     cmd: yq -i '.helm-generic-chart.image.tag = "${{ github.ref_name }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+    # # - name: Change Image Tag for pull requests merged and closed
+    # #   if: (!(github.event.action == 'closed' && github.event.pull_request.merged != true))
+    # #   id: change-tag-pr-merge-closed
+    # #   uses: mikefarah/yq@master
+    # #   with:
+    # #     cmd: yq -i '.helm-generic-chart.image.tag = "prclosed-merged-${{ github.ref_name }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+    # - name: Change Image Tag for pull requests
+    #   if: ${{ github.event_name == 'pull_request'}}
+    #   id: change-tag-pull
+    #   uses: mikefarah/yq@master
+    #   with:
+    #     cmd: yq -i '.helm-generic-chart.image.tag = "pr-${{ github.event.pull_request.number }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+    # - name: Change Image Tag for pull requests that are merged
+    #   if: github.event.pull_request.merged == 'true'
+    #   id: change-tag-pull-merged
+    #   uses: mikefarah/yq@master
+    #   with:
+    #     cmd: yq -i '.helm-generic-chart.image.tag = "prmerged-${{ github.event.pull_request.number }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+    ############################
+    #######  gitops repo #######
+    ############################
+
+  - name: Change Image Tag for tags gitops
+    id: change-tag-main-gitops
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        if [ "${{inputs.infra}}" = "pi-financial/argocd-nonprd" ]; then
+          dir_env="registry/environments/staging"
+        elif [ "${{inputs.infra}}" = "pi-financial/argocd-prd" ]; then
+          dir_env="registry/environments/production"
+        fi
+
+        values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+        echo "Updating image tag in $values_path"
+        yq -i '.helm-generic-chart.image.tag = "${{ inputs.version }}"' "$values_path"
+
+  - name: Change Image Tag for Migration Tags gitops
+    if: ${{ inputs.migration_version && inputs.migration_version != '' }}
+    id: change-migration-tag-main-gitops
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        if [ "${{inputs.infra}}" = "pi-financial/argocd-nonprd" ]; then
+          dir_env="registry/environments/staging"
+        elif [ "${{inputs.infra}}" = "pi-financial/argocd-prd" ]; then
+          dir_env="registry/environments/production"
+        fi
+        values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+        echo "Updating migration image tag in $values_path"
+        yq -i '.helm-generic-chart.dbMigration.image.tag = "${{ inputs.migration_version }}"' "$values_path"
+
+  - name: Change Image Tag for CronJobs gitops
+    if: ${{ inputs.cronjob_enabled == 'true' }}
+    id: change-tag-cronjobs-gitops
+    run: |
+      if [ "${{inputs.infra}}" = "pi-financial/argocd-nonprd" ]; then
+        dir_env="registry/environments/staging"
+      elif [ "${{inputs.infra}}" = "pi-financial/argocd-prd" ]; then
+        dir_env="registry/environments/production"
+      fi
+      for file in config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/*cronjob.yaml; do
+        echo "Updating image in $file"
+        yq -i '.spec.jobTemplate.spec.template.spec.containers[0].image = "${{ inputs.tags }}"' "$file"
+      done
+    shell: bash

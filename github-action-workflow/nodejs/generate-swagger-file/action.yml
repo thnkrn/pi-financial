@@ -1,0 +1,18 @@
+name: Generate Swagger file
+description: Generate swagger file from controller
+
+inputs:
+  generate_command:
+    description: Yarn command to generate swagger file
+    required: true
+  base_path:
+    description: base path to operate on
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Generate swagger
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: yarn run ${{ inputs.generate_command }}

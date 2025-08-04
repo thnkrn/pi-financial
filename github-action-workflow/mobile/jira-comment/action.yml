@@ -1,0 +1,39 @@
+name: Jira Ticket Comment 
+
+inputs:
+  jiraTicketNumber:
+    description: Jira Ticket Number 
+    required: true
+    type: string
+  jiraToken:
+    description: API Key
+    required: true
+    type: string
+  contentJSON:
+    description: Message body in JSON format @ https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-rest-api-3-issue-issueidorkey-comment-post6
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+  steps:
+    - name: Add comment for Ticket - ${{ inputs.jiraTicketNumber }}
+      run: |
+        curl --request POST \
+        --url 'https://pifinancial.atlassian.net/rest/api/3/issue/${{ inputs.jiraTicketNumber }}/comment' \
+        --user 'jira-service-user@pi.financial:${{ inputs.jiraToken }}' \
+        --header 'Accept: application/json' \
+        --header 'Content-Type: application/json' \
+        --data '{
+          "body": {
+              "content": [
+                  {
+                      "content": ${{ inputs.contentJSON }},
+                      "type": "paragraph"
+                  }
+              ],
+              "type": "doc",
+              "version": 1
+          }
+        }'
+      shell: bash

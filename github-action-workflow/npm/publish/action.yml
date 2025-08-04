@@ -1,0 +1,32 @@
+name: Publish NPM
+description: Publish NPM Package
+
+inputs:
+  base_path:
+    description: Path to client folder
+    required: true
+  gh_access_token:
+    description: GH Token
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install package dependencies
+      working-directory: ${{ inputs.base_path }}/Client
+      shell: bash
+      run: |-
+        npm install
+
+    - name: Add NPM authentication to .npmrc
+      working-directory: ${{ inputs.base_path }}/Client
+      shell: bash
+      run: |-
+        echo @pi-financial:registry=https://npm.pkg.github.com > .npmrc
+        echo "//npm.pkg.github.com/:_authToken=${{ inputs.gh_access_token }}" >> .npmrc
+
+    - name: Publish package
+      working-directory: ${{ inputs.base_path }}/Client
+      shell: bash
+      run: |-
+        npm publish --registry=https://npm.pkg.github.com/

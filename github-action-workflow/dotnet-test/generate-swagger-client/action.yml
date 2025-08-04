@@ -1,0 +1,57 @@
+name: Generate Client
+description: Generate Dotnet client from swagger file
+
+inputs:
+  api_name:
+    description: name for output package
+    required: true
+  base_path:
+    description: base path to operate on
+    required: true
+  swagger_path:
+    description: path to swagger file relative to base path
+    required: false
+    default: tmp/swagger.yml
+  package_name:
+    description: name of generated package
+    required: true
+  output_path:
+    description: path output dir relative to base path
+    required: false
+    default: Client/
+  generator_version:
+    description: version of openapi-generator-cli to use
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Create generator config file
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: |
+        cat << EOL > generator-config.json
+          {
+            "apiName": "${{ inputs.service_name }}",
+            "targetFramework": "net7.0",
+            "netCoreProjectFile": true,
+            "sourceFolder": "/",
+            "packageName": "${{ inputs.package_name }}",
+            "library": "httpclient"
+          }
+        EOF
+
+    - name: Generate
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: |-
+        docker run --rm \
+          --user $(id -u):$(id -g) \
+          -v "${PWD}:/local" \
+          openapitools/openapi-generator-cli:${{ inputs.generator_version }} generate \
+            -g csharp \
+            -i /local/${{ inputs.swagger_path }} \
+            -o /local/${{ inputs.output_path }} \
+            -c /local/generator-config.json \
+            --git-user-id pi-financial \
+            --git-repo-id ${{ github.event.repository.name }}

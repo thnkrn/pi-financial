@@ -1,0 +1,165 @@
+name: Argocd tag and deploy For PR environment Staging
+
+inputs:
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  infra_repo_config:
+    description: the config value folder that will change
+    required: true
+  version:
+    description: the config value folder that will change
+    required: true
+  labels:
+    description: the config value folder that will change
+    required: true
+  tags:
+    description: the config value folder that will change
+    required: true
+  datadog_apm_name:
+    description: the config value folder that will change
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - name: Check 1
+    shell: bash
+    run: |
+      tree -D
+
+  - name: Set up environment variables
+    run: |
+      echo "INPUT_INFRA_REPO_CONFIG=${{ inputs.infra_repo_config }}" >> $GITHUB_ENV
+    shell: bash
+
+  - name: Set up environment variables for service
+    run: |
+      echo "SERVICE_NAME=${{ inputs.datadog_apm_name }}" >> $GITHUB_ENV
+    shell: bash
+
+  - name: Change Image Tag for tags
+    id: change-tag-main
+    uses: mikefarah/yq@master
+    with:
+      cmd: yq -i '.helm-generic-chart.image.tag = "${{ inputs.version }}"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+  - name: Update values.yaml with env information to link to labels
+    run: |
+      if ! grep -q "DD_SERVICE" config/config/${{ inputs.infra_repo_config }}/values.yaml; then
+        yq eval '.helm-generic-chart.env += [{"name": "DD_SERVICE", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/service'\'']"}},
+          {"name": "DD_VERSION", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/version'\'']"}},
+          {"name": "DD_ENV", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/env'\'']"}},
+          {"name": "DD_COMPONENT", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/component'\'']"}},
+          {"name": "DD_AGENT_HOST", "field": {"fieldPath": "status.hostIP"}}]' config/config/${{ inputs.infra_repo_config }}/values.yaml > temp.yaml && mv temp.yaml config/config/${{ inputs.infra_repo_config }}/values.yaml
+      fi 
+    shell: bash
+
+  - name: Update values.yaml with customPodAnnotations
+    run: |
+      cat config/config/${{ inputs.infra_repo_config }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/${{ inputs.infra_repo_config }}.logs": "[{\"source\":\"${{ inputs.infra_repo_config }}\",\"service\":\"${{ inputs.datadog_apm_name }}\",\"tags\": [\"env:staging\"]}]"}' - -M > temp.yaml && mv temp.yaml config/config/${{ inputs.infra_repo_config }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with github information
+    run: |
+      cat config/config/${{ inputs.infra_repo_config }}/values.yaml | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/tags": "[{\"git.commit.sha\":\"${{github.sha}}\",\"git.repository_url\":\"github.com/${{ github.repository }}\"}]"}' - -M > temp.yaml && mv temp.yaml config/config/${{ inputs.infra_repo_config }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with customLabel version
+    run: |
+      cat config/config/${{ inputs.infra_repo_config }}/values.yaml \
+      | yq eval '.helm-generic-chart.customLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "staging", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml config/config/${{ inputs.infra_repo_config }}/values.yaml
+    shell: bash
+
+  - name: Update values.yaml with custompodLabel
+    run: |
+      cat config/config/${{ inputs.infra_repo_config }}/values.yaml \
+      | yq eval '.helm-generic-chart.customPodLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "staging", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml config/config/${{ inputs.infra_repo_config }}/values.yaml
+    shell: bash
+
+  - name: Update the certification
+    if: ${{ inputs.enable_certificate == 'true'}}
+    shell: bash
+    run: |
+      yq -i  '.helm-generic-chart.ingress.tls[0].hosts[0] = "${{ inputs.infra_repo_config }}.nonprod.pi.internal"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+      yq -i  '.helm-generic-chart.ingress.tls[0].secretName =  "${{ inputs.infra_repo_config }}-tls"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'              
+      yq -i  '.helm-generic-chart.ingress.annotations."cert-manager.io/cluster-issuer" = "pi-financial-clusterissuer"' 'config/config/${{ inputs.infra_repo_config }}/values.yaml'
+
+  ##################################
+  #########  gitops repo ###########
+  ##################################
+
+  - name: Change Image Tag for tags gitops
+    id: change-tag-main-gitops
+    uses: mikefarah/yq@master
+    with:
+      cmd: |
+        dir_env="registry/environments/staging"
+        values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+        yq -i '.helm-generic-chart.image.tag = "${{ inputs.version }}"' "$values_path"
+
+  - name: Update values.yaml with env information to link to labels gitops
+    run: |
+      dir_env="registry/environments/staging"
+      values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+
+      if ! grep -q "DD_SERVICE" "$values_path"; then
+        yq eval '.helm-generic-chart.env += [{"name": "DD_SERVICE", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/service'\'']"}},
+          {"name": "DD_VERSION", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/version'\'']"}},
+          {"name": "DD_ENV", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/env'\'']"}},
+          {"name": "DD_COMPONENT", "field": {"fieldPath": "metadata.labels['\''tags.datadoghq.com/component'\'']"}},
+          {"name": "DD_AGENT_HOST", "field": {"fieldPath": "status.hostIP"}}]' "$values_path" > temp.yaml && mv temp.yaml "$values_path"
+      fi 
+    shell: bash
+
+  - name: Update values.yaml with customPodAnnotations gitops
+    run: |
+      dir_env="registry/environments/staging"
+      values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+      cat "$values_path" | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/${{ inputs.infra_repo_config }}.logs": "[{\"source\":\"${{ inputs.infra_repo_config }}\",\"service\":\"${{ inputs.datadog_apm_name }}\",\"tags\": [\"env:staging\"]}]"}' - -M > temp.yaml && mv temp.yaml "$values_path"
+    shell: bash
+
+  - name: Update values.yaml with github information gitops
+    run: |
+      dir_env="registry/environments/staging"
+      values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+      cat "$values_path" | yq eval '.helm-generic-chart.customPodAnnotations += {"ad.datadoghq.com/tags": "[{\"git.commit.sha\":\"${{github.sha}}\",\"git.repository_url\":\"github.com/${{ github.repository }}\"}]"}' - -M > temp.yaml && mv temp.yaml "$values_path"
+    shell: bash
+
+  - name: Update values.yaml with customLabel version gitops
+    run: |
+      dir_env="registry/environments/staging"
+      values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+
+      cat "$values_path" \
+      | yq eval '.helm-generic-chart.customLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "staging", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml "$values_path"
+    shell: bash
+
+  - name: Update values.yaml with custompodLabel gitops
+    run: |
+      dir_env="registry/environments/staging"
+      values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+
+      cat "$values_path" \
+      | yq eval '.helm-generic-chart.customPodLabel = {"tags.datadoghq.com/version": strenv(GITHUB_SHA), "tags.datadoghq.com/component": strenv(SERVICE_NAME), "tags.datadoghq.com/env": "staging", "tags.datadoghq.com/service": strenv(SERVICE_NAME)}' - -M \
+      | tee temp.yaml \
+      && mv temp.yaml "$values_path"
+    shell: bash
+
+  - name: Update the certification gitops
+    if: ${{ inputs.enable_certificate == 'true'}}
+    shell: bash
+    run: |
+      dir_env="registry/environments/staging"
+      values_path="config_gitops/$dir_env/argocd/${{ inputs.infra_repo_config }}/config/values.yaml"
+
+      yq -i  '.helm-generic-chart.ingress.tls[0].hosts[0] = "${{ inputs.infra_repo_config }}.nonprod.pi.internal"' "$values_path"
+      yq -i  '.helm-generic-chart.ingress.tls[0].secretName =  "${{ inputs.infra_repo_config }}-tls"' "$values_path"              
+      yq -i  '.helm-generic-chart.ingress.annotations."cert-manager.io/cluster-issuer" = "pi-financial-clusterissuer"' "$values_path"

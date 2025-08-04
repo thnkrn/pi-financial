@@ -1,0 +1,87 @@
+name: Docker Build
+description: ''
+
+inputs:
+  aws_access_key_id:
+    description: AWS access key id
+    required: true
+  aws_secret_access_key:
+    description: AWS Secret access key
+    required: true
+  docker_file_path:
+    description: dockerfile Path from root directory
+    required: true
+  docker_context:
+    description: path for docker context
+    required: true
+  ecr_registry:
+    description: ECR Login Registry output
+    required: false
+  ecr_registry_source:
+    description: ECR Login Registry output
+    required: false
+  aws_region:
+    description: AWS Region
+    required: true
+  ecr_registry_target:
+    description: ECR Login Registry output
+    required: false
+  ecr_repository_source:
+    description: ECR Repository
+    required: true
+  ecr_repository_target:
+    description: ECR Repository
+    required: true
+  role_to_assume_target:
+    description: role of the environment
+    required: false
+  labels:
+    description: Docker Labels
+    required: true
+  tags:
+    description: Docker Tags
+    required: true
+  version:
+    description: Docker version
+    required: true
+outputs:
+  ecr-registry_target:
+    description: ECR Registry
+    value: ${{ steps.login-ecr-target.outputs.registry }}
+
+runs:
+  using: composite
+  steps:
+    - name: Pull from source
+      shell: bash
+      run: |
+        docker pull ${{ inputs.ecr_registry_source }}/${{ inputs.ecr_repository_source }}:${{ inputs.version }}
+
+    - name: Configure AWS credentials for Target
+      uses: aws-actions/configure-aws-credentials@v1.7.0
+      with:
+        aws-access-key-id: ${{ inputs.aws_access_key_id }}
+        aws-secret-access-key: ${{ inputs.aws_secret_access_key }}
+        aws-region: ${{ inputs.aws_region }}
+        role-to-assume: ${{ inputs.role_to_assume_target}}
+        role-duration-seconds: 1200
+        role-session-name: ci-run-${{ github.run_id }}
+    - name: Login to Amazon ECR
+      id: login-ecr-target
+      uses: aws-actions/amazon-ecr-login@v1.5.1 
+
+    - name: Check image
+      shell: bash
+      run: |
+        docker images
+
+    - name: Tag
+      shell: bash
+      run: |
+        docker tag ${{ inputs.ecr_registry_source }}/${{ inputs.ecr_repository_source }}:${{ inputs.version }} ${{ steps.login-ecr-target.outputs.registry }}/${{ inputs.ecr_repository_target }}:${{ inputs.version }}
+
+    - name: push
+      shell: bash
+      run: |
+        docker push ${{ steps.login-ecr-target.outputs.registry }}/${{ inputs.ecr_repository_target }}:${{ inputs.version }}
+

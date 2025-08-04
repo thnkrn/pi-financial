@@ -1,0 +1,165 @@
+name: Prepare Hotfix 
+
+inputs:
+  releaseVersion:
+    description: Version to be released
+    required: true
+    type: string
+  repoName:
+    description: Repository in action
+    required: true
+    type: string
+  ghAccessToken:
+    description: "GitHub access token"
+    required: true
+    type: string
+
+outputs:
+  trigger-prepare-cutoff:
+    description: "Boolean(String) to determine whether to trigger the release candidate (rc) build"
+    value: ${{ steps.release-hotfix-info.outputs.trigger-prepare-cutoff }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare release ${{ inputs.repoName }}
+      id: release-hotfix-info
+      shell: bash
+      run: |
+        main() {
+          local RELEASE_VERSION=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+
+          if [[ $REPO_NAME == "pi-module" ]]; then
+            cd $REPO_NAME
+          fi
+
+          local release_branch=$(git rev-parse --verify origin/release/v${RELEASE_VERSION} >/dev/null 2>&1 && echo release/v${RELEASE_VERSION} || echo '')
+          
+          if [[ -n $release_branch ]]; then
+            echo "[INFO] Release branch already exist. Checking out existing release branch..."
+            git checkout release/v${RELEASE_VERSION}
+         
+            local supposed_latest_tag="v${RELEASE_VERSION}"
+            echo "[INFO] Using input to determine what should be the latest tag. Latest tag should be ${supposed_latest_tag}"
+            local related_tag=$(git tag -l --sort=-v:refname | grep $supposed_latest_tag | head -n 1)
+          
+            if [[ -n $related_tag ]]; then
+              echo "[INFO] Tag ${related_tag} already exists for ${REPO_NAME}."
+            else
+              echo '[INFO] No tag associated with that version exists. Committing changes, tagging, and pushing...'
+              local new_tag="v${RELEASE_VERSION}-rc.1"
+              git tag $new_tag
+              git push origin --tags
+
+              echo '[INFO] Generating release note...'
+              generate_release_note "$new_tag" "$REPO_NAME" "$GH_ACCESS_TOKEN"
+            fi
+
+            echo "[INFO] Trigger prepare-cutoff workflow"
+            echo "trigger-prepare-cutoff='true'" >> $GITHUB_OUTPUT
+          
+          else
+            echo '[INFO] Create release branch from main'
+            git checkout main
+            git pull origin main
+            git checkout -b release/v${RELEASE_VERSION}
+          
+            echo '[INFO] Updating project version...'
+            echo $REPO_NAME
+            if [[ $REPO_NAME == "pi-financial-ios-app" ]]; then
+              update_version_ios "$RELEASE_VERSION"
+            elif [[ $REPO_NAME  == "pi-financial-android-app" ]]; then
+              update_version_android "$RELEASE_VERSION" 
+            elif [[ $REPO_NAME  == "pi-module" ]]; then
+              update_version_flutter "$RELEASE_VERSION"
+            else
+              echo "[ERROR] The provided project doesn't specify any update function. Skipping version update..."
+            fi
+          
+            echo '[INFO] Push the changes'
+            git add .
+            git commit -m "Bump version to v${RELEASE_VERSION}"
+            git push origin release/v${RELEASE_VERSION} --tags
+          
+            echo '[INFO] Creating pull requests...'
+            create_pr "$RELEASE_VERSION" "$REPO_NAME" "$GH_ACCESS_TOKEN" "develop"
+            create_pr "$RELEASE_VERSION" "$REPO_NAME" "$GH_ACCESS_TOKEN" "main"
+          fi
+        }
+
+        # Function to create a pull request
+        create_pr() {
+          local RELEASE_VERSION=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+          local BASE_BRANCH=$4
+
+          curl --location "https://api.github.com/repos/pi-financial/${REPO_NAME}/pulls" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_ACCESS_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --header "Content-Type: application/json" \
+            --data '{
+              "title": "release/v'"${RELEASE_VERSION}"' -> '"${BASE_BRANCH}"'",
+              "body": "Created by GitHub Action",
+              "head": "release/v'"${RELEASE_VERSION}"'",
+              "base": "'"${BASE_BRANCH}"'"
+            }'
+        }
+
+        update_version_ios() {
+          local RELEASE_VERSION=$1
+          sed -i '' -E "s/(MARKETING_VERSION = )[^;]+;/\1${RELEASE_VERSION};/g" "cgs-next-gen.xcodeproj/project.pbxproj"
+        }
+
+        update_version_flutter() { 
+          local RELEASE_VERSION=$1
+          sed -i '' -E "s/(^version: *)(.*)/\1${RELEASE_VERSION}+1/g" "pubspec.yaml"
+        }
+
+        update_version_android() { 
+          local RELEASE_VERSION=$1
+          local FILE_PATH="buildSrc/src/main/java/Dependencies.kt"
+          # NOTE: Version Code is updated automatically for Play Store AAB upload via fastlane action 
+          # Update `versionName`
+          sed -i '' -E "s/(const val versionName = \")([^\"]+)(\".*)/\1${RELEASE_VERSION}\3/" "$FILE_PATH"
+        }
+
+        generate_release_note() {
+          local TAG_NAME=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+        
+          curl --location "https://api.github.com/repos/pi-financial/${REPO_NAME}/releases" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_ACCESS_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --header "Content-Type: application/json" \
+            --data '{
+              "tag_name": "'"${TAG_NAME}"'",
+              "draft": false,
+              "prerelease": false,
+              "generate_release_notes": true
+            }'
+        }
+
+        # Execute the main function with arguments
+        main "${{ inputs.releaseVersion }}" "${{ inputs.repoName }}" "${{ inputs.ghAccessToken }}"
+    
+
+    - name: Workflow Summary for clear hotfix cut
+      if: ${{ steps.release-hotfix-info.outputs.trigger-prepare-cutoff == '' }}
+      shell: bash
+      run: |
+        messages=()
+
+        messages+=("### :white_check_mark: ${{ inputs.repoName }}")
+        messages+=("")
+        messages+=("Hotfix branch @ **release/v${{ inputs.releaseVersion }}**")
+        
+        for msg in "${messages[@]}"; do
+          echo $msg >> $GITHUB_STEP_SUMMARY
+        done
+

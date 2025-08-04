@@ -1,0 +1,28 @@
+name: dotnet Restore
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  gh_access_token:
+    description: Github Access Token
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install Dependencies
+      working-directory: ./src/${{ inputs.application_name }}
+      shell: bash
+      env:
+        HOME: /tmp
+        DOTNET_CLI_HOME: /tmp
+      run: |
+        if test -f "nuget.config"; then
+          sed -i -e "s|%GITHUB_PACKAGE_USER_NAME%|USERNAME|g" -e "s|%GITHUB_PACKAGE_TOKEN%|${{ inputs.gh_access_token }}|g" nuget.config
+        else
+          dotnet nuget add source https://nuget.pkg.github.com/pi-financial/index.json  --name Github --username USERNAME --password ${{ inputs.gh_access_token }} --store-password-in-clear-text
+        fi
+        dotnet restore ${{ inputs.application_name }}.sln
+
+

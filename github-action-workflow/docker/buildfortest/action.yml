@@ -1,0 +1,53 @@
+name: Docker Build
+description: ''
+
+inputs:
+  docker_file_path:
+    description: dockerfile Path from root directory
+    required: true
+  docker_context:
+    description: path for docker context
+    required: true
+  ecr_registry:
+    description: ECR Login Registry output
+    required: true
+  ecr_repository:
+    description: ECR Repository
+    required: true
+  labels:
+    description: Docker Labels
+    required: true
+  tags:
+    description: Docker Tags
+    required: true
+  version:
+    description: Docker version
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+      
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+          file: ${{ inputs.docker_file_path }}
+          tags: ${{ inputs.tags }}
+          labels: ${{ inputs.labels }}
+          load: true
+          context: ${{ inputs.docker_context }}
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
+
+    - name: Setup cache
+      uses: actions/cache@v3
+      with:
+        path: cache
+        key: ${{ runner.os }}-cache-${{ hashFiles('**/sysdig-cli-scanner', '**/latest_version.txt', '**/db/main.db.meta.json', '**/scanner-cache/inlineScannerCache.db') }}
+        restore-keys: ${{ runner.os }}-cache-

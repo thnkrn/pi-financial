@@ -1,0 +1,40 @@
+name: Lint
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  code_language:
+    description: coding language
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: dotnet lint
+      if: ${{ inputs.code_language == 'c#' }}
+      shell: bash
+      env:
+        HOME: /tmp
+        DOTNET_CLI_HOME: /tmp
+      run: |
+        dotnet format --verify-no-changes src/${{ inputs.application_name}}/${{ inputs.application_name }}.sln
+
+    - name: lint
+      if: ${{ inputs.code_language == 'nodejs' }}
+      shell: bash
+      run: yarn run lint
+
+    - name: flutter lint
+      if: ${{ inputs.code_language == 'flutter' }}
+      shell: bash
+      run: flutter analyze --no-fatal-infos
+
+    - name: Lint with flake8
+      if: ${{ inputs.code_language == 'python' }}
+      shell: bash
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics

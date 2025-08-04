@@ -1,0 +1,44 @@
+name: nodejs Setup
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+  base_ref:
+    description: branch, tag or commit SHA to be base code
+    required: false
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  nodejs_version:
+    description: nodejs_version
+    default: "18.x"
+  npm_read_token:
+    description: npm read token
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - uses: pi-financial/github-action-workflow/checkout@main
+      with:
+        repository: ${{ inputs.repository }}
+        base_ref: ${{ inputs.base_ref }}
+        target_ref: ${{ inputs.target_ref }}
+
+    - uses: pi-financial/github-action-workflow/authen-gh@main
+      with:
+        gh_access_token: ${{ inputs.gh_access_token }}
+      
+    - name: Use Node.js ${{ inputs.nodejs_version }}
+      uses: actions/setup-node@v4
+      with:
+        # cache: 'yarn'
+        node-version: ${{ inputs.nodejs_version }}
+      env:
+        NPM_AUTH_TOKEN: ${{ inputs.npm_read_token }}

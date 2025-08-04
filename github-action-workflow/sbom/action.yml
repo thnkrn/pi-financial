@@ -1,0 +1,153 @@
+name: SBOM analysis
+description: 'generate sbom and perform scan vulnerabilities'
+
+inputs:
+  application_name:
+    description: name of application
+    type: string
+    required: true
+  infra_repo_config:
+    description: Service name and type 
+    required: true
+  code_language:
+    description: development programming language
+    required: true
+  trivy_severities:
+    description: severity levels for trivy vulnerability scans
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: SBOM generation (C#)
+      if:
+        ${{ inputs.code_language == 'c#' }}
+      working-directory: ./src/${{ inputs.application_name }}
+      shell: bash
+      env:
+        HOME: /tmp
+        DOTNET_CLI_HOME: /tmp
+      run: |
+        dotnet tool install --global CycloneDX --version 3.0.8
+        export PATH="$PATH:~/.dotnet/tools"
+        dotnet CycloneDX -j -o . ${{ inputs.application_name }}.sln
+
+    - name: SBOM generation (nodejs)
+      if:
+        ${{ inputs.code_language == 'nodejs' }}
+      uses: aquasecurity/trivy-action@0.22.0
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'json'
+        output: 'src/${{ inputs.application_name }}/bom.json'
+
+    - name: Trivy SBOM attestation
+      uses: aquasecurity/trivy-action@0.23.0
+      with:
+        scan-type: 'sbom'
+        scan-ref: 'src/${{ inputs.application_name }}/bom.json'
+        severity: ${{ inputs.trivy_severities }}
+        exit-code: '0'
+        format: 'sarif'
+        output: ${{ inputs.application_name }}-${{ inputs.infra_repo_config }}-sbom-results.sarif
+
+    - name: Upload SBOM Report Artifact
+      if: success() || failure()  
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ inputs.application_name }}-${{ inputs.infra_repo_config }}-sbom-results.sarif
+        path: ${{ inputs.application_name }}-${{ inputs.infra_repo_config }}-sbom-results.sarif
+        
+    - name: Display SARIF Report
+      if: success() || failure()
+      shell: bash
+      run: cat ${{ inputs.application_name }}-${{ inputs.infra_repo_config }}-sbom-results.sarif
+    
+    - name: Set up Python
+      if: success() || failure()
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+        
+    - name: Create Python Script
+      if: success() || failure()
+      shell: bash
+      run: |
+        cat << 'EOF' > process_sarif.py
+        import json
+        import sys
+        
+        def process_sarif(input_file, output_file):
+            with open(input_file, 'r') as f:
+                sarif_data = json.load(f)
+            
+            results = []
+        
+            for run in sarif_data['runs']:
+                rules = {rule['id']: rule for rule in run['tool']['driver']['rules']}
+                for result in run['results']:
+                    rule_id = result['ruleId']
+                    rule = rules.get(rule_id, {})
+                    rule_name = rule.get('name', 'N/A')
+                    message = result.get('message', {}).get('text', 'No message')
+                    severity = result.get('level', 'N/A')
+                    location = result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'Not specified')
+                    short_description = rule.get('shortDescription', {}).get('text', 'No short description')
+                    full_description = rule.get('fullDescription', {}).get('text', 'No full description')
+                    help_text = rule.get('help', {}).get('text', 'No help text')
+                    precision = rule.get('properties', {}).get('precision', 'N/A')
+                    security_severity = rule.get('properties', {}).get('security-severity', 'N/A')
+                    tags = ', '.join(rule.get('properties', {}).get('tags', []))
+        
+                    results.append({
+                        'rule_id': rule_id,
+                        'rule_name': rule_name,
+                        'message': message,
+                        'severity': severity,
+                        'location': location,
+                        'short_description': short_description,
+                        'full_description': full_description,
+                        'help_text': help_text,
+                        'precision': precision,
+                        'security_severity': security_severity,
+                        'tags': tags
+                    })
+        
+            with open(output_file, 'w') as f:
+                f.write("# SARIF Report Results\n")
+                for result in results:
+                    f.write("## Rule: {} - {}\n".format(result['rule_id'], result['rule_name']))
+                    f.write("### Message: {}\n".format(result['message']))
+                    f.write("#### Severity: {}\n".format(result['severity']))
+                    f.write("#### Location: {}\n".format(result['location']))
+                    f.write("#### Short Description: {}\n".format(result['short_description']))
+                    f.write("#### Full Description: {}\n".format(result['full_description']))
+                    f.write("#### Help Text: {}\n".format(result['help_text']))
+                    f.write("#### Precision: {}\n".format(result['precision']))
+                    f.write("#### Security Severity: {}\n".format(result['security_severity']))
+                    f.write("#### Tags: {}\n".format(result['tags']))
+                    f.write("---\n")
+        
+        if __name__ == "__main__":
+            if len(sys.argv) != 3:
+                print("Usage: python process_sarif.py <input_sarif_file> <output_markdown_file>")
+                sys.exit(1)
+            
+            input_file = sys.argv[1]
+            output_file = sys.argv[2]
+            
+            process_sarif(input_file, output_file)
+        EOF
+
+    - name: Process SARIF and Generate Markdown
+      if: success() || failure()
+      shell: bash
+      run: |
+        python3 process_sarif.py ${{ inputs.application_name }}-${{ inputs.infra_repo_config }}-sbom-results.sarif report.md
+
+    - name: Show Markdown Report
+      run: cat report.md
+      if: success() || failure()
+      shell: bash
+

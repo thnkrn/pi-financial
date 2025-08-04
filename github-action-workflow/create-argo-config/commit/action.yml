@@ -1,0 +1,35 @@
+name: Argocd tag and deploy
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+    default: ${{ github.repository }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  version: 
+    description: branch, tag or commit SHA to merge into base code   
+    
+
+runs:
+  using: composite
+  steps:
+
+
+    - name: make directory for application for PR and config 
+      run: |
+        echo "SERVICE_NAME=pi.${{ inputs.infra_repo_config }}" >> $GITHUB_ENV
+      shell: bash
+
+
+
+
+
+    - uses: EndBug/add-and-commit@v9.1.4
+      with:
+        message: 'Automatic CI run for ${{ inputs.repository }} . ${{ inputs.version }}'
+        add: '.'
+        cwd: './config/'
+        fetch: true

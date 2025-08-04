@@ -1,0 +1,9 @@
+name: golang build
+
+runs:
+  using: composite
+  steps:
+    - name: Build
+      shell: bash
+      run: |
+        go test ./... -coverprofile=code_coverage.out

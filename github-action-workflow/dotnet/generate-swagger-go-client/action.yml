@@ -1,0 +1,66 @@
+name: Generate Go Client
+description: Generate Go Client from Swagger file
+
+inputs:
+  base_path:
+    description: Base path to operate on
+    required: true
+  swagger_file_path:
+    description: Path to swagger file relative to base path
+    required: false
+    default: tmp/swagger.yml
+  target_dir:
+    description: Directory name of client inside Go Client repository
+    required: true
+  target_client_path:
+    description: Client name in main directory
+    required: true
+  target_repo_id:
+    description: Repository ID for store Go client
+    required: true
+  output_path:
+    description: Path output dir relative to base path
+    required: false
+    default: Client/
+  version:
+    description: Version number
+    default: 1.0.${{ github.run_number }}
+  generator_version:
+    description: Version of openapi-generator-cli to use
+    required: true
+  swagger_filetype:
+    description: select swagger filetype (yml or json)
+    type: string
+    default: yml
+
+runs:
+  using: composite
+  steps:
+    - name: Create generator config file
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: |
+        cat << EOL > generator-config.json
+          {
+            "packageName": "${{ inputs.target_dir }}",
+            "packageVersion": "${{ inputs.version }}"
+          }
+        EOL
+
+    - name: Generate Swagger Client
+      shell: bash
+      working-directory: ${{ inputs.base_path }}
+      run: |
+        docker run --rm \
+          --user $(id -u):$(id -g) \
+          -v "${PWD}:/local" \
+          openapitools/openapi-generator-cli:${{ inputs.generator_version }} generate \
+            -g go \
+            -i /local/${{ inputs.swagger_file_path }}.${{ inputs.swagger_filetype }} \
+            -o /local/${{ inputs.output_path }} \
+            -c /local/generator-config.json \
+            --git-user-id pi-financial \
+            --git-repo-id ${{ inputs.target_repo_id }}/${{ inputs.target_dir }}/${{ inputs.target_client_path }}
+
+        GOBIN=/usr/local/bin go install golang.org/x/tools/cmd/goimports@latest
+        goimports -w .

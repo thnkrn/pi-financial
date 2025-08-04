@@ -1,0 +1,21 @@
+name: dotnet pack
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  application_path:
+    description: Application Path to csproj
+    required: true
+  version:
+    description: Version number
+    default: 1.0.${{ github.run_number }}
+
+runs:
+  using: composite
+  steps:
+    - name: Build Nuget Package
+      shell: bash
+      working-directory: ${{ inputs.application_path }}
+      run: |
+        dotnet pack "${{ inputs.application_name }}.csproj" --configuration Release -p:PackageVersion=${{ inputs.version }}

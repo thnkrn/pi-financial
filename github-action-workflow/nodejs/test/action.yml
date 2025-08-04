@@ -1,0 +1,22 @@
+name: nodejs Restore
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  npm_read_token:
+    description: npm read token
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: running test:unit from package.json
+      working-directory: ./
+      shell: bash
+      run: yarn test 
+
+

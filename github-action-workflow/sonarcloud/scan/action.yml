@@ -1,0 +1,29 @@
+name: SonarCloud Setup
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  code_language:
+    description: coding language
+    required: false
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  sonarcloud_token:
+    description: sonarcloud token
+    required: true
+  
+
+runs:
+  using: composite
+  steps:
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v2.0.2
+      env:
+        GITHUB_TOKEN: ${{ inputs.gh_access_token }}
+        SONAR_TOKEN: ${{ inputs.sonarcloud_token }}
+      with: 
+        args: >
+          -Dsonar.organization=pi-financial
+          -Dsonar.projectKey=pi-financial_${{ inputs.application_name }}

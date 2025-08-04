@@ -1,0 +1,13 @@
+name: golang install dependencies
+
+runs:
+  using: composite
+  steps:
+    - name: Build
+      shell: bash
+      run: |
+        export GOSUMDB="off"
+        go install github.com/google/wire/cmd/wire@latest
+        # go get -u -t -d -v ./...
+        go mod tidy
+        go mod vendor

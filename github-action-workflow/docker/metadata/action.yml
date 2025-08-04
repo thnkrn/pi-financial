@@ -1,0 +1,37 @@
+name: Docker MetaData
+description: ''
+
+inputs:
+  ecr_registry:
+    description: ECR Login Registry output
+    required: true
+  ecr_repository:
+    description: ECR Repository
+    required: true
+outputs:
+  tags:
+    description: Docker Tags to use
+    value: ${{ steps.meta.outputs.tags }}
+  labels:
+    description: Docker labels
+    value: ${{ steps.meta.outputs.labels }}
+  version:
+    description: Docker Version
+    value: ${{ steps.meta.outputs.version }}
+
+
+runs:
+  using: composite
+  steps:
+    - name: Docker Metadata for production
+      uses: docker/metadata-action@v4
+      id: meta
+      with:
+        images: "${{ inputs.ecr_registry }}/${{ inputs.ecr_repository }}"
+        flavor: |
+            latest=false
+        tags: |
+            type=ref,event=branch,suffix=-{{sha}}-{{date 'YYYYMMDD'}}
+            type=ref,event=pr,suffix=-{{sha}}-{{date 'YYYYMMDD'}}
+            type=semver,enable=true,priority=900,prefix=,suffix=-{{sha}}-{{date 'YYYYMMDD'}},pattern={{version}}
+            type=schedule

@@ -1,0 +1,110 @@
+name: deploy-workflow
+description: ''
+
+inputs:
+  repository:
+    description: The owner and repository name
+    required: false
+    default: ${{ github.repository }}
+  base_ref:
+    description: The branch or tag ref or commit SHA that be base code.
+    required: false
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: The branch or tag ref or commit SHA that will be merged to base code.
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  code_language:
+    description: The program language of this repository
+    required: true
+  application_name:
+    description: Name of application
+    required: true
+  dotnet_version:
+    description: dotnet version
+    default: 8.0.x
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  aws_access_key_id:
+    description: Aws key id
+    required: true
+  aws_secret_access_key:
+    description: aws access key
+    required: true
+  aws_region:
+    description: aws access key
+    required: true
+  role_to_assume:
+    description: aws access key
+    required: true
+  ecr_repository:
+    description: ecr location
+    required: true
+  token_image_update:
+    description: token image update
+    required: true
+  docker_file_path:
+    description: dockerfile path
+    required: true
+  docker_context:
+    description: docker context path
+    required: true
+
+  workflow_configs:
+    description: >-
+      JSON array of config object
+      { name: string, cron: string, command: string, arg1: string?, arg2: string?, arg3: string?, arg4: string? }
+    required: true
+outputs:
+  version:
+    description: Docker Version
+    value: ${{ steps.metadata.outputs.version }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup C#
+      uses: pi-financial/github-action-workflow/dotnet/setup@main
+      with:
+        repository: ${{ inputs.repository }}
+        base_ref: ${{ inputs.base_ref }}
+        target_ref: ${{ inputs.target_ref }}
+        gh_access_token: ${{ inputs.gh_access_token }}
+        dotnet_version: ${{ inputs.dotnet_version }}
+
+    - name: Install Dependencies
+      uses: pi-financial/github-action-workflow/dotnet/restore@main
+      with:
+        application_name: ${{ inputs.application_name }}
+        gh_access_token: ${{ inputs.gh_access_token }}
+
+    - name: Authenticate AWS
+      id: authen-aws
+      uses: pi-financial/github-action-workflow/authen-aws@main
+      with:
+        aws_access_key_id: ${{ inputs.aws_access_key_id }}
+        aws_secret_access_key: ${{ inputs.aws_secret_access_key }}
+        aws_region: ${{ inputs.aws_region }}
+        role_to_assume: ${{ inputs.role_to_assume }}
+
+    - name: Docker MetaData
+      id: metadata
+      uses: pi-financial/github-action-workflow/docker/metadata@main
+      with:
+        docker_file_path: ${{ inputs.docker_file_path }}
+        docker_context: src/${{ inputs.application_name }}
+        ecr_registry: ${{ steps.authen-aws.outputs.ecr-registry }}
+        ecr_repository: ${{ inputs.ecr_repository }}
+
+    - name: Build & Push Docker Image
+      id: build-image
+      uses: pi-financial/github-action-workflow/docker/build@main
+      with:
+        docker_file_path: ${{ inputs.docker_file_path }}
+        docker_context: ${{ inputs.docker_context }}
+        ecr_registry: ${{ steps.authen-aws.outputs.ecr-registry }}
+        ecr_repository: ${{ inputs.ecr_repository }}
+        tags: ${{ steps.metadata.outputs.tags }}
+        labels: ${{ steps.metadata.outputs.labels }}
+        version: ${{ steps.metadata.outputs.version }}

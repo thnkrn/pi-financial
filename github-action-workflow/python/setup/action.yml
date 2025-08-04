@@ -1,0 +1,44 @@
+name: python Build
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+  base_ref:
+    description: branch, tag or commit SHA to be base code
+    required: false
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  python_version:
+    description: python version
+    default: "3.11"
+
+runs:
+  using: composite
+  steps:
+    - uses: pi-financial/github-action-workflow/checkout@main
+      with:
+        repository: ${{ inputs.repository }}
+        base_ref: ${{ inputs.base_ref }}
+        target_ref: ${{ inputs.target_ref }}
+
+    - uses: pi-financial/github-action-workflow/authen-gh@main
+      with:
+        gh_access_token: ${{ inputs.gh_access_token }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11  # Choose your preferred Python version
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Adjust this based on your project setup

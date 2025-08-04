@@ -1,0 +1,15 @@
+name: dotnet Build
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: yarn build-prod
+      shell: bash
+      working-directory: .
+      run: |
+        yarn run build-prod

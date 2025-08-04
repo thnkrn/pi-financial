@@ -1,0 +1,28 @@
+name: Publish Nuget
+description: Publish Nuget Package
+
+inputs:
+  application_name:
+    description: Application Name
+    required: true
+  application_path:
+    description: Path to client folder
+    required: true
+  gh_access_token:
+    description: GH Token
+    required: true
+  version:
+    description: Version number
+    default: 1.0.${{ github.run_number }}
+
+runs:
+  using: composite
+  steps:
+    - name: Publish Nuget
+      working-directory: ${{ inputs.application_path }}
+      shell: bash
+      run: |-
+        dotnet nuget push \
+          "bin/Release/${{ inputs.application_name }}.${{ inputs.version }}.nupkg" \
+          --api-key ${{ inputs.gh_access_token }} \
+          --source "github"

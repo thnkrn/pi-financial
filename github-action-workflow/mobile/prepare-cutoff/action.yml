@@ -1,0 +1,180 @@
+name: Prepare Cutoff
+
+inputs:
+  releaseVersion:
+    description: Version to be released
+    required: true
+    type: string
+  repoName:
+    description: Repository in action
+    required: true
+    type: string
+  ghAccessToken:
+    description: "GitHub access token"
+    required: true
+    type: string
+
+outputs:
+  release-tag:
+    description: "Release Tag"
+    value: ${{ steps.release-info.outputs.release-tag}}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Prepare release ${{ inputs.repoName }}
+      id: release-info
+      run: |
+        main() {
+          local RELEASE_VERSION=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+        
+          if [[ $REPO_NAME == "pi-module" ]]; then
+            cd $REPO_NAME
+          fi
+        
+          # Determine if the release branch already exists
+          local BRANCH
+          BRANCH=$(git rev-parse --verify origin/release/v${RELEASE_VERSION} >/dev/null 2>&1 && echo release/v${RELEASE_VERSION} || echo 'develop')
+        
+          if [[ $BRANCH == 'develop' ]]; then
+            prepare_new_release_branch "$RELEASE_VERSION" "$REPO_NAME" "$GH_ACCESS_TOKEN"
+          else
+            update_existing_release_branch "$RELEASE_VERSION" "$REPO_NAME" "$GH_ACCESS_TOKEN"
+          fi
+        }
+        
+        update_version_ios() {
+          local RELEASE_VERSION=$1
+          sed -i '' -E "s/(MARKETING_VERSION = )[^;]+;/\1${RELEASE_VERSION};/g" "cgs-next-gen.xcodeproj/project.pbxproj"
+        }
+        
+        update_version_flutter() { 
+          local RELEASE_VERSION=$1
+          sed -i '' -E "s/(^version: *)(.*)/\1${RELEASE_VERSION}+1/g" "pubspec.yaml"
+        }
+        
+        update_version_android() { 
+          local RELEASE_VERSION=$1
+          local FILE_PATH="buildSrc/src/main/java/Dependencies.kt"
+          # NOTE: Version Code is updated automatically for Play Store AAB upload via fastlane action 
+          # Update `versionName`
+          sed -i '' -E "s/(const val versionName = \")([^\"]+)(\".*)/\1${RELEASE_VERSION}\3/" "$FILE_PATH"
+        }
+        
+        # Function to prepare a new release branch if it doesn't exist
+        prepare_new_release_branch() {
+          local RELEASE_VERSION=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+        
+          echo '[INFO] Checking out new release branch...'
+          git checkout -b release/v${RELEASE_VERSION}
+        
+          echo '[INFO] Updating project version...'
+          if [[ $REPO_NAME == "pi-financial-ios-app" ]]; then
+            update_version_ios "$RELEASE_VERSION"
+          elif [[ $REPO_NAME  == "pi-financial-android-app" ]]; then
+            update_version_android "$RELEASE_VERSION" 
+          elif [[ $REPO_NAME  == "pi-module" ]]; then
+            update_version_flutter "$RELEASE_VERSION"
+          else
+            echo "[ERROR] The provided project doesn't specify any update function..."
+          fi
+        
+          echo '[INFO] Committing changes, tagging, and pushing...'
+          git add .
+          git commit -m "Bump version to v${RELEASE_VERSION}"
+          git tag v${RELEASE_VERSION}-rc.1
+          echo "release-tag=v${RELEASE_VERSION}-rc.1" >> $GITHUB_OUTPUT
+          git push origin release/v${RELEASE_VERSION} --tags
+        
+          echo '[INFO] Creating pull requests...'
+          create_pr "$RELEASE_VERSION" "$REPO_NAME" "$GH_ACCESS_TOKEN" "develop"
+          create_pr "$RELEASE_VERSION" "$REPO_NAME" "$GH_ACCESS_TOKEN" "main"
+        
+          echo '[INFO] Generating release note...'
+          generate_release_note "v${RELEASE_VERSION}-rc.1" "$REPO_NAME" "$GH_ACCESS_TOKEN"
+        }
+        
+        # Function to update an existing release branch if it already exists
+        update_existing_release_branch() {
+          local RELEASE_VERSION=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+        
+          echo '[INFO] Checking out existing release branch...'
+          git checkout release/v${RELEASE_VERSION}
+        
+          echo '[INFO] Constructing the new tag...'
+          local pattern="[0-9]+\.[0-9]+\.[0-9]+-rc\.[0-9]+"
+          local tags=$(git tag -l --sort=-v:refname | grep -E $pattern)
+          local first_tag=$(echo "$tags" | head -n 1)
+          local latest_commit_hash=$(git log -1 --format=%H)
+          local tag_commit_hash=$(git rev-list -n 1 $first_tag)
+        
+          if [ "$latest_commit_hash" == "$tag_commit_hash" ]; then
+              echo "[INFO] The latest commit hash matches the specified tag commit hash. Exiting..."
+              echo "release-tag=$first_tag" >> $GITHUB_OUTPUT
+              exit 0
+          fi 
+        
+          echo "[INFO] Incrementing RC build number..."
+          local rc_value=$(echo "$first_tag" | sed -E "s/.*-rc\.([0-9]+)/\1/")
+          local new_rc_value=$((rc_value + 1))
+          local new_tag=$(echo "$first_tag" | sed -E "s/(-rc\.)$rc_value/\1$new_rc_value/")
+          echo "[INFO] New tag: $new_tag"
+        
+          echo '[INFO] Updating the tag...'
+          git tag $new_tag
+          echo "release-tag=$new_tag" >> $GITHUB_OUTPUT
+          git push origin --tags
+        
+          echo '[INFO] Generating release note...'
+          generate_release_note "$new_tag" "$REPO_NAME" "$GH_ACCESS_TOKEN"
+        }
+        
+        # Function to create a pull request
+        create_pr() {
+          local RELEASE_VERSION=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+          local BASE_BRANCH=$4
+        
+          curl --location "https://api.github.com/repos/pi-financial/${REPO_NAME}/pulls" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_ACCESS_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --header "Content-Type: application/json" \
+            --data '{
+              "title": "release/v'"${RELEASE_VERSION}"' -> '"${BASE_BRANCH}"'",
+              "body": "Created by GitHub Action",
+              "head": "release/v'"${RELEASE_VERSION}"'",
+              "base": "'"${BASE_BRANCH}"'"
+            }'
+        }
+        
+        # Function to generate release notes
+        generate_release_note() {
+          local TAG_NAME=$1
+          local REPO_NAME=$2
+          local GH_ACCESS_TOKEN=$3
+        
+          curl --location "https://api.github.com/repos/pi-financial/${REPO_NAME}/releases" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer $GH_ACCESS_TOKEN" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --header "Content-Type: application/json" \
+            --data '{
+              "tag_name": "'"${TAG_NAME}"'",
+              "draft": false,
+              "prerelease": false,
+              "generate_release_notes": true
+            }'
+        }
+        
+        # Execute the main function with arguments
+        main "${{ inputs.releaseVersion }}" "${{ inputs.repoName }}" "${{ inputs.ghAccessToken }}"
+
+      shell: bash

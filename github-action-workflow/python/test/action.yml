@@ -1,0 +1,15 @@
+name: python Test
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+   
+runs:
+  using: composite
+  steps:
+  # python -m pytest
+    - name: Run tests
+      shell: bash
+      run: |
+        pip install pytest

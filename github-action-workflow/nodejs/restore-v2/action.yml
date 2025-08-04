@@ -1,0 +1,47 @@
+name: nodejs Restore
+
+inputs:
+  application_name:
+    description: Name of solution or application
+    required: true
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  npm_read_token:
+    description: npm read token
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: pass npm token
+      shell: bash
+      run: echo "npm_read_token=${{inputs.npm_read_token}}" >> $GITHUB_ENV
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v3
+      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    # Make the CI workflow support a private registry
+    - name: Put gh_access_token to yarnrc.yml
+      shell: bash
+      run: |
+        if test -f ".yarnrc.yml"; then
+          sed -i -e "s|\${YARN_NPM_AUTH_TOKEN:-}|${{ inputs.gh_access_token }}|g" .yarnrc.yml
+        fi
+
+    - name: Install Dependencies
+      working-directory: ./
+      shell: bash
+      run: NODE_ENV=production && yarn install
+      #yarn global add @vue/cli
+

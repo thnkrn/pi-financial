@@ -1,0 +1,37 @@
+name: Checkout to new branch and push to remote
+description: Checkout to new branch and push to remote
+
+inputs:
+  branch_name:
+    description: Name of branch to create
+    required: true
+  commit_message:
+    description: Commit message
+    required: true
+  working_directory:
+    description: Base path to work on
+    required: false
+    default: .
+
+runs:
+  using: composite
+  steps:
+    - name: Setup git config
+      uses: pi-financial/github-action-workflow/git/setup@main
+      with:
+        working_directory: ${{ inputs.working_directory }}
+
+    - name: Checkout to new branch
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: git checkout -b ${{ inputs.branch_name }}
+
+    - name: Commit all changes
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: git add . && git commit -m "${{ inputs.commit_message }}"
+
+    - name: Push changes to remote
+      shell: bash
+      working-directory: ${{ inputs.working_directory }}
+      run: git push -fu origin ${{ inputs.branch_name }}

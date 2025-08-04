@@ -1,0 +1,31 @@
+name: Argocd checkout
+
+inputs:
+  token_image_update:
+    description: Github Access Token needed for the checkout of other repositories
+    required: true
+  infra:
+    description: the repository that the tag change will happen in
+    required: false
+  infra_gitops:
+    description: the gitops Repository
+    required: false
+
+runs:
+  using: composite
+  steps:
+  - name: Checkout Target Repository
+    uses: actions/checkout@v4
+    with:
+      repository: ${{ inputs.infra }}
+      path: config
+      token: ${{ inputs.token_image_update }}
+      fetch-depth: 0
+
+  - name: Checkout GitOps Repository
+    uses: actions/checkout@v4
+    with:
+      repository: ${{ inputs.infra_gitops }}
+      path: config_gitops
+      token: ${{ inputs.token_image_update }}
+      fetch-depth: 0

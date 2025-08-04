@@ -1,0 +1,33 @@
+name: Inject Secrets Manager into run time
+inputs:
+
+  gh_access_token:
+    description: Github Access Token
+    required: true
+  use_secrets_manager:
+    description: do you want to use secrets manager?
+    required: true
+    default: false
+  secret_from_secrets_manager:
+    required: false
+    default: 'false'
+    description: This is the way it should be structured
+      exampleSecretName
+      arn:aws:secretsmanager:us-east-2:123456789012:secret:test1-a1b2c3
+      0/test/secret
+      /prod/example/secret
+      SECRET_ALIAS_1,test/secret
+      SECRET_ALIAS_2,arn:aws:secretsmanager:us-east-2:123456789012:secret:test2-a1b2c3
+  parse_json_secrets:
+    required: false
+    default: 'false'
+runs:
+  using: composite
+  steps:
+    - name: Step name
+      if: ${{ inputs.use_secrets_manager == 'true' }}
+      uses: aws-actions/aws-secretsmanager-get-secrets@v1
+      with:
+        secret-ids: |
+         ${{ inputs.secret_from_secrets_manager }}
+        parse-json-secrets: ${{ inputs.parse_json_secrets }}

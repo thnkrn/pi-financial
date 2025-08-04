@@ -1,0 +1,129 @@
+name: build-push
+description: ''
+
+inputs:
+  repository:
+    description: The owner and repository name
+    required: false
+    type: string
+    default: ${{ github.repository }}
+  base_ref:
+    description: The branch or tag ref or commit SHA that be base code.
+    required: false
+    type: string
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: The branch or tag ref or commit SHA that will be merged to base code.
+    required: false
+    type: string
+    default: ${{ github.head_ref || github.ref_name }}
+  code_language:
+    description: The program language of this repository
+    required: true
+    type: string
+  application_name:
+    description: Name of application
+    required: true
+    type: string
+  dotnet_version:
+    description: dotnet version
+    type: string
+    default: 8.0.x
+  infra_repo_config:
+    description: the config folder that will be changed
+    type: string
+  gh_access_token:
+    description: Gihub Access Token
+    required: true
+  aws_access_key_id:
+    description: Aws key id
+    required: true
+  aws_secret_access_key:
+    description: aws access key
+    required: true
+  aws_region:
+    description: aws access key
+    required: true
+  role_to_assume:
+    description: aws access key
+    required: true
+  ecr_repository:
+    description: ecr location
+    required: true
+  infra:
+    description: infra
+    required: true
+  token_image_update:
+    description: token image update
+    required: true
+  docker_file_path:
+    description: dockerfile path
+    required: true
+  dockermetadatatag:
+    description: tags
+    required: true
+  dockermetadataversion:
+    description: version
+    required: true
+  dockermetadatalabel:
+    description: labels
+    required: true
+  infra_gitops:
+    description: infra gitops
+    type: string
+    required: false
+    default: 'pi-financial/gitops'
+
+runs:
+  using: composite
+  steps:
+  - name: check
+    shell: bash
+    run: echo ${{inputs.dockermetadatatag}}
+
+  - name: check dockermetaversion
+    shell: bash
+    run: echo ${{inputs.dockermetadataversion}}
+
+  - name: check dockermetalabel
+    shell: bash
+    run: echo ${{inputs.dockermetadatalabel}}
+
+  - name: Checkout for infra repo
+    uses: pi-financial/github-action-workflow/argocd/checkout-pr@main
+    id: argocd-checkout
+    with:
+      infra: ${{ inputs.infra }}
+      token_image_update: ${{ inputs.token_image_update }}
+      infra_gitops: ${{ inputs.infra_gitops }}
+
+  - name: Tag and Deploy
+    uses: pi-financial/github-action-workflow/argocd/taganddeploy-pr@main
+    id: tag-and-deploy
+    with:
+      infra: ${{ inputs.infra }}
+      token_image_update: ${{ inputs.token_image_update }}
+      target_ref: ${{ inputs.target_ref }}
+      repository: ${{ inputs.repository }}
+      infra_repo_config: ${{ inputs.infra_repo_config }}
+      tags: ${{inputs.dockermetadatatag}}
+      labels: ${{inputs.dockermetadatalabel}}
+      version: ${{inputs.dockermetadataversion}}
+
+  - name: Commit
+    uses: pi-financial/github-action-workflow/argocd/commit-pr@main
+    id: commit-tag
+    with:
+      target_ref: ${{ inputs.target_ref }}
+      repository: ${{ inputs.repository }}
+      version: ${{inputs.dockermetadataversion}}
+
+  - name: Add Preview Label
+    uses: actions-ecosystem/action-add-labels@v1
+    with:
+      labels: |
+        preview
+
+  - name: URL of the PR-Environment (Make sure you are on VPN)
+    shell: bash
+    run: echo "Hot off the press - http://${{inputs.infra_repo_config}}.${{inputs.dockermetadataversion}}.nonprod.pi.internal"

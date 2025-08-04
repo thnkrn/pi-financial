@@ -1,0 +1,67 @@
+name: Golang Docker Build
+
+inputs:
+  infra:
+    type: string
+    required: true
+  target_ref:
+    type: string
+    required: true
+  repository:
+    type: string
+    required: true
+  infra_repo_config:
+    type: string
+    required: true
+  tags:
+    type: string
+    required: true
+  labels:
+    type: string
+    required: true
+  version:
+    type: string
+    required: true
+  token_image_update:
+    type: string
+    required: true
+  migration_version:
+    description: db migration image tag
+    required: false
+    default: ''
+  infra_gitops:
+    description: infra gitops
+    type: string
+    required: false
+    default: 'pi-financial/gitops'
+
+runs:
+  using: composite
+  steps:
+  - name: checkout for infra repo
+    uses: pi-financial/github-action-workflow/argocd/checkout@main
+    id: argocd-checkout
+    with:
+      infra: ${{ inputs.infra }}
+      token_image_update: ${{ inputs.token_image_update }}
+      infra_gitops: ${{ inputs.infra_gitops }}
+
+  - name: tag-and-deploy
+    uses: pi-financial/github-action-workflow/argocd/taganddeploy@main
+    id: tag-and-deploy
+    with:
+      target_ref: ${{ inputs.target_ref }}
+      infra_repo_config: ${{ inputs.infra_repo_config }}
+      tags: ${{ inputs.tags }}
+      labels: ${{ inputs.labels }}
+      version: ${{ inputs.version }}
+      migration_version: ${{ inputs.migration_version }}
+      infra: ${{ inputs.infra }}
+
+  - name: commit
+    uses: pi-financial/github-action-workflow/argocd/commit@main
+    id: commit-tag
+    with:
+      target_ref: ${{ inputs.target_ref }}
+      repository: ${{ inputs.repository }}
+      version: ${{ inputs.version }}

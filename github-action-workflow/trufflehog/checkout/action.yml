@@ -1,0 +1,72 @@
+name: Checkout Repository
+
+inputs:
+  repository:
+    description: repository name
+    required: false
+    default: ${{ github.repository }}
+  base_ref:
+    description: branch, tag or commit SHA to be base code
+    required: false
+    default: ${{ github.base_ref || 'main' }}
+  target_ref:
+    description: branch, tag or commit SHA to merge into base code
+    required: false
+    default: ${{ github.head_ref || github.ref_name }}
+
+runs:
+  using: composite
+  steps:
+    - name: if it not from a pull request
+      if: ${{ github.event_name != 'pull_request'}}
+      uses: actions/checkout@v3.1.0
+      with:
+        repository: ${{ inputs.repository }}
+        ref: ${{ inputs.base_ref }}
+        clean: true
+        fetch-depth: 0
+
+    - name: if its from a pull request
+      if: ${{ github.event_name == 'pull_request'}}
+      uses: actions/checkout@v3.1.0
+      with:
+        repository: ${{ inputs.repository }}
+        ref: ${{ github.event.pull_request.head.sha }}
+        clean: true
+        fetch-depth: 0
+
+    - name: if it has a tag
+      shell: bash
+      if: startsWith(github.ref, 'refs/tags/v')
+      run: |
+        git config user.name "Pi Financial Github Action"
+        git config user.email "github.action@pi.financial"
+        git fetch
+        # git merge --no-commit --no-ff ${{ inputs.target_ref }}
+
+    - name: if its from a pull request
+      shell: bash
+      if: ${{ github.event_name == 'pull_request'}}
+      run: |
+        git config user.name "Pi Financial Github Action"
+        git config user.email "github.action@pi.financial"
+        git fetch
+        # git merge --no-commit  --no-ff origin/${{ inputs.target_ref }}
+
+    - name: if its from a merged pull request
+      shell: bash
+      if: github.event.pull_request.merged == 'true'
+      run: |
+        git config user.name "Pi Financial Github Action"
+        git config user.email "github.action@pi.financial"
+        git fetch
+        # git merge --no-commit  --no-ff ${{ inputs.target_ref }}
+
+    - name: If its from main
+      shell: bash
+      if: ${{ github.ref == 'refs/heads/main' }}
+      run: |
+        git config user.name "Pi Financial Github Action"
+        git config user.email "github.action@pi.financial"
+        git fetch
+        # git merge --no-commit  --no-ff ${{ inputs.target_ref }}
