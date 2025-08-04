@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="portfolio-value">
+    <div class="value">
+      <div class="data">
+        <h2>Value (THB)</h2>
+        <p><%= formatCurrency(value) %></p>
+      </div>
+      <% if(title == "Private Fund"){ %>
+      <% if(getPrivateFundByCustcode(marketing, custcode)){
+        fundSummary = getPrivateFundByCustcode(marketing,custcode);
+        if(fundSummary.nav !== 0) {
+        %>
+      <div class="data">
+        <h2>NAV (THB)</h2>
+        <p><%=formatCurrency(fundSummary.nav)%></p>
+      </div>
+      <% } %>
+      <% }
+      } %>
+      <% if(totalPortfolioAllocation){%>
+      <div class="data">
+        <h2>Total Portfolio Allocation</h2>
+        <p><%=formatCurrency(totalPortfolioAllocation)%>%</p>
+        <% if(yearLowPercent) {%>
+        <span><%=formatPercentage(yearLowPercent)%></span>
+        <% } %>
+
+      </div>
+      <% } %>
+
+      <% if(title == "Global Equity" || title == "Structured Products" || title == "Thai Equity"){ %>
+      <% if(getBalanceSummary(marketing,custcode)){
+        balanceSummary = getBalanceSummary(marketing,custcode);
+        if(balanceSummary !==  null) {
+      %>
+      <% if(accountName=="Cash Balance" || accountName=="Credit Balance" || accountName=="Cash"){ %>
+      <div class="data">
+        <h2>Available Cash Balance (THB)</h2>
+        <p>
+          <% if(accountName=="Cash"){ %>
+          <%= formatCurrency(balanceSummary.thaiEquityCash) %>
+          <% } %>
+          <% if(accountName=="Cash Balance"){ %>
+          <%= formatCurrency(balanceSummary.thaiEquityCashBalance) %>
+          <% } %>
+          <% if(accountName=="Credit Balance"){ %>
+          <%= formatCurrency(balanceSummary.thaiEquityCreditBalance) %>
+          <% } %>
+        </p>
+      </div>
+      <% } %>
+      <% if(accountName=="Structured Products" || accountName=="Global Equity"){ %>
+      <div class="data">
+        <h2>Available Cash Balance (USD)</h2>
+        <p>
+          <% if(accountName=="Structured Products"){ %>
+          <%= formatCurrency(balanceSummary.structureProduct) %>
+          <% } %>
+          <% if(accountName=="Global Equity"){ %>
+          <%= formatCurrency(balanceSummary.globalEquity) %>
+          <% } %>
+        </p>
+      </div>
+      <% } %>
+      <% } %>
+      <% } %>
+      <% } %>
+    </div>
+    <p class="last-content">
+      <% if(Array.isArray(exchange)) {%>
+      <% 
+            // Get the first datekey from the exchange array and format it if necessary
+            var firstDateKey = exchange.length > 0 ? exchange[0].dateKey : null; 
+          %>
+      <% exchange.forEach(function(data,index) { %>
+      <span>1 <%= data.currency %> ≈ <%= formatCurrency(data.exchangeRate, 4) %> THB</span><br>
+
+      <% });%>
+      <%= firstDateKey ? 'BOT Exchange Rate as of ' + formatDateNumber(firstDateKey) : '' %>
+      <% }else{%>
+      <% if(exchange){ %>
+      <span>*BOT Exchange Rate as of <%= formatDateNumber(exchange) %></spanBOT>
+        <% } %>
+        <% } %>
+    </p>
+  </div>
+</body>
+
+</html>

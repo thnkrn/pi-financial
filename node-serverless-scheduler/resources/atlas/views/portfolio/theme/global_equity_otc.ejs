@@ -1,0 +1,201 @@
+<% globalEquityOtc = marketing.globalEquityOtc %>
+
+<% 
+const calculateTotalMarketValueByCustcode = (data) => {
+    const result = data.reduce((acc, item) => {
+        if (!acc[item.custcode]) {
+            acc[item.custcode] = {
+                custcode: item.custcode,
+                totalMarketValue: 0,
+                totalMarketValueOriginalCurrency: 0,
+                totalCost: 0,
+                totalGainLoss: 0
+            };
+        }
+        acc[item.custcode].totalMarketValue += item.totalMarketValue;
+        acc[item.custcode].totalMarketValueOriginalCurrency += item.totalMarketValueOriginalCurrency;
+        acc[item.custcode].totalCost += item.totalCost;
+        acc[item.custcode].totalGainLoss += item.totalGainLoss;
+        return acc;
+    }, {});
+
+    return Object.values(result);
+};
+
+const totalMarketValuesByCustcode = calculateTotalMarketValueByCustcode(globalEquityOtc);
+
+const calculateThresholds = (pageCounter, categoryCount, includeValueCard) => {
+    let productCounter = 20;
+    if (includeValueCard) {
+        productCounter -= 3;
+    }
+    if (pageCounter === 0) {
+        productCounter -= 1;
+    }
+    productCounter -= (categoryCount * 2);
+    return productCounter;
+};
+%>
+
+<% 
+const uniqueCustcodes = [...new Set(globalEquityOtc.map(data => data.custcode))];
+let currentCustcode = null;
+let productCounter = 0;
+const categoryClasses = ['mutual-header-green', 'mutual-header-blue', 'mutual-header-solid-green', 'mutual-header-gray'];
+%>
+
+<% uniqueCustcodes.forEach((custcode, custcodeIndex) => { 
+    const custcodeData = globalEquityOtc.filter(data => data.custcode === custcode);
+    let currentCategoryIndex = 0;
+    let pageCounter = 0;
+    let categoryCount = 0;  
+    let includeValueCard = true;
+    custcodeData.forEach((categoryData, categoryIndex) => { 
+        const isDifferentCustcode = currentCustcode !== categoryData.custcode;
+        includeValueCard = pageCounter < 1;
+        if (isDifferentCustcode) { 
+            if (currentCustcode !== null) { 
+                // Close previous page divs
+%>
+</tbody>
+</table>
+</div>
+<%- include('footer') %>
+</div>
+</div>
+<% 
+            } 
+            // Reset counters and update currentCustcode
+            productCounter = 0;
+            pageCounter = 0;
+            categoryCount = 0;
+            currentCustcode = categoryData.custcode; 
+            currentCategoryIndex = 0;
+%>
+<div class="container space-bottom page-break-before">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <%- include('porducts-value-card',{accountName:categoryData.accountName, value:totalMarketValuesByCustcode[custcodeIndex].totalMarketValue,totalPortfolioAllocation:(totalMarketValuesByCustcode[custcodeIndex].totalMarketValue/marketing.portfoliosummary.allocationAmount) * 100,yearLowPercent:0, exchange: data.exchangeRate,custcode :custcode,nav : 0}) %>
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header" style="width: 17%;">Equity Name</th>
+            <th class="mutual-header">Unit</th>
+            <th class="mutual-header">Avg.Cost</th>
+            <th class="mutual-header">Market Price</th>
+            <th class="mutual-header">Total Cost</th>
+            <th class="mutual-header">Total Value</th>
+            <th class="mutual-header">Unrealized P/L</th>
+            <th class="mutual-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+        } 
+        // Check if category-block should be on a new page
+        const isBeginningOfCategory = currentCategoryIndex != categoryIndex;
+        const isNewPage = isBeginningOfCategory && productCounter >= calculateThresholds(pageCounter, categoryCount, includeValueCard) - 2;
+        if ((categoryClasses[categoryIndex % categoryClasses.length].includes('category-block') && productCounter >= calculateThresholds(pageCounter, categoryCount, includeValueCard) - 2) || isNewPage) {
+            productCounter = 0;
+            pageCounter++;
+            categoryCount = 0;
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<div class="container space-bottom page-break-before">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth, title, marketing, equity: categoryData}) %>
+  <div class="mutual-contant">
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-space mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header" style="width: 17%;">Equity Name</th>
+            <th class="mutual-header">Unit</th>
+            <th class="mutual-header">Avg.Cost</th>
+            <th class="mutual-header">Market Price</th>
+            <th class="mutual-header">Total Cost</th>
+            <th class="mutual-header">Total Value</th>
+            <th class="mutual-header">Unrealized P/L</th>
+            <th class="mutual-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+        } 
+        // Add category header
+        currentCategoryIndex = categoryIndex;
+        categoryCount++;
+%>
+          <tr class="separation"></tr>
+          <tr class="<%= categoryClasses[categoryIndex % categoryClasses.length] %>">
+            <td colspan="4" class="mutual-header-data "><%= categoryData.equityCategory %> <%= categoryData.percentAllocation.toFixed(0) %>%</td>
+            <td class="mutual-header-data"><%= formatCurrency(categoryData.totalCost) %></td>
+            <td class="mutual-header-data"><%= formatCurrency(categoryData.totalMarketValueOriginalCurrency) %></td>
+            <td class="mutual-header-data"><%= ((categoryData.totalGainLoss > 0) ? '+' : '') %><%= formatCurrency(categoryData.totalGainLoss) %></td>
+            <% const unrealizedPL = (categoryData.totalGainLoss / categoryData.totalCost * 100).toFixed(2); %>
+            <td class="mutual-header-data"><%= ((unrealizedPL > 0) ? '+' : '') %><%= (unrealizedPL) %> %</td>
+          </tr>
+          <%
+        // Loop through products in the category
+        categoryData.products.forEach((product, productIndex) => { 
+            if (productCounter >= calculateThresholds(pageCounter, categoryCount, includeValueCard)) { 
+                productCounter = 0;
+                pageCounter++;
+                categoryCount = 0;
+                includeValueCard = pageCounter < 1;
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<div class="container space-bottom page-break-before">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth, title, marketing, equity: categoryData}) %>
+  <div class="mutual-contant">
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-space mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header" style="width: 17%;">Equity Name</th>
+            <th class="mutual-header">Unit</th>
+            <th class="mutual-header">Avg.Cost</th>
+            <th class="mutual-header">Market Price</th>
+            <th class="mutual-header">Total Cost</th>
+            <th class="mutual-header">Total Value</th>
+            <th class="mutual-header">Unrealized P/L</th>
+            <th class="mutual-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+            } 
+%>
+          <tr>
+            <td class="mutual-data single-column"><%= product.sharecode %></td>
+            <td class="mutual-data"><%= formatCurrency(product.units) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.avgCost) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.marketPrice) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.totalCost) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.marketValueOriginalCurrency) %></td>
+            <%- include('../components/table/unrealized_pl', { rowClass: 'mutual-data', gainLoss: product.gainLoss, unrealizedPL: product.unrealizedPL }) %>
+          </tr>
+          <%
+            productCounter++;
+        }); 
+    }); 
+}); 
+if (productCounter > 0) { 
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<% } %>

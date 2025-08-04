@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS `portfolio_cash_daily_snapshot` (`custcode` VARCHAR(255) NOT NULL, `trading_account_no` VARCHAR(255), `exchange_market_id` VARCHAR(255), `customer_type` VARCHAR(255), `customer_sub_type` VARCHAR(255), `account_type` VARCHAR(255), `account_type_code` VARCHAR(255), `currency` VARCHAR(255), `cash_balance` DECIMAL(65,8), `date_key` DATE NOT NULL, `created_at` DATETIME) ENGINE=InnoDB;
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'portfolio_summary_db';
+SHOW INDEX FROM `SequelizeMeta`;\nINSERT INTO `SequelizeMeta` (`name`) VALUES ('20240301044443-create-portfolio-cash-daily-snapshot-table.js');

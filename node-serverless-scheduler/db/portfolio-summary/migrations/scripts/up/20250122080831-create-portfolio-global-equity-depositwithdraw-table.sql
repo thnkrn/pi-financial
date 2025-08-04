@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS `portfolio_global_equity_depositwithdraw_daily_snapshot` (`id` CHAR(36) BINARY NOT NULL , `type` VARCHAR(100) NOT NULL, `custcode` VARCHAR(10) NOT NULL, `trading_account_no` VARCHAR(20) NOT NULL, `currency` VARCHAR(10), `fx_rate` DECIMAL(19,9), `amount_usd` DECIMAL(19,9), `amount_thb` DECIMAL(19,9), `date_key` DATE NOT NULL, `created_at` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'portfolio_summary_db';
+SHOW INDEX FROM `SequelizeMeta`;\nINSERT INTO `SequelizeMeta` (`name`) VALUES ('20250122080831-create-portfolio-global-equity-depositwithdraw-table.js');

@@ -1,0 +1,10 @@
+ALTER TABLE `exante_trade_vats` CHANGE `account_id` `account_id` VARCHAR(255);
+ALTER TABLE `exante_trade_vats` CHANGE `symbol_id` `symbol_id` VARCHAR(255);
+ALTER TABLE `exante_trade_vats` CHANGE `order_id` `order_id` VARCHAR(255);
+ALTER TABLE `exante_trade_vats` CHANGE `operation_type` `operation_type` VARCHAR(255);
+ALTER TABLE `exante_trade_vats` CHANGE `when` `when` DATETIME;
+ALTER TABLE `exante_trade_vats` CHANGE `sum` `sum` DECIMAL(65,8);
+ALTER TABLE `exante_trade_vats` CHANGE `asset` `asset` VARCHAR(255);
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'reconcile_db';
+SHOW INDEX FROM `SequelizeMeta`;
+INSERT INTO `SequelizeMeta` (`name`) VALUES ('20231219064444-update-exante-trade-vats-table-property.js');

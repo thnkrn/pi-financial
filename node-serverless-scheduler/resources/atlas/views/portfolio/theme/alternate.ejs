@@ -1,0 +1,196 @@
+<% let pageNumber = 1; %>
+<% let includedCustcodes = new Set(); %>
+<% let pageNumberMap = new Map(); %>
+
+<% alternatives = marketing.alternatives;  %>
+
+<% const groupAlternativesByCustcode = (alternatives) => {
+  const groupedData = {};
+
+  Object.keys(alternatives).forEach(type => {
+      alternatives[type].forEach(item => { %>
+        <%  if (!groupedData[item.custcode]) {
+              groupedData[item.custcode] = {
+                  custcode: item.custcode,
+                  accountNo: item.accountNo,
+                  totalMarketValue: 0,
+                  PrivateEquity: [],
+                  PrivateCredit: []
+              };
+          }
+          groupedData[item.custcode][type].push(item);
+          groupedData[item.custcode].totalMarketValue += item.totalMarketValue;
+      });
+  });
+
+  return Object.values(groupedData);
+}; %>
+
+<% const groupedAlternatives = groupAlternativesByCustcode(alternatives); %>
+
+<% groupedAlternatives.forEach(custGroup => { %>
+  <% let rowCount = 0; %>
+  <% pageNumberMap.set(custGroup.custcode, 1); %>
+  <% const startNewPage = (para) => { %>
+      <% if (rowCount > 0) { %>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+      <% pageNumber++; %>
+      <% pageNumberMap.set(custGroup.custcode, pageNumberMap.get(custGroup.custcode) + 1); %>
+      <% } %>
+      <div class="container space-bottom page-break-before">
+          <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:{custcode: custGroup.custcode,accountNo: custGroup.accountNo}}) %>
+          <div class="mutual-contant">
+            <% if (!includedCustcodes.has(custGroup.custcode)) { %>
+              <%- include('porducts-value-card',{value:custGroup.totalMarketValue,totalPortfolioAllocation:(custGroup.totalMarketValue/marketing.portfoliosummary.allocationAmount),yearLowPercent:0, exchange: data.exchangeRate,custcode:custGroup.custcode,nav : 0}) %>
+              <% includedCustcodes.add(custGroup.custcode); %>
+            <% } %>
+              <div class="space-top-mutual">
+  <% }; %>
+
+  <% startNewPage('current'); %>
+
+  <% if (custGroup.PrivateEquity.length > 0) { %>
+    <div class="alt-green-border"></div>
+      <table class="global-equity mutual-height">
+          <thead>
+              <tr class="global-header-green">
+                  <td colspan="4" class="global-header-data">Private Equity</td>
+                  <td class="global-header-data"><%= formatCurrency(custGroup.PrivateEquity[0].totalMarketValue) %></td>
+                  <td class="global-header-data"><%= formatCurrency(custGroup.PrivateEquity[0].totalCost) %></td>
+                  <td class="global-header-data"><%= ((custGroup.PrivateEquity[0].totalGainLoss > 0) ? '+' : '') %><%= formatCurrency(custGroup.PrivateEquity[0].totalGainLoss) %></td>
+                  <% const unrealizedPL = ((custGroup.PrivateEquity[0].totalGainLoss) / custGroup.PrivateEquity[0].totalCost * 100).toFixed(2); %>
+                  <td class="global-header-data"><%= ((unrealizedPL > 0) ? '+' : '') %><%= (unrealizedPL) %> %</td>
+              </tr>
+              <tr>
+                  <th class="global-header">Equity Name</th>
+                  <th class="global-header">Unit</th>
+                  <th class="global-header">Avg. Cost</th>
+                  <th class="global-header">Market Nav</th>
+                  <th class="global-header">Total Cost</th>
+                  <th class="global-header">Total Value</th>
+                  <th class="global-header">Unrealized P/L</th>
+                  <th class="global-header">Unrealized P/L %</th>
+              </tr>
+          </thead>
+          <tbody>
+              <% custGroup.PrivateEquity.forEach(item => {
+                  item.products.forEach(product => {
+                    let maxRowsPerPagePE = item.products.length >= 13 ? 13 : item.products.length <= 2 ? 2 : 12;
+                      if(item.products.length == maxRowsPerPagePE){
+                        maxRowsPerPagePE -= 1;
+                      }
+                      if (rowCount >= maxRowsPerPagePE) { %>
+                          <% startNewPage('current'); %>
+                          <table class="global-equity mutual-space">
+                              <thead>
+                                  <tr>
+                                      <th class="global-header">Equity Name</th>
+                                      <th class="global-header">Unit</th>
+                                      <th class="global-header">Avg. Cost</th>
+                                      <th class="global-header">Market Nav</th>
+                                      <th class="global-header">Total Cost</th>
+                                      <th class="global-header">Total Value</th>
+                                      <th class="global-header">Unrealized P/L</th>
+                                      <th class="global-header">Unrealized P/L %</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                      <% rowCount = 0; %>
+                  <% } %>
+                  <tr>
+                      <td class="global-data single-column"><%= product.sharecode %></td>
+                      <td class="global-data"><%= Number(product.unit).toFixed(0) %></td>
+                      <td class="global-data"><%= formatCurrency(product.avgPrice) %></td>
+                      <td class="global-data"><%= formatCurrency(product.marketPrice) %></td>
+                      <td class="global-data"><%= formatCurrency(product.totalCost) %></td>
+                      <td class="global-data"><%= formatCurrency(product.marketValue) %></td>
+                      <% const rowUnrealizedPL = ((product.gainLoss / product.totalCost) * 100).toFixed(2); %>
+                      <%- include('../components/table/unrealized_pl', { rowClass: 'global-data', gainLoss: product.gainLoss, unrealizedPL: rowUnrealizedPL }) %>
+                  </tr>
+                  <% rowCount++; %>
+              <% });
+          }); %>
+          </tbody>
+      </table>
+  <% } %>
+
+  <% if (custGroup.PrivateEquity.length >= 13) { %>
+      <% startNewPage('next'); %>
+  <% } %>
+
+  <% if (custGroup.PrivateCredit.length > 0) { %>
+      <table class="global-equity global-no-border private-credit">
+          <thead>
+              <tr class="global-header-green global-sec-header">
+                  <td colspan="5" class="global-header-data">Private Credit</td>
+                  <td class="global-header-data"><%= formatCurrency(custGroup.PrivateCredit[0].totalCost) %></td>
+                  <td class="global-header-data"><%= formatCurrency(custGroup.PrivateCredit[0].totalMarketValue) %></td>
+                  <td class="global-header-data"></td>
+                  <td class="global-header-data"></td>
+              </tr>
+              <tr>
+                  <th class="global-header">Asset Name</th>
+                  <th class="global-header" style="width: 12%;">Initial Date</th>
+                  <th class="global-header">Maturity Date</th>
+                  <th class="global-header">Coupon Rate</th>
+                  <th class="global-header">Next Coupon Date</th>
+                  <th class="global-header">Initial Value</th>
+                  <th class="global-header">Current Value</th>
+                  <th class="global-header"></th>
+              </tr>
+          </thead>
+          <tbody>
+              <% custGroup.PrivateCredit.forEach(item => {
+                  item.products.forEach(product => {
+                      let counter = pageNumberMap.get(custGroup.custcode) == 1 ? 11 : 16;
+                      if (rowCount >= counter) { %>
+                          <% startNewPage('next'); %>
+                          <table class="global-equity mutual-space mutual-height <%= "page"+pageNumber +" rowcount"+ rowCount %>">
+                              <thead>
+                                <tr >
+                                    <td colspan="5" class="global-header-data"></td>
+                                    <td class="global-header-data"></td>
+                                    <td class="global-header-data"></td>
+                                    <td class="global-header-data"></td>
+                                    <td class="global-header-data"></td>
+                                </tr>
+                                  <tr>
+                                      <th class="global-header">Asset Name</th>
+                                      <th class="global-header" style="width: 12%;">Initial Date</th>
+                                      <th class="global-header">Maturity Date</th>
+                                      <th class="global-header">Coupon Rate</th>
+                                      <th class="global-header">Next Coupon Date</th>
+                                      <th class="global-header">Initial Value</th>
+                                      <th class="global-header">Current Value</th>
+                                      <th class="global-header"></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                      <% rowCount = 0; %>
+                  <% } %>
+                  <tr>
+                      <td class="global-data single-column"><%= product.assetName %></td>
+                      <td class="global-data"><%= new Date(product.initialDate).toLocaleDateString('en-GB') %></td>
+                      <td class="global-data"><%= new Date(product.maturityDate).toLocaleDateString('en-GB') %></td>
+                      <td class="global-data"><%= product.couponRate %></td>
+                      <td class="global-data"><%= new Date(product.nextCouponDate).toLocaleDateString('en-GB') %></td>
+                      <td class="global-data"><%= formatCurrency(product.initialValue) %></td>
+                      <td class="global-data"><%= formatCurrency(product.marketValue) %></td>
+                      <td class="global-data"></td>
+                  </tr>
+                  <% rowCount++; %>
+              <% });
+          }); %>
+          </tbody>
+      </table>
+  <% } %>
+          </div>
+      </div>
+  </div>
+  <% pageNumber++; %>
+  <% pageNumberMap.set(custGroup.custcode, pageNumberMap.get(custGroup.custcode) + 1); %>
+<% }); %>

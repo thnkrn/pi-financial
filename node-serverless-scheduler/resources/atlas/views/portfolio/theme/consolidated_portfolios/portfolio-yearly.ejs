@@ -1,0 +1,204 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<div class="chart-data" style="display: flex; justify-content: space-between; gap: 5px">
+  <div class="portfolio-p">
+    <h2>Portfolio Allocation</h2>
+    <div class="portfolio-chart-container">
+      <canvas id="portfolioChartAlloction" class="portfolioChartAlloction" style="width: 100%; max-width: 350px"></canvas>
+      <div id="customAlloLabels" class="customAlloLabels"></div>
+    </div>
+  </div>
+  <div class="portfolio-p yearly-p">
+    <h2>Yearly Portfolio Trend</h2>
+    <canvas id="portfolioYealyChart" class="portfolioYealyChart" style="width: 340px; max-width: 340px; height: 500px"></canvas>
+  </div>
+</div>
+
+<script>
+  const yearlyPortfolioTrend = <%- JSON.stringify(yearlyPortfolioTrend) %>;
+  const portfolioAllocation = <%- JSON.stringify(portfolioAllocation) %>;
+
+  const filteredPortfolioAllocations = portfolioAllocation.filter(({
+    valueAllocation
+  }) => valueAllocation !== 0);
+
+  const portfolioCategories = filteredPortfolioAllocations.map(({
+    productName
+  }) => productName);
+  const portfolioValues = filteredPortfolioAllocations.map(({
+    valueAllocation
+  }) => valueAllocation);
+  const portfolioPercentages = filteredPortfolioAllocations.map(({
+    percentAllocation
+  }) => percentAllocation);
+
+  const portfolioColors = [
+    "#16757A",
+    "#473E72",
+    "#F58F29",
+    "#094074",
+    "#007AA3",
+    "#21CE99",
+    "#222627",
+    "#DBDBDB",
+    "#707070",
+  ];
+
+  const portfColors = portfolioColors.slice(0, filteredPortfolioAllocations.length);
+
+  function formatCurrency(value) {
+    if (value >= 1e9) {
+      return (value / 1e9).toPrecision(3) + 'b';
+    } else if (value >= 1e6) {
+      return (value / 1e6).toPrecision(3) + 'm';
+    } else if (value >= 1e3) {
+      return (value / 1e3).toPrecision(3) + 'k';
+    } else {
+      return value.toPrecision(3);
+    }
+  }
+
+  const customLabelPort = portfolioPercentages.map((percentage, index) => {
+    const formattedPortPercentage = percentage.toFixed(2);
+    const value = portfolioValues[index];
+    return `<div style="margin-bottom: 3px; font-size:10px; display: flex; align-items: center; width: 100%;">
+                  <div style="height: 10px; width: 13px; background-color: ${portfColors[index]}; border-radius: 50%; display: inline-block;"></div>
+                  <div style="font-weight: 600; margin-right: 10px; margin-left: 10px; width:22%; text-align: right;">${formattedPortPercentage}%</div>
+                  <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <div style=" font-weight: 600;">${portfolioCategories[index]}</div>
+                    <div style="font-weight: 400;">${formatCurrency(value)}</div>
+                  </div>
+                </div>`;
+  });
+
+  document.getElementById("customAlloLabels").innerHTML =
+    customLabelPort.join("<br>");
+
+  new Chart("portfolioChartAlloction", {
+    type: "doughnut",
+    data: {
+      datasets: [{
+        backgroundColor: portfolioColors,
+        data: portfolioPercentages,
+        borderWidth: 0,
+      }, ],
+    },
+    options: {
+      animation: {
+        duration: 0
+      },
+      devicePixelRatio: 4,
+      cutout: "80%",
+      responsive: true,
+      maintainAspectRation: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+        position: "right",
+        labels: {
+          width: 300,
+          color: "#000000",
+          usePointStyle: true,
+        },
+      },
+    },
+  });
+
+  const yearlyLabels = yearlyPortfolioTrend.map(({
+    label
+  }) => label);
+  const yearlyData = yearlyPortfolioTrend.map(({
+    value
+  }) => value);
+  const yearlyBarColor = ["#0C5B59"];
+
+  new Chart("portfolioYealyChart", {
+    type: "bar",
+    data: {
+      labels: yearlyLabels,
+      datasets: [{
+        fill: false,
+        backgroundColor: yearlyBarColor,
+        data: yearlyData,
+        borderRadius: 4,
+        barPercentage: 0.5,
+        barThickness: 15,
+        maxBarThickness: 15,
+        minBarLength: 2,
+      }, ],
+    },
+    options: {
+      animation: {
+        duration: 0
+      },
+      devicePixelRatio: 4,
+      legend: false,
+      layout: {
+        padding: {
+          top: 20,
+        }
+      },
+      title: {
+        display: true,
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+        datalabels: {
+          display: true,
+          color: "#000",
+          backgroundColor: "#F1F1F1",
+          borderWidth: 1,
+          align: "end",
+          anchor: "end",
+          font: {
+            size: 8,
+            weight: 500
+          },
+          formatter: function(value) {
+            return formatCurrency(value);
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          borderWidth: 1,
+          border: {
+            color: "transparent",
+          },
+          ticks: {
+            callback: function(value) {
+              return formatCurrency(value);
+            },
+            min: 0,
+            max: 50,
+            color: "#000",
+            font: {
+              size: 8,
+            },
+          },
+          grid: {
+            display: true,
+          },
+        },
+        x: {
+          ticks: {
+            color: "#000",
+            font: {
+              size: 8,
+            },
+          },
+          barPercentage: 0.4,
+          grid: {
+            display: false,
+          },
+        },
+      },
+    },
+    plugins: [ChartDataLabels],
+  });
+</script>

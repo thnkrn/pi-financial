@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="portfolio-value">
+      <div class="value">
+        <% if(getBalanceSummary(marketing,excessEquity.custcode,accountName)){
+        balanceSummary = getBalanceSummary(marketing,excessEquity.custcode,accountName);
+        if(balanceSummary.tfexEquityValue !== 0) { %>
+        <div class="data">
+          <h2>Value (THB)</h2>
+          <p><%= formatCurrency(balanceSummary.tfexEquityValue) %></p>
+        </div>
+        <% } %>
+        <div class="data">
+          <h2>Total Portfolio Allocation</h2>
+          <p><%=formatCurrency(totalPortfolioAllocation)%>%</p>
+        </div>
+        <% { %>
+        <div class="data">
+          <h2>Excess Equity (THB)</h2>
+          <p><%= formatCurrency(balanceSummary.tfexExcessEquity) %></p>
+        </div>
+        <% } %> <% if(balanceSummary.tfex !== 0){ %>
+        <div class="data">
+          <h2>Cash Balance (THB)</h2>
+          <p><%= formatCurrency(balanceSummary.tfex) %></p>
+        </div>
+        <% } } %>
+      </div>
+    </div>
+  </body>
+</html>

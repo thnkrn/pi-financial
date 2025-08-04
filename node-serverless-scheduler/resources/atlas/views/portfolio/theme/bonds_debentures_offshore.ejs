@@ -1,0 +1,280 @@
+<% bond = marketing.bondOffshore %>
+
+<% 
+const calculateTotalMarketValueByCustcode = (data) => {
+    const result = data.reduce((acc, item) => {
+        if (!acc[item.custcode]) {
+            acc[item.custcode] = {
+                custcode: item.custcode,
+                totalMarketValue: 0
+            };
+        }
+        acc[item.custcode].totalMarketValue += item.totalMarketValue;
+        return acc;
+    }, {});
+
+    return Object.values(result);
+};
+
+const totalMarketValuesByCustcode = calculateTotalMarketValueByCustcode(bond);
+
+const calculateThresholds = (pageCounter, categoryCount,includeValueCard) => {
+  let productCounter = 12;
+   if (includeValueCard) {
+        productCounter -= 2;
+   }
+   if (pageCounter === 0) {
+        productCounter -= 1;
+   }
+   
+   productCounter -= categoryCount;
+   return productCounter;
+};
+%>
+
+<% 
+const uniqueCustcodes = [...new Set(bond.map(data => data.custcode))];
+let currentCustcode = null;
+let productCounter = 0;
+let isSelfCustodizedmarketData = false;
+
+const categoryClasses = [
+    'table-color-deep_sea category-block', 
+    'table-color-purple category-block',
+    'table-color-orange category-block',
+    'table-color-navy_blue category-block',
+    'table-color-blue-smoke category-block',
+    'table-color-light_blue category-block',
+    'table-color-light_green category-block',
+    'table-color-off-green category-block',
+    'table-color-black category-block',
+    'table-color-white category-block',
+    'table-color-gray category-block',
+    'table-color-dark_gray category-block',
+    'table-color-light_gray category-block',
+    'table-color-musturd_yellow category-block',
+    'table-color-red category-block',
+    'table-color-green category-block',
+    'table-color-blue category-block',
+    'table-color-sky_blue category-block',
+    'table-color-yellow category-block',
+    'table-color-dark-green category-block',
+    'table-color-radiant-green category-block',
+    'table-color-solid-green category-block'
+];
+
+%>
+
+<% uniqueCustcodes.forEach((custcode, custcodeIndex) => { 
+  const custcodeData = bond.filter(data => data.custcode === custcode);
+  let currentCategoryIndex = 0;
+  let pageCounter = 0;
+  let categoryCount = 0;  
+  let includeValueCard = pageCounter < 1;
+  
+
+  custcodeData.forEach((categoryData, categoryIndex) => { 
+    const isDifferentCustcode = currentCustcode !== categoryData.custcode;
+    if (isDifferentCustcode) { 
+      if (currentCustcode !== null) { 
+        // Close previous page divs
+%>
+</tbody>
+</table>
+</div>
+<% if (isSelfCustodizedmarketData) { 
+  isSelfCustodizedmarketData = false;
+  %>
+<div class="remark">
+  <p>These bonds are not held or reflected in your portfolio value at Pi. Pi Securities does not guarantee the completeness or accuracy of this information.</p>
+</div>
+<% } %>
+<%- include('footer') %>
+</div>
+</div>
+<% 
+      } 
+      // Reset counters and update currentCustcode
+      productCounter = 0;
+      pageCounter = 0;
+      categoryCount = 0;
+      currentCustcode = categoryData.custcode; 
+      currentCategoryIndex = 0;
+%>
+<div class="container space-bottom page-break-before bonds-debentures">
+
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <%- include('porducts-value-card',{accountName:'',value:totalMarketValuesByCustcode[custcodeIndex].totalMarketValue,totalPortfolioAllocation:(totalMarketValuesByCustcode[custcodeIndex].totalMarketValue/marketing.portfoliosummary.allocationAmount) * 100,yearLowPercent:0, exchange: data.exchangeRate,custcode : 0,nav : 0}) %>
+    <div class="space-top-mutual">
+      <table class="mutual-table">
+        <thead>
+          <tr>
+            <th class="mutual-header">Asset Name</th>
+            <th class="mutual-header">Issuer</th>
+            <th class="mutual-header">Initial Date</th>
+            <th class="mutual-header">Next Call Date</th>
+            <th class="mutual-header">Maturity Date/<br>Buy Back Date</th>
+            <th class="mutual-header">Coupon Rate/<br> Yield (Sell Buy Back)</th>
+            <th class="mutual-header">Units</th>
+            <th class="mutual-header">Currency</th>
+            <th class="mutual-header">Avg. Cost</th>
+            <th class="mutual-header">Initial Value</th>
+            <th class="mutual-header">Current Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+    } 
+
+
+    // Check if category-block should be on a new page
+    const isBeginningOfCategory = currentCategoryIndex != categoryIndex;
+    const isNewPage = isBeginningOfCategory && productCounter >= calculateThresholds(pageCounter, categoryCount,includeValueCard) - 2;
+    if ((categoryClasses[categoryIndex % categoryClasses.length].includes('category-block') && productCounter >= calculateThresholds(pageCounter, categoryCount,includeValueCard) - 2) || isNewPage) {
+        productCounter = 0;
+        pageCounter++;
+        categoryCount = 0;
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<div class="container space-bottom page-break-before bonds-debentures">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-space mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header">Asset Name</th>
+            <th class="mutual-header">Issuer</th>
+            <th class="mutual-header">Initial Date</th>
+            <th class="mutual-header">Next Call Date</th>
+            <th class="mutual-header">Maturity Date/<br>Buy Back Date</th>
+            <th class="mutual-header">Coupon Rate/<br> Yield (Sell Buy Back)</th>
+            <th class="mutual-header">Units</th>
+            <th class="mutual-header">Currency</th>
+            <th class="mutual-header">Avg. Cost</th>
+            <th class="mutual-header">Initial Value</th>
+            <th class="mutual-header">Current Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+    } 
+    // Add category header
+    currentCategoryIndex = categoryIndex;
+    categoryCount++;
+%>
+          <tr class="separation"></tr>
+          <tr class="<%= categoryClasses[categoryIndex % categoryClasses.length] %>">
+            <td colspan="9" class="mutual-header-data">
+              <%= categoryData.marketType %>
+              <% if (categoryData.marketType !== "Self Custodized") { %>
+              <%= categoryData.percentAllocation.toFixed(0) %>%
+              <% } else {
+                isSelfCustodizedmarketData = true;
+              } %>
+            </td>
+            <td colspan="1" class="mutual-header-data"></td>
+            <td colspan="1" class="mutual-header-data"></td>
+          </tr>
+          <%
+    // Loop through products in the category
+    categoryData.products.forEach((product, productIndex) => { 
+      if (productCounter >= calculateThresholds(pageCounter, categoryCount, includeValueCard)) { 
+        productCounter = 0;
+        pageCounter++;
+        categoryCount = 0;
+        includeValueCard = pageCounter < 1;
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<div class="container space-bottom page-break-before bonds-debentures">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-space">
+        <thead>
+          <tr>
+            <th class="mutual-header">Asset Name</th>
+            <th class="mutual-header">Issuer</th>
+            <th class="mutual-header">Initial Date</th>
+            <th class="mutual-header">Next Call Date</th>
+            <th class="mutual-header">Maturity Date/<br>Buy Back Date</th>
+            <th class="mutual-header">Coupon Rate/<br> Yield (Sell Buy Back)</th>
+            <th class="mutual-header">Units</th>
+            <th class="mutual-header">Currency</th>
+            <th class="mutual-header">Avg. Cost</th>
+            <th class="mutual-header">Initial Value</th>
+            <th class="mutual-header">Current Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+      } 
+%>
+          <tr>
+            <td class="mutual-data">
+              <div class="issuer-column issuer-height"><%= product.assetName %></div>
+            </td>
+            <td class="mutual-data">
+              <div class="issuer-column issuer-height"><%= product.issuer %></div>
+            </td>
+            <td class="mutual-data"><%= new Date(product.initialDate).toLocaleDateString('en-GB') %></td>
+            <td class="mutual-data">
+              <% if (product.nextCallDate) { %>
+              <%= new Date(product.nextCallDate).toLocaleDateString('en-GB') %>
+              <% }else{ %> - <% } %> </td>
+            </td>
+            <td class="mutual-data"><%= new Date(product.maturityDate).toLocaleDateString('en-GB') %></td>
+            <td class="mutual-data">
+              <% if (product.couponRate) { %>
+              <%= (Number(product.couponRate) * 100).toFixed(2) %>%</td>
+            <% } %>
+            <td class="mutual-data"><%= formatCurrency(product.units) %></td>
+            <td class="mutual-data"><%= product.currency %></td>
+            <td class="mutual-data">
+              <% if (product.avgCost) { %>
+              <%= formatCurrency(product.avgCost) %>
+              <% }else{ %> - <% } %> </td>
+            <td class="mutual-data">
+              <% if (product.totalCost) { %>
+              <%= formatCurrency(product.totalCost) %>
+              <% }else{ %> - <% } %> </td>
+            <td class="mutual-data" style="color: black;">
+              <% if (product.marketType == 'Secondary Market' || product.marketType == 'Offshore - Debentures') { %>
+              <%= formatCurrency(product.marketValueOriginalCurrency) %>
+              <% }else{ %> - <% } %> </td>
+            </td>
+          </tr>
+
+          <%
+      productCounter++;
+      %>
+
+          <%
+          });
+          });
+          });
+          if (productCounter > 0) {
+          %>
+        </tbody>
+      </table>
+    </div>
+    <% if (isSelfCustodizedmarketData) { %>
+    <div class="remark">
+      <p>These bonds are not held or reflected in your portfolio value at Pi. Pi Securities does not guarantee the completeness or accuracy of this information.</p>
+    </div>
+    <% } %>
+    <%- include('footer') %>
+  </div>
+</div>
+<% } %>

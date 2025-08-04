@@ -1,0 +1,13 @@
+ALTER TABLE `exante_custom_account_summaries` CHANGE `date` `date` DATETIME;
+ALTER TABLE `exante_custom_account_summaries` CHANGE `account` `account` VARCHAR(255);
+ALTER TABLE `exante_custom_account_summaries` CHANGE `instrument` `instrument` VARCHAR(255);
+ALTER TABLE `exante_custom_account_summaries` CHANGE `iso` `iso` VARCHAR(255);
+SHOW FULL COLUMNS FROM `exante_custom_account_summaries`;
+ALTER TABLE `exante_custom_account_summaries` CHANGE `p_and_l_in_thb` `p_and_l_in_eur` DECIMAL(65,8) DEFAULT NULL;
+SHOW FULL COLUMNS FROM `exante_custom_account_summaries`;
+ALTER TABLE `exante_custom_account_summaries` CHANGE `value_in_thb` `value_in_eur` DECIMAL(65,8) DEFAULT NULL;
+SHOW FULL COLUMNS FROM `exante_custom_account_summaries`;
+ALTER TABLE `exante_custom_account_summaries` CHANGE `daily_p_and_l_in_thb` `daily_p_and_l_in_eur` DECIMAL(65,8) DEFAULT NULL;
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'reconcile_db';
+SHOW INDEX FROM `SequelizeMeta`;
+INSERT INTO `SequelizeMeta` (`name`) VALUES ('20231219080210-update-exante-custom-account-summary-table-property.js');

@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS `bloomberg_equity_closeprice` (`id` CHAR(36) BINARY NOT NULL , `dl_request_id` VARCHAR(255), `dl_request_name` VARCHAR(255), `dl_snapshot_start_time` DATETIME, `dl_snapshot_tz` VARCHAR(255), `identifier` VARCHAR(255), `rc` INTEGER, `px_close_dt` DATE, `id_exch_symbol` VARCHAR(255), `name` VARCHAR(255), `px_last_eod` DECIMAL, `crncy` VARCHAR(255), `composite_exch_code` VARCHAR(255), `id_isin` VARCHAR(255), `last_update_date_eod` DATE, `icb_supersector_name` VARCHAR(255) NOT NULL, `icb_sector_name` VARCHAR(255) NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'reconcile_db';
+SHOW INDEX FROM `SequelizeMeta`;
+INSERT INTO `SequelizeMeta` (`name`) VALUES ('20240109085644-create-bloomberg-equity-closeprice-table.js');

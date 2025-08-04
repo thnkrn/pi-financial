@@ -1,0 +1,216 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<div class="chart-data" style="display: flex; justify-content: space-between; gap: 5px">
+  <div class="portfolio-p">
+    <h2>Portfolio Allocation</h2>
+    <div class="portfolio-chart-container">
+      <canvas id="portfolioCharts_<%- index %>" class="portfolioCharts" style="width: 100%; max-width: 350px"></canvas>
+      <div id="customLabels_<%- index %>" class="customLabels"></div>
+    </div>
+  </div>
+  <div class="portfolio-p yearly-p">
+    <h2>Yearly Portfolio Trend</h2>
+    <canvas id="portfolioChart_<%- index %>" class="portfolioChart" style="width: 340px; max-width: 340px; height: 500px"></canvas>
+  </div>
+</div>
+
+<script></script>
+
+<script>
+  const yearlyPortTrend_<%- index %> = <%- JSON.stringify(yearlyPortfolioTrend) %>;
+  const portAllocations_<%- index %> = <%- JSON.stringify(portfolioAllocation) %>;
+
+  const filteredPortAllocations_<%- index %> = portAllocations_<%- index %>.filter(({
+    valueAllocation
+  }) => valueAllocation !== 0);
+
+
+  const portCategories_<%- index %> = filteredPortAllocations_<%- index %>.map(({
+    productName
+  }) => productName);
+
+  const portValues_<%- index %> = filteredPortAllocations_<%- index %>.map(({
+    valueAllocation
+  }) => valueAllocation);
+
+  const portPercentages_<%- index %> = filteredPortAllocations_<%- index %>.map(({
+    percentAllocation
+  }) => percentAllocation);
+
+  const portColors_<%- index %> = [
+    "#16757A",
+    "#473E72",
+    "#F58F29",
+    "#094074",
+    "#007AA3",
+    "#21CE99",
+    "#222627",
+    "#DBDBDB",
+    "#707070",
+  ];
+
+  function formatCurrencys_<%- index %>(value) {
+    if (value >= 1e9) {
+      return (value / 1e9).toPrecision(3) + 'b';
+    } else if (value >= 1e6) {
+      return (value / 1e6).toPrecision(3) + 'm';
+    } else if (value >= 1e3) {
+      return (value / 1e3).toPrecision(3) + 'k';
+    } else {
+      return value.toPrecision(3);
+    }
+  }
+
+  const portfColors_<%- index %> = portColors_<%- index %>.slice(0, filteredPortAllocations_<%- index %>.length);
+
+  const customLabels_<%- index %> = portPercentages_<%- index %>.map((percentage, i) => {
+    const formattedPercentage = percentage.toFixed(2);
+    const value = portValues_<%- index %>[i];
+
+    return `<div style="margin-bottom: 3px; font-size:10px; display: flex; align-items: center; width: 100%;">
+                  <div style="height: 10px; width: 13px; background-color: ${portfColors_<%- index %>[i]}; border-radius: 50%; display: inline-block;"></div>
+                  <div style="font-weight: 600; margin-right: 10px; margin-left: 10px; width:22%; text-align: right;">${formattedPercentage}%</div>
+                  <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <div style=" font-weight: 600;">${portCategories_<%- index %>[i]}</div>
+                    <div style="font-weight: 400;">${formatCurrencys_<%- index %>(value)}</div>
+                  </div>
+                </div>`;
+  });
+
+  document.getElementById("customLabels_<%- index %>").innerHTML = customLabels_<%- index %>.join("<br>");
+
+  new Chart("portfolioCharts_<%- index %>", {
+    type: "doughnut",
+    data: {
+      datasets: [{
+        backgroundColor: portfColors_<%- index %>,
+        data: portPercentages_<%- index %>,
+        borderWidth: 0,
+      }, ],
+    },
+    options: {
+      animation: {
+        duration: 0
+      },
+      devicePixelRatio: 4,
+      cutout: "80%",
+      responsive: true,
+      maintainAspectRation: false,
+      plugins: {
+        legend: {
+          display: false
+        },
+        position: "right",
+        labels: {
+          width: 300,
+          color: "#000000",
+          usePointStyle: true,
+        },
+      },
+    },
+  });
+
+  const yearlyPortLabels_<%- index %> = yearlyPortTrend_<%- index %>.map(({
+    label
+  }) => label);
+
+  const yearlyPortData_<%- index %> = yearlyPortTrend_<%- index %>.map(({
+    value
+  }) => value);
+  const yearlyPortBarColor_<%- index %> = ["#0C5B59"];
+
+
+  new Chart("portfolioChart_<%- index %>", {
+    type: "bar",
+    data: {
+      labels: yearlyPortLabels_<%- index %>,
+      datasets: [{
+        label: "",
+        backgroundColor: yearlyPortBarColor_<%- index %>,
+        data: yearlyPortData_<%- index %>,
+        borderRadius: 4,
+        barPercentage: 0.5,
+        barThickness: 15,
+        maxBarThickness: 15,
+        minBarLength: 2,
+      }],
+    },
+    options: {
+      animation: {
+        duration: 0
+      },
+      devicePixelRatio: 4,
+      legend: false,
+      layout: {
+        padding: {
+          top: 25,
+          right: 14,
+        }
+      },
+      title: {
+        display: true,
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+
+        datalabels: {
+          display: true,
+          color: "#000",
+          backgroundColor: "#F1F1F1",
+          borderWidth: 1,
+          align: "end",
+          anchor: "end",
+          font: {
+            size: 8,
+            weight: 500
+          },
+
+
+          formatter: function(value) {
+            return formatCurrencys_<%- index %>(value);
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          borderWidth: 1,
+          border: {
+            color: 'transparent'
+
+          },
+          ticks: {
+            callback: function(value) {
+              return formatCurrencys_<%- index %>(value);
+            },
+            min: 0,
+            max: 50,
+            color: "#000",
+            font: {
+              size: 8,
+            },
+          },
+          grid: {
+            display: true,
+          },
+        },
+        x: {
+          ticks: {
+            color: "#000",
+            font: {
+              size: 8,
+            },
+          },
+          barPercentage: 0.4,
+          grid: {
+            display: false,
+          },
+        },
+      },
+    },
+    plugins: [ChartDataLabels]
+  });
+</script>

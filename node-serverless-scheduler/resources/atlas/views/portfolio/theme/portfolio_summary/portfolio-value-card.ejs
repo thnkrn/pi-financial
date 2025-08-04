@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="portfolio-value">
+    <div class="value">
+      <div class="data">
+        <h2>Portfolio Value (THB)</h2>
+        <p><%= formatCurrency(allocationAmount) %></p>
+      </div>
+      <% if (marketing.portfoliosummary.latestYearIndex != 0) { %>
+      <div class="data">
+        <h2>Year On Year Change</h2>
+        <p><%=formatCurrency(yearOnYear) %></p>
+        <% let yoyPercentage = marketing.portfoliosummary.y_1 == 0 ? 1 : yearOnYear/marketing.portfoliosummary.y_1 %>
+
+        <% if (yearOnYear == 0) { %>
+        <% } else if (yoyPercentage < 0) { %>
+        <span class="color-green"><%=formatPercentage(yoyPercentage)%></span>
+        <% } else { %>
+        <span class="color-green">+<%=formatPercentage(yoyPercentage)%></span>
+        <% }%>
+      </div>
+      <% }%>
+    </div>
+    <p class="last-content">
+      <% 
+        // Get the first datekey from the exchange array and format it if necessary
+        var firstDateKey = exchange.length > 0 ? exchange[0].dateKey : null; 
+      %>
+      <%= firstDateKey ? 'BOT Exchange Rate as of ' + formatDateNumber(firstDateKey) : '' %>
+    </p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<%- include('head') %>
+
+<body>
+
+  <% if(!isOnDemand){  %>
+  <!-- Main Screen -->
+  <%- include('theme/main_screen') %>
+
+  <!-- consolidate Summary page -->
+  <%-include('theme/conso_portfolio',{portfolioSummary:data.consolidatedSummary }) %>
+  <% } %>
+
+  <!-- loop through marketing data -->
+  <% data.marketings.forEach(function(marketing,index) { %>
+
+  <%- include('theme/intro-summary', {customerData : data, marketing }) %>
+
+  <%- include('theme/portfolio',{portfolioSummary:marketing.portfoliosummary,index,marketing }) %>
+
+  <% if(marketing.thaiEquity.length != 0){  %>
+  <%- include('theme/thai_equity', {title : "Thai Equity", marketing }) %>
+  <% } %>
+
+  <% if(marketing.mutualFund.length != 0){  %>
+  <%- include('theme/mutual_funds', { title: "Mutual Funds", marketing, marketingMutualFund: marketing.mutualFund }) %>
+  <% } %>
+
+  <% if(marketing.mutualFundOffshore.length != 0){  %>
+  <%- include('theme/mutual_funds', { title: "Mutual Funds (Offshore)", marketing, marketingMutualFund: marketing.mutualFundOffshore }) %>
+  <% } %>
+
+  <% if(marketing.bond.length != 0){  %>
+  <%-include('theme/bonds_debentures',{title : "Bonds & Debentures", marketing }) %>
+  <% } %>
+
+  <% if(marketing.bondOffshore.length != 0){  %>
+  <%-include('theme/bonds_debentures_offshore',{title : "Bonds & Debentures (Offshore)", marketing }) %>
+  <% } %>
+
+  <% if(marketing.tfex.length != 0){  %>
+  <%-include('theme/tfex',{title : "TFEX", marketing }) %>
+  <% } %>
+
+  <% if(marketing.cash.length != 0){  %>
+  <%-include('theme/cash-balance',{title : "Cash (Available Balance)", marketing }) %>
+  <% } %>
+
+  <% if(marketing.structuredProduct.length != 0){  %>
+  <%-include('theme/structured-products',{title : "Structured Products", marketing, structuredProduct:marketing.structuredProduct }) %>
+  <% } %>
+
+  <% if(marketing.structuredProductOnshore.length != 0){  %>
+  <%-include('theme/structured-products',{title : "Structured Products (Onshore)", marketing, structuredProduct: marketing.structuredProductOnshore }) %>
+  <% } %>
+
+  <% if(marketing.globalEquityOtc.length != 0){  %>
+  <%-include('theme/global_equity_otc',{title : "Global Equity (OTC)", marketing }) %>
+  <% } %>
+
+  <% if(marketing.globalEquity.length != 0){  %>
+  <%-include('theme/global_equity_exente',{title : "Global Equity", marketing }) %>
+  <% } %>
+
+  <% if(marketing.alternatives.length != 0){  %>
+  <%-include('theme/alternate',{title : "Alternatives", marketing }) %>
+  <% } %>
+
+  <% if(marketing.privateFund.length != 0){  %>
+  <%-include('theme/private_fund',{title : "Private Fund", marketing }) %>
+  <% } %>
+  <% }) %>
+</body>
+
+</html>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    function isTextOverflowing(element) {
+      return element.scrollHeight > element.clientHeight;
+    }
+    const issuerColumns = document.querySelectorAll('.issuer-column');
+    issuerColumns.forEach(column => {
+      if (isTextOverflowing(column)) {
+        column.classList.add('multi-line');
+      } else {
+        column.classList.remove('multi-line');
+      }
+    });
+  });
+</script>

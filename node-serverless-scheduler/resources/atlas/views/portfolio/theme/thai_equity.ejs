@@ -1,0 +1,111 @@
+<% thaiEquity = marketing.thaiEquity  %>
+<% const categoryClasses = [
+'',
+'table-color-deep_sea category-block', 
+'table-color-purple category-block',
+'table-color-orange category-block',
+'table-color-navy_blue category-block',
+'table-color-blue-smoke category-block',
+'table-color-light_blue category-block',
+'table-color-light_green category-block',
+'table-color-off-green category-block',
+'table-color-black category-block',
+'table-color-white category-block',
+'table-color-gray category-block',
+'table-color-dark_gray category-block',
+'table-color-light_gray category-block',
+'table-color-musturd_yellow category-block',
+'table-color-red category-block',
+'table-color-green category-block',
+'table-color-blue category-block',
+'table-color-sky_blue category-block',
+'table-color-yellow category-block',
+'table-color-dark-green category-block',
+'table-color-radiant-green category-block',
+'table-color-solid-green category-block'
+]; 
+
+%>
+<% let currentAccountNo = null; %>
+<% let pageCount = 1; %>
+
+<% thaiEquity.forEach(function(equity, equityIndex) { %>
+
+<% if (currentAccountNo !== equity.accountName) { %>
+<% currentAccountNo = equity.accountName; %>
+<% pageCount = 1; %>
+<% } %>
+
+<% let productChunks = []; %>
+<% for (let i = 0; i < equity.products.length; ) { %>
+<% 
+      let chunkSize;
+      if (pageCount === 1) {
+        chunkSize = 14; // First page chunk size
+      } else if (pageCount > 1) {
+        chunkSize = 18; // Second page chunk size
+      } else {
+        chunkSize = 14; // Default chunk size for subsequent pages
+      }
+
+      productChunks.push(equity.products.slice(i, i + chunkSize));
+      i += chunkSize;
+      pageCount++;
+    %>
+<% } %>
+
+<% productChunks.forEach(function(productChunk, chunkIndex) { %>
+<div class="container space-bottom pagebreak">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity}) %>
+  <div class="equity-contant">
+    <% if (chunkIndex == 0) { %>
+    <%- include('porducts-value-card',{accountName:equity.accountName ,value:equity.totalMarketValue,totalPortfolioAllocation:equity.totalPortfolioAllocation,yearLowPercent:0,exchange:0, custcode : equity.custcode, nav: 0 }) %>
+    <% } %>
+    <div class="space-top-equity">
+
+      <table class="equity-table  mutual-height<% if(chunkIndex != 0){ %> mutual-space <% } %> ">
+        <thead>
+          <tr>
+            <th class="equity-header" style="width: 17%;">Equity Name</th>
+            <th class="equity-header">Unit</th>
+            <th class="equity-header">Avg. Cost</th>
+            <th class="equity-header">Market Price</th>
+            <th class="equity-header">Total Cost</th>
+            <th class="equity-header">Total Value</th>
+            <th class="equity-header">Unrealized P/L</th>
+            <th class="equity-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% productChunk.forEach(function(product) { %>
+          <tr>
+            <td class="equity-data single-column"><%= product.sharecode %></td>
+            <td class="equity-data"><%= Number(product.unit).toLocaleString() %></td>
+            <td class="equity-data"><%= Number(product.avgPrice).toFixed(2) %></td>
+            <td class="equity-data"><%= Number(product.marketPrice).toFixed(2) %></td>
+            <td class="equity-data"><%= formatCurrency(product.totalCost) %></td>
+            <td class="equity-data"><%= formatCurrency(product.marketValue) %></td>
+            <%- include('../components/table/unrealized_pl', { rowClass: 'equity-data', gainLoss: product.gainLoss, unrealizedPL: formatCurrency(product.unrealizedPL, 2) }) %>
+          </tr>
+          <% }); %>
+          <tr class="separation"></tr>
+        </tbody>
+        <% if (chunkIndex === productChunks.length - 1) { %>
+        <tfoot class="equity-footer <%= categoryClasses[chunkIndex] %>">
+          <tr>
+            <th colspan="4" class="equity-footer-data">Total</th>
+            <td class="equity-footer-data"><%= formatCurrency(equity.totalCost.toFixed(2)) %></td>
+            <td class="equity-footer-data"><%= formatCurrency(equity.totalMarketValue.toFixed(2)) %></td>
+            <td class="equity-footer-data"><%= formatCurrency(equity.totalGainLoss.toFixed(2)) %></td>
+            <td class="equity-footer-data"><%= equity.unrealizedPL.toFixed(2) %> %</td>
+          </tr>
+        </tfoot>
+        <% } %>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<% pageCount++; %>
+<% }); %>
+<% }); %>

@@ -1,0 +1,21 @@
+<script>
+  function addFooters() {
+    const containers = document.querySelectorAll('.container');
+    const totalPages = containers.length;
+    containers.forEach((container, index) => {
+      if (!container.querySelector('.footer')) {
+        const footer = document.createElement('div');
+        footer.className = 'footer';
+
+        const containerColorClass = container.classList.contains('light-color') ? '' : '';
+
+        footer.innerHTML = `
+                  <p class="${containerColorClass}">This document is highly confidential. All rights reserved to Pi Securities Public Company Limited.</p>
+                  <p class="${containerColorClass}">Page ${index + 1} of ${totalPages}</p>
+              `;
+        container.appendChild(footer);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', addFooters);
+</script>

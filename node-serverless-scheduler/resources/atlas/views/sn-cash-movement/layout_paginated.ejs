@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<%- include('head') %>
+
+<body>
+
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <h2>PI SECURITIES PUBLIC COMPANY LIMITED</h2>
+        <p>Cash Movement By Trade Date</p>
+        <p>Period From 01/11/2023 To 30/04/2024</p>
+        <p>Account No. 1-91762-3</p>
+      </div>
+
+      <% 
+      // Data array (can be passed dynamically from backend)
+      let data = [
+          { tradeDate: '07/01/2024', settleDate: '07/01/2024', transactionType: 'Transfer in', description: 'Curr Conversion from USD TO THB @ 35.00000000 Convert Currency (Add)', amountDr: '35,377,144.95', balance: '35,377,144.95' },
+          { tradeDate: '08/01/2024', settleDate: '08/01/2024', transactionType: 'Pay Commission', description: 'T/T Withdraw Cash Withdrawal', amountCr: '(535.00)', balance: '35,376,609.95' },
+          // Add more data as needed
+          { tradeDate: '08/12/2023', settleDate: '15/12/2023', transactionType: 'Buy Equity', description: 'CITISDA4072023-707709 SDA17.06.24-CITI Buy 300,000 shs @1.000 ExRate: 1.00000000', amountDr: '(300,000.00)', balance: '1,653,925.78' }
+      ];
+      for (let i = 0; i < 3; i++) {
+        data = data.concat(data);
+      }
+  
+      // Pagination settings
+      const firstPageLimit = 20;
+      const otherPagesLimit = 25;
+      let currentPage = 1;
+      let totalRows = 0;
+  
+      // Calculate total pages
+      const firstPageRows = Math.min(firstPageLimit, data.length);
+      const remainingRows = data.length - firstPageLimit;
+      const remainingPages = Math.ceil(remainingRows / otherPagesLimit);
+      const totalPages = 1 + remainingPages; // Total pages include first page
+  
+      function renderTable(data, startIndex, endIndex) { %>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 10%;">Trade Date</th>
+            <th style="width: 10%;">Settle Date</th>
+            <th style="width: 15%;">Transaction Type</th>
+            <th>Description</th>
+            <th style="width: 11%;">Amount Dr.</th>
+            <th style="width: 11%;">Amount Cr.</th>
+            <th style="width: 11%;">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = startIndex; i < endIndex && i < data.length; i++) { %>
+          <tr>
+            <td><%= data[i].tradeDate %></td>
+            <td><%= data[i].settleDate %></td>
+            <td><%= data[i].transactionType %></td>
+            <td><%= data[i].description %></td>
+            <td style="text-align: right;"><%= data[i].amountDr %></td>
+            <td style="text-align: right;"><%= data[i].amountCr %></td>
+            <td style="text-align: right;"><%= data[i].balance %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% } %>
+      <%
+    
+      // Render first page
+      renderTable(data, 0, firstPageLimit);
+      totalRows += firstPageLimit;
+      %>
+
+
+    </div>
+    <div class="pagination">Page <%= currentPage %> of <%= totalPages %></div>
+  </div>
+  <% currentPage++;
+      let startIndex = firstPageLimit;
+  
+      // Render subsequent pages
+      while (startIndex < data.length) { %>
+  <div class="page-break"></div>
+  <div class="container">
+    <div class="content">
+      <div>
+        <% 
+          const endIndex = startIndex + otherPagesLimit;
+          renderTable(data, startIndex, endIndex);
+          totalRows += (endIndex - startIndex);
+          startIndex = endIndex;
+          %>
+
+      </div>
+    </div>
+    <div class="pagination">Page <%= currentPage %> of <%= totalPages %></div>
+    <% currentPage++;
+      } %>
+  </div>
+
+</body>
+
+</html>

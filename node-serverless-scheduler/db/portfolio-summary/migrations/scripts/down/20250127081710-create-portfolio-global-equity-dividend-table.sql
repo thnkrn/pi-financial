@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS `portfolio_global_equity_dividend_daily_snapshot`;
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'portfolio_summary_db';
+SHOW INDEX FROM `SequelizeMeta`;
+DELETE FROM `SequelizeMeta` WHERE `name` = '20250127081710-create-portfolio-global-equity-dividend-table.js';

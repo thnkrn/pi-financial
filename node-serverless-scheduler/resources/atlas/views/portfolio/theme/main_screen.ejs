@@ -1,0 +1,167 @@
+<%
+  const maxRowsPerPage = 22;
+  let currentRow = 0;
+  let currentPage = 1;
+  let isFirstPage = true;
+%>
+
+<div class="container  pagebreak space-bottom light-color">
+  <div class="main-screen">
+    <img src="<%= theme.innerImage %>" class="bg-inner-image" />
+    <div class="header">
+      <img src="<%= theme.headerImage %>" class="logo" />
+      <div class="header-content">
+        <p>Pi Securities Public Company Limited</p>
+        <div class="header-address">
+          <p>132 Sindhorn Tower 3 Level 20, 25, 27</p>
+          <p>Wireless Road, Lumpini, Pathumwan,</p>
+          <p>Bangkok 10330</p>
+          <p>Tel: 02-205-7000</p>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-data">
+      <div class="grid-container">
+        <div class="portfolio-grid">
+          <div class="portfolio-data-grid">
+            <h2 class="">Monthly Portfolio Summary</h2>
+            <h3 class="">Report as of <%= formatDate(data.consolidatedSummary.summaryAsOf) %></h3>
+            <div class="horizontal-line"></div>
+            <div class="small-card">
+              <h4><%- data.customerName.replace(/\n/g, '<br>') %></h4>
+              <p><%- data.customerAddress.replace(/,/g, ',<br>') %></p>
+            </div>
+          </div>
+        </div>
+        <% if (isFirstPage) { %>
+        <div class="large-card">
+          <% } else { %>
+          <div class="large-card test">
+            <% } %>
+            <% data.main.forEach((custcodeData, index) => { %>
+
+
+            <div class="card-content">
+              <div class="l-card">
+                <div class="">
+                  <h4>Customer Code:</h4>
+                </div>
+                <div class="">
+                  <% custcodeData.custcodes.forEach(code => { %>
+
+
+                  <% if (currentRow === 0 && currentPage > 1) { %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pagebreak space-bottom light-color pages">
+  <div class="main-screen">
+    <img src="<%= theme.innerImage %>" class="bg-inner-image" />
+    <div class="header">
+      <img src="<%= theme.headerImage %>" class="logo" />
+      <div class="header-content">
+        <p>Pi Securities Public Company Limited</p>
+        <div class="header-address">
+          <p>132 Sindhorn Tower 3 Level 20, 25, 27</p>
+          <p>Wireless Road, Lumpini, Pathumwan,</p>
+          <p>Bangkok 10330</p>
+          <p>Tel: 02-205-7000</p>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-data">
+      <div class="grid-container">
+        <div class="large-card test">
+          <div class="card-content">
+            <div class="l-card">
+              <div class="">
+                <h4>Customer Code:</h4>
+              </div>
+              <div class="">
+                <% } %>
+
+
+
+                <p><%= code %></p>
+                <% currentRow++; %>
+
+
+                <% if (currentRow >= maxRowsPerPage) { %>
+                <% currentRow = 0; %>
+                <% currentPage++; %>
+                <% isFirstPage = false; %>
+                <% } %>
+                <% }); %>
+
+              </div>
+            </div>
+            <div class="relationship-manager">
+              <h4><%= data.isHighNetWorth ? 'Relationship Manager' : 'Investment Consultant' %></h4>
+              <p>
+                <%= custcodeData.marketingName %><br />
+              </p>
+            </div>
+            <% if (index !== data.custcodeMarketingMapping.length - 1) { %>
+            <div class="horizontal-light-line"></div>
+            <% } %>
+          </div>
+
+          <% currentRow += 2; %>
+
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if (currentRow !== 0) { %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<% } %>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Select all pages containers
+    let pages = document.querySelectorAll('.pages');
+
+    // Loop through the pages in pairs
+    for (let i = 0; i < pages.length; i += 2) {
+      // Ensure there's a second page in the pair
+      if (i + 1 < pages.length) {
+        let firstPageContainer = pages[i];
+        let secondPageContainer = pages[i + 1];
+
+        // Select the first large-card on the first page
+        let firstLargeCard = firstPageContainer.querySelector('.large-card');
+
+        // Select all large-cards on the second page
+        let secondPageLargeCards = secondPageContainer.querySelectorAll('.large-card');
+
+        // Append each large-card from the second page to the first page after the first large-card
+        secondPageLargeCards.forEach(largeCard => {
+          if (firstLargeCard) {
+            firstLargeCard.parentNode.insertBefore(largeCard, firstLargeCard.nextSibling);
+            firstLargeCard = largeCard; // Update the reference to insert the next one after the last appended
+          } else {
+            firstPageContainer.querySelector('.main-screen').appendChild(largeCard);
+            firstLargeCard = largeCard;
+          }
+        });
+
+        // Remove the second page container
+        secondPageContainer.remove();
+      }
+    }
+  });
+</script>

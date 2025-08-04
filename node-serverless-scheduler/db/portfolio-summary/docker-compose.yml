@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=portfolio_summary_db
+      - MYSQL_ROOT_PASSWORD=P@assword
+    volumes:
+      - portfolio_summary_srv_mysql_data:/var/lib/mysql
+
+volumes:
+  portfolio_summary_srv_mysql_data:

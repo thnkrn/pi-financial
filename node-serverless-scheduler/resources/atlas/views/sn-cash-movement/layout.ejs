@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<%- include('head') %>
+
+<%
+const formatCurrency = (currency) => {
+  if (currency === null || currency === undefined) {
+    return ''; // Return an empty string when currency is null or undefined
+  }
+  
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(currency);
+};
+
+const formatDateNumber = (inputDate) => {
+  const date = new Date(inputDate);
+  const day = ('0' + date.getDate()).slice(-2);
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+%>
+
+<body>
+  <%
+  data.forEach(custcode => {
+    const transactionDates = custcode.snCurrency.flatMap(currency => 
+    currency.cashMovement
+        .map(cashMovement => {
+            // Ensure that transactionDate is a Date object or can be converted to one
+            const date = new Date(cashMovement.transactionDate);
+            return !isNaN(date.getTime()) ? date.getTime() : null; // Only keep valid dates
+        })
+        .filter(dateTime => dateTime !== null) // Filter out invalid dates
+    );
+
+    const minDate = transactionDates.length ? new Date(Math.min(...transactionDates)) : null;
+    const maxDate = transactionDates.length ? new Date(Math.max(...transactionDates)) : null;
+    %>
+
+  <div class="container page-break">
+    <div style="text-align: center;">
+      <img src="<%= themeSNConfig.headerImage %>" class="pi-logo" />
+    </div>
+    <div class="header">
+      <h2>PI SECURITIES PUBLIC COMPANY LIMITED</h2>
+      <p>Cash Movement By Trade Date</p>
+      <p>Period From <%= formatDateNumber(minDate) %> To <%= formatDateNumber(custcode.dateKey) %></p>
+      <p>Customer Name: <%= custcode.customerName %></p>
+      <p>Customer Code: <%= custcode.custcode %></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">Trade Date</th>
+          <th style="width: 10%;">Settle Date</th>
+          <th style="width: 15%;">Transaction Type</th>
+          <th>Description</th>
+          <th style="width: 11%;">Amount Dr.</th>
+          <th style="width: 11%;">Amount Cr.</th>
+          <th style="width: 11%;">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% custcode.snCurrency.forEach(currency => { %>
+        <tr>
+          <td colspan="7" style="font-weight: bold; text-align: left;">
+            Currency: <%= currency.currency %> (<%= currency.currencyFullName %>)
+          </td>
+        </tr>
+
+        <% currency.cashMovement.forEach(cashMovement => { %>
+        <tr>
+          <td><%= formatDateNumber(cashMovement.transactionDate) %></td>
+          <td><%= formatDateNumber(cashMovement.settlementDate) %></td>
+          <td><%= cashMovement.transactionType %></td>
+          <td><%= cashMovement.note %></td>
+          <td style="text-align: right;"><%= formatCurrency(cashMovement.amountDebit) %></td>
+          <td style="text-align: right;"><%= formatCurrency(cashMovement.amountCredit) %></td>
+          <td style="text-align: right;"><%= formatCurrency(cashMovement.balance) %></td>
+        </tr>
+        <% }); %>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+
+  <%
+  });
+  %>
+</body>
+
+</html>

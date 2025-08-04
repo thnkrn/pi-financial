@@ -1,0 +1,45 @@
+<div class="container space-bottom pagebreak light-color">
+  <%- include('header/theme_one_header_one', {marketingPortfolio: false, data}) %>
+  <div class="portfolio-content space-bottom">
+    <%- include('consolidated_portfolios/portfolio-value-card' ,{allocationAmount:portfolioSummary.allocationAmount,yearOnYear:portfolioSummary.yearOnYear, exchange: data.exchangeRate}) %>
+
+    <% yearlyPortfolioTrend=Object.entries(portfolioSummary) .filter(([key])=> key.startsWith("y_"))
+            .map(([key, value]) => [parseInt(key.slice(2)), value])
+            .filter(([index]) => index <= portfolioSummary.latestYearIndex)
+            .sort(([a], [b]) => b - a)
+            .map(([key, value]) => {
+            const currentYear = new Date(portfolioSummary.summaryAsOf).getFullYear();
+            const year = currentYear - key;
+            return {
+            label: year,
+            value: value,
+            };
+            })
+            %>
+
+    <% 
+    const allMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const currentMonthIndex = new Date(portfolioSummary.summaryAsOf).getMonth(); // Get current month index (0 for Jan, 11 for Dec)
+    const latestMonthIndex = portfolioSummary.latestMonthIndex; 
+    
+    const monthlyPortfolioTrend = Object.entries(portfolioSummary)
+      .filter(([key]) => key.startsWith("m_")) 
+      .map(([key, value]) => [parseInt(key.slice(2)), value]) 
+      .filter(([index]) => index <= latestMonthIndex) 
+      .sort(([a], [b]) => b - a) 
+      .map(([index, value]) => {
+        
+        const labelIndex = (currentMonthIndex - index + 12) % 12
+        const label = allMonths[labelIndex];
+        return {
+          label: label,
+          value: value,
+        };
+      });
+      %>
+    <div class="space-top">
+      <%- include('consolidated_portfolios/portfolio-yearly',{yearlyPortfolioTrend,portfolioAllocation:portfolioSummary.portfolioAllocation.sort(({percentAllocation:a},{percentAllocation:b})=> b-a) }) %>
+    </div>
+    <%- include('consolidated_portfolios/portfolio-monthly',{monthlyPortfolioTrend}) %>
+  </div>
+</div>

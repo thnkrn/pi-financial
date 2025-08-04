@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+<body>
+  <div class="monthly-portfolio">
+    <h2>Monthly Portfolio Trend</h2>
+    <canvas id="monthlySummaryCharts_<%- index %>" class="monthlySummaryCharts" style="width: 100%; height: 110px"></canvas>
+  </div>
+
+  <script>
+    const formatPortMonCurrency<%- index %> = (value) => {
+      if (value >= 1e9) {
+        return (value / 1e9).toPrecision(3) + 'b';
+      } else if (value >= 1e6) {
+        return (value / 1e6).toPrecision(3) + 'm';
+      } else if (value >= 1e3) {
+        return (value / 1e3).toPrecision(3) + 'k';
+      } else {
+        return value.toPrecision(3);
+      }
+    };
+
+    const monthlyPortfolioTrend_<%- index %> = <%- JSON.stringify(monthlyPortfolioTrend) %>;
+    const monthlyLabels_<%- index %> = monthlyPortfolioTrend_<%- index %>.map(({
+      label
+    }) => label);
+    const monthlyData_<%- index %> = monthlyPortfolioTrend_<%- index %>.map(({
+      value
+    }) => value);
+
+    new Chart("monthlySummaryCharts_<%- index %>", {
+      type: "line",
+      data: {
+        labels: monthlyLabels_<%- index %>,
+        datasets: [{
+          fill: false,
+          borderWidth: 1,
+          lineTension: 0,
+          backgroundColor: "#0C5B59",
+          borderColor: "#000",
+          tension: 0,
+          data: monthlyData_<%- index %>,
+        }],
+      },
+      options: {
+        animation: {
+          duration: 0
+        },
+        devicePixelRatio: 4,
+        layout: {
+          padding: {
+            top: 27,
+            right: 14,
+          }
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          datalabels: {
+            display: true,
+            align: "end",
+            anchor: "end",
+            color: "#000",
+            backgroundColor: "#F1F1F1",
+            borderWidth: 1,
+
+            font: {
+              size: 8,
+              weight: 500
+            },
+            formatter: function(value, context) {
+              return formatPortMonCurrency<%- index %>(value);
+            },
+          },
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              min: 0,
+              max: 60,
+              callback: function(value) {
+                return formatPortMonCurrency<%- index %>(value);
+              },
+              color: "#000",
+              font: {
+                size: 8,
+              },
+            },
+            border: {
+              color: "white",
+            },
+            grid: {
+              display: true,
+            },
+          },
+          x: {
+            ticks: {
+              color: "#000",
+              font: {
+                size: 8,
+              },
+            },
+            grid: {
+              display: false,
+            },
+          },
+        },
+      },
+      plugins: [ChartDataLabels]
+
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<div class="portfolio-header">
+  <img src="<%= theme.innerThemeImage  %>" class="image-inner-theme" />
+  <div class="theme-header">
+    <div class="logo-left">
+      <img src="<%= theme.headerImage %>" class="small-logo" />
+      <h3>Pi Total Portfolio Summary</h3>
+    </div>
+    <div class="theme-header-title">
+      <h2>Monthly Portfolio Summary</h2>
+      <p>
+        Summary as of <%= formatDateNumber(data.consolidatedSummary.summaryAsOf)%>
+      </p>
+      <% if(marketingPortfolio) { %>
+      <p><%= data.isHighNetWorth ? 'RM:' : 'IC:' %> <%= marketing.marketingName %></p>
+      <p>Customer Code: <%= marketing.portfoliosummary.custcode.join(', '); %></p>
+      <% } %>
+    </div>
+  </div>
+</div>

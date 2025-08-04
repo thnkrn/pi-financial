@@ -1,0 +1,238 @@
+<% mutualFund = marketingMutualFund  %>
+
+<% 
+
+const calculateTotalMarketValueByCustcode = (data) => {
+    const result = data.reduce((acc, item) => {
+        if (!acc[item.custcode]) {
+            acc[item.custcode] = {
+                custcode: item.custcode,
+                totalMarketValue: 0,
+                totalCost: 0,
+                totalGainLoss: 0
+            };
+        }
+        acc[item.custcode].totalMarketValue += item.totalMarketValue;
+        acc[item.custcode].totalCost += item.totalCost;
+        acc[item.custcode].totalGainLoss += item.totalGainLoss;
+        return acc;
+    }, {});
+
+    return Object.values(result);
+};
+
+const totalMarketValuesByCustcode = calculateTotalMarketValueByCustcode(mutualFund);
+
+const calculateThresholds = (pageCounter, categoryCount, includeValueCard) => {
+  let productCounter = 19;
+   if (includeValueCard) {
+        productCounter -= 3;
+   }
+   if (pageCounter === 0) {
+        productCounter -= 1;
+   }
+   productCounter -= (categoryCount * 2);
+   return productCounter;
+};
+%>
+
+<%
+const uniqueCustcodes = [...new Set(mutualFund.map(data => data.custcode))];
+let currentCustcode = null;
+let productCounter = 0;
+
+const categoryClasses = ['mutual-header-green category-block', 'mutual-header-blue category-block', 'mutual-header-solid-green category-block', 'mutual-header-gray category-block'];
+%>
+
+<% uniqueCustcodes.forEach((custcode, custcodeIndex) => { 
+  const custcodeData = mutualFund.filter(data => data.custcode === custcode);
+  let currentCategoryIndex = 0;
+  let pageCounter = 0;
+  let categoryCount = 0;  
+  let includeValueCard = true;
+  custcodeData.forEach((categoryData, categoryIndex) => { 
+    const isDifferentCustcode = currentCustcode !== categoryData.custcode;
+    includeValueCard = pageCounter < 1;
+    if (isDifferentCustcode) { 
+      if (currentCustcode !== null) { 
+        // Close previous page divs
+%>
+</tbody>
+</table>
+</div>
+<%- include('footer') %>
+</div>
+</div>
+<% 
+      } 
+      // Reset counters and update currentCustcode
+      productCounter = 0;
+      pageCounter = 0;
+      categoryCount = 0;
+      currentCustcode = categoryData.custcode; 
+      currentCategoryIndex = 0;
+%>
+<div class="container space-bottom page-break-before">
+
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <%- include('porducts-value-card',
+    {
+      accountName:'', value:totalMarketValuesByCustcode[custcodeIndex].totalMarketValue,
+      totalPortfolioAllocation:(totalMarketValuesByCustcode[custcodeIndex].totalMarketValue/marketing.portfoliosummary.allocationAmount) * 100,yearLowPercent:0,
+      exchange: categoryData.products.some(fund => fund.currency) ? data.exchangeRate : 0,
+      custcode : 0,
+      nav : 0
+    }) %>
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header">Fund Code</th>
+            <th class="mutual-header">AMC</th>
+            <th class="mutual-header">Unit</th>
+            <th class="mutual-header">Avg. NAV Cost</th>
+            <th class="mutual-header">NAV Date</th>
+            <th class="mutual-header">Market Nav</th>
+            <th class="mutual-header">Total Cost</th>
+            <th class="mutual-header">Total Value</th>
+            <th class="mutual-header">Unrealized P/L</th>
+            <th class="mutual-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+    } 
+    // Check if category-block should be on a new page
+    const isBeginningOfCategory = currentCategoryIndex != categoryIndex;
+    const isNewPage = isBeginningOfCategory && productCounter >= calculateThresholds(pageCounter, categoryCount,includeValueCard) - 2;
+    if ((categoryClasses[categoryIndex % categoryClasses.length].includes('category-block') && productCounter >= calculateThresholds(pageCounter, categoryCount,includeValueCard) - 2) || isNewPage) {
+        productCounter = 0;
+        pageCounter++;
+        categoryCount = 0;
+        
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<div class="container space-bottom page-break-before">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-space mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header">Fund Code</th>
+            <th class="mutual-header">AMC</th>
+            <th class="mutual-header">Unit</th>
+            <th class="mutual-header">Avg. NAV Cost</th>
+            <th class="mutual-header">NAV Date</th>
+            <th class="mutual-header">Market Nav</th>
+            <th class="mutual-header">Total Cost</th>
+            <th class="mutual-header">Total Value</th>
+            <th class="mutual-header">Unrealized P/L</th>
+            <th class="mutual-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+    } 
+    // Add category header
+    currentCategoryIndex = categoryIndex;
+    categoryCount++;
+%>
+          <tr class="separation"></tr>
+          <tr class="category-block <%= categoryClasses[categoryIndex % categoryClasses.length] %>">
+            <td colspan="6" class="mutual-header-data"><%= categoryData.fundCategory %> <%= categoryData.percentAllocation.toFixed(0) %>%</td>
+            <td class="mutual-header-data"><%= formatCurrency(categoryData.totalCost) %></td>
+            <td class="mutual-header-data"><%= formatCurrency(categoryData.totalMarketValue) %></td>
+            <td class="mutual-header-data"><%= ((categoryData.totalGainLoss > 0) ? '+' : '') %><%= formatCurrency(categoryData.totalGainLoss) %></td>
+            <% const unrealizedPL = (categoryData.totalGainLoss / categoryData.totalCost * 100).toFixed(2); %>
+            <td class="mutual-header-data"><%= ((unrealizedPL > 0) ? '+' : '') %><%= (unrealizedPL) %> %</td>
+          </tr>
+          <%
+    // Loop through products in the category
+    categoryData.products.forEach((product, productIndex) => { 
+      if (productCounter >= calculateThresholds(pageCounter, categoryCount, includeValueCard)) { 
+        productCounter = 0;
+        pageCounter++;
+        categoryCount = 0;
+        includeValueCard = pageCounter < 1;
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<div class="container space-bottom page-break-before">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:categoryData}) %>
+  <div class="mutual-contant">
+    <div class="space-top-mutual">
+      <table class="mutual-table mutual-space mutual-height">
+        <thead>
+          <tr>
+            <th class="mutual-header">Fund Code</th>
+            <th class="mutual-header">AMC</th>
+            <th class="mutual-header">Unit</th>
+            <th class="mutual-header">Avg. NAV Cost</th>
+            <th class="mutual-header">NAV Date</th>
+            <th class="mutual-header">Market Nav</th>
+            <th class="mutual-header">Total Cost</th>
+            <th class="mutual-header">Total Value</th>
+            <th class="mutual-header">Unrealized P/L</th>
+            <th class="mutual-header">Unrealized P/L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% 
+      } 
+%>
+          <tr>
+            <td class="mutual-data">
+              <div class="single-column"><%= product.fundName %></div>
+            </td>
+            <td class="mutual-data">
+              <div class="single-column"><%= product.amccode %></div>
+            </td>
+            <td class="mutual-data"><%= formatCurrency(product.unit) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.avgNavCost) %></td>
+            <td class="mutual-data"><%= new Date(product.navDate).toLocaleDateString('en-GB') %></td>
+            <td class="mutual-data"><%= formatCurrency(product.marketNav) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.totalCost) %></td>
+            <td class="mutual-data"><%= formatCurrency(product.marketValue) %></td>
+            <%- include('../components/table/unrealized_pl', { rowClass: 'mutual-data', gainLoss: product.gainLoss, unrealizedPL: product.unrealizedPL }) %>
+          </tr>
+          <%
+      productCounter++;
+
+      if(categoryIndex == custcodeData.length - 1 && productIndex == categoryData.products.length - 1) { %>
+          <tr class="separation"></tr>
+        </tbody>
+        <% const unrealizedPL = (totalMarketValuesByCustcode[custcodeIndex].totalGainLoss / totalMarketValuesByCustcode[custcodeIndex].totalCost * 100).toFixed(2); %>
+        <tfoot class="mutual-footer">
+          <tr>
+            <th colspan="6" class="mutual-footer-data">Total</th>
+            <td class="mutual-footer-data"><%= formatCurrency(totalMarketValuesByCustcode[custcodeIndex].totalCost.toFixed(2)) %></td>
+            <td class="mutual-footer-data"><%= formatCurrency(totalMarketValuesByCustcode[custcodeIndex].totalMarketValue.toFixed(2)) %></td>
+            <td class="mutual-footer-data"><%= formatCurrency(totalMarketValuesByCustcode[custcodeIndex].totalGainLoss.toFixed(2)) %></td>
+            <td class="mutual-footer-data"><%= unrealizedPL %> %</td>
+          </tr>
+        </tfoot>
+        <%
+      }
+    }); 
+  }); 
+}); 
+if (productCounter > 0) {
+%>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </div>
+</div>
+<% } %>

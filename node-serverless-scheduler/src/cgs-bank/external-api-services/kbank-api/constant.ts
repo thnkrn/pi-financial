@@ -1,0 +1,1 @@
+export const KBANK_REGISTRATION_SUCCESS = '0';

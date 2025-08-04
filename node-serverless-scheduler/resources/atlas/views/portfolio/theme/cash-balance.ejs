@@ -1,0 +1,180 @@
+<% cash = marketing.cash; %>
+<% const categoryClasses = ['','sec-color','table-color-purple','table-color-orange','table-color-navy_blue','table-color-blue-smoke','table-color-light_blue','table-color-light_green','table-color-off-green','table-color-black','table-color-white',
+  'table-color-gray','table-color-dark_gray','table-color-light_gray','table-color-musturd_yellow','table-color-red','table-color-green','table-color-blue','table-color-sky_blue',
+  'table-color-yellow','table-color-dark-green','table-color-radiant-green','table-color-solid-green']; %>
+
+<% 
+const calculateThresholds = (pageCounter, includeValueCard, currentPageBlankRows) => {
+  let productCounter = 18;
+  if (includeValueCard) {
+    productCounter -= 3;
+  }
+  if (pageCounter === 0) {
+    productCounter -= 1;
+  }
+  productCounter -= currentPageBlankRows;
+  return productCounter;
+};
+
+const MAX_ACCOUNT_DETAILS_FIRST_PAGE = 20;
+const MAX_ACCOUNT_DETAILS_OTHER_PAGES = 18;
+
+function calculateBlankRows(cash) {
+  let blankRowsPerPage = {};
+  cash.forEach(function(cashItem) {
+    let custcode = cashItem.custcode;
+    if (!blankRowsPerPage[custcode]) {
+      blankRowsPerPage[custcode] = [];
+    }
+    let totalProcessed = 0;
+    let blankRows = 0;
+    let firstPageProcessed = false;
+    cashItem.currencies.forEach(function(currency) {
+      totalProcessed += 1; // Each currency header row
+      blankRows += 1;
+      currency.accountDetails.forEach(function() {
+        if ((!firstPageProcessed && totalProcessed === MAX_ACCOUNT_DETAILS_FIRST_PAGE) || 
+            (firstPageProcessed && (totalProcessed - MAX_ACCOUNT_DETAILS_FIRST_PAGE) % MAX_ACCOUNT_DETAILS_OTHER_PAGES === 0)) {
+          blankRowsPerPage[custcode].push(blankRows);
+          blankRows = 0;
+          if (!firstPageProcessed) firstPageProcessed = true;
+        }
+        totalProcessed++;
+      });
+    });
+    if (blankRows > 0) {
+      blankRowsPerPage[custcode].push(blankRows);
+    }
+  });
+  return blankRowsPerPage;
+}
+
+const blankRows = calculateBlankRows(cash);
+%>
+
+<% cash.forEach(function(cashItem, cashIndex) { %>
+  <% let totalProcessed = 0; %>
+  <% let pageCounter = 0; %>
+  <% let includeValueCard = true; %>
+  <% let firstPageProcessed = false; %>
+  <% let pageBlankRows = blankRows[cashItem.custcode] || []; %>
+  <% let currentPageBlankRows = pageBlankRows.shift() || 0; %>
+
+  <% 
+  // Adjusting the max values dynamically
+  let adjustedMaxFirstPage = calculateThresholds(pageCounter, includeValueCard, currentPageBlankRows);
+  let adjustedMaxOtherPages = MAX_ACCOUNT_DETAILS_OTHER_PAGES;
+  %>
+
+  <div class="container space-bottom pagebreak">
+    <%- include('products_header', { isHighNetWorth: data.isHighNetWorth, title, marketing, equity: cashItem }) %>
+    <div class="cash-balance">
+      <%- include('porducts-value-card',{accountName:'',value:cashItem.totalMarketValue,totalPortfolioAllocation:cashItem.totalPortfolioAllocation,yearLowPercent:0, exchange: data.exchangeRate,custcode:cashItem.custcode,nav : 0}) %>
+      <div class="space-top space-remove">
+        <div class="cash-table">
+          <table>
+            <thead>
+              <tr class="first-heading">
+                <th style="width: 5%;">Fiat Currency</th>
+                <th style="width: 2%;">Unit</th>
+                <th style="width: 6%;">Amount</th>
+                <th style="width: 6%;">*Exchange Rate (BOT)</th>
+                <th style="width: 6%;">Amount (THB)</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="first-data <%= categoryClasses[cashIndex] %>">
+                <td>Custcode <%= cashItem.custcode %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><%= formatCurrency(cashItem.totalMarketValue) %></td>
+                <td></td>
+              </tr>
+              <% totalProcessed++; %>
+              <% cashItem.currencies.forEach(function(currency) { %>
+                <tr>
+                  <td style="padding: 5px 0"></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr class="color-gray cash-font">
+                  <td style="padding-left: 6px"><%= currency.currencyFullName %></td>
+                  <td><%= currency.currency %></td>
+                  <td><%= formatCurrency(currency.totalCashBalance) %></td>
+                  <td>
+                <% 
+                  var exchangeRate = getExchangeRate(currency.currency)
+                  if(exchangeRate !== null) {
+                    exchangeRate = Number(exchangeRate).toFixed(2);
+                  }
+                 %>
+                <%= exchangeRate ? exchangeRate : "-" %>
+                </td>
+                  <td><%= formatCurrency(currency.totalMarketValue) %></td>
+                  <td></td>
+                </tr>
+                <% totalProcessed++; %>
+                <% for (let i = 0; i < currency.accountDetails.length; i++) { %>
+                  <% if ((!firstPageProcessed && totalProcessed >= adjustedMaxFirstPage) || 
+                       (firstPageProcessed && (totalProcessed - adjustedMaxFirstPage) % adjustedMaxOtherPages === 10)) { %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <% if (!firstPageProcessed) firstPageProcessed = true; %>
+            <% pageCounter++; %>
+            <% includeValueCard = false; %>
+            <% currentPageBlankRows = pageBlankRows.shift() || 0; %>
+            <% adjustedMaxFirstPage = MAX_ACCOUNT_DETAILS_OTHER_PAGES; %>
+            <% adjustedMaxOtherPages = MAX_ACCOUNT_DETAILS_OTHER_PAGES; %>
+            <div class="container space-bottom pagebreak">
+              <%- include('products_header', { isHighNetWorth: data.isHighNetWorth, title, marketing, equity: cashItem }) %>
+              <div class="cash-balance">
+                <div class="space-top space-remove">
+                  <div class="cash-table no-border-top">
+                    <table class="mutual-space">
+                      <thead>
+                        <tr class="first-heading">
+                          <th style="width: 5%;">Fiat Currency</th>
+                          <th style="width: 2%;">Unit</th>
+                          <th style="width: 6%;">Amount</th>
+                          <th style="width: 6%;">*Exchange Rate (BOT)</th>
+                          <th style="width: 6%;">Amount (THB)</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="padding: 5px 0"></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <% totalProcessed++; %>
+                  <% } %>
+                  <tr class="color-gray">
+                    <td style="padding-left: 10px"><div class="single-column"> <%= currency.accountDetails[i].accountName %></div></td>
+                    <td></td>
+                    <td><%= formatCurrency(currency.accountDetails[i].cashBalance) %></td>
+                    <td></td>
+                    <td><%= formatCurrency(currency.accountDetails[i].marketValue) %></td>
+                    <td></td>
+                  </tr>
+                  <% totalProcessed++; %>
+                <% } %>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }); %>

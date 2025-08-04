@@ -1,0 +1,86 @@
+<% 
+let totalCount = marketing.custcodeProductMapping.reduce((acc, mapping) => acc + mapping.products.length, 0); 
+let pageBreakPoint = 18;
+let currentCount = 0;
+let mappingIndex = 0;
+let productIndex = 0;
+let cardCount = 0;
+%>
+
+<% while (currentCount < totalCount) { 
+  cardCount = 0;
+  %>
+<div class="container space-bottom <%= currentCount > 0 ? 'pagebreak intro-summary-'+marketing.marketingId : 'pagebreak' %>">
+  <div class="main-intro-screen">
+    <%- include('header/theme_two_header_two') %>
+    <div class="portfolio-summary-data">
+      <div class="portfolio-summary-grid">
+        <% if (currentCount === 0) { 
+          cardCount++;
+          %>
+        <div class="portfolio-grid">
+          <div class="portfolio-data-grid">
+            <h2 class="">Portfolio Summary</h2>
+            <h3 class="">Report as of <%= formatDate(marketing.portfoliosummary.summaryAsOf) %></h3>
+            <div class="horizontal-line"></div>
+            <div class="small-card color-card">
+              <h4><%- data.customerName.replace(/\n/g, '<br>') %></h4>
+              <p>
+                <% if (customerData.customerAddress) { %>
+                <%- customerData.customerAddress.replace(/,/g, ',<br>') %>
+                <% } %>
+              </p>
+            </div>
+          </div>
+          <div class="rel-manager">
+            <p><%- customerData.isHighNetWorth ? 'Relationship<br/>Manager' : 'Investment<br/>Consultant' %></p>
+            <p>
+              <%= marketing.marketingName %><br />
+            </p>
+          </div>
+        </div>
+        <% } %>
+        <%  while (mappingIndex < marketing.custcodeProductMapping.length && currentCount <= totalCount && cardCount < 2) { %>
+        <div class="summary-card">
+          <% 
+                  cardCount++;
+                  let pageCount = 0;
+                  while (mappingIndex < marketing.custcodeProductMapping.length && currentCount <= totalCount && pageCount < pageBreakPoint) {
+                      let mapping = marketing.custcodeProductMapping[mappingIndex];
+                  %>
+          <div class="card-content">
+            <div class="s-card">
+              <h4>Customer Code:</h4>
+              <p><%= mapping.custcode %></p>
+            </div>
+            <div class="card-text">
+              <% while (productIndex < mapping.products.length && currentCount <= totalCount && pageCount < pageBreakPoint) {
+                                  let product = mapping.products[productIndex];
+                              %>
+              <div class="s-data-card">
+                <p><%= product.accountName %></p>
+                <p><%= product.accountNo %></p>
+              </div>
+              <% 
+                                  pageCount++; 
+                                  currentCount++; 
+                                  productIndex++; 
+                                  %>
+              <% } %>
+            </div>
+          </div>
+          <% 
+                      if (productIndex >= mapping.products.length) {
+                          productIndex = 0; // Reset product index for next mapping
+                          mappingIndex++; // Move to next mapping
+                      }
+                      pageCount++; 
+                  %>
+          <% } %>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>

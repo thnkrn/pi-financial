@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="th">
+<%- include('head') %>
+
+<%
+const formatNumber = (number) => {
+  if (number === null || number === undefined) {
+    return ''; // Return an empty string when number is null or undefined
+  }
+  const formatted = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(Math.abs(number));
+
+  return number < 0 ? `(${formatted})` : formatted;
+};
+
+const formatDateNumber = (inputDate) => {
+  const date = new Date(inputDate);
+  const day = ('0' + date.getDate()).slice(-2);
+  const month = ('0' + (date.getMonth() + 1)).slice(-2);
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+%>
+
+<body>
+  <div class="container page-break">
+    <div style="display: flex; align-items: center;">
+      <div>
+        <img src="<%= themeGEConfig.headerImage %>" class="pi-logo"/>
+      </div>
+      <div class="header" style="text-align: left;" style="height: auto; max-width: 100%;">
+        <p><b>บริษัทหลักทรัพย์ พาย จำกัด (มหาชน)</b></p>
+        <p><b>Pi Securities Public Company Limited</b></p>
+        <p>132 อาคารสินธร ทาวเวอร์ 3 ชั้น 20, 25, 27 ถนนวิทยุ แขวงลุมพินี เขตปทุมวัน กรุงเทพมหานคร 10330</p>
+        <p>132 Sindhorn Tower 3 Level 20, 25, 27 Wireless Road, Lumpini, Pathumwan, Bangkok 10330</p>
+        <p>Tel. +66-02-205-7000, Fax. +66-02-205-7171</p>
+        <p>เลขที่ประจำตัวผู้เสียภาษีอากร 0107537000572 สถานประกอบการ "สำนักงานใหญ่"</p>
+        <p>Tax ID No. 0107537000572 Place of Business "Head Office"</p>
+      </div>
+    </div>
+    <div>
+      <h2>Activity Statement</h2>
+      <p><b>Account Number:</b> <%= data.activityStatement.accountNumber %></p>
+      <p><b>Account Name:</b> <%= data.activityStatement.accountName %></p>
+      <p><b>Tax ID Number:</b> <%= data.activityStatement.taxIdNumber %></p>
+      <p><b>Address:</b> <%= data.activityStatement.address %></p>
+      <p><b>Relationship Manager:</b> <%= data.activityStatement.marketingOfficer %></p>
+      <p><b>Period:</b> <%= data.activityStatement.period %></p>
+    </div>
+    <div>
+      <h2>Outstanding Cash Balance</h2>
+      <table style="width: 50%;">
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data.outstandingCashBalance?.length > 0) { %>
+            <%  data.outstandingCashBalance.forEach(ocb => { %>
+              <tr>
+                <td><%= ocb.currency %></td>
+                <td style="text-align: right;"><%= formatNumber(ocb.balance) %></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="2" style="text-align: center;">ไม่มีรายการ</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2>Stocks & ETFs</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Currency</th>
+            <th>Quantity</th>
+            <th>Cost Price</th>
+            <th>Close Price</th>
+            <th>Market Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data.stocksAndETFs?.length > 0) { %>
+            <% data.stocksAndETFs.forEach(sat => { %>
+              <tr>
+                <td style="text-align: left;"><%= sat.symbol %></td>
+                <td><%= sat.currency %></td>
+                <td style="text-align: right;"><%= formatNumber(sat.quantity) %></td>
+                <td style="text-align: right;"><%= formatNumber(sat.costPrice) %></td>
+                <td style="text-align: right;"><%= formatNumber(sat.closePrice) %></td>
+                <td style="text-align: right;"><%= formatNumber(sat.marketValue) %></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="6" style="text-align: center;">ไม่มีรายการ</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2>Deposit & Withdrawal</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction Date</th>
+            <th>Transaction</th>
+            <th>Currency</th>
+            <th>Amount</th>
+            <th>FX Rate</th>
+            <th>Amount (THB)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data.depositwithdraws?.length > 0) { %>
+            <% data.depositwithdraws.forEach(dw => { %>
+              <tr>
+                <td><%= formatDateNumber(dw.transactionDate) %></td>
+                <td><%= dw.transaction %></td>
+                <td><%= dw.currency %></td>
+                <td style="text-align: right;"><%= formatNumber(dw.amount)%></td>                
+                <td style="text-align: right;"><%= formatNumber(dw.fxRate)%></td>
+                <td style="text-align: right;"><%= formatNumber(dw.amountThb)%></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="6" style="text-align: center;">ไม่มีรายการ</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2>Trade Transactions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction Date</th>
+            <th>Symbol</th>
+            <th>Side</th>
+            <th>Currency</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Gross Amount</th>
+            <th>Commission</th>
+            <th>VAT</th>
+            <th>Other Fee</th>
+            <th>WHT</th>
+            <th>Net Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data.trades?.length > 0) { %>
+            <% data.trades.forEach(trade => { %>
+              <tr>
+                <td><%= formatDateNumber(trade.transactionDate) %></td>
+                <td style="text-align: left;"><%= trade.symbol %></td>
+                <td><%= trade.side %></td>
+                <td><%= trade.currency %></td>
+                <td style="text-align: right;"><%= formatNumber(trade.quantity)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.price)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.grossAmount)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.commission)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.vat)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.otherFee)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.withholdingTax)%></td>
+                <td style="text-align: right;"><%= formatNumber(trade.netAmount)%></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="12" style="text-align: center;">ไม่มีรายการ</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h2>Dividend</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Transaction Date</th>
+            <th>Symbol</th>
+            <th>Currency</th>
+            <th>Quantity</th>
+            <th>Dividend per Share</th>
+            <th>Amount</th>
+            <th>Tax</th>
+            <th>FX Rate (USD)</th>
+            <th>Net Amount (USD) After Tax</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data.dividends?.length > 0) { %>
+            <% data.dividends.forEach(dvd => { %>
+              <tr>
+                <td><%= formatDateNumber(dvd.transactionDate) %></td>
+                <td style="text-align: left;"><%= dvd.symbol %></td>
+                <td><%= dvd.currency %></td>
+                <td style="text-align: right;"><%= formatNumber(dvd.quantity)%></td>
+                <td style="text-align: right;"><%= formatNumber(dvd.dividendPerShare)%></td>
+                <td style="text-align: right;"><%= formatNumber(dvd.amount)%></td>
+                <td style="text-align: right;"><%= formatNumber(dvd.taxAmount)%></td>
+                <td style="text-align: right;"><%= formatNumber(dvd.fxRate)%></td>
+                <td style="text-align: right;"><%= formatNumber(dvd.netAmount)%></td>
+              </tr>
+            <% }); %>
+          <% } else { %>
+            <tr>
+              <td colspan="9" style="text-align: center;">ไม่มีรายการ</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<% let pageCounter = 1; %>
+<% let rowCounter = 0; %>
+<% const maxRowsPerPage = 15; %>
+<% tfex = marketing.tfex  %>
+<% let totalValue = 0;
+   let totalPortfolioAllocation = 0;
+%>
+<% let currentCustCode = null; %>
+
+<% tfex.forEach(account => { %>
+  <% account.products.forEach((product, index) => { %>
+    <% if (currentCustCode !== product.custcode) { %>
+      <% currentCustCode = product.custcode; %>
+      <% pageCounter = 1; %>
+    <% } %>
+    <% if (rowCounter === 0) { %>
+      <div class="container space-bottom page-break-before">
+        <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity:product }) %>
+        <div class="equity-contant">
+          <% if(index == 0){ %>
+            <%- include('tfex_product_card',{accountName: account.accountName,value:account.totalMarketValue,totalPortfolioAllocation:account.totalPortfolioAllocation,excessEquity:product, cashBalance: 0}) %>
+          <% } %>
+          <div class="space-top-equity">
+            <table class="equity-table tfex-table <% if(index > 1){ %> mutual-space <%}%>" >
+              <thead>
+                <tr>
+                  <th class="equity-header" style="width: 60px;">Equity Name</th>
+                  <th class="equity-header" style="width: 50px;">Multiplier</th>
+                  <th class="equity-header">Unit</th>
+                  <th class="equity-header">Avg. Cost</th>
+                  <th class="equity-header">Market Price</th>
+                  <th class="equity-header">Total Cost</th>
+                  <th class="equity-header">Total Value</th>
+                  <th class="equity-header">Unrealized P/L</th>
+                  <th class="equity-header">Unrealized P/L %</th>
+                </tr>
+              </thead>
+              <tbody>
+    <% } %>
+
+    <tr>
+      <td class="equity-data single-column"><%= product.sharecode %></td>
+      <td class="equity-data"><%= Number(product.multiplier).toFixed(0) %></td>
+      <td class="equity-data"><%= Number(product.unit).toFixed(0) %></td>
+      <td class="equity-data"><%= formatCurrency(product.avgPrice) %></td>
+      <td class="equity-data"><%= formatCurrency(product.marketPrice) %></td>
+      <td class="equity-data"><%= formatCurrency(product.totalCost) %></td>
+      <td class="equity-data"><%= formatCurrency(product.marketValue) %></td>
+      <%- include('../components/table/unrealized_pl', { rowClass: 'equity-data', gainLoss: product.gainLoss, unrealizedPL: product.unrealizedPL }) %>
+    </tr>
+
+
+    <% rowCounter++; %>
+    <% if (rowCounter >= (pageCounter > 1 ? (index == 0 ? maxRowsPerPage : 18 ) : maxRowsPerPage) || index === account.products.length - 1) { %>
+              </tbody>
+              <% if (index === account.products.length - 1) { %>
+                <tr class="separation"></tr>
+                <tfoot class="equity-footer">
+                  <tr>
+                    <th colspan="5" class="equity-footer-data">Total</th>
+                    <td class="equity-footer-data"><%= formatCurrency(account.totalCost) %></td>
+                    <td class="equity-footer-data"><%= formatCurrency(account.totalMarketValue) %></td>
+                    <td class="equity-footer-data"><%= ((account.totalGainLoss > 0) ? '+' : '') %><%= formatCurrency(account.totalGainLoss) %></td>
+                    <% const unrealizedPL = (account.totalGainLoss / account.totalCost * 100).toFixed(2); %>
+                    <td class="equity-footer-data"><%= ((unrealizedPL > 0) ? '+' : '') %><%= (unrealizedPL) %> %</td>
+                  </tr>
+                </tfoot>
+              <% } %>
+            </table>
+          </div>
+        </div>
+      </div>
+      <% pageCounter++; rowCounter = 0; %>
+    <% } %>
+  <% }); %>
+<% }); %>
+
+

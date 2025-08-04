@@ -1,0 +1,121 @@
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap");
+  @font-face {
+    font-family: 'Sarabun';
+    src: url('https://fonts.gstatic.com/s/sarabun/v13/DtVmJx26TKEr37c9VC52Zxhqwp2zMdpUVaA.woff2') format('woff2');
+  }
+  *:lang(th) {
+    font-family: 'Sarabun';
+  }
+
+  body {
+    font-family: 'Sarabun';
+    margin: 10px;
+    color: #2D3748;
+    font-size: 10px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 792px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .content {
+    height: 1020px;
+  }
+
+  h1 {
+    text-align: center;
+    color: #16757A;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #16757A;
+  }
+
+  .header p {
+    margin: 3px 0;
+    font-size: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid #CBD5E0;
+  }
+
+  th,
+  td {
+    padding: 6px 4px;
+    text-align: center;
+    word-wrap: break-word;
+    page-break-inside: avoid;
+    font-size: 9px;
+  }
+
+  th {
+    background-color: #16757A;
+    color: #fff;
+  }
+
+  tr:nth-child(even) {
+    background-color: #EDF2F7;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #E2E8F0;
+  }
+
+  .highlight {
+    background-color: #16757A;
+    color: #fff;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  .pagination {
+    justify-content: space-between;
+    position: absolute;
+    right: 0px;
+  }
+
+  .pi-logo {
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+    padding-right: 16px;
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 10mm;
+    }
+
+    .container {
+      position: relative;
+      height: 100%;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+  }
+</style>

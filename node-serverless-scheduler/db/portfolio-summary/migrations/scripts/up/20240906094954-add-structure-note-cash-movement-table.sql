@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `structure_note_cash_movement` (`custcode` VARCHAR(255) NOT NULL, `trading_account_no` VARCHAR(255), `exchange_market_id` VARCHAR(255), `customer_type` VARCHAR(255), `customer_sub_type` VARCHAR(255), `account_type` VARCHAR(255), `account_type_code` VARCHAR(255), `sub_account` VARCHAR(255), `transaction_date` DATE, `settlement_date` DATE, `transaction_type` VARCHAR(255), `currency` VARCHAR(255), `amount` DECIMAL(65,8), `note` VARCHAR(255), `description` VARCHAR(255), `date_key` DATE NOT NULL, `created_at` DATETIME) ENGINE=InnoDB;
+ALTER TABLE `structure_note_cash_movement` ADD INDEX `structure_note_cash_movement_custcode` (`custcode`);
+ALTER TABLE `structure_note_cash_movement` ADD INDEX `structure_note_cash_movement_date_key` (`date_key`);
+ALTER TABLE `structure_note_cash_movement` ADD INDEX `structure_note_cash_movement_date_key_custcode` (`date_key`, `custcode`);
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'portfolio_summary_db';
+SHOW INDEX FROM `SequelizeMeta`;\nINSERT INTO `SequelizeMeta` (`name`) VALUES ('20240906094954-add-structure-note-cash-movement-table.js');

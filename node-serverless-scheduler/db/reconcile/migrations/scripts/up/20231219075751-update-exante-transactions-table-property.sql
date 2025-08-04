@@ -1,0 +1,14 @@
+ALTER TABLE `exante_transactions` CHANGE `transaction_id` `transaction_id` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `account_id` `account_id` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `symbol_id` `symbol_id` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `isin` `isin` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `operation_type` `operation_type` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `when` `when` DATETIME;
+ALTER TABLE `exante_transactions` CHANGE `sum` `sum` DECIMAL(65,8);
+ALTER TABLE `exante_transactions` CHANGE `asset` `asset` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `eur_equivalent` `eur_equivalent` DECIMAL(65,8);
+ALTER TABLE `exante_transactions` CHANGE `comment` `comment` VARCHAR(255);
+ALTER TABLE `exante_transactions` CHANGE `uuid` `uuid` CHAR(36) BINARY;
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_NAME = 'SequelizeMeta' AND TABLE_SCHEMA = 'reconcile_db';
+SHOW INDEX FROM `SequelizeMeta`;
+INSERT INTO `SequelizeMeta` (`name`) VALUES ('20231219075751-update-exante-transactions-table-property.js');

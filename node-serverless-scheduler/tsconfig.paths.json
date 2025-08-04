@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@functions/*": ["src/functions/*"],
+      "@libs/*": ["src/libs/*"],
+      "@api/*": ["src/api/*"],
+      "@cgs-bank/*": ["src/cgs-bank/*"]
+    }
+  }
+}

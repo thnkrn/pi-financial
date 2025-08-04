@@ -1,0 +1,96 @@
+<% const categoryClasses = ['','table-color-purple','table-color-orange','table-color-navy_blue','table-color-blue-smoke','table-color-light_blue','table-color-light_green','table-color-off-green','table-color-black','table-color-white',
+    'table-color-gray','table-color-dark_gray','table-color-light_gray','table-color-musturd_yellow','table-color-red','table-color-green','table-color-blue','table-color-sky_blue',
+    'table-color-yellow','table-color-dark-green','table-color-radiant-green','table-color-solid-green']; %>
+<% let currentCustCode = null; %>
+<% let pageCount = 1; %>
+
+<% structuredProduct.forEach(function(equity, equityIndex) { %>
+<% if (currentCustCode !== equity.custcode) { %>
+<% currentCustCode = equity.custcode; %>
+<% pageCount = 1; %>
+<% } %>
+<% let productChunks = []; %>
+
+<% for (let i = 0; i < equity.products.length; ) { %>
+<% 
+      let chunkSize;
+      if (pageCount === 1) {
+        chunkSize = 6; // First page chunk size
+      } else if (pageCount > 1) {
+        chunkSize = 7; // Second page chunk size
+      } else {
+        chunkSize = 6; // Default chunk size for subsequent pages
+      }
+
+      productChunks.push(equity.products.slice(i, i + chunkSize));
+      i += chunkSize;
+      pageCount++;
+    %>
+<% } %>
+<% productChunks.forEach(function(productChunk, chunkIndex) { %>
+
+<div class="container space-bottom pagebreak">
+  <%- include('products_header',{isHighNetWorth: data.isHighNetWorth,title,marketing,equity}) %>
+  <div class="cash-balance">
+    <% if(chunkIndex == 0){ %>
+    <%- include('porducts-value-card',{accountName:equity.accountName, value:equity.totalMarketValue,totalPortfolioAllocation:equity.totalPortfolioAllocation,yearLowPercent:0, exchange: data.exchangeRate,custcode:equity.custcode, nav : 0 }) %>
+    <% } %>
+    <div class="space-top structured-data">
+      <div class="cash-table">
+        <table class=" <% if(chunkIndex > 0){ %> mutual-space <% } %>">
+          <tr class="first-heading structured-table">
+            <th style="width: 11%">Product Type</th>
+            <th style="width: 11%">Issuer</th>
+            <th style="width: 11%">Note</th>
+            <th style="width: 7%">Underlying</th>
+            <th style="width: 10%">Transaction Date</th>
+            <th style="width: 8%">Maturity Date</th>
+            <th style="width: 5%">Tenure</th>
+            <th style="width: 7%">Capital Protection</th>
+            <th style="width: 8%">Yield /PR</th>
+            <th style="width: 8%">Face Value (Currency)</th>
+            <th style="width: 8%">Market Value (THB)</th>
+          </tr>
+          <% productChunk.forEach(function(product,index) { %>
+          <tr class="structured-table-content <%= categoryClasses[index] %>">
+            <td>
+              <div class="issuer-column issuer-height"><%= product.productType %></div>
+            </td>
+            <td>
+              <div class="issuer-column issuer-height"><%= product.issuer %></div>
+            </td>
+            <td style="padding-right: 4px">
+              <div class="issuer-column issuer-height"><%= product.note %></div>
+            </td>
+            <td>
+              <div class="issuer-column issuer-height"><%= product.underlying %></div>
+            </td>
+            <td><%= new Date(product.tradeDate).toLocaleDateString('en-GB') %></td>
+            <td><%= new Date(product.maturityDate).toLocaleDateString('en-GB') %></td>
+            <td><%= product.tenor %>d</td>
+            <td><%= product.capitalProtection %></td>
+            <td><%= formatPercentage(product.yield) %></td>
+            <td><%= formatCurrency(product.notionalValue)  %><br><%= product.originalCurrency  %></td>
+            <td><%= formatCurrency(product.marketValue) %></td>
+          </tr>
+          <tr>
+            <td style="padding: 6px"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% pageCount++; %>
+<% }); %>
+<% }); %>
