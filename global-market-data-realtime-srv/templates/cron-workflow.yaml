@@ -1,0 +1,31 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: "@@NAME@@"
+spec:
+  schedule: "@@CRON@@"
+  timezone: Asia/Bangkok
+  concurrencyPolicy: Replace
+  startingDeadlineSeconds: 0
+  suspend: @@DISABLED@@
+
+  workflowSpec:
+    entrypoint: "@@TYPE@@"
+    workflowTemplateRef:
+      name: "@@REPO@@-workflow-templates"
+
+    arguments:
+      parameters:
+        - name: image
+          value: "@@IMAGE@@"
+        - name: command
+          value: "@@COMMAND@@"
+        - name: argument-1
+          value: "@@ARG1@@"
+        - name: argument-2
+          value: "@@ARG2@@"
+        - name: argument-3
+          value: "@@ARG3@@"
+        - name: argument-4
+          value: "@@ARG4@@"

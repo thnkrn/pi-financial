@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Pi.GlobalMarketDataRealTime.DataHandler": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

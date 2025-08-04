@@ -1,0 +1,132 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>f437caf7-d339-4666-8080-fdeced2d8770</UserSecretsId>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;nullable</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="EFCore.NamingConventions" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.8"/>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0"/>
+        <PackageReference Include="MassTransit" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.Analyzers" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1"/>
+        <PackageReference Include="NCrontab" Version="3.3.3"/>
+        <PackageReference Include="Pi.Common" Version="1.0.73"/>
+        <PackageReference Include="Pi.Common.Serilog" Version="1.0.73"/>
+        <PackageReference Include="pi.common.startup" Version="1.0.73"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0-silver.1"/>
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0"/>
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="MassTransit"/>
+        <None Remove="MassTransit.EntityFrameworkCore"/>
+        <None Remove="MassTransit.AmazonSQS"/>
+        <None Remove="MassTransit.Analyzers"/>
+        <None Remove="MassTransit.RabbitMQ"/>
+        <None Remove="Microsoft.Extensions.Http"/>
+        <None Remove="Serilog.Extensions.Hosting"/>
+        <None Remove="Serilog.Sinks.Console"/>
+        <None Remove="Serilog.Settings.Configuration"/>
+        <None Remove="Serilog.Sinks.Seq"/>
+        <None Remove="Pomelo.EntityFrameworkCore.MySql"/>
+        <None Remove="Startup\"/>
+        <None Remove="Microsoft.EntityFrameworkCore.Design"/>
+        <None Remove="Amazon.Extensions.Configuration.SystemsManager"/>
+        <None Remove="store\**"/>
+        <None Update="Bridges_CA.crt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="start.sh">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="stunnel.conf">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="BinLogs\"/>
+        <Folder Include="Extensions\" />
+        <Folder Include="Startup\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.GlobalMarketDataRealTime.Application\Pi.GlobalMarketDataRealTime.Application.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.GlobalMarketDataRealTime.Domain\Pi.GlobalMarketDataRealTime.Domain.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.GlobalMarketDataRealTime.Infrastructure\Pi.GlobalMarketDataRealTime.Infrastructure.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="store\**"/>
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Remove="store\**"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Content Remove="store\**"/>
+        <None Remove="FIX44.xml"/>
+        <Content Include="FIX44.xml">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config2.cfg"/>
+        <Content Include="config2.cfg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config1.cfg"/>
+        <Content Include="config1.cfg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config0.cfg"/>
+        <Content Include="config0.cfg">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config3.cfg" />
+        <Content Include="config3.cfg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config4.cfg" />
+        <Content Include="config4.cfg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config5.cfg" />
+        <Content Include="config5.cfg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config6.cfg" />
+        <Content Include="config6.cfg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+        <None Remove="config7.cfg" />
+        <Content Include="config7.cfg">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+</Project>

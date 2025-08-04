@@ -1,0 +1,3 @@
+namespace Pi.GlobalMarketDataRealTime.Infrastructure;
+
+public interface IInfrastructureAssemblyMarker;
