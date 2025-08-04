@@ -1,0 +1,95 @@
+openapi: 3.0.1
+info:
+  contact: {}
+  description: "Serve Bond accounting, trading and market data."
+  termsOfService: http://swagger.io/terms/
+  title: Bond API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /examples:
+    get:
+      description: find all example
+      operationId: find-all
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/find_all_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Bad Request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/result.ResponseError'
+          description: Not Found
+components:
+  schemas:
+    github_com_pi-financial_bond-srv_internal_domain_example_model.Example:
+      example:
+        name: name
+        id: id
+        age: age
+      properties:
+        age:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    result.ResponseError:
+      example:
+        detail: detail
+        title: title
+        status: 0
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+      type: object
+    result.ResponseSuccess:
+      properties:
+        code:
+          type: string
+        data:
+          type: object
+        msg:
+          type: string
+      type: object
+    find_all_200_response:
+      allOf:
+      - $ref: '#/components/schemas/result.ResponseSuccess'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/github_com_pi-financial_bond-srv_internal_domain_example_model.Example'
+            type: array
+        type: object
+      example:
+        msg: msg
+        code: code
+        data:
+        - name: name
+          id: id
+          age: age
+        - name: name
+          id: id
+          age: age
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: Authorization
+      type: apiKey
+x-original-swagger-version: "2.0"

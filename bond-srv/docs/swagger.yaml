@@ -1,0 +1,294 @@
+definitions:
+  internal_handler.AccountOverviewResponse:
+    properties:
+      accountsOverview:
+        items:
+          $ref: '#/definitions/internal_handler.AccountResponse'
+        type: array
+      failedToFetchAccounts:
+        items:
+          $ref: '#/definitions/internal_handler.FailedAccountResponse'
+        type: array
+      hasFailedAccounts:
+        type: boolean
+    type: object
+  internal_handler.AccountResponse:
+    properties:
+      accountId:
+        description: custCode
+        type: string
+      accountLimit:
+        type: number
+      cashBalance:
+        type: number
+      cost:
+        type: number
+      currency:
+        type: string
+      gain:
+        type: number
+      gainPercentage:
+        type: number
+      hasBondTradingAccount:
+        type: boolean
+      lineAvailable:
+        type: number
+      marketValue:
+        type: number
+      netAssetValue:
+        type: number
+      tradingAccountNo:
+        description: custCode-suffix
+        type: string
+      tradingAccountNoDisplay:
+        description: custCodesuffix
+        type: string
+    type: object
+  internal_handler.AccountSummaryResponse:
+    properties:
+      accruedInterestToBeCredited:
+        type: number
+      costValue:
+        type: number
+      currency:
+        type: string
+      gain:
+        type: number
+      gainPercentage:
+        type: number
+      marketValue:
+        type: number
+      outstandingAccruedInterest:
+        type: number
+      positions:
+        items:
+          $ref: '#/definitions/internal_handler.PositionResponse'
+        type: array
+      totalAmount:
+        type: number
+    type: object
+  internal_handler.BondResponse:
+    properties:
+      asOfDate:
+        type: string
+      symbols:
+        items:
+          type: string
+        type: array
+      totalCount:
+        type: integer
+    type: object
+  internal_handler.FailedAccountResponse:
+    properties:
+      accountId:
+        description: custCode
+        type: string
+      custCode:
+        type: string
+      error:
+        type: string
+      tradingAccountNo:
+        description: custCode-suffix
+        type: string
+      tradingAccountNoDisplay:
+        description: custCodesuffix
+        type: string
+    type: object
+  internal_handler.PositionResponse:
+    properties:
+      accruedInterest:
+        type: number
+      asOfDate:
+        type: string
+      assetType:
+        type: string
+      availableUnit:
+        type: number
+      cleanPrice:
+        type: number
+      costPrice:
+        type: number
+      costValue:
+        type: number
+      currency:
+        type: string
+      dailyChange:
+        type: number
+      dailyChangePercentage:
+        type: number
+      gain:
+        type: number
+      gainPercentage:
+        type: number
+      marketPrice:
+        type: number
+      marketValue:
+        type: number
+      maturityDate:
+        type: string
+      symbol:
+        type: string
+      yieldPrice:
+        type: number
+    type: object
+  result.ResponseError:
+    properties:
+      detail:
+        type: string
+      status:
+        type: integer
+      title:
+        type: string
+    type: object
+  result.ResponseSuccess:
+    properties:
+      code:
+        type: string
+      data: {}
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: Serve Bond accounting, trading and market data.
+  termsOfService: http://swagger.io/terms/
+  title: Bond API
+  version: 1.0.0
+paths:
+  /internal/accounts/overview:
+    get:
+      consumes:
+      - application/json
+      description: Get accounts overview
+      parameters:
+      - description: user-id
+        in: header
+        name: user-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/internal_handler.AccountOverviewResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Account Overview
+      tags:
+      - Accounts
+  /internal/bonds/symbols:
+    get:
+      consumes:
+      - application/json
+      description: List of Bond
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/internal_handler.BondResponse'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Bond List
+      tags:
+      - MarketData
+  /secure/accounts/overview:
+    get:
+      consumes:
+      - application/json
+      description: Get accounts overview
+      parameters:
+      - description: user-id
+        in: header
+        name: user-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/internal_handler.AccountOverviewResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Account Overview
+      tags:
+      - Accounts
+  /secure/accounts/summary:
+    get:
+      consumes:
+      - application/json
+      description: Get account summary and position
+      parameters:
+      - description: user-id
+        in: header
+        name: user-id
+        required: true
+        type: string
+      - description: accountId
+        in: query
+        name: accountId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/internal_handler.AccountSummaryResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Account Summary
+      tags:
+      - Accounts
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

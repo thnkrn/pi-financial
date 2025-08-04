@@ -1,0 +1,8 @@
+{
+    "go.toolsManagement.autoUpdate": true,
+    "gopls": {
+      "buildFlags": [
+        "-tags=wireinject"
+      ],
+    }
+}

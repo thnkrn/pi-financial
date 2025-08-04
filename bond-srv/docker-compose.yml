@@ -1,0 +1,34 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    environment:
+      REDIS_URL: redis:6379
+
+  # Redis Service
+  redis:
+    image: "redis:alpine" # Use a public Redis image to build the redis service
+    restart: unless-stopped
+
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssword
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=bond-srv
+      - MYSQL_DATABASE=bond-db
+    volumes:
+      - bond-mysql-data:/var/lib/mysql
+
+volumes:
+  bond-mysql-data:
