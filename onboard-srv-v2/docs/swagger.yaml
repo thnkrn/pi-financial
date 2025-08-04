@@ -1,0 +1,225 @@
+basePath: /
+definitions:
+  github_com_pi-financial_onboard-srv-v2_internal_core_domain.MetaTraderPlatform:
+    enum:
+    - MT4
+    - MT5
+    type: string
+    x-enum-varnames:
+    - MetaTrader4
+    - MetaTrader5
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse:
+    description: A generic response type
+    properties:
+      code:
+        type: integer
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponseWithData-MetaTraderResponseDto:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.MetaTraderResponseDto'
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.MT4Dto:
+    properties:
+      effective_date:
+        type: string
+      is_enable:
+        type: string
+      is_exported:
+        type: boolean
+      package_type:
+        type: string
+      service_type:
+        type: string
+      trading_account:
+        type: string
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.MT5Dto:
+    properties:
+      effective_date:
+        type: string
+      is_enable:
+        type: string
+      is_exported:
+        type: boolean
+      package_type:
+        type: string
+      service_type:
+        type: string
+      trading_account:
+        type: string
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.MetaTraderResponseDto:
+    properties:
+      mt4:
+        items:
+          $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.MT4Dto'
+        type: array
+      mt5:
+        items:
+          $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.MT5Dto'
+        type: array
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.RegisterMetaTraderItem:
+    properties:
+      effective_date:
+        type: string
+      platform:
+        $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_core_domain.MetaTraderPlatform'
+      trading_account:
+        maxLength: 15
+        type: string
+    required:
+    - effective_date
+    - platform
+    - trading_account
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.RegisterMetaTraderRequest:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.RegisterMetaTraderItem'
+        type: array
+    required:
+    - data
+    type: object
+  github_com_pi-financial_onboard-srv-v2_internal_handler_dto.UpdateMetaTraderRequest:
+    properties:
+      platform:
+        $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_core_domain.MetaTraderPlatform'
+      trading_accounts:
+        items:
+          type: string
+        type: array
+    required:
+    - platform
+    - trading_accounts
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Onboard service V2
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Onboard Service V2
+  version: "1.0"
+paths:
+  /internal/meta-trader:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves a list of MT4 and MT5 trading accounts filtered by effective
+        date range
+      operationId: GetMetaTraders
+      parameters:
+      - description: Start date in YYYYMMDD format
+        in: query
+        name: start_date
+        required: true
+        type: string
+      - description: End date in YYYYMMDD format
+        in: query
+        name: end_date
+        required: true
+        type: string
+      - description: export status filter
+        in: query
+        name: is_exported
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success response with MT4 and MT5 records
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponseWithData-MetaTraderResponseDto'
+        "400":
+          description: Invalid date range or query parameters
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+      summary: Get MT4 and MT5 trading accounts records
+      tags:
+      - MetaTrader
+  /internal/meta-trader/exported:
+    put:
+      consumes:
+      - application/json
+      description: Update MT4 and MT5 trading accounts as exported based on the provided
+        trading account numbers
+      operationId: UpdateExported
+      parameters:
+      - description: MT4 and MT5 trading accounts to update as exported
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.UpdateMetaTraderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success response indicating records are updated as exported
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+      summary: Update MT4 and MT5 Trading Accounts as exported
+      tags:
+      - MetaTrader
+  /secure/meta-trader:
+    post:
+      consumes:
+      - application/json
+      description: Registers MT4 and MT5 trading accounts based on the provided customer
+        codes and effective dates
+      operationId: RegisterMetaTrader
+      parameters:
+      - description: 'Locale: en_US or th_TH'
+        in: header
+        name: lang
+        required: true
+        type: string
+      - description: MT4 and MT5 registration data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.RegisterMetaTraderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success response status
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+        "500":
+          description: Internal server error
+          schema:
+            $ref: '#/definitions/github_com_pi-financial_onboard-srv-v2_internal_handler_dto.BaseResponse'
+      summary: Register MT4 and MT5 Trading Accounts
+      tags:
+      - MetaTrader
+swagger: "2.0"

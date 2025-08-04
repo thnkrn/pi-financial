@@ -1,0 +1,716 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: pongtorn.po@pi.financial
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Contain Generic Information.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Pi SSO V2
+  version: "2.0"
+servers:
+- url: //localhost:8080/
+paths:
+  /internal/accounts/check-duplicate:
+    post:
+      description: use internally to check for existing username and mobile phone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.CheckDuplicateRequest'
+        description: Check Duplicate Request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.CheckDuplicateResponse'
+          description: Check Duplicate
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+      summary: Check Email and PhoneNumber Duplication
+      tags:
+      - account
+      x-codegen-request-body-name: request
+  /internal/auth/create-password:
+    post:
+      description: Create or reset the password for the authenticated user by verifying
+        the user ID and username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.InternalCreatePasswordRequest'
+        description: Create Password Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Password changed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Create or reset user's password
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /internal/auth/unlock-account:
+    post:
+      description: Unlock a locked account by providing the username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.UnlockUserRequest'
+        description: Unlock Account Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Account unlocked successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      summary: Unlock a locked account
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /internal/auth/verify-pin:
+    post:
+      description: Verify the PIN for the authenticated user by verifying the user
+        ID and custcode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.VerifyPinRequest'
+        description: Verify Pin Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Pin verified successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Verify user's PIN
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /public/accounts/guest/register:
+    post:
+      description: "Create a new guest account with username, password, and phone\
+        \ number"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.GuestRegisterRequest'
+        description: Guest Register Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.SuccessResponse'
+          description: Guest registered successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Failed to register guest
+      summary: Register a new guest account
+      tags:
+      - account
+      x-codegen-request-body-name: request
+  /public/auth/login:
+    post:
+      description: Authenticate user with username and password and return JWT tokens
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.LoginRequest'
+        description: Login request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Returns access and refresh tokens
+        "400":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Invalid request
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      summary: Login with username and password
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /public/auth/request-reset-password:
+    post:
+      description: request reset password email link
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.ResetPasswordRequest'
+        description: Reset Password Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Password reset link has been sent
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      summary: Request Reset Password Link
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /secure/accounts/link-account:
+    post:
+      description: Link the authenticated user's account to a member using custcode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.LinkAccountRequest'
+        description: Link Account Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Link Account To Member created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: "Unauthorized or Invalid user, please login again"
+      security:
+      - BearerAuth: []
+      summary: Link an account to a member
+      tags:
+      - account
+      x-codegen-request-body-name: request
+  /secure/auth/change-password:
+    post:
+      description: Change the password for the authenticated user by providing old
+        and new password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.ChangePasswordRequest'
+        description: Change Password Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Password changed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Change user's password
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /secure/auth/change-pin:
+    post:
+      description: Change the PIN for the authenticated user by verifying the old
+        PIN and custcode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.ChangePinRequest'
+        description: Change Pin Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Pin changed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Change user's PIN
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /secure/auth/create-password:
+    post:
+      description: Create or reset the password for the authenticated user by verifying
+        the user ID and username
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.CreatePasswordRequest'
+        description: Create Password Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Password changed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Create or reset user's password
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /secure/auth/create-pin:
+    post:
+      description: Create a new PIN for the authenticated user by verifying the user
+        ID and custcode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.CreatePinRequest'
+        description: Create Pin Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Pin created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Create a new PIN for user
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+  /secure/auth/refresh-token:
+    post:
+      description: Generate new access and refresh tokens using existing refresh token
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Returns new access and refresh tokens
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Refresh JWT tokens
+      tags:
+      - auth
+  /secure/auth/reset-pin:
+    post:
+      description: Reset the PIN for the authenticated user by verifying the password
+        and custcode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/handler.ResetPinRequest'
+        description: Reset Pin Request Body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Pin reset successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/handler.ErrorResponse'
+          description: Validation failed
+        "401":
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: Unauthorized
+      security:
+      - BearerAuth: []
+      summary: Reset user's PIN
+      tags:
+      - auth
+      x-codegen-request-body-name: request
+components:
+  schemas:
+    handler.ChangePasswordRequest:
+      properties:
+        encrypt_new_password:
+          type: string
+        encrypt_old_password:
+          type: string
+        username:
+          type: string
+      required:
+      - encrypt_new_password
+      - encrypt_old_password
+      - username
+      type: object
+    handler.ChangePinRequest:
+      properties:
+        custcode:
+          type: string
+        encrypt_new_pin:
+          type: string
+        encrypt_old_pin:
+          type: string
+      required:
+      - custcode
+      - encrypt_new_pin
+      - encrypt_old_pin
+      type: object
+    handler.CheckDuplicateRequest:
+      properties:
+        phone_number:
+          type: string
+        username:
+          type: string
+      type: object
+    handler.CheckDuplicateResponse:
+      example:
+        phone_number: true
+        username: true
+      properties:
+        phone_number:
+          type: boolean
+        username:
+          type: boolean
+      type: object
+    handler.CreatePasswordRequest:
+      properties:
+        encrypt_new_password:
+          type: string
+        username:
+          items:
+            type: string
+          type: array
+      required:
+      - encrypt_new_password
+      - username
+      type: object
+    handler.CreatePinRequest:
+      properties:
+        custcode:
+          items:
+            type: string
+          type: array
+        encrypt_new_pin:
+          type: string
+      required:
+      - custcode
+      - encrypt_new_pin
+      type: object
+    handler.ErrorResponse:
+      example:
+        error: error
+        message: message
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      type: object
+    handler.GuestRegisterRequest:
+      properties:
+        password:
+          type: string
+        phone_number:
+          type: string
+        username:
+          type: string
+      required:
+      - password
+      - username
+      type: object
+    handler.InternalCreatePasswordRequest:
+      properties:
+        encrypt_new_password:
+          type: string
+        user_id:
+          type: string
+        username:
+          items:
+            type: string
+          type: array
+      required:
+      - encrypt_new_password
+      - user_id
+      - username
+      type: object
+    handler.LinkAccountRequest:
+      properties:
+        custcode:
+          type: string
+      required:
+      - custcode
+      type: object
+    handler.LoginRequest:
+      properties:
+        encrypt_password:
+          type: string
+        username:
+          type: string
+      required:
+      - encrypt_password
+      - username
+      type: object
+    handler.ResetPasswordRequest:
+      properties:
+        birthday:
+          type: string
+        id_card_no:
+          type: string
+        username:
+          type: string
+      required:
+      - birthday
+      - id_card_no
+      - username
+      type: object
+    handler.ResetPinRequest:
+      properties:
+        custcode:
+          items:
+            type: string
+          type: array
+        encrypt_new_pin:
+          type: string
+        encrypt_password:
+          type: string
+      required:
+      - custcode
+      - encrypt_new_pin
+      - encrypt_password
+      type: object
+    handler.SuccessResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    handler.UnlockUserRequest:
+      properties:
+        username:
+          type: string
+      required:
+      - username
+      type: object
+    handler.VerifyPinRequest:
+      properties:
+        custcode:
+          type: string
+        encrypt_pin:
+          type: string
+      required:
+      - custcode
+      - encrypt_pin
+      type: object
+  securitySchemes:
+    BearerAuth:
+      description: "use a Bearer token for authorization. Format: \"Bearer {token}\""
+      in: header
+      name: Authorization
+      type: apiKey
+x-original-swagger-version: "2.0"

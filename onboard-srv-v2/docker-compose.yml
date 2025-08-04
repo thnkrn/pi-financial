@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    environment:
+      REDIS_URL: redis:6379
+
+  db:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssword
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=onboard_service_user
+      - MYSQL_DATABASE=onboard_db
+    volumes:
+      - go-boilerplate-mysql-data:/var/lib/mysql
+
+volumes:
+  go-boilerplate-mysql-data:

@@ -1,0 +1,3079 @@
+basePath: /
+definitions:
+  domain.User:
+    properties:
+      birthday:
+        description: YYYY-MM-DD
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      email:
+        type: string
+      first_name_en:
+        type: string
+      first_name_th:
+        type: string
+      id:
+        type: string
+      id_card_no:
+        type: string
+      last_name_en:
+        type: string
+      last_name_th:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  gorm.DeletedAt:
+    properties:
+      time:
+        type: string
+      valid:
+        description: Valid is true if Time is not NULL
+        type: boolean
+    type: object
+  handler.ChangePasswordRequest:
+    properties:
+      encryptNewPassword:
+        type: string
+      encryptOldPassword:
+        type: string
+      username:
+        type: string
+    required:
+    - encryptNewPassword
+    - encryptOldPassword
+    - username
+    type: object
+  handler.CheckDuplicateRequest:
+    properties:
+      phoneNumber:
+        type: string
+      username:
+        type: string
+    type: object
+  handler.CheckDuplicateResponse:
+    properties:
+      phoneNumber:
+        type: boolean
+      username:
+        type: boolean
+    type: object
+  handler.ErrorResponse:
+    properties:
+      error:
+        type: string
+      message:
+        type: string
+    type: object
+  handler.LinkAccountRequest:
+    properties:
+      custcode:
+        type: string
+      encryptNewPassword:
+        type: string
+      sendLinkAccountId:
+        type: string
+    required:
+    - encryptNewPassword
+    type: object
+  handler.LoginRequest:
+    properties:
+      encryptPassword:
+        type: string
+      username:
+        type: string
+    required:
+    - encryptPassword
+    - username
+    type: object
+  handler.ResetPasswordRequest:
+    properties:
+      birthday:
+        type: string
+      idCardNo:
+        type: string
+      username:
+        type: string
+    required:
+    - birthday
+    - idCardNo
+    - username
+    type: object
+  handler.ResetPinRequest:
+    properties:
+      custcode:
+        items:
+          type: string
+        type: array
+      encryptNewPin:
+        type: string
+      encryptPassword:
+        type: string
+    required:
+    - custcode
+    - encryptNewPin
+    - encryptPassword
+    type: object
+  handler.RsaRequest:
+    properties:
+      message:
+        type: string
+    required:
+    - message
+    type: object
+  handler.SetNewPasswordRequest:
+    properties:
+      encryptNewPassword:
+        type: string
+      token:
+        description: Username    []string `json:"username" validate:"required"`
+        type: string
+    required:
+    - encryptNewPassword
+    - token
+    type: object
+  handler.SetNewPinRequest:
+    properties:
+      encryptNewPin:
+        type: string
+      token:
+        description: Username []string `json:"username" validate:"required"`
+        type: string
+    required:
+    - encryptNewPin
+    - token
+    type: object
+  handler.UnlockUserRequest:
+    properties:
+      username:
+        type: string
+    required:
+    - username
+    type: object
+  handler.VerifyPinRequest:
+    properties:
+      custcode:
+        type: string
+      encryptPin:
+        type: string
+    required:
+    - custcode
+    - encryptPin
+    type: object
+  handler.VerifyTokenResponse:
+    properties:
+      userId:
+        type: string
+    type: object
+  result.ResponseError:
+    properties:
+      detail:
+        type: string
+      status:
+        type: integer
+      title:
+        type: string
+    type: object
+  result.ResponseSuccess:
+    properties:
+      code:
+        type: string
+      data: {}
+      msg:
+        type: string
+    type: object
+  ssodb.Account:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        $ref: '#/definitions/gorm.DeletedAt'
+      failed_password_attempts:
+        type: integer
+      failed_pin_attempts:
+        type: integer
+      id:
+        type: string
+      is_locked:
+        type: boolean
+      password:
+        type: string
+      pin:
+        type: string
+      salt_password:
+        type: string
+      salt_pin:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+      username:
+        type: string
+      username_hash:
+        type: string
+    type: object
+  ssodb.SendLinkAccount:
+    properties:
+      createdAt:
+        type: string
+      custcode:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      isUsed:
+        type: boolean
+      usedAt:
+        type: string
+      userId:
+        type: string
+    type: object
+  ssodb.SyncToken:
+    properties:
+      account_id:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: string
+      is_use:
+        type: boolean
+      used_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  types.AccountInfoResponse:
+    properties:
+      cardId:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      isLock:
+        type: boolean
+      isSyncPassword:
+        type: boolean
+      isSyncPin:
+        type: boolean
+      loginPinFailCount:
+        type: integer
+      loginPwdFailCount:
+        type: integer
+      mobile:
+        type: string
+      updatedAt:
+        type: string
+      userId:
+        type: string
+      username:
+        type: string
+    type: object
+  types.AccountTradingSyncRequest:
+    properties:
+      password:
+        type: string
+      pin:
+        type: string
+      username:
+        type: string
+    required:
+    - username
+    type: object
+  types.ChangePinRequest:
+    properties:
+      custcode:
+        type: string
+      encryptNewPin:
+        type: string
+      encryptOldPin:
+        type: string
+    required:
+    - custcode
+    - encryptNewPin
+    - encryptOldPin
+    type: object
+  types.ChangeUsernameRequest:
+    properties:
+      newUsername:
+        type: string
+      userId:
+        type: string
+      username:
+        type: string
+    required:
+    - newUsername
+    - userId
+    - username
+    type: object
+  types.CheckEmailAccountByUserIDResponse:
+    properties:
+      email:
+        type: string
+      isUsernameExisted:
+        type: boolean
+    required:
+    - email
+    - isUsernameExisted
+    type: object
+  types.CheckSyncedPinRequest:
+    properties:
+      custcode:
+        type: string
+    required:
+    - custcode
+    type: object
+  types.CheckSyncedPinResponse:
+    properties:
+      result:
+        type: boolean
+    type: object
+  types.CreatePinRequest:
+    properties:
+      custcode:
+        items:
+          type: string
+        type: array
+      encryptNewPin:
+        type: string
+    required:
+    - custcode
+    - encryptNewPin
+    type: object
+  types.ForceChangePasswordRequest:
+    properties:
+      newPassword:
+        type: string
+      username:
+        type: string
+    required:
+    - newPassword
+    - username
+    type: object
+  types.ForceChangePinRequest:
+    properties:
+      newPin:
+        type: string
+      username:
+        type: string
+    required:
+    - newPin
+    - username
+    type: object
+  types.GenerateEmailOtpForSetupRequest:
+    properties:
+      email:
+        type: string
+    required:
+    - email
+    type: object
+  types.GenerateEmailOtpForSetupResponse:
+    properties:
+      email:
+        type: string
+      expiresAt:
+        type: string
+      refCode:
+        type: string
+    required:
+    - email
+    - expiresAt
+    - refCode
+    type: object
+  types.GenerateOtpRequest:
+    properties:
+      otp_generate_key:
+        type: string
+    required:
+    - otp_generate_key
+    type: object
+  types.GenerateOtpResponse:
+    properties:
+      ref_code:
+        type: string
+      verify_otp_key:
+        type: string
+    type: object
+  types.GeneratePhoneOtpForSetupRequest:
+    properties:
+      phoneNumber:
+        type: string
+      sendLinkAccountId:
+        type: string
+    required:
+    - phoneNumber
+    type: object
+  types.GeneratePhoneOtpForSetupResponse:
+    properties:
+      expiresAt:
+        type: string
+      phoneNumber:
+        type: string
+      refCode:
+        type: string
+    required:
+    - expiresAt
+    - phoneNumber
+    - refCode
+    type: object
+  types.GuestRegisterRequest:
+    properties:
+      encryptPassword:
+        type: string
+      phoneNumber:
+        type: string
+      username:
+        type: string
+    required:
+    - encryptPassword
+    - username
+    type: object
+  types.GuestRegisterResponse:
+    properties:
+      accessToken:
+        type: string
+      accessTokenExpiry:
+        type: string
+      accountId:
+        type: string
+      refreshToken:
+        type: string
+      refreshTokenExpiry:
+        type: string
+      userId:
+        type: string
+    required:
+    - accountId
+    - userId
+    type: object
+  types.HashTextRequest:
+    properties:
+      msg:
+        type: string
+    required:
+    - msg
+    type: object
+  types.InternalChangePasswordRequest:
+    properties:
+      encryptNewPassword:
+        type: string
+      userId:
+        type: string
+      username:
+        items:
+          type: string
+        type: array
+    required:
+    - encryptNewPassword
+    - userId
+    type: object
+  types.InternalChangePasswordRequestWithOtp:
+    properties:
+      emailOtpRef:
+        type: string
+      encryptNewPassword:
+        type: string
+      phoneOtpRef:
+        type: string
+      username:
+        type: string
+    required:
+    - encryptNewPassword
+    - username
+    type: object
+  types.LoginBiometricRequest:
+    properties:
+      token:
+        type: string
+      username:
+        type: string
+    required:
+    - token
+    - username
+    type: object
+  types.LoginResponse:
+    properties:
+      accessToken:
+        type: string
+      accessTokenExpiry:
+        type: string
+      refreshToken:
+        type: string
+      refreshTokenExpiry:
+        type: string
+    type: object
+  types.MigrateGuestAccountRequest:
+    properties:
+      password:
+        type: string
+      userId:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - userId
+    - username
+    type: object
+  types.MigrateGuestAccountResponse:
+    properties:
+      accountId:
+        type: string
+    required:
+    - accountId
+    type: object
+  types.PaginatedResponse:
+    properties:
+      currentPage:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/types.AccountInfoResponse'
+        type: array
+      hasNextPage:
+        type: boolean
+      hasPreviousPage:
+        type: boolean
+      pageSize:
+        type: integer
+      totalPages:
+        type: integer
+    type: object
+  types.PinAccountInfoList:
+    properties:
+      isSetPin:
+        type: boolean
+      username:
+        type: string
+    type: object
+  types.RegisterBiometricRequest:
+    properties:
+      token:
+        type: string
+    required:
+    - token
+    type: object
+  types.RegisterBiometricResponse:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  types.SendLinkAccountRequest:
+    properties:
+      custcode:
+        type: string
+      email:
+        type: string
+    required:
+    - custcode
+    type: object
+  types.SetupWithOTPRequest:
+    properties:
+      email:
+        type: string
+      emailRefId:
+        type: string
+      encryptPassword:
+        type: string
+      phoneNumber:
+        type: string
+      phoneRefId:
+        type: string
+    required:
+    - email
+    - emailRefId
+    - encryptPassword
+    - phoneNumber
+    - phoneRefId
+    type: object
+  types.TextEncryptRequest:
+    properties:
+      text:
+        type: string
+    required:
+    - text
+    type: object
+  types.TextEncryptResponse:
+    properties:
+      text:
+        type: string
+    required:
+    - text
+    type: object
+  types.UnlockPinRequest:
+    properties:
+      username:
+        type: string
+    required:
+    - username
+    type: object
+  types.UpdateUserInfoRequest:
+    properties:
+      custcode:
+        type: string
+    required:
+    - custcode
+    type: object
+  types.UserIdByCustomerCodeResponse:
+    properties:
+      userId:
+        type: string
+    required:
+    - userId
+    type: object
+  types.UserList:
+    properties:
+      username:
+        items:
+          type: string
+        type: array
+    type: object
+  types.VerifyEmailOtpForSetupRequest:
+    properties:
+      email:
+        type: string
+      otpCode:
+        type: string
+      refCode:
+        type: string
+    required:
+    - email
+    - otpCode
+    - refCode
+    type: object
+  types.VerifyEmailOtpForSetupResponse:
+    properties:
+      refId:
+        type: string
+    required:
+    - refId
+    type: object
+  types.VerifyOtpKeyRequest:
+    properties:
+      otp_code:
+        type: string
+      ref_code:
+        type: string
+      verify_otp_key:
+        type: string
+    required:
+    - otp_code
+    - ref_code
+    - verify_otp_key
+    type: object
+  types.VerifyOtpRequest:
+    properties:
+      pin:
+        type: string
+    required:
+    - pin
+    type: object
+  types.VerifyPhoneOtpForSetupRequest:
+    properties:
+      otpCode:
+        type: string
+      phoneNumber:
+        type: string
+      refCode:
+        type: string
+    required:
+    - otpCode
+    - phoneNumber
+    - refCode
+    type: object
+  types.VerifyPhoneOtpForSetupResponse:
+    properties:
+      refId:
+        type: string
+    required:
+    - refId
+    type: object
+host: sso.identity.nonprod.pi.internal
+info:
+  contact:
+    email: pongtorn.po@pi.financial
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Contain Generic Information.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Pi SSO V2
+  version: "2.0"
+paths:
+  /internal/accounts:
+    get:
+      consumes:
+      - application/json
+      description: Get all accounts
+      parameters:
+      - in: query
+        name: userId
+        type: string
+      - in: query
+        name: username
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get all accounts
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/ssodb.Account'
+                  type: array
+              type: object
+        "500":
+          description: Failed to retrieve accounts
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get all accounts
+      tags:
+      - account
+  /internal/accounts/accountInfoAll:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all account information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Account Info All
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/types.AccountInfoResponse'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Account Info All
+      tags:
+      - account
+  /internal/accounts/accountInfoByCustomerCode/{customercode}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve account information using customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customercode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Account Info by Customer Code
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/domain.User'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Account Info by Customer Code
+      tags:
+      - account
+  /internal/accounts/accountInfoByUsername/{username}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve account information using username
+      parameters:
+      - description: Username
+        in: path
+        name: username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Account Info by Username
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.PaginatedResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Account Info by Username
+      tags:
+      - account
+  /internal/accounts/accountInfoByUsernameOrPage:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve account information using username or fetch paginated
+        list if username is not provided
+      parameters:
+      - description: Username
+        in: query
+        name: username
+        type: string
+      - description: Page number (default 1)
+        in: query
+        name: page
+        type: integer
+      - description: Page size (default 10)
+        in: query
+        name: pageSize
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Account Info or Paginated List
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.PaginatedResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Account Info by Username or Paginated List
+      tags:
+      - account
+  /internal/accounts/accountWithoutPin:
+    get:
+      consumes:
+      - application/json
+      description: List Accounts Without Pin
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List Accounts Without Pin
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.UserList'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: List Accounts Without Pin
+      tags:
+      - account
+  /internal/accounts/accountWithoutPin/{userId}:
+    get:
+      consumes:
+      - application/json
+      description: List Accounts Without Pin By UserID
+      parameters:
+      - description: userId
+        in: path
+        name: userId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: List Accounts Without Pin By UserID
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/types.PinAccountInfoList'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: List Accounts Without Pin By UserID
+      tags:
+      - account
+  /internal/accounts/changUsername:
+    put:
+      consumes:
+      - application/json
+      description: Change Email Username
+      parameters:
+      - description: Change Username Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.ChangeUsernameRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Change Username
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/ssodb.Account'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Change Email Username
+      tags:
+      - account
+  /internal/accounts/check-duplicate:
+    post:
+      consumes:
+      - application/json
+      description: use internally to check for existing username and mobile phone
+      parameters:
+      - description: Check Duplicate Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.CheckDuplicateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check Duplicate
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/handler.CheckDuplicateResponse'
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Check Email and PhoneNumber Duplication
+      tags:
+      - account
+  /internal/accounts/check-synced-pin:
+    post:
+      consumes:
+      - application/json
+      description: Check Sync Pin
+      parameters:
+      - description: Check Sync Pin Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.CheckSyncedPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check Sync Pin
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.CheckSyncedPinResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Check Sync Pin
+      tags:
+      - account
+  /internal/accounts/checkEmailAccountByUserID/{userID}:
+    get:
+      consumes:
+      - application/json
+      description: Check Email Account By UserID
+      parameters:
+      - description: userID
+        in: path
+        name: userID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check Email Account By UserID
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.CheckEmailAccountByUserIDResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Check Email Account By UserID
+      tags:
+      - account
+  /internal/accounts/customerInfoByCustomerCode/{customercode}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve customer information using customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customercode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Customer Info by Customer Code
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/domain.User'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Customer Info by Customer Code
+      tags:
+      - account
+  /internal/accounts/forceChangePassword:
+    post:
+      consumes:
+      - application/json
+      description: Force change password for user
+      parameters:
+      - description: Customer Code
+        in: body
+        name: custcode
+        required: true
+        schema:
+          $ref: '#/definitions/types.ForceChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password Changed
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Force Change Password
+      tags:
+      - account
+  /internal/accounts/forceChangePin:
+    post:
+      consumes:
+      - application/json
+      description: Force change pin for user
+      parameters:
+      - description: Customer Code
+        in: body
+        name: custcode
+        required: true
+        schema:
+          $ref: '#/definitions/types.ForceChangePinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin Changed
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Force Change Pin
+      tags:
+      - account
+  /internal/accounts/guest/migration:
+    post:
+      consumes:
+      - application/json
+      description: use internally to migrate guest account
+      parameters:
+      - description: Migrate Guest Account Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.MigrateGuestAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Migrate Guest Account
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.MigrateGuestAccountResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Migrate Guest Account
+      tags:
+      - account
+  /internal/accounts/link/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Link the authenticated user's account to a member using id
+      parameters:
+      - description: Link Account ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Link Account To Member created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/ssodb.SendLinkAccount'
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Link an account to a member
+      tags:
+      - account
+  /internal/accounts/send-link-account/{custcode}:
+    get:
+      consumes:
+      - application/json
+      description: Get Send Link Account By Custcode
+      parameters:
+      - description: Custcode
+        in: path
+        name: custcode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get Send Link Account By Custcode
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/ssodb.SendLinkAccount'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Send Link Account By Custcode
+      tags:
+      - account
+  /internal/accounts/sendLinkAccount:
+    post:
+      consumes:
+      - application/json
+      description: Send Link Account
+      parameters:
+      - description: Send Link Account Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.SendLinkAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Send Link Account
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Send Link Account
+      tags:
+      - account
+  /internal/accounts/trading/sync:
+    post:
+      consumes:
+      - application/json
+      description: Sync Account Trading
+      parameters:
+      - description: Account Trading Sync Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.AccountTradingSyncRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Sync Account Trading
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Sync Account Trading
+      tags:
+      - account
+  /internal/accounts/unlockPin:
+    post:
+      consumes:
+      - application/json
+      description: Unlock pin for user
+      parameters:
+      - description: Customer Code
+        in: body
+        name: custcode
+        required: true
+        schema:
+          $ref: '#/definitions/types.UnlockPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin Unlocked
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Unlock Pin
+      tags:
+      - account
+  /internal/accounts/updateUserInfo:
+    put:
+      consumes:
+      - application/json
+      description: Update user information
+      parameters:
+      - description: Customer Code
+        in: body
+        name: custcode
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdateUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User Info Updated
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Update User Info
+      tags:
+      - account
+  /internal/accounts/userIdByCustomerCode/{customercode}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve user ID using customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customercode
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User ID by Customer Code
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.UserIdByCustomerCodeResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get User ID by Customer Code
+      tags:
+      - account
+  /internal/auth/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Change the password for the authenticated user by verifying the
+        user ID and username
+      parameters:
+      - description: Change Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.InternalChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password changed successfully
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Change user's password
+      tags:
+      - auth
+  /internal/auth/changePasswordWithOtp:
+    post:
+      consumes:
+      - application/json
+      description: Change the password for the authenticated user by verifying the
+        user ID and username
+      parameters:
+      - description: Change Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.InternalChangePasswordRequestWithOtp'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password changed successfully
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Change user's password with OTP
+      tags:
+      - auth
+  /internal/auth/otw/getLogSessionById/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Log Session By Id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get Log Session By Id
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Log Session By Id
+      tags:
+      - auth
+  /internal/auth/otw/getSyncTokenById/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get Sync Token By Id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get Sync Token By Id
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get Sync Token By Id
+      tags:
+      - auth
+  /internal/auth/request-reset-password/backOffice:
+    post:
+      consumes:
+      - application/json
+      description: request reset password email link
+      parameters:
+      - description: Reset Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password reset link has been sent
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request Reset Password Link
+      tags:
+      - auth
+  /internal/auth/request-reset-pin/backOffice:
+    post:
+      consumes:
+      - application/json
+      description: request reset pin email link
+      parameters:
+      - description: Reset Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin reset link has been sent
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request Reset Pin Link
+      tags:
+      - auth
+  /internal/auth/unlock-account:
+    post:
+      consumes:
+      - application/json
+      description: Unlock a locked account by providing the username
+      parameters:
+      - description: Unlock Account Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UnlockUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Account unlocked successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Unlock a locked account
+      tags:
+      - auth
+  /internal/auth/verify-pin:
+    post:
+      consumes:
+      - application/json
+      description: Verify the PIN for the authenticated user by verifying the user
+        ID and custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Verify Pin Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.VerifyPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin verified successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Verify user's PIN
+      tags:
+      - auth
+  /internal/auth/verify/token:
+    get:
+      consumes:
+      - application/json
+      description: Verify Access Token for the authenticated user
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: token verified successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/handler.VerifyTokenResponse'
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Verify Access Token
+      tags:
+      - auth
+  /public/accounts/generateEmailOtpForForgotPassword:
+    post:
+      consumes:
+      - application/json
+      description: Generate OTP For Forgot Password
+      parameters:
+      - description: Generate OTP For Setup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GenerateEmailOtpForSetupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Generate OTP For Setup
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.GenerateEmailOtpForSetupResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Generate OTP For Forgot Password
+      tags:
+      - account
+  /public/accounts/generateEmailOtpForSetup:
+    post:
+      consumes:
+      - application/json
+      description: Generate OTP For Setup
+      parameters:
+      - description: Generate OTP For Setup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GenerateEmailOtpForSetupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Generate OTP For Setup
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.GenerateEmailOtpForSetupResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Generate OTP For Setup
+      tags:
+      - account
+  /public/accounts/generatePhoneOtpForForgotPassword:
+    post:
+      consumes:
+      - application/json
+      description: Generate Phone OTP For Forgot Password
+      parameters:
+      - description: Generate Phone OTP For Setup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GeneratePhoneOtpForSetupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Generate Phone OTP For Setup
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.GeneratePhoneOtpForSetupResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Generate Phone OTP For Forgot Password
+      tags:
+      - account
+  /public/accounts/generatePhoneOtpForSetup:
+    post:
+      consumes:
+      - application/json
+      description: Generate Phone OTP For Setup
+      parameters:
+      - description: Generate Phone OTP For Setup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GeneratePhoneOtpForSetupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Generate Phone OTP For Setup
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.GeneratePhoneOtpForSetupResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Generate Phone OTP For Setup
+      tags:
+      - account
+  /public/accounts/guest/register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new guest account with username, password, and phone number
+      parameters:
+      - description: Guest Register Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GuestRegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Guest registered successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.GuestRegisterResponse'
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Failed to register guest
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Register a new guest account
+      tags:
+      - account
+  /public/accounts/setupWithOTP:
+    post:
+      consumes:
+      - application/json
+      description: Setup With OTP
+      parameters:
+      - description: Setup With OTP Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.SetupWithOTPRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Setup With OTP
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.LoginResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Setup With OTP
+      tags:
+      - account
+  /public/accounts/verifyEmailOtpForSetup:
+    post:
+      consumes:
+      - application/json
+      description: Verify OTP For Setup
+      parameters:
+      - description: Verify Email OTP For Setup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.VerifyEmailOtpForSetupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Verify OTP For Setup
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.VerifyEmailOtpForSetupResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Verify OTP For Setup
+      tags:
+      - account
+  /public/accounts/verifyPhoneOtpForSetup:
+    post:
+      consumes:
+      - application/json
+      description: Verify Phone OTP For Setup
+      parameters:
+      - description: Verify Phone OTP For Setup Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.VerifyPhoneOtpForSetupRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Verify Phone OTP For Setup
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.VerifyPhoneOtpForSetupResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Verify Phone OTP For Setup
+      tags:
+      - account
+  /public/auth/generateOtp:
+    post:
+      consumes:
+      - application/json
+      description: Generate OTP for user
+      parameters:
+      - description: Generate OTP request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.GenerateOtpRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns OTP
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.GenerateOtpResponse'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Generate OTP
+      tags:
+      - auth
+  /public/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user with username and password and return JWT tokens
+      parameters:
+      - description: Login request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns access and refresh tokens
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.LoginResponse'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Login with username and password
+      tags:
+      - auth
+  /public/auth/login/biometric:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user with biometric and return JWT tokens
+      parameters:
+      - description: Login request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.LoginBiometricRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns access and refresh tokens
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.LoginResponse'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: LoginBiometric with biometric and token
+      tags:
+      - auth
+  /public/auth/request-reset-password:
+    post:
+      consumes:
+      - application/json
+      description: request reset password email link
+      parameters:
+      - description: Reset Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password reset link has been sent
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request Reset Password Link
+      tags:
+      - auth
+  /public/auth/request-reset-password/guest:
+    post:
+      consumes:
+      - application/json
+      description: request reset password email link
+      parameters:
+      - description: Reset Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password reset link has been sent
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request Reset Password Link
+      tags:
+      - auth
+  /public/auth/request-reset-pin:
+    post:
+      consumes:
+      - application/json
+      description: request reset pin email link
+      parameters:
+      - description: Reset Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ResetPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin reset link has been sent
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request Reset Pin Link
+      tags:
+      - auth
+  /public/auth/reset-new-password:
+    post:
+      consumes:
+      - application/json
+      description: request ResetNewPassword
+      parameters:
+      - description: Password reset successfully
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.SetNewPasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password reset successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Request Reset New Password
+      tags:
+      - auth
+  /public/auth/reset-new-pin:
+    post:
+      consumes:
+      - application/json
+      description: Set New Pin
+      parameters:
+      - description: Pin reset successfully
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.SetNewPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin reset successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Set New Pin
+      tags:
+      - auth
+  /public/auth/verifyOtp:
+    post:
+      consumes:
+      - application/json
+      description: Verify OTP for user
+      parameters:
+      - description: Verify OTP request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.VerifyOtpKeyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns OTP
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.LoginResponse'
+              type: object
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Verify OTP
+      tags:
+      - auth
+  /public/auth/verifyPin:
+    post:
+      consumes:
+      - application/json
+      description: Verify Pin for user
+      parameters:
+      - description: Verify Pin request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.VerifyOtpRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns OTP
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Invalid request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Verify Pin
+      tags:
+      - auth
+  /public/hash:msg:
+    post:
+      consumes:
+      - application/json
+      description: Hash Text
+      parameters:
+      - description: Hash Text Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.HashTextRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Hash Text
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Hash Text
+      tags:
+      - account
+  /public/rsa_decrypt:
+    post:
+      consumes:
+      - application/json
+      description: Decrypt the provided message using RSA encryption
+      parameters:
+      - description: Rsa Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.RsaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Decrypted
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Decrypt a message using RSA
+      tags:
+      - account
+  /public/rsa_encrypt:
+    post:
+      consumes:
+      - application/json
+      description: Encrypt the provided message using RSA encryption
+      parameters:
+      - description: Rsa Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.RsaRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Encrypted
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  type: string
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Encrypt a message using RSA
+      tags:
+      - account
+  /public/text_decrypt:
+    post:
+      consumes:
+      - application/json
+      description: Decrypt Text
+      parameters:
+      - description: Text Decrypt Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.TextEncryptRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Decrypt Text
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.TextEncryptResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Decrypt Text
+      tags:
+      - account
+  /public/text_encrypt:
+    post:
+      consumes:
+      - application/json
+      description: Encrypt Text
+      parameters:
+      - description: Text Encrypt Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.TextEncryptRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Encrypt Text
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.TextEncryptResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Encrypt Text
+      tags:
+      - account
+  /secure/accounts/check-synced-pin:
+    post:
+      consumes:
+      - application/json
+      description: Check Sync Pin
+      parameters:
+      - description: Check Sync Pin Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.CheckSyncedPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Check Sync Pin
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.CheckSyncedPinResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Check Sync Pin
+      tags:
+      - account
+  /secure/accounts/link:
+    post:
+      consumes:
+      - application/json
+      description: Link the authenticated user's account to a member using custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Link Account Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LinkAccountRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Link Account To Member created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/ssodb.SendLinkAccount'
+              type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized or Invalid user, please login again
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Link an account to a member
+      tags:
+      - account
+  /secure/accounts/profile:
+    get:
+      consumes:
+      - application/json
+      description: Get Profile
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Get Profile
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/ssodb.Account'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Get Profile
+      tags:
+      - account
+  /secure/auth/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Change the password for the authenticated user by providing old
+        and new password
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Change Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password changed successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Change user's password
+      tags:
+      - auth
+  /secure/auth/change-pin:
+    post:
+      consumes:
+      - application/json
+      description: Change the PIN for the authenticated user by verifying the old
+        PIN and custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Change Pin Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.ChangePinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin changed successfully
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Change user's PIN
+      tags:
+      - auth
+  /secure/auth/create-pin:
+    post:
+      consumes:
+      - application/json
+      description: Create a new PIN for the authenticated user by verifying the user
+        ID and custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Create Pin Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreatePinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin created successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create a new PIN for user
+      tags:
+      - auth
+  /secure/auth/login/biometric/register:
+    post:
+      consumes:
+      - application/json
+      description: Register Biometric
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: deviceId
+        in: header
+        name: deviceId
+        required: true
+        type: string
+      - description: Register Biometric request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.RegisterBiometricRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns biometric id
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/types.RegisterBiometricResponse'
+              type: object
+        "400":
+          description: Invalid request, Invalid token, Decryption error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: RegisterBiometric with token
+      tags:
+      - auth
+  /secure/auth/otw/change-password:
+    post:
+      consumes:
+      - application/json
+      description: Change the password for the authenticated user by verifying the
+        user ID and username
+      parameters:
+      - description: Change Password Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.InternalChangePasswordRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Password changed successfully
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Change user's password
+      tags:
+      - auth
+  /secure/auth/otw/change-pin:
+    post:
+      consumes:
+      - application/json
+      description: Change the PIN for the authenticated user by verifying the old
+        PIN and custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Change Pin Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.ChangePinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin changed successfully
+          schema:
+            $ref: '#/definitions/result.ResponseSuccess'
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Change user's PIN
+      tags:
+      - auth
+  /secure/auth/otw/create-pin:
+    post:
+      consumes:
+      - application/json
+      description: Create a new PIN for the authenticated user by verifying the user
+        ID and custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Create Pin Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreatePinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin created successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Create a new PIN for user
+      tags:
+      - auth
+  /secure/auth/otw/syncToken:
+    post:
+      consumes:
+      - application/json
+      description: Sync Token for the authenticated user
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Token synced successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  $ref: '#/definitions/ssodb.SyncToken'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      security:
+      - BearerAuth: []
+      summary: Sync Token
+      tags:
+      - auth
+  /secure/auth/refresh-token:
+    post:
+      consumes:
+      - application/json
+      description: Generate new access and refresh tokens using existing refresh token
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Returns new access and refresh tokens
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Refresh JWT tokens
+      tags:
+      - auth
+  /secure/auth/reset-pin:
+    post:
+      consumes:
+      - application/json
+      description: Reset the PIN for the authenticated user by verifying the password
+        and custcode
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Reset Pin Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ResetPinRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pin reset successfully
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Validation failed
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Reset user's PIN
+      tags:
+      - auth
+securityDefinitions:
+  BearerAuth:
+    description: 'use a Bearer token for authorization. Format: "Bearer {token}"'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
