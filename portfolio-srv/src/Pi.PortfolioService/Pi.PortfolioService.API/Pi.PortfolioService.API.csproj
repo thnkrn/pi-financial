@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pi.PortfolioService.API</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>d2a4af1f-494f-42f8-9665-a9312f80a492</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net8.0\Pi.PortfolioService.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DocumentationFile>bin\Release\net8.0\Pi.PortfolioService.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="8.0.12" />
+      <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.11" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+      <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+      <PackageReference Include="Serilog.Expressions" Version="5.0.0" />
+      <PackageReference Include="MassTransit.AmazonSQS" Version="8.1.2" />
+      <PackageReference Include="MassTransit.Analyzers" Version="8.1.2"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  <PrivateAssets>all</PrivateAssets>
+  </PackageReference>
+      <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.1" />
+      <PackageReference Include="MassTransit" Version="8.1.2" />
+      <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="6.2.2" />
+      <PackageReference Include="Pi.Common" Version="1.0.121" />
+      <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.12" />
+      <PackageReference Include="Pi.Common.Startup" Version="1.0.121" />
+      <PackageReference Include="Pi.Common.Serilog" Version="1.0.121" />
+    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.PortfolioService.Services\Pi.PortfolioService.Services.csproj" />
+    <ProjectReference Include="..\Pi.PortfolioService\Pi.PortfolioService.csproj" />
+  </ItemGroup>
+</Project>

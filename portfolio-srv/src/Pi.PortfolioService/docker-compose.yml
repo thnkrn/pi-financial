@@ -1,0 +1,49 @@
+version: '3.4'
+
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG-}
+      - PERSISTENCE=${PERSISTENCE-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEFAULT_REGION=us-east-1
+      - SERVICES=sns,sqs
+      - DEBUG=${DEBUG- }
+    volumes:
+      - "${LOCALSTACK_VOLUME_DIR:-./tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+  db:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE=portfolio_db
+    volumes:
+      - portfolio_srv_mysql_data:/var/lib/mysql
+
+  pi.PortfolioService.api:
+    image: ${DOCKER_REGISTRY-}pifinancialPortfolioServiceserviceapi
+    build:
+      context: .
+      dockerfile: Pi.PortfolioService.API/Dockerfile
+    depends_on:
+      - localstack
+
+  pi.PortfolioServiceservice.worker:
+    image: ${DOCKER_REGISTRY-}pifinancialPortfolioServiceserviceworker
+    build:
+      context: .
+      dockerfile: Pi.PortfolioService.Worker/Dockerfile
+    depends_on:
+      - localstack
+
+volumes:
+  portfolio_srv_mysql_data:

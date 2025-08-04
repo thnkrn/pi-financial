@@ -1,0 +1,1754 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Contain Generic Information.",
+        "title": "Portfolio Service V2",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/internal/v1/bond-offshore-summary/{customer-code}": {
+            "get": {
+                "description": "Get bond offshore summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bond"
+                ],
+                "summary": "Get bond offshore summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondOffshoreSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/bond-summary/{customer-code}": {
+            "get": {
+                "description": "Get bond summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "bond"
+                ],
+                "summary": "Get bond summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/cash-summary/{customer-code}": {
+            "get": {
+                "description": "Get cash summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "cash"
+                ],
+                "summary": "Get cash summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.CashSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/fund-summary/{customer-code}": {
+            "get": {
+                "description": "Get fund summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "fund"
+                ],
+                "summary": "Get fund summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.FundSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/global-equity-deposit-withdraw-summary/{customer-code}": {
+            "get": {
+                "description": "Get global equity deposit withdraw summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "global equity"
+                ],
+                "summary": "Get global equity deposit withdraw summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDepositWithdrawSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/global-equity-dividend-summary/{customer-code}": {
+            "get": {
+                "description": "Get ge dividend summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "global equity"
+                ],
+                "summary": "Get ge dividend summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDividendSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/global-equity-otc-summary/{customer-code}": {
+            "get": {
+                "description": "Get ge otc of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "global equity"
+                ],
+                "summary": "Get ge otc of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeOtcSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/global-equity-summary/{customer-code}": {
+            "get": {
+                "description": "Get ge summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "global equity"
+                ],
+                "summary": "Get ge summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/global-equity-trade-summary/{customer-code}": {
+            "get": {
+                "description": "Get ge trade summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "global equity"
+                ],
+                "summary": "Get ge trade summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeTradeSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/structure-note-cash-movement/{customer-code}": {
+            "get": {
+                "description": "Get structured note cash movement of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "structured"
+                ],
+                "summary": "Get structured note cash movement of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredNote"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/structured-product-onshore-summary/{customer-code}": {
+            "get": {
+                "description": "Get structured product onshore summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "structured"
+                ],
+                "summary": "Get structured product onshore summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredProductSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/structured-product-summary/{customer-code}": {
+            "get": {
+                "description": "Get structured product summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "structured"
+                ],
+                "summary": "Get structured product summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredProductSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/tfex-daily-summary/{customer-code}": {
+            "get": {
+                "description": "Get tfex daily summary of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tfex"
+                ],
+                "summary": "Get tfex daily summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDailySummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/tfex-daily/{customer-code}": {
+            "get": {
+                "description": "Get tfex daily of customer code",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "tfex"
+                ],
+                "summary": "Get tfex daily of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDaily"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/thai-equity-summary/{customer-code}": {
+            "get": {
+                "description": "Get thai equity summary of customer code group by thai equity category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "thai equity"
+                ],
+                "summary": "Get thai equity summary of customer code",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Customer Code",
+                        "name": "customer-code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.ThaiEquitySummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/v1/total-portfolio-summary/{user-id}": {
+            "get": {
+                "description": "Get total portfolio summary of user-id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Total Portfolio"
+                ],
+                "summary": "Get total portfolio summary of user-id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "User Id",
+                        "name": "user-id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/result.ResponseSuccess"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.TotalPortfolioSummary"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/result.ResponseError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetAllocation": {
+            "type": "object",
+            "properties": {
+                "allocation": {
+                    "description": "total value / total asset",
+                    "type": "number"
+                },
+                "product": {
+                    "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.ProductType"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetSummary": {
+            "type": "object",
+            "properties": {
+                "asOfDate": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRateAsOf": {
+                    "type": "string"
+                },
+                "marketingId": {
+                    "type": "string"
+                },
+                "monthEightTotalAsset": {
+                    "type": "number"
+                },
+                "monthElevenTotalAsset": {
+                    "type": "number"
+                },
+                "monthFiveTotalAsset": {
+                    "type": "number"
+                },
+                "monthFourTotalAsset": {
+                    "type": "number"
+                },
+                "monthNineTotalAsset": {
+                    "type": "number"
+                },
+                "monthOneTotalAsset": {
+                    "type": "number"
+                },
+                "monthSevenTotalAsset": {
+                    "type": "number"
+                },
+                "monthSixTotalAsset": {
+                    "type": "number"
+                },
+                "monthTenTotalAsset": {
+                    "type": "number"
+                },
+                "monthThreeTotalAsset": {
+                    "type": "number"
+                },
+                "monthTwoTotalAsset": {
+                    "type": "number"
+                },
+                "monthZeroTotalAsset": {
+                    "type": "number"
+                },
+                "product": {
+                    "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.ProductType"
+                },
+                "yearOneTotalAsset": {
+                    "type": "number"
+                },
+                "yearThreeTotalAsset": {
+                    "type": "number"
+                },
+                "yearTwoTotalAsset": {
+                    "type": "number"
+                },
+                "yearZeroTotalAsset": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondOffshoreSummary": {
+            "type": "object",
+            "properties": {
+                "assetName": {
+                    "type": "string"
+                },
+                "avgCost": {
+                    "type": "number"
+                },
+                "couponRate": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "initialDate": {
+                    "type": "string"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "marketType": {
+                    "type": "string"
+                },
+                "marketValue": {
+                    "type": "number"
+                },
+                "maturityDate": {
+                    "type": "string"
+                },
+                "nextCallDate": {
+                    "type": "string"
+                },
+                "totalCost": {
+                    "type": "number"
+                },
+                "units": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondSummary": {
+            "type": "object",
+            "properties": {
+                "assetName": {
+                    "type": "string"
+                },
+                "couponRate": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "initialDate": {
+                    "type": "string"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "marketType": {
+                    "type": "string"
+                },
+                "marketValue": {
+                    "type": "number"
+                },
+                "maturityDate": {
+                    "type": "string"
+                },
+                "totalCost": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.CashSummary": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "cashBalance": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.FundSummary": {
+            "type": "object",
+            "properties": {
+                "amcCode": {
+                    "type": "string"
+                },
+                "avgNavCost": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "fundCategory": {
+                    "type": "string"
+                },
+                "fundName": {
+                    "type": "string"
+                },
+                "gainLoss": {
+                    "type": "number"
+                },
+                "gainLossPercent": {
+                    "type": "number"
+                },
+                "marketNav": {
+                    "type": "number"
+                },
+                "marketValue": {
+                    "type": "number"
+                },
+                "navDate": {
+                    "type": "string"
+                },
+                "totalCost": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDepositWithdrawSummary": {
+            "type": "object",
+            "properties": {
+                "amountThb": {
+                    "type": "number"
+                },
+                "amountUsd": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "fxRate": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "tradingAccountNo": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDividendSummary": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "dividendPerShare": {
+                    "type": "number"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "fxRate": {
+                    "type": "number"
+                },
+                "netAmount": {
+                    "type": "number"
+                },
+                "netAmountUsd": {
+                    "type": "number"
+                },
+                "shareCode": {
+                    "type": "string"
+                },
+                "taxAmount": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeOtcSummary": {
+            "type": "object",
+            "properties": {
+                "avg_cost": {
+                    "type": "number"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customer_code": {
+                    "type": "string"
+                },
+                "date_key": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "gainLossPercent": {
+                    "type": "number"
+                },
+                "gain_loss": {
+                    "type": "number"
+                },
+                "market_price": {
+                    "type": "number"
+                },
+                "market_value": {
+                    "type": "number"
+                },
+                "share_code": {
+                    "type": "string"
+                },
+                "stock_exchange_markets": {
+                    "type": "string"
+                },
+                "total_cost": {
+                    "type": "number"
+                },
+                "units": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeSummary": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "avgCost": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "gainLoss": {
+                    "type": "number"
+                },
+                "gainLossPercent": {
+                    "type": "number"
+                },
+                "marketPrice": {
+                    "type": "number"
+                },
+                "marketValue": {
+                    "type": "number"
+                },
+                "shareCode": {
+                    "type": "string"
+                },
+                "stockExchangeMarket": {
+                    "type": "string"
+                },
+                "totalCost": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeTradeSummary": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "avgPrice": {
+                    "type": "number"
+                },
+                "commissionBeforeVatUsd": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "grossAmount": {
+                    "type": "number"
+                },
+                "netAmount": {
+                    "type": "number"
+                },
+                "netAmountThb": {
+                    "type": "number"
+                },
+                "otherFees": {
+                    "type": "number"
+                },
+                "shareCode": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "unit": {
+                    "type": "number"
+                },
+                "vatAmount": {
+                    "type": "number"
+                },
+                "whTax": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.ProductType": {
+            "type": "string",
+            "enum": [
+                "Derivatives",
+                "CashBalance",
+                "Cash",
+                "CashBalanceSbl",
+                "Crypto",
+                "GlobalEquities",
+                "Funds",
+                "Bond",
+                "CashSbl",
+                "CreditBalanceSbl",
+                "CreditBalance",
+                "StructureNoteOnShore",
+                "Drx",
+                "LiveX",
+                "BorrowCash",
+                "BorrowCashBalance",
+                "Unknown"
+            ],
+            "x-enum-varnames": [
+                "Derivatives",
+                "CashBalance",
+                "Cash",
+                "CashBalanceSbl",
+                "Crypto",
+                "GlobalEquities",
+                "Funds",
+                "Bond",
+                "CashSbl",
+                "CreditBalanceSbl",
+                "CreditBalance",
+                "StructureNoteOnShore",
+                "Drx",
+                "LiveX",
+                "BorrowCash",
+                "BorrowCashBalance",
+                "Unknown"
+            ]
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredNote": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+              "exchangeRate": {
+                "type": "number"
+              },
+                "note": {
+                    "type": "string"
+                },
+                "settlementDate": {
+                    "type": "string"
+                },
+                "transactionDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredProductSummary": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "capitalProtection": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "exchangeRate": {
+                    "type": "number"
+                },
+                "issuer": {
+                    "type": "string"
+                },
+                "marketValue": {
+                    "type": "number"
+                },
+                "maturityDate": {
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "notionalValue": {
+                    "type": "number"
+                },
+                "tenor": {
+                    "type": "integer"
+                },
+                "tradeDate": {
+                    "type": "string"
+                },
+                "underlying": {
+                    "type": "string"
+                },
+                "yield": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDaily": {
+            "type": "object",
+            "properties": {
+                "accountNo": {
+                    "type": "string"
+                },
+                "avgPrice": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "gainLoss": {
+                    "type": "number"
+                },
+                "gainLossPercent": {
+                    "type": "number"
+                },
+                "marketPrice": {
+                    "type": "number"
+                },
+                "marketValue": {
+                    "type": "number"
+                },
+                "multiplier": {
+                    "type": "number"
+                },
+                "shareCode": {
+                    "type": "string"
+                },
+                "totalCost": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDailySummary": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "equity": {
+                    "type": "number"
+                },
+                "excessEquity": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.ThaiEquitySummary": {
+            "type": "object",
+            "properties": {
+                "accountNumber": {
+                    "type": "string"
+                },
+                "avgCost": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "customerCode": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "equityName": {
+                    "type": "string"
+                },
+                "gainLoss": {
+                    "type": "number"
+                },
+                "gainLossPercent": {
+                    "type": "number"
+                },
+                "marketPrice": {
+                    "type": "number"
+                },
+                "totalCost": {
+                    "type": "number"
+                },
+                "totalValue": {
+                    "type": "number"
+                },
+                "unit": {
+                    "type": "number"
+                }
+            }
+        },
+        "github_com_pi-financial_portfolio-srv-v2_internal_core_model.TotalPortfolioSummary": {
+            "type": "object",
+            "properties": {
+                "assetAllocations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetAllocation"
+                    }
+                },
+                "assets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetSummary"
+                    }
+                },
+                "customerName": {
+                    "type": "string"
+                },
+                "dateKey": {
+                    "type": "string"
+                },
+                "totalAsset": {
+                    "type": "number"
+                },
+                "yearOnYearTotalAssetChange": {
+                    "description": "y0 - y1",
+                    "type": "number"
+                },
+                "yearOnYearTotalAssetChangePercent": {
+                    "type": "number"
+                }
+            }
+        },
+        "result.ResponseError": {
+            "type": "object",
+            "properties": {
+                "detail": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "result.ResponseSuccess": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "OpenAPI",
+        "url": "https://swagger.io/resources/open-api/"
+    }
+}

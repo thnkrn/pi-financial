@@ -1,0 +1,1122 @@
+basePath: /
+definitions:
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetAllocation:
+    properties:
+      allocation:
+        description: total value / total asset
+        type: number
+      product:
+        $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.ProductType'
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetSummary:
+    properties:
+      asOfDate:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRateAsOf:
+        type: string
+      marketingId:
+        type: string
+      monthEightTotalAsset:
+        type: number
+      monthElevenTotalAsset:
+        type: number
+      monthFiveTotalAsset:
+        type: number
+      monthFourTotalAsset:
+        type: number
+      monthNineTotalAsset:
+        type: number
+      monthOneTotalAsset:
+        type: number
+      monthSevenTotalAsset:
+        type: number
+      monthSixTotalAsset:
+        type: number
+      monthTenTotalAsset:
+        type: number
+      monthThreeTotalAsset:
+        type: number
+      monthTwoTotalAsset:
+        type: number
+      monthZeroTotalAsset:
+        type: number
+      product:
+        $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.ProductType'
+      yearOneTotalAsset:
+        type: number
+      yearThreeTotalAsset:
+        type: number
+      yearTwoTotalAsset:
+        type: number
+      yearZeroTotalAsset:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondOffshoreSummary:
+    properties:
+      assetName:
+        type: string
+      avgCost:
+        type: number
+      couponRate:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRate:
+        type: number
+      initialDate:
+        type: string
+      issuer:
+        type: string
+      marketType:
+        type: string
+      marketValue:
+        type: number
+      maturityDate:
+        type: string
+      nextCallDate:
+        type: string
+      totalCost:
+        type: number
+      units:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondSummary:
+    properties:
+      assetName:
+        type: string
+      couponRate:
+        type: number
+      createdAt:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      initialDate:
+        type: string
+      issuer:
+        type: string
+      marketType:
+        type: string
+      marketValue:
+        type: number
+      maturityDate:
+        type: string
+      totalCost:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.CashSummary:
+    properties:
+      accountNo:
+        type: string
+      cashBalance:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRate:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.FundSummary:
+    properties:
+      amcCode:
+        type: string
+      avgNavCost:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      fundCategory:
+        type: string
+      fundName:
+        type: string
+      gainLoss:
+        type: number
+      gainLossPercent:
+        type: number
+      marketNav:
+        type: number
+      marketValue:
+        type: number
+      navDate:
+        type: string
+      totalCost:
+        type: number
+      unit:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDepositWithdrawSummary:
+    properties:
+      amountThb:
+        type: number
+      amountUsd:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRate:
+        type: number
+      fxRate:
+        type: number
+      id:
+        type: string
+      tradingAccountNo:
+        type: string
+      type:
+        type: string
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDividendSummary:
+    properties:
+      accountNo:
+        type: string
+      amount:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      dividendPerShare:
+        type: number
+      exchangeRate:
+        type: number
+      fxRate:
+        type: number
+      netAmount:
+        type: number
+      netAmountUsd:
+        type: number
+      shareCode:
+        type: string
+      taxAmount:
+        type: number
+      unit:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeOtcSummary:
+    properties:
+      avg_cost:
+        type: number
+      created_at:
+        type: string
+      currency:
+        type: string
+      customer_code:
+        type: string
+      date_key:
+        type: string
+      exchangeRate:
+        type: number
+      gain_loss:
+        type: number
+      gainLossPercent:
+        type: number
+      market_price:
+        type: number
+      market_value:
+        type: number
+      share_code:
+        type: string
+      stock_exchange_markets:
+        type: string
+      total_cost:
+        type: number
+      units:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeSummary:
+    properties:
+      accountNo:
+        type: string
+      avgCost:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRate:
+        type: number
+      gainLoss:
+        type: number
+      gainLossPercent:
+        type: number
+      marketPrice:
+        type: number
+      marketValue:
+        type: number
+      shareCode:
+        type: string
+      stockExchangeMarket:
+        type: string
+      totalCost:
+        type: number
+      unit:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeTradeSummary:
+    properties:
+      accountNo:
+        type: string
+      avgPrice:
+        type: number
+      commissionBeforeVatUsd:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRate:
+        type: number
+      grossAmount:
+        type: number
+      netAmount:
+        type: number
+      netAmountThb:
+        type: number
+      otherFees:
+        type: number
+      shareCode:
+        type: string
+      side:
+        type: string
+      unit:
+        type: number
+      vatAmount:
+        type: number
+      whTax:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.ProductType:
+    enum:
+    - Derivatives
+    - CashBalance
+    - Cash
+    - CashBalanceSbl
+    - Crypto
+    - GlobalEquities
+    - Funds
+    - Bond
+    - CashSbl
+    - CreditBalanceSbl
+    - CreditBalance
+    - StructureNoteOnShore
+    - Drx
+    - LiveX
+    - BorrowCash
+    - BorrowCashBalance
+    - Unknown
+    type: string
+    x-enum-varnames:
+    - Derivatives
+    - CashBalance
+    - Cash
+    - CashBalanceSbl
+    - Crypto
+    - GlobalEquities
+    - Funds
+    - Bond
+    - CashSbl
+    - CreditBalanceSbl
+    - CreditBalance
+    - StructureNoteOnShore
+    - Drx
+    - LiveX
+    - BorrowCash
+    - BorrowCashBalance
+    - Unknown
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredNote:
+    properties:
+      accountNo:
+        type: string
+      amount:
+        type: number
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      description:
+        type: string
+      exchangeRate:
+        type: number
+      note:
+        type: string
+      settlementDate:
+        type: string
+      transactionDate:
+        type: string
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredProductSummary:
+    properties:
+      accountNo:
+        type: string
+      capitalProtection:
+        type: string
+      createdAt:
+        type: string
+      currency:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      exchangeRate:
+        type: number
+      issuer:
+        type: string
+      marketValue:
+        type: number
+      maturityDate:
+        type: string
+      note:
+        type: string
+      notionalValue:
+        type: number
+      tenor:
+        type: integer
+      tradeDate:
+        type: string
+      underlying:
+        type: string
+      yield:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDaily:
+    properties:
+      accountNo:
+        type: string
+      avgPrice:
+        type: number
+      createdAt:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      gainLoss:
+        type: number
+      gainLossPercent:
+        type: number
+      marketPrice:
+        type: number
+      marketValue:
+        type: number
+      multiplier:
+        type: number
+      shareCode:
+        type: string
+      totalCost:
+        type: number
+      unit:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDailySummary:
+    properties:
+      createdAt:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      equity:
+        type: number
+      excessEquity:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.ThaiEquitySummary:
+    properties:
+      accountNumber:
+        type: string
+      avgCost:
+        type: number
+      createdAt:
+        type: string
+      customerCode:
+        type: string
+      dateKey:
+        type: string
+      equityName:
+        type: string
+      gainLoss:
+        type: number
+      gainLossPercent:
+        type: number
+      marketPrice:
+        type: number
+      totalCost:
+        type: number
+      totalValue:
+        type: number
+      unit:
+        type: number
+    type: object
+  github_com_pi-financial_portfolio-srv-v2_internal_core_model.TotalPortfolioSummary:
+    properties:
+      assetAllocations:
+        items:
+          $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetAllocation'
+        type: array
+      assets:
+        items:
+          $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.AssetSummary'
+        type: array
+      customerName:
+        type: string
+      dateKey:
+        type: string
+      totalAsset:
+        type: number
+      yearOnYearTotalAssetChange:
+        description: y0 - y1
+        type: number
+      yearOnYearTotalAssetChangePercent:
+        type: number
+    type: object
+  result.ResponseError:
+    properties:
+      detail:
+        type: string
+      status:
+        type: integer
+      title:
+        type: string
+    type: object
+  result.ResponseSuccess:
+    properties:
+      code:
+        type: string
+      data: {}
+      msg:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+info:
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Contain Generic Information.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Portfolio Service V2
+  version: "1.0"
+paths:
+  /internal/v1/bond-offshore-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get bond offshore summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondOffshoreSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get bond offshore summary of customer code
+      tags:
+      - bond
+  /internal/v1/bond-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get bond summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.BondSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get bond summary of customer code
+      tags:
+      - bond
+  /internal/v1/cash-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get cash summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.CashSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get cash summary of customer code
+      tags:
+      - cash
+  /internal/v1/fund-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get fund summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.FundSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get fund summary of customer code
+      tags:
+      - fund
+  /internal/v1/global-equity-deposit-withdraw-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get global equity deposit withdraw summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDepositWithdrawSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get global equity deposit withdraw summary of customer code
+      tags:
+      - global equity
+  /internal/v1/global-equity-dividend-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get ge dividend summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeDividendSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get ge dividend summary of customer code
+      tags:
+      - global equity
+  /internal/v1/global-equity-otc-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get ge otc of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeOtcSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get ge otc of customer code
+      tags:
+      - global equity
+  /internal/v1/global-equity-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get ge summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get ge summary of customer code
+      tags:
+      - global equity
+  /internal/v1/global-equity-trade-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get ge trade summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.GeTradeSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get ge trade summary of customer code
+      tags:
+      - global equity
+  /internal/v1/structure-note-cash-movement/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get structured note cash movement of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredNote'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get structured note cash movement of customer code
+      tags:
+      - structured
+  /internal/v1/structured-product-onshore-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get structured product onshore summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredProductSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get structured product onshore summary of customer code
+      tags:
+      - structured
+  /internal/v1/structured-product-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get structured product summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.StructuredProductSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get structured product summary of customer code
+      tags:
+      - structured
+  /internal/v1/tfex-daily-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get tfex daily summary of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDailySummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get tfex daily summary of customer code
+      tags:
+      - tfex
+  /internal/v1/tfex-daily/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get tfex daily of customer code
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.TfexDaily'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get tfex daily of customer code
+      tags:
+      - tfex
+  /internal/v1/thai-equity-summary/{customer-code}:
+    get:
+      consumes:
+      - application/json
+      description: Get thai equity summary of customer code group by thai equity category
+      parameters:
+      - description: Customer Code
+        in: path
+        name: customer-code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.ThaiEquitySummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get thai equity summary of customer code
+      tags:
+      - thai equity
+  /internal/v1/total-portfolio-summary/{user-id}:
+    get:
+      consumes:
+      - application/json
+      description: Get total portfolio summary of user-id
+      parameters:
+      - description: User Id
+        in: path
+        name: user-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/result.ResponseSuccess'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/github_com_pi-financial_portfolio-srv-v2_internal_core_model.TotalPortfolioSummary'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/result.ResponseError'
+      summary: Get total portfolio summary of user-id
+      tags:
+      - Total Portfolio
+swagger: "2.0"

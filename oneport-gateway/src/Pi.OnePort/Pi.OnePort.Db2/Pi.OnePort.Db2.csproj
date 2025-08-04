@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Pi.OnePort.Db2</RootNamespace>
+    </PropertyGroup>
+
+
+    <ItemGroup Condition=" '$(Configuration)' == 'Release' ">
+        <PackageReference Include="IBM.EntityFrameworkCore-lnx" Version="8.0.0.200" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' ">
+        <PackageReference Include="IBM.EntityFrameworkCore-lnx" Version="8.0.0.200" />
+    </ItemGroup>
+    <ItemGroup Condition=" '$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' ">
+        <PackageReference Include="IBM.EntityFrameworkCore-osx" Version="8.0.0.200" />
+    </ItemGroup>
+</Project>
