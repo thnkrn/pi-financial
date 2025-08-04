@@ -1,0 +1,1340 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Contain Generic Information.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Information API
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /internal/address:
+    get:
+      description: Retrieve a complete list of all available addresses.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Addresses
+      tags:
+      - Address
+  /internal/address/province:
+    get:
+      description: Retrieve a complete list of all provinces.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_province_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Provinces
+      tags:
+      - Address
+  /internal/address/province/{province}:
+    get:
+      description: Retrieve a list of addresses associated with a specified Province.
+      parameters:
+      - description: The Province to retrieve addresses
+        explode: false
+        in: path
+        name: province
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Language preference for response data. Omit for Thai (default)
+          or specify 'en' for English
+        explode: true
+        in: query
+        name: lang
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Addresses by Province
+      tags:
+      - Address
+  /internal/address/zip-code/{zipCode}:
+    get:
+      description: Retrieve a list of addresses associated with a specified Zip Code.
+      parameters:
+      - description: The Zip Code to retrieve addresses
+        explode: false
+        in: path
+        name: zipCode
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Addresses by Zip Code
+      tags:
+      - Address
+  /internal/bank:
+    get:
+      description: Retrieve a complete list of all banks.
+      parameters:
+      - description: Id
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ShortName
+        explode: true
+        in: query
+        name: shortName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Code
+        explode: true
+        in: query
+        name: code
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_bank_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Banks
+      tags:
+      - Bank
+  /internal/bank-branch:
+    get:
+      description: Retrieve a complete list of all bank branches.
+      parameters:
+      - description: BankCode
+        explode: true
+        in: query
+        name: bankCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: BankBranchCode
+        explode: true
+        in: query
+        name: bankBranchCode
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_bank_branch_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All BankBranches
+      tags:
+      - BankBranch
+  /internal/calendar/holidays:
+    get:
+      description: "Retrieve a list of holidays for a specified year. If no year is\
+        \ provided, defaults to the current year."
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_holidays_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Holidays
+      tags:
+      - Calendar
+  /internal/calendar/holidays/{year}:
+    get:
+      description: "Retrieve a list of holidays for a specified year. If no year is\
+        \ provided, defaults to the current year."
+      parameters:
+      - description: The year to retrieve holidays
+        explode: false
+        in: path
+        name: year
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_holidays_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Holidays
+      tags:
+      - Calendar
+  /internal/calendar/is-holiday/{date}:
+    get:
+      description: Determine if the specified date is a recognized holiday.
+      parameters:
+      - description: "The date to check if it is a holiday (format: YYYY-MM-DD)"
+        explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          format: date
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_is_holiday__date__get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Check if Date is a Holiday
+      tags:
+      - Calendar
+  /internal/calendar/next-business-day/{date}:
+    get:
+      description: Retrieve the next business day following a specified date.
+      parameters:
+      - description: "The date to start from to find the next business day (format:\
+          \ YYYY-MM-DD)"
+        explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_next_business_day__date__get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Next Business Day
+      tags:
+      - Calendar
+  /internal/exchange-rate:
+    get:
+      description: Retrieve the exchange rate for a specified date.
+      parameters:
+      - description: "Start date to retrieve the exchange rate (format: YYYY-MM-DD)."
+        explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          format: from
+          type: string
+        style: form
+      - description: "End date to retrieve the exchange rate (format: YYYY-MM-DD)."
+        explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          format: to
+          type: string
+        style: form
+      - description: Source currency code
+        explode: true
+        in: query
+        name: fromCur
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Destination currency code
+        explode: true
+        in: query
+        name: toCur
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_exchange_rate_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Exchange Rates
+      tags:
+      - Exchange Rate
+  /internal/product:
+    get:
+      description: Retrieve a complete list of all products.
+      parameters:
+      - description: Id
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Name
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: AccountTypeCode
+        explode: true
+        in: query
+        name: accountTypeCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: AccountType
+        explode: true
+        in: query
+        name: accountType
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ExchangeMarketId
+        explode: true
+        in: query
+        name: exchangeMarketId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Suffix
+        explode: true
+        in: query
+        name: suffix
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: TransactionType
+        explode: true
+        in: query
+        name: transactionType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_product_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Products
+      tags:
+      - Product
+  /secure/address:
+    get:
+      description: Retrieve a complete list of all available addresses.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Addresses
+      tags:
+      - Address
+  /secure/address/province:
+    get:
+      description: Retrieve a complete list of all provinces.
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_province_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Provinces
+      tags:
+      - Address
+  /secure/address/province/{province}:
+    get:
+      description: Retrieve a list of addresses associated with a specified Province.
+      parameters:
+      - description: The Province to retrieve addresses
+        explode: false
+        in: path
+        name: province
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Language preference for response data. Omit for Thai (default)
+          or specify 'en' for English
+        explode: true
+        in: query
+        name: lang
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Addresses by Province
+      tags:
+      - Address
+  /secure/address/zip-code/{zipCode}:
+    get:
+      description: Retrieve a list of addresses associated with a specified Zip Code.
+      parameters:
+      - description: The Zip Code to retrieve addresses
+        explode: false
+        in: path
+        name: zipCode
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_address_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Addresses by Zip Code
+      tags:
+      - Address
+  /secure/bank:
+    get:
+      description: Retrieve a complete list of all banks.
+      parameters:
+      - description: Id
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ShortName
+        explode: true
+        in: query
+        name: shortName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Code
+        explode: true
+        in: query
+        name: code
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_bank_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Banks
+      tags:
+      - Bank
+  /secure/bank-branch:
+    get:
+      description: Retrieve a complete list of all bank branches.
+      parameters:
+      - description: BankCode
+        explode: true
+        in: query
+        name: bankCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: BankBranchCode
+        explode: true
+        in: query
+        name: bankBranchCode
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_bank_branch_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All BankBranches
+      tags:
+      - BankBranch
+  /secure/calendar/holidays:
+    get:
+      description: "Retrieve a list of holidays for a specified year. If no year is\
+        \ provided, defaults to the current year."
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_holidays_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Holidays
+      tags:
+      - Calendar
+  /secure/calendar/holidays/{year}:
+    get:
+      description: "Retrieve a list of holidays for a specified year. If no year is\
+        \ provided, defaults to the current year."
+      parameters:
+      - description: The year to retrieve holidays
+        explode: false
+        in: path
+        name: year
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_holidays_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Holidays
+      tags:
+      - Calendar
+  /secure/calendar/is-holiday/{date}:
+    get:
+      description: Determine if the specified date is a recognized holiday.
+      parameters:
+      - description: "The date to check if it is a holiday (format: YYYY-MM-DD)"
+        explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          format: date
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_is_holiday__date__get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Check if Date is a Holiday
+      tags:
+      - Calendar
+  /secure/calendar/next-business-day/{date}:
+    get:
+      description: Retrieve the next business day following a specified date.
+      parameters:
+      - description: "The date to start from to find the next business day (format:\
+          \ YYYY-MM-DD)"
+        explode: false
+        in: path
+        name: date
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_calendar_next_business_day__date__get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Next Business Day
+      tags:
+      - Calendar
+  /secure/exchange-rate:
+    get:
+      description: Retrieve the exchange rate for a specified date.
+      parameters:
+      - description: "Start date to retrieve the exchange rate (format: YYYY-MM-DD)."
+        explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          format: from
+          type: string
+        style: form
+      - description: "End date to retrieve the exchange rate (format: YYYY-MM-DD)."
+        explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          format: to
+          type: string
+        style: form
+      - description: Source currency code
+        explode: true
+        in: query
+        name: fromCur
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Destination currency code
+        explode: true
+        in: query
+        name: toCur
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_exchange_rate_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get Exchange Rates
+      tags:
+      - Exchange Rate
+  /secure/product:
+    get:
+      description: Retrieve a complete list of all products.
+      parameters:
+      - description: Id
+        explode: true
+        in: query
+        name: id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Name
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: AccountTypeCode
+        explode: true
+        in: query
+        name: accountTypeCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: AccountType
+        explode: true
+        in: query
+        name: accountType
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: ExchangeMarketId
+        explode: true
+        in: query
+        name: exchangeMarketId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Suffix
+        explode: true
+        in: query
+        name: suffix
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: TransactionType
+        explode: true
+        in: query
+        name: transactionType
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/_internal_product_get_200_response'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pkg.Response'
+          description: Internal Server Error
+      summary: Get All Products
+      tags:
+      - Product
+components:
+  schemas:
+    address.Address:
+      example:
+        sub_district_en: sub_district_en
+        district_th: district_th
+        province_en: province_en
+        province_th: province_th
+        sub_district_th: sub_district_th
+        district_en: district_en
+        zip_code: zip_code
+      properties:
+        district_en:
+          type: string
+        district_th:
+          type: string
+        province_en:
+          type: string
+        province_th:
+          type: string
+        sub_district_en:
+          type: string
+        sub_district_th:
+          type: string
+        zip_code:
+          type: string
+      type: object
+    address.Province:
+      example:
+        code: code
+        province_en: province_en
+        iso_code: iso_code
+        province_th: province_th
+      properties:
+        code:
+          type: string
+        iso_code:
+          type: string
+        province_en:
+          type: string
+        province_th:
+          type: string
+      type: object
+    bank.Bank:
+      example:
+        icon_url: icon_url
+        code: code
+        name: name
+        name_th: name_th
+        short_name: short_name
+        id: id
+      properties:
+        code:
+          type: string
+        icon_url:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        name_th:
+          type: string
+        short_name:
+          type: string
+      type: object
+    bankBranch.BankBranch:
+      example:
+        bank_code: bank_code
+        bank_branch_code: bank_branch_code
+        branch_name: branch_name
+        id: id
+      properties:
+        bank_branch_code:
+          type: string
+        bank_code:
+          type: string
+        branch_name:
+          type: string
+        id:
+          type: string
+      type: object
+    http.exchangeRateResponse:
+      example:
+        date: date
+        mid_rate: 5.962133916683182
+        selling: 5.637376656633329
+        buying_transfer: 1.4658129805029452
+        buying_sight: 6.027456183070403
+      properties:
+        buying_sight:
+          type: number
+        buying_transfer:
+          type: number
+        date:
+          type: string
+        mid_rate:
+          type: number
+        selling:
+          type: number
+      type: object
+    http.holidaysResponse:
+      example:
+        date: date
+        name: name
+      properties:
+        date:
+          type: string
+        name:
+          type: string
+      type: object
+    pkg.Response:
+      example:
+        detail: detail
+        title: title
+        status: 6
+      properties:
+        detail:
+          type: string
+        status:
+          type: integer
+        title:
+          type: string
+      type: object
+    product.Product:
+      example:
+        account_type_code: account_type_code
+        account_type: account_type
+        name: name
+        id: id
+        suffix: suffix
+        transaction_type: transaction_type
+        exchange_market_id: exchange_market_id
+      properties:
+        account_type:
+          type: string
+        account_type_code:
+          type: string
+        exchange_market_id:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        suffix:
+          type: string
+        transaction_type:
+          type: string
+      type: object
+    _internal_address_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/address.Address'
+            type: array
+        type: object
+      example:
+        data:
+        - sub_district_en: sub_district_en
+          district_th: district_th
+          province_en: province_en
+          province_th: province_th
+          sub_district_th: sub_district_th
+          district_en: district_en
+          zip_code: zip_code
+        - sub_district_en: sub_district_en
+          district_th: district_th
+          province_en: province_en
+          province_th: province_th
+          sub_district_th: sub_district_th
+          district_en: district_en
+          zip_code: zip_code
+        detail: detail
+        title: title
+        status: 0
+    _internal_address_province_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/address.Province'
+            type: array
+        type: object
+      example:
+        data:
+        - code: code
+          province_en: province_en
+          iso_code: iso_code
+          province_th: province_th
+        - code: code
+          province_en: province_en
+          iso_code: iso_code
+          province_th: province_th
+        detail: detail
+        title: title
+        status: 0
+    _internal_bank_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/bank.Bank'
+            type: array
+        type: object
+      example:
+        data:
+        - icon_url: icon_url
+          code: code
+          name: name
+          name_th: name_th
+          short_name: short_name
+          id: id
+        - icon_url: icon_url
+          code: code
+          name: name
+          name_th: name_th
+          short_name: short_name
+          id: id
+        detail: detail
+        title: title
+        status: 0
+    _internal_bank_branch_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/bankBranch.BankBranch'
+            type: array
+        type: object
+      example:
+        data:
+        - bank_code: bank_code
+          bank_branch_code: bank_branch_code
+          branch_name: branch_name
+          id: id
+        - bank_code: bank_code
+          bank_branch_code: bank_branch_code
+          branch_name: branch_name
+          id: id
+        detail: detail
+        title: title
+        status: 0
+    _internal_calendar_holidays_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/http.holidaysResponse'
+            type: array
+        type: object
+      example:
+        data:
+        - date: date
+          name: name
+        - date: date
+          name: name
+        detail: detail
+        title: title
+        status: 0
+    _internal_calendar_is_holiday__date__get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            type: boolean
+        type: object
+      example:
+        data: true
+        detail: detail
+        title: title
+        status: 0
+    _internal_calendar_next_business_day__date__get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            type: string
+        type: object
+      example:
+        data: data
+        detail: detail
+        title: title
+        status: 0
+    _internal_exchange_rate_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/http.exchangeRateResponse'
+            type: array
+        type: object
+      example:
+        data:
+        - date: date
+          mid_rate: 5.962133916683182
+          selling: 5.637376656633329
+          buying_transfer: 1.4658129805029452
+          buying_sight: 6.027456183070403
+        - date: date
+          mid_rate: 5.962133916683182
+          selling: 5.637376656633329
+          buying_transfer: 1.4658129805029452
+          buying_sight: 6.027456183070403
+        detail: detail
+        title: title
+        status: 0
+    _internal_product_get_200_response:
+      allOf:
+      - $ref: '#/components/schemas/pkg.Response'
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/product.Product'
+            type: array
+        type: object
+      example:
+        data:
+        - account_type_code: account_type_code
+          account_type: account_type
+          name: name
+          id: id
+          suffix: suffix
+          transaction_type: transaction_type
+          exchange_market_id: exchange_market_id
+        - account_type_code: account_type_code
+          account_type: account_type
+          name: name
+          id: id
+          suffix: suffix
+          transaction_type: transaction_type
+          exchange_market_id: exchange_market_id
+        detail: detail
+        title: title
+        status: 0

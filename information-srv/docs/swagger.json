@@ -1,0 +1,1692 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Contain Generic Information.",
+        "title": "Information API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/internal/address": {
+            "get": {
+                "description": "Retrieve a complete list of all available addresses.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get All Addresses",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Address"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/address/province": {
+            "get": {
+                "description": "Retrieve a complete list of all provinces.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get All Provinces",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Province"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/address/province/{province}": {
+            "get": {
+                "description": "Retrieve a list of addresses associated with a specified Province.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get Addresses by Province",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The Province to retrieve addresses",
+                        "name": "province",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Language preference for response data. Omit for Thai (default) or specify 'en' for English",
+                        "name": "lang",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Address"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/address/zip-code/{zipCode}": {
+            "get": {
+                "description": "Retrieve a list of addresses associated with a specified Zip Code.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get Addresses by Zip Code",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "The Zip Code to retrieve addresses",
+                        "name": "zipCode",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Address"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/bank": {
+            "get": {
+                "description": "Retrieve a complete list of all banks.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Bank"
+                ],
+                "summary": "Get All Banks",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "ShortName",
+                        "name": "shortName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Code",
+                        "name": "code",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/bank.Bank"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/bank-branch": {
+            "get": {
+                "description": "Retrieve a complete list of all bank branches.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "BankBranch"
+                ],
+                "summary": "Get All BankBranches",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "BankCode",
+                        "name": "bankCode",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "BankBranchCode",
+                        "name": "bankBranchCode",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/bankBranch.BankBranch"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/calendar/holidays": {
+            "get": {
+                "description": "Retrieve a list of holidays for a specified year. If no year is provided, defaults to the current year.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Get Holidays",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/http.holidaysResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/calendar/holidays/{year}": {
+            "get": {
+                "description": "Retrieve a list of holidays for a specified year. If no year is provided, defaults to the current year.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Get Holidays",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "The year to retrieve holidays",
+                        "name": "year",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/http.holidaysResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/calendar/is-holiday/{date}": {
+            "get": {
+                "description": "Determine if the specified date is a recognized holiday.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Check if Date is a Holiday",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "date",
+                        "description": "The date to check if it is a holiday (format: YYYY-MM-DD)",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/calendar/next-business-day/{date}": {
+            "get": {
+                "description": "Retrieve the next business day following a specified date.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Get Next Business Day",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The date to start from to find the next business day (format: YYYY-MM-DD)",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/exchange-rate": {
+            "get": {
+                "description": "Retrieve the exchange rate for a specified date.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchange Rate"
+                ],
+                "summary": "Get Exchange Rates",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "from",
+                        "description": "Start date to retrieve the exchange rate (format: YYYY-MM-DD).",
+                        "name": "from",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "format": "to",
+                        "description": "End date to retrieve the exchange rate (format: YYYY-MM-DD).",
+                        "name": "to",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "USD",
+                        "description": "Source currency code",
+                        "name": "fromCur",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "THB",
+                        "description": "Destination currency code",
+                        "name": "toCur",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/http.exchangeRateResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/internal/product": {
+            "get": {
+                "description": "Retrieve a complete list of all products.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get All Products",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "AccountTypeCode",
+                        "name": "accountTypeCode",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "AccountType",
+                        "name": "accountType",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "ExchangeMarketId",
+                        "name": "exchangeMarketId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Suffix",
+                        "name": "suffix",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "TransactionType",
+                        "name": "transactionType",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/product.Product"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/address": {
+            "get": {
+                "description": "Retrieve a complete list of all available addresses.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get All Addresses",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Address"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/address/province": {
+            "get": {
+                "description": "Retrieve a complete list of all provinces.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get All Provinces",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Province"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/address/province/{province}": {
+            "get": {
+                "description": "Retrieve a list of addresses associated with a specified Province.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get Addresses by Province",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The Province to retrieve addresses",
+                        "name": "province",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Language preference for response data. Omit for Thai (default) or specify 'en' for English",
+                        "name": "lang",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Address"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/address/zip-code/{zipCode}": {
+            "get": {
+                "description": "Retrieve a list of addresses associated with a specified Zip Code.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Address"
+                ],
+                "summary": "Get Addresses by Zip Code",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "The Zip Code to retrieve addresses",
+                        "name": "zipCode",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/address.Address"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/bank": {
+            "get": {
+                "description": "Retrieve a complete list of all banks.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Bank"
+                ],
+                "summary": "Get All Banks",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "ShortName",
+                        "name": "shortName",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Code",
+                        "name": "code",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/bank.Bank"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/bank-branch": {
+            "get": {
+                "description": "Retrieve a complete list of all bank branches.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "BankBranch"
+                ],
+                "summary": "Get All BankBranches",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "BankCode",
+                        "name": "bankCode",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "BankBranchCode",
+                        "name": "bankBranchCode",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/bankBranch.BankBranch"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/calendar/holidays": {
+            "get": {
+                "description": "Retrieve a list of holidays for a specified year. If no year is provided, defaults to the current year.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Get Holidays",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/http.holidaysResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/calendar/holidays/{year}": {
+            "get": {
+                "description": "Retrieve a list of holidays for a specified year. If no year is provided, defaults to the current year.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Get Holidays",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "The year to retrieve holidays",
+                        "name": "year",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/http.holidaysResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/calendar/is-holiday/{date}": {
+            "get": {
+                "description": "Determine if the specified date is a recognized holiday.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Check if Date is a Holiday",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "date",
+                        "description": "The date to check if it is a holiday (format: YYYY-MM-DD)",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/calendar/next-business-day/{date}": {
+            "get": {
+                "description": "Retrieve the next business day following a specified date.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Calendar"
+                ],
+                "summary": "Get Next Business Day",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "The date to start from to find the next business day (format: YYYY-MM-DD)",
+                        "name": "date",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/exchange-rate": {
+            "get": {
+                "description": "Retrieve the exchange rate for a specified date.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchange Rate"
+                ],
+                "summary": "Get Exchange Rates",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "format": "from",
+                        "description": "Start date to retrieve the exchange rate (format: YYYY-MM-DD).",
+                        "name": "from",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "format": "to",
+                        "description": "End date to retrieve the exchange rate (format: YYYY-MM-DD).",
+                        "name": "to",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "USD",
+                        "description": "Source currency code",
+                        "name": "fromCur",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "default": "THB",
+                        "description": "Destination currency code",
+                        "name": "toCur",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/http.exchangeRateResponse"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/secure/product": {
+            "get": {
+                "description": "Retrieve a complete list of all products.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Get All Products",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id",
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Name",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "AccountTypeCode",
+                        "name": "accountTypeCode",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "AccountType",
+                        "name": "accountType",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "ExchangeMarketId",
+                        "name": "exchangeMarketId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Suffix",
+                        "name": "suffix",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "TransactionType",
+                        "name": "transactionType",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/pkg.Response"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/product.Product"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/pkg.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "address.Address": {
+            "type": "object",
+            "properties": {
+                "district_en": {
+                    "type": "string"
+                },
+                "district_th": {
+                    "type": "string"
+                },
+                "province_en": {
+                    "type": "string"
+                },
+                "province_th": {
+                    "type": "string"
+                },
+                "sub_district_en": {
+                    "type": "string"
+                },
+                "sub_district_th": {
+                    "type": "string"
+                },
+                "zip_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "address.Province": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "iso_code": {
+                    "type": "string"
+                },
+                "province_en": {
+                    "type": "string"
+                },
+                "province_th": {
+                    "type": "string"
+                }
+            }
+        },
+        "bank.Bank": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "icon_url": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "name_th": {
+                    "type": "string"
+                },
+                "short_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "bankBranch.BankBranch": {
+            "type": "object",
+            "properties": {
+                "bank_branch_code": {
+                    "type": "string"
+                },
+                "bank_code": {
+                    "type": "string"
+                },
+                "branch_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "http.exchangeRateResponse": {
+            "type": "object",
+            "properties": {
+                "buying_sight": {
+                    "type": "number"
+                },
+                "buying_transfer": {
+                    "type": "number"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "mid_rate": {
+                    "type": "number"
+                },
+                "selling": {
+                    "type": "number"
+                }
+            }
+        },
+        "http.holidaysResponse": {
+            "type": "object",
+            "properties": {
+                "date": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "pkg.Response": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "detail": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "product.Product": {
+            "type": "object",
+            "properties": {
+                "account_type": {
+                    "type": "string"
+                },
+                "account_type_code": {
+                    "type": "string"
+                },
+                "exchange_market_id": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "suffix": {
+                    "type": "string"
+                },
+                "transaction_type": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "OpenAPI",
+        "url": "https://swagger.io/resources/open-api/"
+    }
+}

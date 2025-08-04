@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Pi.TfexService.Listener": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

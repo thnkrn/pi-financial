@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Pi.TfexService.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Services\" />
+    <None Remove="Commands\" />
+    <None Remove="Services\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Abstractions" Version="8.2.3" />
+    <PackageReference Include="Pi.Client.ItBackOffice" Version="1.0.8" />
+    <PackageReference Include="Pi.Client.Sirius" Version="1.0.48" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.14" />
+    <PackageReference Include="Pi.Client.UserService" Version="1.0.66" />
+    <PackageReference Include="pi.client.usersrvv2" Version="1.0.96" />
+    <PackageReference Include="pi.client.walletservice" Version="1.0.47" />
+    <PackageReference Include="pi.financial.client.settradeoms" Version="1.0.21" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.TfexService.Domain\Pi.TfexService.Domain.csproj" />
+  </ItemGroup>
+</Project>

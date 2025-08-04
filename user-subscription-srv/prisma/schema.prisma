@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Product {
+  mt5
+}
+
+model Plan {
+  id                Int                @id @default(autoincrement())
+  title             String             @db.VarChar(255)
+  product           Product
+  description       String
+  month             Int
+  price             Float
+  created_at        DateTime           @default(now())
+  updated_at        DateTime           @updatedAt
+  PurchaseRequest   PurchaseRequest[]
+  userSubscriptions UserSubscription[]
+
+  @@map("plan")
+}
+
+enum PurchaseRequestStatus {
+  CREATED
+  GENERATED_PAYMENT
+  RECEIVED_PAYMENT
+  COMPLETED
+  REJECTED
+}
+
+model PurchaseRequest {
+  id                 Int                   @id @default(autoincrement())
+  referenceCode      String                @unique @map("reference_code")
+  customerCode       String                @map("customer_code")
+  product            Product
+  planId             Int                   @map("plan_id")
+  plan               Plan                  @relation(fields: [planId], references: [id])
+  amount             Float
+  status             PurchaseRequestStatus @default(CREATED)
+  paymentGeneratedId Int?                  @unique @map("payment_generated_id")
+  paymentGenerated   PaymentGenerated?     @relation(fields: [paymentGeneratedId], references: [id])
+  paymentReceivedId  Int?                  @unique @map("payment_received_id")
+  paymentReceived    PaymentReceived?      @relation(fields: [paymentReceivedId], references: [id])
+  taxInvoiceId       Int?                  @unique @map("tax_invoice_id")
+  taxInvoice         TaxInvoice?           @relation(fields: [taxInvoiceId], references: [id])
+  userSubscription   UserSubscription?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("purcahse_request")
+}
+
+model PaymentGenerated {
+  id Int @id @default(autoincrement())
+
+  transactionNo      String @map("transaction_no")
+  transactionRefCode String @map("transaction_ref_code")
+
+  amount Float
+
+  qrValue          String           @map("qr_value")
+  qrExpirationTime DateTime         @map("qr_expiration_time")
+  purchaseRequest  PurchaseRequest?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("payment_generated")
+}
+
+model PaymentReceived {
+  id Int @id @default(autoincrement())
+
+  transactionNo      String @map("transaction_no")
+  transactionRefCode String @map("transaction_ref_code")
+
+  customerName        String @map("customer_name")
+  customerBankAccount String @map("customer_bank_account")
+  customerBankCode    String @map("customer_bank_code")
+
+  amount Float
+
+  paymentType     String @map("payment_type")
+  paymentDateTime String @map("payment_date_time")
+
+  purchaseRequest PurchaseRequest?
+  created_at      DateTime         @default(now())
+  updaupdated_at  DateTime         @updatedAt
+
+  @@map("payment_received")
+}
+
+model UserSubscription {
+  id           Int    @id @default(autoincrement())
+  customerCode String @map("customer_code")
+
+  planId Int?  @map("plan_id")
+  plan   Plan? @relation(fields: [planId], references: [id])
+
+  purchaseRequestId Int?             @unique @map("purchase_request_id")
+  purchaseRequest   PurchaseRequest? @relation(fields: [purchaseRequestId], references: [id])
+
+  activeDate  DateTime @map("active_date") @db.Date
+  expiredDate DateTime @map("expired_Date") @db.Date
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("user_subscription")
+}
+
+model TaxInvoice {
+  id           Int    @id @default(autoincrement())
+  taxInvoiceNo String @unique @map("tax_invoice_no")
+  amount       Float
+  amountExVat  Float  @map("amount_ex_vat")
+  vat          Float
+  customerName String @map("customer_name")
+  customerId   String @map("customer_id")
+
+  purchaseRequest PurchaseRequest?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@map("tax_invoice")
+}

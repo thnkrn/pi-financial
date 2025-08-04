@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "mt5Remind",
+    "SubjectPart": "Your subscription is nearly expired",
+    "HtmlPart": "<h2>Download report</h2><ul><li><a href=\"{{downloadUrl}}\">[MT5-{{reportType}}] Oracle Report ({{reportDate}})</a></li></ul>",
+    "TextPart": "[MT5-{{reportType}}] Oracle Report"
+  }
+}

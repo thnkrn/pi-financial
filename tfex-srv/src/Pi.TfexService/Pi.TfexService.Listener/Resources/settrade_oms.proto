@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message OrderDerivV3 {
+  int32 version = 1;
+  string order_no = 2;
+  string ext_order_no = 3;
+  string account_no = 4;
+  string enter_id = 5;
+  google.protobuf.Timestamp entry_time = 6;
+  string series_id = 7;
+  LongShort side = 8;
+  Position position = 9;
+  google.type.Money price = 10;
+  PriceType price_type = 11;
+  int64 volume = 12;
+  int64 balance_volume = 13;
+  int64 matched_volume = 14;
+  int64 cancelled_volume = 15;
+  Valid valid = 16;
+  string until = 17;
+  string status = 18;
+  bool can_cancel = 19;
+  bool can_change = 20;
+  bool can_change_price_vol = 21;
+  bool is_trade_report = 22;
+  enum PriceType {
+    UNDEFINED_PRICE_TYPE = 0;
+    LIMIT = 1;
+    ATO = 2;
+    ATC = 3;
+    MARKET = 4;
+    MARKET_TO_LIMIT = 6;
+  }
+  enum LongShort {
+    UNDEFINED_LONGSHORT = 0;
+    LONG = 1;
+    SHORT = 2;
+    LONG_AND_SHORT = 3;
+  }
+  enum Position {
+    UNDEFINED_POSITION = 0;
+    OPEN = 1;
+    CLOSE = 2;
+    AUTO = 3;
+  }
+  enum Valid {
+    UNDEFINED_VALID = 0;
+    FOK = 1;
+    IOC = 2;
+    GTD = 3;
+    GTC = 4;
+    DAY = 8;
+  }
+}
+
+package google.type;
+
+option cc_enable_arenas = true;
+option go_package = "google.golang.org/genproto/googleapis/type/money;money";
+option java_multiple_files = true;
+option java_outer_classname = "MoneyProto";
+option java_package = "com.google.type";
+option objc_class_prefix = "GTP";
+
+// Represents an amount of money with its currency type.
+message Money {
+  // The three-letter currency code defined in ISO 4217.
+  string currency_code = 1;
+
+  // The whole units of the amount.
+  // For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+  int64 units = 2;
+
+  // Number of nano (10^-9) units of the amount.
+  // The value must be between -999,999,999 and +999,999,999 inclusive.
+  // If `units` is positive, `nanos` must be positive or zero.
+  // If `units` is zero, `nanos` can be positive, zero, or negative.
+  // If `units` is negative, `nanos` must be negative or zero.
+  // For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+  int32 nanos = 3;
+}

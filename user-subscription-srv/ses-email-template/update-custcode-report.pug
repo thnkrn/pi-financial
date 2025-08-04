@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title [MT5] Manual update custcode successfully
+  body
+    p Hi Team,
+    p(style="margin-top: 20px;") #{bodyMessage}
+
+    if referenceCode
+      table(style="border-collapse: collapse; margin-top: 20px;")
+        tr
+          td(style="padding: 10px;") ReferenceCode
+          td(style="padding: 10px;") #{referenceCode}
+        tr
+          td(style="padding: 10px;") CustCode
+          td(style="padding: 10px;") #{currentCustCode} to #{newCustCode}
+        tr
+          td(style="padding: 10px;") Amount
+          td(style="padding: 10px;") #{amount}
+        tr
+          td(style="padding: 10px;") Status
+          td(style="padding: 10px;") #{status}
+        tr
+          td(style="padding: 10px;") UpdatedAt
+          td(style="padding: 10px;") #{updatedAt}
+
+    if accounts
+      p(style="margin-top: 20px;") Next action
+      p append the below csv text to /home/pi/mt5/mt5portal.csv on sFTP server.
+      pre 
+        each account in accounts
+          |#{account}|Y|#{effectiveDate}<br/>
+
+    if userSubscription
+      p(style="margin-top: 20px;") Raw data before updated
+      pre #{userSubscription}
+      pre #{purchaseRequest}
+
+    p(style="margin-top: 20px;") Best Regards,
+    p Tech Team

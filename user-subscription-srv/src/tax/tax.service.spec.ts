@@ -1,0 +1,19 @@
+import { Test, TestingModule } from '@nestjs/testing';
+import { TaxService } from './tax.service';
+import { PrismaService } from '../prisma.service';
+
+describe('TaxService', () => {
+  let service: TaxService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [TaxService, PrismaService],
+    }).compile();
+
+    service = module.get<TaxService>(TaxService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});

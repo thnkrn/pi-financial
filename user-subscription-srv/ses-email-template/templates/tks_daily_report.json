@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "tksDailyReport",
+    "SubjectPart": "TKS Daily File [{{reportDate}}]",
+    "HtmlPart": "<h2>Download file</h2><ul><li><a href=\"{{downloadUrl}}\">TKS Daily File [{{reportDate}}]</a></li></ul>",
+    "TextPart": "TKS Daily File [{{reportDate}}]"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "mt5RemindEn",
+    "SubjectPart": "[MT5] Remind",
+    "HtmlPart": "<!doctype html>\n<html lang=\"en\">\n<body>\n<h2>Dear, {{customerName}}, Your MT5 subscriptions will be expired on {{expiredDate}}.</h2>\n<ul>\n    <li><a href=\"{{link}}\">Service hub</a></li>\n</ul>\n</body>\n</html>",
+    "TextPart": "Dear, {{customerName}}, Your MT5 subscriptions will be expired on {{expiredDate}}"
+  }
+}

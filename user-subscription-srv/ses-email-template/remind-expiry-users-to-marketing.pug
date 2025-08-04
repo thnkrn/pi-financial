@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title แจ้งเตือนบัญชีลูกค้า MT5 ที่จะต้องชำระค่าบริการก่อนการใช้งานในเดือนถัดไป
+  body
+    p เรียน คุณ #{filteredCustomer.mktName}
+    p แจ้งเตือนบัญชีลูกค้า MT5 ที่จะต้องชำระค่าบริการก่อนการใช้งานในเดือนถัดไป
+
+    table(style="border-collapse: collapse; margin-top: 20px;")
+      thead
+        tr
+          th(style="border: 1px solid black; padding: 10px;") No
+          th(style="border: 1px solid black; padding: 10px;") Customer-Code
+          th(style="border: 1px solid black; padding: 10px;") Customer
+          th(style="border: 1px solid black; padding: 10px;") Tel
+          th(style="border: 1px solid black; padding: 10px;") Email
+      tbody
+        each customer, index in filteredCustomer.customers
+          tr(style="border: 1px solid black;")
+            td(style="border: 1px solid black; padding: 10px;")= index + 1
+            td(style="border: 1px solid black; padding: 10px;")= customer.custcode
+            td(style="border: 1px solid black; padding: 10px;")= customer.customerName
+            td(style="border: 1px solid black; padding: 10px;")= customer.telNo
+            td(style="border: 1px solid black; padding: 10px;")= customer.email
+
+    p(style="margin-top: 20px;") วิธีการชำระค่าบริการ และการยกเลิกบัญชี MT5 ตามเอกสารในไฟล์แนบ
+    p หากลูกค้าต้องการใช้งาน MT5 อย่างต่อเนื่อง จะต้องชำระค่าบริการก่อนวันที่ #{endOfMonthDay} เวลา 17:00 น. (หากชำระหลังเวลาดังกล่าว จะใช้งานได้ในวันที่ #{nextWorkingDay})
+    p ขอบคุณครับ

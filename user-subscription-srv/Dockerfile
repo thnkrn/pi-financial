@@ -1,0 +1,38 @@
+FROM node:16-alpine AS base
+RUN apk add --no-cache git
+
+# ARG APP_ENV
+# ENV APP_ENV=${APP_ENV}
+ENV NODE_ENV Production
+# ENV ELASTIC_APM_SECRET_TOKEN II6FfgckRIhcgxBPsW
+# ENV ELASTIC_APM_SERVER_URL https://2e6cb8abf25d4e688a6daeb131cc4562.apm.ap-southeast-1.aws.cloud.es.io:443
+# ENV ELASTIC_APM_ACTIVATE true
+ENV AWS_REGION ap-southeast-1
+
+WORKDIR /usr/src/app
+
+COPY package.json yarn.lock ./
+COPY prisma ./prisma/
+COPY ses-email-template ./ses-email-template/
+
+# install dependencies
+FROM base AS dependencies
+RUN yarn install --production --frozen-lockfile
+RUN cp -R node_modules prod_modules
+RUN yarn install --production=false
+
+FROM base AS build
+COPY . .
+COPY --from=dependencies /usr/src/app/node_modules ./node_modules
+RUN yarn prisma generate
+RUN yarn build
+
+FROM base
+COPY .env* ./
+COPY --from=dependencies /usr/src/app/prod_modules ./node_modules
+COPY --from=build /usr/src/app/dist ./dist
+# Mount and add env variables from Github Secrets
+RUN --mount=type=secret,id=DATADOG_API_KEY \
+  echo DATADOG_API_KEY=$(cat /run/secrets/DATADOG_API_KEY) >> .env.production
+EXPOSE 3000
+CMD yarn start:prod

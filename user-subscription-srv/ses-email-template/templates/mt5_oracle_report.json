@@ -1,0 +1,8 @@
+{
+  "Template": {
+    "TemplateName": "mt5OracleReport",
+    "SubjectPart": "[MT5-{{reportType}}] Oracle Report",
+    "HtmlPart": "<!doctype html>\n<html lang=\"en\">\n<body>\n<h2>Download report</h2>\n<ul>\n    <li><a href=\"{{downloadUrl}}\">[MT5-{{reportType}}] Oracle Report ({{reportDate}})</a></li>\n</ul>\n</body>\n</html>",
+    "TextPart": "Download report\n- [MT5-{{reportType}}] Oracle Report ({{reportDate}}) [{{downloadUrl}}]"
+  }
+}
