@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>f437caf7-d339-4666-8080-fdeced2d8770</UserSecretsId>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;CS8618;nullable</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;1591;CS0618;CS0612;IL2121;CS8618;nullable</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <WarningLevel>4</WarningLevel>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="EFCore.NamingConventions" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0"/>
+        <PackageReference Include="MassTransit" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.0.15"/>
+        <PackageReference Include="MassTransit.Analyzers" Version="8.0.15"/>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="7.0.18"/>
+        <PackageReference Include="NCrontab" Version="3.3.3"/>
+        <PackageReference Include="Pi.Common" Version="1.0.73"/>
+        <PackageReference Include="Pi.Common.Serilog" Version="1.0.73"/>
+        <PackageReference Include="pi.common.startup" Version="1.0.73"/>
+        <PackageReference Include="Polly" Version="8.3.1"/>
+        <PackageReference Include="Polly.Extensions.Http" Version="3.0.0"/>
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0-silver.1"/>
+        <PackageReference Include="MassTransit.AmazonSQS" Version="8.0.15"/>
+        <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0"/>
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1"/>
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="MassTransit"/>
+        <None Remove="MassTransit.EntityFrameworkCore"/>
+        <None Remove="MassTransit.AmazonSQS"/>
+        <None Remove="MassTransit.Analyzers"/>
+        <None Remove="MassTransit.RabbitMQ"/>
+        <None Remove="Microsoft.Extensions.Http"/>
+        <None Remove="Serilog.Extensions.Hosting"/>
+        <None Remove="Serilog.Sinks.Console"/>
+        <None Remove="Serilog.Settings.Configuration"/>
+        <None Remove="Serilog.Sinks.Seq"/>
+        <None Remove="Pomelo.EntityFrameworkCore.MySql"/>
+        <None Remove="Startup\"/>
+        <None Remove="Microsoft.EntityFrameworkCore.Design"/>
+        <None Remove="Amazon.Extensions.Configuration.SystemsManager"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Startup\"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Pi.GlobalMarketData.Application\Pi.GlobalMarketData.Application.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.GlobalMarketData.Domain\Pi.GlobalMarketData.Domain.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+        <ProjectReference Include="..\Pi.GlobalMarketData.Infrastructure\Pi.GlobalMarketData.Infrastructure.csproj">
+            <GlobalPropertiesToRemove/>
+        </ProjectReference>
+    </ItemGroup>
+</Project>

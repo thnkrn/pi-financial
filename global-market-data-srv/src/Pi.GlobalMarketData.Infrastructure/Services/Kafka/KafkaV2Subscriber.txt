@@ -1,0 +1,427 @@
+using System.Collections.Concurrent;
+using Confluent.Kafka;
+using Microsoft.Extensions.Configuration;
+using Pi.GlobalMarketData.Domain.ConstantConfigurations;
+using Pi.GlobalMarketData.Infrastructure.Interfaces.Kafka;
+using Serilog;
+using Serilog.Debugging;
+
+namespace Pi.GlobalMarketData.Infrastructure.Services.Kafka;
+
+public sealed class KafkaV2Subscriber<TKey, TValue> : IKafkaV2Subscriber, IDisposable where TKey : notnull
+{
+    private readonly ConcurrentDictionary<Task, byte> _activeTasks = new();
+    private readonly int _batchSize;
+    private readonly IConfiguration _configuration;
+    private readonly TimeSpan _consumeTimeout;
+    private readonly bool _enableBatchProcessing;
+    private readonly CancellationTokenSource _internalCts = new();
+    private readonly int _maxConcurrentTasks;
+    private readonly IKafkaMessageV2Handler<Message<TKey, TValue>> _messageHandler;
+
+    // High performance task management
+    private readonly SemaphoreSlim _throttleSemaphore;
+    private readonly TimeSpan _timeLimit;
+    private readonly List<string> _topic;
+    private IConsumer<TKey, TValue>? _consumer;
+    private bool _disposed;
+
+    public KafkaV2Subscriber(
+        IConfiguration configuration,
+        List<string> topic,
+        IKafkaMessageV2Handler<Message<TKey, TValue>> messageHandler
+    )
+    {
+        _configuration = configuration;
+        _topic = topic;
+        _messageHandler = messageHandler;
+        Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+        SelfLog.Enable(Console.Error);
+
+        // Performance-critical settings
+        _maxConcurrentTasks = _configuration.GetValue("KAFKA:CONSUMER_MAX_CONCURRENT_PROCESSING", 500);
+        _consumeTimeout = TimeSpan.FromMilliseconds(_configuration.GetValue("KAFKA:CONSUMER_CONSUME_TIMEOUT_MS", 1));
+        _throttleSemaphore = new SemaphoreSlim(_maxConcurrentTasks);
+
+        // Batch processing settings
+        _enableBatchProcessing = _configuration.GetValue("KAFKA:CONSUMER_ENABLE_BATCH_PROCESSING", false);
+        _batchSize = _configuration.GetValue("KAFKA:CONSUMER_BATCH_SIZE", 100);
+        _timeLimit =
+            TimeSpan.FromMilliseconds(_configuration.GetValue("KAFKA:CONSUMER_BATCH_COLLECTION_TIMEOUT_MS", 25));
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    public async Task SubscribeAsync(CancellationToken cancellationToken)
+    {
+        var config = new ConsumerConfig
+        {
+            BootstrapServers = _configuration[ConfigurationKeys.KafkaBootstrapServers],
+            GroupId = _configuration[ConfigurationKeys.KafkaConsumerGroupId],
+            AutoOffsetReset = AutoOffsetReset.Earliest,
+            EnableAutoCommit = false,
+
+            // Performance optimization settings
+            FetchMinBytes = _configuration.GetValue("KAFKA:CONSUMER_FETCH_MIN_BYTES", 1024),
+            // Minimal wait time for immediate consumption
+            FetchWaitMaxMs = _configuration.GetValue("KAFKA:CONSUMER_FETCH_WAIT_MAX_MS", 10),
+            SessionTimeoutMs = _configuration.GetValue("KAFKA:CONSUMER_SESSION_TIMEOUT_MS", 10000),
+            MaxPollIntervalMs = _configuration.GetValue("KAFKA:CONSUMER_MAX_POLL_INTERVAL_MS", 30000),
+            // Increased for better buffering
+            QueuedMinMessages = _configuration.GetValue("KAFKA:CONSUMER_QUEUED_MIN_MESSAGES", 10000),
+            // 1GB buffer
+            QueuedMaxMessagesKbytes = _configuration.GetValue("KAFKA:CONSUMER_QUEUED_MAX_MESSAGES_KBYTES", 1024 * 1024),
+            // 50MB max fetch
+            FetchMaxBytes = _configuration.GetValue("KAFKA:CONSUMER_FETCH_MAX_BYTES", 50 * 1024 * 1024),
+            // 10MB per partition
+            MaxPartitionFetchBytes =
+                _configuration.GetValue("KAFKA:CONSUMER_MAX_PARTITION_FETCH_BYTES", 10 * 1024 * 1024),
+            SocketKeepaliveEnable = true,
+            // Disable statistics for better performance
+            StatisticsIntervalMs = 0
+        };
+
+        try
+        {
+            var securityProtocolString = _configuration[ConfigurationKeys.KafkaSecurityProtocol] ?? "SASL_SSL";
+            config.SecurityProtocol = Enum.TryParse<SecurityProtocol>(securityProtocolString.Replace("_", string.Empty),
+                true,
+                out var securityProtocol)
+                ? securityProtocol
+                : SecurityProtocol.SaslSsl;
+
+            var saslMechanismString = _configuration[ConfigurationKeys.KafkaSaslMechanism] ?? "PLAIN";
+            config.SaslMechanism = Enum.TryParse<SaslMechanism>(saslMechanismString.Replace("_", string.Empty), true,
+                out var saslMechanism)
+                ? saslMechanism
+                : SaslMechanism.Plain;
+
+            config.SaslUsername = _configuration[ConfigurationKeys.KafkaSaslUsername];
+            config.SaslPassword = _configuration[ConfigurationKeys.KafkaSaslPassword];
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error configuring Kafka consumer: {Message}", ex.Message);
+            throw new InvalidOperationException(ex.Message, ex);
+        }
+
+        using var linkedTokenSource =
+            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _internalCts.Token);
+        await Task.Run(() => HandleSubscribeAsync(config, linkedTokenSource.Token), linkedTokenSource.Token);
+    }
+
+    public async Task UnsubscribeAsync()
+    {
+        await _internalCts.CancelAsync();
+
+        try
+        {
+            // Wait for all processing tasks to complete with a timeout
+            var tasks = _activeTasks.Keys.ToArray();
+            if (tasks.Length > 0)
+            {
+                Log.Information("Waiting for {Count} message processing tasks to complete...", tasks.Length);
+                await Task.WhenAll(tasks).WaitAsync(TimeSpan.FromSeconds(30));
+            }
+        }
+        catch (TimeoutException ex)
+        {
+            Log.Warning(ex, "Timeout waiting for message processing tasks to complete");
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error waiting for message processing tasks");
+        }
+
+        _throttleSemaphore.Dispose();
+        _internalCts.Dispose();
+
+        _consumer?.Close();
+        _consumer?.Dispose();
+        _consumer = null;
+    }
+
+    private async Task HandleSubscribeAsync(ConsumerConfig config, CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+            try
+            {
+                _consumer = new ConsumerBuilder<TKey, TValue>(config)
+                    .SetErrorHandler((_, e) => Log.Error("Kafka error: {Reason}", e.Reason))
+                    .SetStatisticsHandler((_, json) => Log.Debug("Kafka stats: {Stats}", json))
+                    .Build();
+
+                _consumer.Subscribe(_topic);
+
+                if (_enableBatchProcessing)
+                    await HandleBatchConsumeAsync(cancellationToken);
+                else
+                    await HandleConsumeAsync(cancellationToken);
+                break;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error occurred while consuming messages: {Message}", ex.Message);
+                await Task.Delay(3, cancellationToken);
+            }
+    }
+
+    private async Task HandleBatchConsumeAsync(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+            try
+            {
+                // Only prune completed tasks when we're nearing capacity to reduce overhead
+                if (_activeTasks.Count > _maxConcurrentTasks * 0.8)
+                    PruneCompletedTasks();
+
+                // Collect batch of messages
+                var batch = new List<ConsumeResult<TKey, TValue>>(_batchSize);
+                var startTime = DateTime.UtcNow;
+
+                // Collect messages until we reach batch size or time limit
+                while (batch.Count < _batchSize
+                       && DateTime.UtcNow - startTime < _timeLimit
+                       && !cancellationToken.IsCancellationRequested)
+                {
+                    var consumeResult = _consumer?.Consume(_consumeTimeout);
+                    if (consumeResult != null)
+                        batch.Add(consumeResult);
+                }
+
+                if (batch.Count == 0)
+                    continue;
+
+                Log.Debug("Collected batch of {Count} messages", batch.Count);
+
+                // Wait for a processing slot
+                await _throttleSemaphore.WaitAsync(cancellationToken);
+
+                // Start processing the batch asynchronously
+                var processingTask = ProcessBatchTask(batch, cancellationToken);
+
+                // Track the task with automatic cleanup
+                _activeTasks.TryAdd(processingTask, 0);
+                _ = processingTask.ContinueWith(t => _activeTasks.TryRemove(t, out _),
+                    TaskContinuationOptions.ExecuteSynchronously);
+            }
+            catch (OperationCanceledException)
+            {
+                break;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error in batch message consumption loop: {Message}", ex.Message);
+                await Task.Delay(3, cancellationToken);
+            }
+    }
+
+    private Task ProcessBatchTask(List<ConsumeResult<TKey, TValue>> batch, CancellationToken cancellationToken)
+    {
+        var processingTask = Task.Run(async () =>
+        {
+            try
+            {
+                // Group messages by key and select the one with the highest offset from each group
+                var groupedMessages = new Dictionary<TKey, ConsumeResult<TKey, TValue>>();
+
+                foreach (var result in batch)
+                {
+                    var key = result.Message.Key;
+
+                    // Skip messages with null keys
+                    if (Equals(key, default(TKey)))
+                    {
+                        Log.Debug("Skipping message with null key");
+                        continue;
+                    }
+
+                    // If key doesn't exist in dictionary or current message has higher offset, update it
+                    if (!groupedMessages.TryGetValue(key, out var value)
+                        || result.Offset.Value > value.Offset.Value)
+                    {
+                        value = result;
+                        groupedMessages[key] = value;
+                    }
+                }
+
+                // Process the selected messages with the highest offsets
+                foreach (var selected in groupedMessages.Values)
+                    await _messageHandler.HandleAsync(selected.Message).ConfigureAwait(false);
+
+                // Manual commit if auto-commit is disabled (for price status topic)
+                ManualCommitMessages(batch);
+
+                Log.Debug("Processed {OriginalCount} messages, reduced to {ProcessedCount} after grouping by key",
+                    batch.Count, groupedMessages.Count);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error processing batch of messages: {Message}", ex.Message);
+            }
+            finally
+            {
+                _throttleSemaphore.Release();
+            }
+        }, cancellationToken);
+
+        return processingTask;
+    }
+
+    private void ManualCommitMessages(List<ConsumeResult<TKey, TValue>> batch)
+    {
+        try
+        {
+            // Get the latest offset for each partition
+            var commitOffsets = batch
+                .GroupBy(r => r.TopicPartition)
+                .Select(g => new TopicPartitionOffset(
+                    g.Key,
+                    new Offset(g.Max(r => r.Offset.Value) + 1)))
+                .ToList();
+
+            // Commit the offsets
+            _consumer?.Commit(commitOffsets);
+            Log.Debug("Manually committed offsets for price status topic: {Offsets}",
+                string.Join(", ", commitOffsets.Select(o => $"{o.TopicPartition}: {o.Offset}")));
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error during manual commit: {Message}", ex.Message);
+        }
+    }
+
+    private async Task HandleConsumeAsync(CancellationToken cancellationToken)
+    {
+        while (!cancellationToken.IsCancellationRequested)
+            try
+            {
+                // Only prune completed tasks when we're nearing capacity to reduce overhead
+                if (_activeTasks.Count > _maxConcurrentTasks * 0.8)
+                    PruneCompletedTasks();
+
+                // Single message consumption for minimum latency
+                var consumeResult = _consumer?.Consume(_consumeTimeout);
+                if (consumeResult == null)
+                    continue;
+
+                // Non-blocking semaphore acquisition - only wait if absolutely necessary
+                var acquired = await _throttleSemaphore.WaitAsync(0, cancellationToken);
+                if (!acquired)
+                {
+                    // If we can't get a slot immediately, try a very brief wait
+                    acquired = await _throttleSemaphore.WaitAsync(1, cancellationToken).ConfigureAwait(false);
+
+                    // Skip if still can't acquire to maintain throughput
+                    if (!acquired)
+                        continue;
+                }
+
+                // Start processing the message asynchronously using a cached task
+                var processingTask = ProcessingTask(consumeResult, cancellationToken);
+
+                // Track the task with automatic cleanup
+                _activeTasks.TryAdd(processingTask, 0);
+                _ = processingTask.ContinueWith(t => _activeTasks.TryRemove(t, out _),
+                    TaskContinuationOptions.ExecuteSynchronously);
+            }
+            catch (OperationCanceledException)
+            {
+                break;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error in message consumption loop: {Message}", ex.Message);
+                await Task.Delay(3, cancellationToken);
+            }
+    }
+
+    private Task ProcessingTask(ConsumeResult<TKey, TValue> consumeResult, CancellationToken cancellationToken)
+    {
+        var processingTask = Task.Run(async () =>
+        {
+            try
+            {
+                // Process message with high priority
+                await _messageHandler.HandleAsync(consumeResult.Message).ConfigureAwait(false);
+
+                // Manual commit if auto-commit is disabled (for price status topic)
+                ManualCommitMessage(consumeResult);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error processing message: {Message}", ex.Message);
+            }
+            finally
+            {
+                _throttleSemaphore.Release();
+            }
+        }, cancellationToken);
+        return processingTask;
+    }
+
+    private void ManualCommitMessage(ConsumeResult<TKey, TValue> consumeResult)
+    {
+        try
+        {
+            // Commit the offset
+            _consumer?.Commit(consumeResult);
+            Log.Debug("Manually committed offset for price status topic: {TopicPartition}: {Offset}",
+                consumeResult.TopicPartition, consumeResult.Offset);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex, "Error during manual commit: {Message}", ex.Message);
+        }
+    }
+
+    private void PruneCompletedTasks()
+    {
+        foreach (var task in _activeTasks.Keys)
+            if (task.IsCompleted)
+                _activeTasks.TryRemove(task, out _);
+            else if (task.IsFaulted)
+                _activeTasks.TryRemove(task, out _);
+            else if (task.IsCanceled)
+                _activeTasks.TryRemove(task, out _);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (_disposed) return;
+
+        if (disposing)
+        {
+            _internalCts.Cancel();
+
+            try
+            {
+                // Best-effort wait for tasks to complete
+                var tasks = _activeTasks.Keys.ToArray();
+                if (tasks.Length > 0) Task.WaitAll(tasks, TimeSpan.FromSeconds(5));
+            }
+            catch (Exception ex)
+            {
+                Log.Warning(ex, "Error waiting for tasks during disposal");
+            }
+
+            _throttleSemaphore.Dispose();
+            _internalCts.Dispose();
+
+            _consumer?.Close();
+            _consumer?.Dispose();
+            _consumer = null;
+        }
+
+        _disposed = true;
+    }
+
+    ~KafkaV2Subscriber()
+    {
+        Dispose(false);
+    }
+}

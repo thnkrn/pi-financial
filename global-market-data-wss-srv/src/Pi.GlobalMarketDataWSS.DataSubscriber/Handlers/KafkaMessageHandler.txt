@@ -1,0 +1,437 @@
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Globalization;
+using Confluent.Kafka;
+using Microsoft.Extensions.ObjectPool;
+using Newtonsoft.Json;
+using Pi.GlobalMarketDataWSS.Application.Constants;
+using Pi.GlobalMarketDataWSS.Application.Helpers;
+using Pi.GlobalMarketDataWSS.Application.Interfaces.FixMapper;
+using Pi.GlobalMarketDataWSS.Application.Services.Constants;
+using Pi.GlobalMarketDataWSS.Application.Services.FixMapper;
+using Pi.GlobalMarketDataWSS.DataSubscriber.Constants;
+using Pi.GlobalMarketDataWSS.DataSubscriber.Models;
+using Pi.GlobalMarketDataWSS.DataSubscriber.Services;
+using Pi.GlobalMarketDataWSS.Domain.ConstantConfigurations;
+using Pi.GlobalMarketDataWSS.Domain.Entities;
+using Pi.GlobalMarketDataWSS.Domain.Models.Fix;
+using Pi.GlobalMarketDataWSS.Domain.Models.Response;
+using Pi.GlobalMarketDataWSS.Infrastructure.Interfaces.Kafka;
+using Pi.GlobalMarketDataWSS.Infrastructure.Interfaces.Mongo;
+using Pi.GlobalMarketDataWSS.Infrastructure.Interfaces.Redis;
+using Timestamp = Confluent.Kafka.Timestamp;
+
+namespace Pi.GlobalMarketDataWSS.DataSubscriber.Handlers;
+
+public class KafkaMessageHandler : IKafkaMessageHandler<Message<string, string>>
+{
+    private static readonly ConcurrentDictionary<string, string> VenueCache = new();
+    private readonly string _channel;
+    private readonly ILogger<KafkaMessageHandler> _logger;
+    private readonly IMarketScheduleDataService _marketScheduleService;
+    private readonly IPriceInfoMapperService _priceInfoMapperService;
+    private readonly IRedisV2Publisher _redisPublisher;
+
+    private readonly ObjectPool<StreamingBody> _streamingBodyPool =
+        new DefaultObjectPool<StreamingBody>(new DefaultPooledObjectPolicy<StreamingBody>());
+
+    private readonly BackgroundTaskQueue _taskQueue;
+
+    private readonly IMongoService<WhiteList> _whiteListService;
+
+    /// <summary>
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="redisPublisher"></param>
+    /// <param name="configuration"></param>
+    /// <param name="marketScheduleService"></param>
+    /// <param name="whiteListService"></param>
+    /// <param name="priceInfoMapperService"></param>
+    /// <param name="taskQueue"></param>
+    public KafkaMessageHandler(
+        ILogger<KafkaMessageHandler> logger,
+        IRedisV2Publisher redisPublisher,
+        IConfiguration configuration,
+        IMarketScheduleDataService marketScheduleService,
+        IMongoService<WhiteList> whiteListService,
+        IPriceInfoMapperService priceInfoMapperService,
+        BackgroundTaskQueue taskQueue
+    )
+    {
+        _logger = logger;
+        _redisPublisher = redisPublisher;
+        _channel = configuration[ConfigurationKeys.RedisChannel] ?? string.Empty;
+        _marketScheduleService = marketScheduleService;
+        _whiteListService = whiteListService;
+        _priceInfoMapperService = priceInfoMapperService;
+        _taskQueue = taskQueue;
+    }
+
+    public async Task HandleAsync(Message<string, string> message)
+    {
+        if (string.IsNullOrEmpty(message.Value))
+        {
+            _logger.LogWarning("Received empty message");
+            return;
+        }
+
+        var stopwatch = Stopwatch.StartNew();
+        try
+        {
+            if (!message.Value.IsValidJsonMessage())
+            {
+                _logger.LogWarning("The message cannot be deserialized because it is invalid");
+                return;
+            }
+
+            var cleanMessage = message.Value.SimpleCleanJsonMessage();
+            _logger.LogDebug("Received message: {CleanMessage}", cleanMessage);
+
+            var result = FixData.FromJson(cleanMessage);
+            if (result == null
+                || string.IsNullOrEmpty(result.Symbol)
+                || string.IsNullOrEmpty(result.MdReqId)
+                || result.Entries == null)
+            {
+                _logger.LogWarning("The message cannot be deserialized because it is in an invalid format");
+                return;
+            }
+
+            var split = result.Symbol?.Split(".") ?? [];
+            var symbol = split[0];
+            var venue = split.Length > 1
+                ? split[1]
+                : string.Empty;
+
+            await HandleEntryAsync(result, symbol, venue, message.Timestamp);
+        }
+        catch (JsonException ex)
+        {
+            _logger.LogError(ex, "Error deserializing message");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error processing message");
+        }
+        finally
+        {
+            stopwatch.Stop();
+            _logger.LogInformation("HandleAsync completed in {ElapsedMilliseconds} ms",
+                stopwatch.ElapsedMilliseconds);
+        }
+    }
+
+    private async Task HandleEntryAsync(FixData result, string symbol, string venue, Timestamp creationTime)
+    {
+        // Update venue if null or empty
+        venue = await GetWhiteListVenue(symbol, venue);
+
+        foreach (var entry in (result.Entries ?? []).OfType<Entry>())
+        {
+            var marketSession = string.Empty;
+
+            if (entry.MdEntryType == FixMessageType.Trade)
+            {
+                var marketSchedules = await _marketScheduleService.GetMarketSchedulesAsync(symbol, venue);
+                var marketSchedule = marketSchedules
+                    .FirstOrDefault(target => !string.IsNullOrEmpty(target.Symbol)
+                                              && target.Symbol.Equals(symbol)
+                                              && entry.MdEntryTime >= target.UTCStartTime
+                                              && entry.MdEntryTime <= target.UTCEndTime);
+
+                if (marketSchedule is { MarketSession: not null })
+                    marketSession = marketSchedule.MarketSession;
+                else
+                    _logger.LogWarning("Market session for symbol: {Symbol} of trade entry was not found", symbol);
+            }
+
+            switch (entry.MdEntryType)
+            {
+                case FixMessageType.Bid:
+                case FixMessageType.Offer:
+                    await HandleOrderBookAsync(entry,
+                        symbol,
+                        venue,
+                        result.SendingTime,
+                        result.SequenceNumber,
+                        result.MdEntryType,
+                        creationTime);
+                    continue;
+                case FixMessageType.Trade:
+                    var tradeWrapper = new VariableWrapper
+                    {
+                        Symbol = symbol,
+                        Venue = venue,
+                        MarketSession = marketSession ?? string.Empty,
+                        SendingTime = result.SendingTime,
+                        SequenceNumber = result.SequenceNumber,
+                        MdEntryType = result.MdEntryType,
+                        CreationTime = creationTime
+                    };
+
+                    await HandlePublicTradeAsync(entry, tradeWrapper);
+                    await HandlePriceInfoAsync(entry, tradeWrapper);
+                    continue;
+                case FixMessageType.OpeningPrice:
+                    await HandleOpen(symbol, entry);
+                    break;
+                case FixMessageType.ClosingPrice:
+                    await HandlePriorClose(symbol, entry);
+                    break;
+                case FixMessageType.B:
+                    var priceWrapper = new VariableWrapper
+                    {
+                        Symbol = symbol,
+                        Venue = venue,
+                        MarketSession = marketSession ?? string.Empty,
+                        SendingTime = result.SendingTime,
+                        SequenceNumber = result.SequenceNumber,
+                        MdEntryType = result.MdEntryType,
+                        CreationTime = creationTime
+                    };
+
+                    await HandlePriceInfoAsync(entry, priceWrapper);
+                    continue;
+            }
+        }
+    }
+
+    private async Task<string> GetWhiteListVenue(string symbol, string venue)
+    {
+        if (!string.IsNullOrEmpty(venue))
+            return venue;
+
+        if (VenueCache.TryGetValue(symbol, out var cachedVenue)
+            && !string.IsNullOrEmpty(cachedVenue))
+            return cachedVenue;
+
+        var cacheKey = $"{CacheKey.Whitelist}-exchange-{symbol}";
+
+        try
+        {
+            var cachedData = await _redisPublisher.GetAsync<string>(cacheKey, true);
+
+            if (!string.IsNullOrEmpty(cachedData))
+            {
+                VenueCache.TryAdd(symbol, cachedData);
+                return cachedData;
+            }
+
+            var whiteList = await _whiteListService.GetByFilterAsync(target =>
+                !string.IsNullOrEmpty(target.Symbol)
+                && target.Symbol.Equals(symbol)
+            );
+
+            if (whiteList is { Exchange: not null })
+            {
+                var exchange = whiteList.Exchange;
+
+                await _redisPublisher.SetAsync(cacheKey, exchange, true, TimeSpan.FromHours(24));
+
+                VenueCache.TryAdd(symbol, exchange);
+
+                return exchange;
+            }
+
+            return string.Empty;
+        }
+        catch
+        {
+            return venue;
+        }
+    }
+
+    private async Task HandleOrderBookAsync(Entry entry,
+        string symbol,
+        string venue,
+        string? sendingTime,
+        long? sequenceNumber,
+        string? mdEntryType,
+        Timestamp creationTime
+    )
+    {
+        var orderBook = OrderBookMapperService.Map(entry);
+        if (orderBook != null)
+        {
+            var streamingBody = await GetOrCreateStreamingBodyAsync(symbol, venue);
+            if (string.Equals(streamingBody.Status, MarketSession.MainSession))
+                streamingBody.PreClose = streamingBody.PriorClose;
+
+            var streamOrderBook = streamingBody.OrderBook;
+
+            switch (entry.MdEntryType)
+            {
+                case FixMessageType.Bid:
+                    var bidOrder = OrderBookMapperService.ConvertBidToList(orderBook);
+                    if (bidOrder != null)
+                    {
+                        var bidOrders = new List<List<string>> { bidOrder };
+                        streamOrderBook.Bid = bidOrders;
+                    }
+
+                    break;
+                case FixMessageType.Offer:
+                    var offerOrder = OrderBookMapperService.ConvertOfferToList(orderBook);
+                    if (offerOrder != null)
+                    {
+                        var offerOrders = new List<List<string>> { offerOrder };
+                        streamOrderBook.Offer = offerOrders;
+                    }
+
+                    break;
+            }
+
+            streamingBody.OrderBook = streamOrderBook;
+            await PublishResultAsync(streamingBody, sendingTime, sequenceNumber, mdEntryType, creationTime, true);
+        }
+    }
+
+    private async Task HandlePriorClose(string symbol, Entry entry)
+    {
+        var cacheKey = $"{CacheKey.PriorClose}{symbol}";
+        await _redisPublisher.SetAsync(cacheKey, entry.MdEntryPx.ToString(CultureInfo.InvariantCulture));
+    }
+
+    private async Task HandleOpen(string symbol, Entry entry)
+    {
+        var cacheKey = $"{CacheKey.Open}{symbol}";
+        await _redisPublisher.SetAsync(cacheKey, entry.MdEntryPx.ToString(CultureInfo.InvariantCulture));
+    }
+
+    private async Task HandlePriceInfoAsync(Entry entry, VariableWrapper variableWrapper)
+    {
+        var symbol = variableWrapper.Symbol ?? string.Empty;
+        var venue = variableWrapper.Venue ?? string.Empty;
+        var marketSession = variableWrapper.MarketSession ?? string.Empty;
+        var sendingTime = variableWrapper.SendingTime;
+        var sequenceNumber = variableWrapper.SequenceNumber;
+        var mdEntryType = variableWrapper.MdEntryType;
+        var creationTime = variableWrapper.CreationTime;
+        var streamingBody = await GetOrCreateStreamingBodyAsync(symbol, venue);
+        var streamingBodyUpdated = _priceInfoMapperService.Map(streamingBody, marketSession, entry);
+
+        await PublishResultAsync(streamingBodyUpdated, sendingTime, sequenceNumber, mdEntryType, creationTime,
+            true);
+    }
+
+    private async Task HandlePublicTradeAsync(Entry entry, VariableWrapper variableWrapper)
+    {
+        var symbol = variableWrapper.Symbol ?? string.Empty;
+        var venue = variableWrapper.Venue ?? string.Empty;
+        var marketSession = variableWrapper.MarketSession;
+        var sendingTime = variableWrapper.SendingTime;
+        var sequenceNumber = variableWrapper.SequenceNumber;
+        var mdEntryType = variableWrapper.MdEntryType;
+        var creationTime = variableWrapper.CreationTime;
+
+        if (string.IsNullOrEmpty(marketSession)
+            || !MarketSession.MainSession.ToUpper().Equals(marketSession.ToUpper()))
+            return;
+
+        var publicTrade = PublicTradeMapperService.Map(entry);
+        var streamingBody = await GetOrCreateStreamingBodyAsync(
+            symbol,
+            venue
+        );
+
+        // Build PublicTrade
+        var publicTrades = streamingBody.PublicTrades;
+        List<List<object>> updatedTrades =
+        [
+            PublicTradeMapperService.ConvertToList(publicTrade, streamingBody.PreClose)
+        ];
+
+        if (publicTrades is { Count: > 0 })
+            updatedTrades.AddRange(publicTrades);
+
+        streamingBody.PublicTrades = updatedTrades.Take(DefaultValue.MaxPublicTradeCount).ToList();
+
+        await PublishResultAsync(streamingBody, sendingTime, sequenceNumber, mdEntryType, creationTime, false);
+    }
+
+    private async Task<StreamingBody> GetOrCreateStreamingBodyAsync(string symbol, string venue)
+    {
+        var streamingCacheKey = $"{CacheKey.StreamingBody}{symbol}";
+        var priorCloseCacheKey = $"{CacheKey.PriorClose}{symbol}";
+        var openCacheKey = $"{CacheKey.Open}{symbol}";
+        var cacheKeys = new List<string>
+        {
+            priorCloseCacheKey,
+            openCacheKey
+        };
+
+        var cacheData = await _redisPublisher.GetManyAsync<string>(cacheKeys);
+        var priorClose = cacheData[priorCloseCacheKey] ?? "0.00";
+        var open = cacheData[openCacheKey] ?? "0.00";
+        var streamingBody = await _redisPublisher.GetAsync<StreamingBody>(streamingCacheKey) ??
+                            _streamingBodyPool.Get();
+
+        streamingBody.PriorClose = priorClose;
+        streamingBody.Open = open;
+        streamingBody.Symbol = symbol;
+        streamingBody.Venue = venue;
+
+        return streamingBody;
+    }
+
+    private async Task PublishResultAsync(StreamingBody streamingBody,
+        string? sendingTime,
+        long? sequenceNumber,
+        string? mdEntryType,
+        Timestamp creationTime,
+        bool isPublish)
+    {
+        if (isPublish)
+        {
+            var streamingResponse = new StreamingResponse { Data = [streamingBody] };
+            var marketStreamingResponse = new MarketStreamingResponse
+            {
+                Code = "200",
+                Op = "Streaming",
+                SendingTime = sendingTime ?? string.Empty,
+                SequenceNumber = sequenceNumber ?? 0,
+                ProcessingTime = DateTime.UtcNow.ToString("yyyyMMdd-HH:mm:ss.fff"),
+                SendingId = Guid.NewGuid().ToString("N"),
+                CreationTime = creationTime.UtcDateTime.ToString("yyyyMMdd-HH:mm:ss.fff"),
+                MdEntryType = mdEntryType,
+                Response = streamingResponse
+            };
+
+            // To Pub/Sub (StreamingResponse)
+            await _redisPublisher.PublishAsync(_channel, marketStreamingResponse, true);
+        }
+
+        await SetStreamingCache(streamingBody);
+    }
+
+    private async Task SetStreamingCache(StreamingBody streamingBody)
+    {
+        var cacheKey = $"{CacheKey.StreamingBody}{streamingBody.Symbol}";
+        await _redisPublisher.SetAsync(cacheKey, streamingBody);
+
+        var symbol = streamingBody.Symbol;
+        await _taskQueue.QueueTaskAsync(async _ =>
+        {
+            try
+            {
+                var priceBody = new PriceResponse
+                {
+                    Price = !string.IsNullOrEmpty(streamingBody.Price)
+                        ? streamingBody.Price
+                        : "0.00",
+                    PriceChanged = streamingBody.PriceChanged,
+                    PriceChangedRate = streamingBody.PriceChangedRate,
+                    TotalVolume = streamingBody.TotalVolume,
+                    TotalAmount = streamingBody.TotalAmount
+                };
+
+                var priceCacheKey = $"{CacheKey.PriceStreamingBody}{symbol}";
+                await _redisPublisher.SetStringAsync(priceCacheKey, priceBody);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error setting price cache for {Symbol}", symbol);
+            }
+        });
+    }
+}
