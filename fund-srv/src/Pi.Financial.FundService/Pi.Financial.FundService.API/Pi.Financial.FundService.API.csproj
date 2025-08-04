@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Pi.Financial.FundService.API</RootNamespace>
+    <DockerComposeProjectPath>../docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>119b34fc-0ee5-48ed-81a7-99d7381f33df</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <NoWarn>1701;1702;1591;0618</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net8.0\Pi.Financial.FundService.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\net8.0\Pi.Financial.FundService.API.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.HeaderPropagation" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.11" />
+    <PackageReference Include="Pi.Common" Version="1.0.115" />
+    <PackageReference Include="Pi.Common.Serilog" Version="1.0.115" />
+    <PackageReference Include="Pi.Common.Startup" Version="1.0.115" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+    <PackageReference Include="Serilog.Expressions" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+    <PackageReference Include="MassTransit" Version="8.2.3" />
+    <PackageReference Include="MassTransit.Analyzers" Version="8.2.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.2.3" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+    <PackageReference Include="MassTransit.AmazonSQS" Version="8.2.3" />
+    <PackageReference Include="Pi.Financial.Client.Freewill" Version="1.0.79" />
+    <PackageReference Include="Amazon.Extensions.Configuration.SystemsManager" Version="4.0.0" />
+    <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="MediatR" />
+    <None Remove="MediatR.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <None Remove="Microsoft.CodeAnalysis.NetAnalyzers" />
+    <None Remove="Serilog.AspNetCore" />
+    <None Remove="MassTransit" />
+    <None Remove="MassTransit.Analyzers" />
+    <None Remove="MassTransit.AmazonSQS" />
+    <None Remove="MassTransit.EntityFrameworkCore" />
+    <None Remove="MassTransit.RabbitMQ" />
+    <None Remove="Winton.Extensions.Configuration.Consul" />
+    <None Remove="Serilog.Sinks.Seq" />
+    <None Remove="Startup\" />
+    <None Remove="Pi.Financial.Client.Freewill" />
+    <None Remove="Pi.Financial.Client.PdfService" />
+    <None Remove="Amazon.Extensions.Configuration.SystemsManager" />
+    <None Remove="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.Financial.FundService.Application\Pi.Financial.FundService.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.Financial.FundService.Infrastructure\Pi.Financial.FundService.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.Financial.Client.FundConnext\Pi.Financial.Client.FundConnext.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Pi.Financial.FundService.Migrations\Pi.Financial.FundService.Migrations.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Startup\" />
+  </ItemGroup>
+</Project>

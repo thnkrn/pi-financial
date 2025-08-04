@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  db:
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@assword
+      - MYSQL_PASSWORD=password
+      - MYSQL_USER=fund_service_user
+
+  pi.financial.fundservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - AwsSqs__Region=localstack
+      - AwsSqs__ServiceUrl=http://localstack:4566
+      - Serilog__WriteTo__1__Args__serverUrl=http://host.docker.internal:5341
+      - ConnectionStrings__Fund=server=db;database=fund_db;user=fund_service_user;password=password
+    ports:
+      - "80"
+    volumes:
+    - ~/.aws:/root/.aws:ro
+
+  pi.financial.fundservice.worker:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - AwsSqs__Region=localstack
+      - AwsSqs__ServiceUrl=http://localstack:4566
+      - Serilog__WriteTo__1__Args__serverUrl=http://host.docker.internal:5341
+      - ConnectionStrings__Fund=server=db;database=fund_db;user=fund_service_user;password=password
+    volumes:
+    - ~/.aws:/root/.aws:ro

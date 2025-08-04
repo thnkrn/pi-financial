@@ -1,0 +1,8 @@
+{
+  "apiName": "PiItBackoffice",
+  "targetFramework": "net8.0",
+  "netCoreProjectFile": true,
+  "sourceFolder": "/",
+  "packageName": "Pi.Financial.Client.PiItBackoffice",
+  "library": "httpclient"
+}

@@ -1,0 +1,7 @@
+git_push.sh
+Pi.Financial.Client.FundConnext.sln
+docs/**
+appveyor.yml
+README.md
+Pi.Financial.Client.FundConnext.Test
+Pi.Financial.Client.FundConnext.Test/**

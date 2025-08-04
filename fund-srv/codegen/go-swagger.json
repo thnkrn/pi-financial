@@ -1,0 +1,3868 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Pi.Financial.FundService.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/fund-account": {
+      "post": {
+        "tags": [
+          "FundAccount"
+        ],
+        "summary": "Open Fund Account",
+        "operationId": "OpenFundAccount",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ndid": {
+      "get": {
+        "tags": [
+          "FundAccount"
+        ],
+        "summary": "Open Fund Account",
+        "operationId": "Ndid",
+        "parameters": [
+          {
+            "name": "custCode",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fund-account/document": {
+      "post": {
+        "tags": [
+          "FundAccount"
+        ],
+        "operationId": "GenerateDocument",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsGeneratedDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsGeneratedDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsGeneratedDocument"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fund-accounts": {
+      "post": {
+        "tags": [
+          "FundAccount"
+        ],
+        "operationId": "OpenFundAccounts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fund-accounts/opening-state": {
+      "get": {
+        "tags": [
+          "FundAccount"
+        ],
+        "operationId": "GetAccountOpeningState",
+        "parameters": [
+          {
+            "name": "requestReceivedDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ndid",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/fund-accounts/opening-state/{CustCode}": {
+      "get": {
+        "tags": [
+          "FundAccount"
+        ],
+        "operationId": "InternalGetAccountOpeningStateByCustCode",
+        "parameters": [
+          {
+            "name": "CustCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/debug/fund-customer/update": {
+      "put": {
+        "tags": [
+          "FundAccount"
+        ],
+        "operationId": "UpdateFundCustomer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fund-account/existence": {
+      "post": {
+        "tags": [
+          "FundAccount"
+        ],
+        "summary": "Is Fund Account Exist",
+        "operationId": "IsFundAccountExist",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountExistenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountExistenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountExistenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemBooleanApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemBooleanApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemBooleanApiResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/accounts/summaries": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/assets": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/accounts/assets": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/orders/delete": {
+      "delete": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsDeleteOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsDeleteOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsDeleteOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrderApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrderApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrderApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/accounts/openorders": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "effectiveDateFrom",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "effectiveDateTo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/histories": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "tradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "beginEffectiveDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endEffectiveDate",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderType",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/orders/histories/orderno": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "summary": "Get orders history by saOrderReferenceNo",
+        "parameters": [
+          {
+            "name": "orderNumbers",
+            "in": "query",
+            "description": "saOrderReferenceNo",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "FOSW202411260004,FOSUB202403230022"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/switch/info": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "TradingAccountNo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Symbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "TargetSymbol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/trading/orders/buy": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/buy": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/orders/buy": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "summary": "Subscribes to a fund order from internal DCA, which will contain the full error message.",
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/trading/orders/sell": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/sell": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/trading/orders/switch": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/secure/orders/switch": {
+      "post": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "user-id",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/orders/raw-orders": {
+      "get": {
+        "tags": [
+          "FundTrading"
+        ],
+        "parameters": [
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialClientFundConnextModelFundOrderArrayApiResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialClientFundConnextModelFundOrderArrayApiResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PiFinancialClientFundConnextModelFundOrderArrayApiResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/internal/sync/unitholders": {
+      "post": {
+        "tags": [
+          "Sync"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/internal/sync/fundorders": {
+      "post": {
+        "tags": [
+          "Sync"
+        ],
+        "parameters": [
+          {
+            "name": "effectiveDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "forceCreateOffline",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/internal/sync/customer-data": {
+      "post": {
+        "tags": [
+          "Sync"
+        ],
+        "parameters": [
+          {
+            "name": "customerCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "correlationId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "bankAccountNo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MicrosoftAspNetCoreMvcProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "PiFinancialClientFundConnextModelAddressForProfileV5": {
+        "type": "object",
+        "properties": {
+          "no": {
+            "type": "string",
+            "nullable": true
+          },
+          "floor": {
+            "type": "string",
+            "nullable": true
+          },
+          "building": {
+            "type": "string",
+            "nullable": true
+          },
+          "roomNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "soi": {
+            "type": "string",
+            "nullable": true
+          },
+          "road": {
+            "type": "string",
+            "nullable": true
+          },
+          "moo": {
+            "type": "string",
+            "nullable": true
+          },
+          "subdistrict": {
+            "type": "string",
+            "nullable": true
+          },
+          "district": {
+            "type": "string",
+            "nullable": true
+          },
+          "province": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5": {
+        "type": "object",
+        "properties": {
+          "identificationCardType": {
+            "enum": [
+              "passport",
+              "citizencard"
+            ],
+            "type": "string"
+          },
+          "accompanyingDocument": {
+            "enum": [
+              "citizencard",
+              "aliencard"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "enum": [
+              "mr",
+              "mrs",
+              "miss",
+              "other"
+            ],
+            "type": "string"
+          },
+          "maritalStatus": {
+            "enum": [
+              "single",
+              "married"
+            ],
+            "type": "string"
+          },
+          "occupationId": {
+            "enum": [
+              "numbeR_20",
+              "numbeR_25",
+              "numbeR_30",
+              "numbeR_40",
+              "numbeR_50",
+              "numbeR_60",
+              "numbeR_70",
+              "numbeR_80",
+              "numbeR_90",
+              "numbeR_110",
+              "numbeR_120",
+              "numbeR_130",
+              "numbeR_140",
+              "numbeR_150",
+              "numbeR_160",
+              "numbeR_170"
+            ],
+            "type": "string"
+          },
+          "businessTypeId": {
+            "enum": [
+              "numbeR_20",
+              "numbeR_30",
+              "numbeR_40",
+              "numbeR_60",
+              "numbeR_70",
+              "numbeR_80",
+              "numbeR_90",
+              "numbeR_110",
+              "numbeR_120",
+              "numbeR_130",
+              "numbeR_140",
+              "numbeR_150",
+              "numbeR_155",
+              "numbeR_160",
+              "numbeR_170",
+              "numbeR_180"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "monthlyIncomeLevel": {
+            "enum": [
+              "leveL1",
+              "leveL2",
+              "leveL3",
+              "leveL4",
+              "leveL5",
+              "leveL6",
+              "leveL7",
+              "leveL8",
+              "leveL9"
+            ],
+            "type": "string"
+          },
+          "currentAddressSameAsFlag": {
+            "enum": [
+              "idDocument"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitabilityRiskLevel": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4",
+              "numbeR_5"
+            ],
+            "type": "string"
+          },
+          "cddScore": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "openFundConnextFormFlag": {
+            "enum": [
+              "y",
+              "n",
+              "s"
+            ],
+            "type": "string"
+          },
+          "openChannel": {
+            "enum": [
+              "_1",
+              "_2"
+            ],
+            "type": "string"
+          },
+          "investorClass": {
+            "enum": [
+              "_1",
+              "_2",
+              "_3",
+              "_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "passportCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardExpiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "titleOther": {
+            "type": "string",
+            "nullable": true
+          },
+          "enFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "enLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "thFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "thLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "birthDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "nationality": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobileNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "spouse": {
+            "$ref": "#/components/schemas/PiFinancialClientFundConnextModelSpouse"
+          },
+          "occupationOther": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessTypeOther": {
+            "type": "string",
+            "nullable": true
+          },
+          "assetValue": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "incomeSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "incomeSourceOther": {
+            "type": "string",
+            "nullable": true
+          },
+          "identificationDocument": {
+            "$ref": "#/components/schemas/PiFinancialClientFundConnextModelAddressForProfileV5"
+          },
+          "current": {
+            "$ref": "#/components/schemas/PiFinancialClientFundConnextModelAddressForProfileV5"
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "work": {
+            "$ref": "#/components/schemas/PiFinancialClientFundConnextModelAddressForProfileV5"
+          },
+          "workPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "relatedPoliticalPerson": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "politicalRelatedPersonPosition": {
+            "type": "string",
+            "nullable": true
+          },
+          "canAcceptFxRisk": {
+            "type": "boolean"
+          },
+          "canAcceptDerivativeInvestment": {
+            "type": "boolean"
+          },
+          "suitabilityEvaluationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "fatca": {
+            "type": "boolean"
+          },
+          "fatcaDeclarationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "crsPlaceOfBirthCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "crsPlaceOfBirthCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "crsTaxResidenceInCountriesOtherThanTheUS": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "crsDetails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5CrsDetailsInner"
+            },
+            "nullable": true
+          },
+          "crsDeclarationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "cddDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "referralPerson": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "incomeSourceCountry": {
+            "type": "string",
+            "nullable": true
+          },
+          "acceptedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "vulnerableFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "vulnerableDetail": {
+            "type": "string",
+            "nullable": true
+          },
+          "ndidFlag": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "ndidRequestId": {
+            "type": "string",
+            "nullable": true
+          },
+          "suitabilityForm": {
+            "$ref": "#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5SuitabilityForm"
+          },
+          "knowledgeAssessmentResult": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "knowledgeAssessmentForm": {
+            "$ref": "#/components/schemas/PiFinancialClientFundConnextModelIndividualInvestorV5ResponseKnowledgeAssessmentForm"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5CrsDetailsInner": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "enum": [
+              "a",
+              "b",
+              "c"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "countryOfTaxResidence": {
+            "type": "string",
+            "nullable": true
+          },
+          "tin": {
+            "type": "string",
+            "nullable": true
+          },
+          "reasonDesc": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5SuitabilityForm": {
+        "type": "object",
+        "properties": {
+          "suitNo1": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo2": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo3": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo5": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo6": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo7": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo8": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo9": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo10": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2",
+              "numbeR_3",
+              "numbeR_4"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo11": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo12": {
+            "enum": [
+              "numbeR_1",
+              "numbeR_2"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "suitNo4": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "numbeR_1",
+                "numbeR_2",
+                "numbeR_3",
+                "numbeR_4"
+              ],
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelFundOrder": {
+        "type": "object",
+        "properties": {
+          "sellAllUnitFlag": {
+            "enum": [
+              "y",
+              "n"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "enum": [
+              "allotted",
+              "approved",
+              "cancelled",
+              "expired",
+              "rejected",
+              "submitted",
+              "waiting"
+            ],
+            "type": "string"
+          },
+          "transactionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "saOrderReferenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderType": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountId": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitholderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "fundCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "redemptionType": {
+            "type": "string",
+            "nullable": true
+          },
+          "unit": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transactionDateTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "effectiveDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "settlementDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "amcOrderReferenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "allottedUnit": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allottedAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allottedNAV": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "allotmentDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "fee": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transactionLastUpdated": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "type": "string",
+            "nullable": true
+          },
+          "icLicense": {
+            "type": "string",
+            "nullable": true
+          },
+          "branchNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "forceEntry": {
+            "type": "string",
+            "nullable": true
+          },
+          "settlementBankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "settlementBankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "chqBranch": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "navDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "collateralAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "accountType": {
+            "type": "string",
+            "nullable": true
+          },
+          "recurringOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentProcessingType": {
+            "type": "string",
+            "nullable": true
+          },
+          "saRecurringOrderRefNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "crcApprovalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "pointCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "counterUnitholderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "counterFundCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "xwtReferenceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalTransactionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "lmtsAdlsFee": {
+            "type": "string",
+            "nullable": true
+          },
+          "lmtsLiquidityFee": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelFundOrderArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialClientFundConnextModelFundOrder"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelIndividualInvestorV5ResponseKnowledgeAssessmentForm": {
+        "type": "object",
+        "properties": {
+          "no1": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "no2": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "no3": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialClientFundConnextModelSpouse": {
+        "type": "object",
+        "properties": {
+          "thFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "thLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "enFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "enLastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsAccountSummaryResponse": {
+        "required": [
+          "asOfDate",
+          "assets",
+          "customerCode",
+          "totalCostValue",
+          "totalMarketValue",
+          "totalUpnl",
+          "tradingAccountNo"
+        ],
+        "type": "object",
+        "properties": {
+          "customerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "asOfDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "totalMarketValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCostValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalUpnl": {
+            "type": "number",
+            "format": "double"
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsBrokerOrder": {
+        "required": [
+          "brokerOrderId"
+        ],
+        "type": "object",
+        "properties": {
+          "brokerOrderId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsBrokerOrderApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrder"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsDeleteOrderRequest": {
+        "required": [
+          "brokerOrderId",
+          "orderSide",
+          "tradingAccountNo"
+        ],
+        "type": "object",
+        "properties": {
+          "brokerOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderSide": {
+            "enum": [
+              "buy",
+              "sell",
+              "switch",
+              "crossSwitch",
+              "transfer"
+            ],
+            "type": "string"
+          },
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "force": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsDocument": {
+        "type": "object",
+        "properties": {
+          "documentType": {
+            "type": "string",
+            "nullable": true
+          },
+          "preSignedUrl": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsFundAccountExistenceRequest": {
+        "required": [
+          "identificationCardNo"
+        ],
+        "type": "object",
+        "properties": {
+          "identificationCardNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "passportCountry": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsFundAccountOpeningTicket": {
+        "type": "object",
+        "properties": {
+          "customerCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "ticketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsFundOrderPlaced": {
+        "required": [
+          "brokerOrderId",
+          "orderNo",
+          "unitHolderId"
+        ],
+        "type": "object",
+        "properties": {
+          "brokerOrderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitHolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "settlementDate": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlaced"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsGeneratedDocument": {
+        "type": "object",
+        "properties": {
+          "ticketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsDocument"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsInternalFundAssetResponse": {
+        "required": [
+          "asOfDate",
+          "avgCostPrice",
+          "costValue",
+          "custCode",
+          "fundCode",
+          "marketPrice",
+          "marketValue",
+          "pendingAmount",
+          "pendingUnit",
+          "remainAmount",
+          "remainUnit",
+          "tradingAccountNo",
+          "unit",
+          "unitHolderId",
+          "upnl",
+          "upnlPercentage"
+        ],
+        "type": "object",
+        "properties": {
+          "custCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "marketPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "remainUnit": {
+            "type": "number",
+            "format": "double"
+          },
+          "marketValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "costValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "upnl": {
+            "type": "number",
+            "format": "double"
+          },
+          "upnlPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "friendlyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "instrumentCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitHolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "asOfDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "fundCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradingAccountNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "unit": {
+            "type": "number",
+            "format": "double"
+          },
+          "avgCostPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "remainAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "pendingAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "pendingUnit": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsNdidInfo": {
+        "type": "object",
+        "properties": {
+          "approvedDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "requestId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsOpenFundAccountDto": {
+        "required": [
+          "customerCode"
+        ],
+        "type": "object",
+        "properties": {
+          "customerCode": {
+            "maxLength": 7,
+            "minLength": 7,
+            "type": "string"
+          },
+          "ndid": {
+            "type": "boolean"
+          },
+          "ndidInfo": {
+            "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsNdidInfo"
+          },
+          "isOpenSegregateAccount": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "openAccountRegisterUid": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusFundAssetResponse": {
+        "required": [
+          "asOfDate",
+          "availableVolume",
+          "averageCostPrice",
+          "costValue",
+          "custCode",
+          "logo",
+          "marketPrice",
+          "marketValue",
+          "remainAmount",
+          "remainUnit",
+          "symbol",
+          "unitHolderId",
+          "upnl",
+          "upnlPercentage"
+        ],
+        "type": "object",
+        "properties": {
+          "custCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "marketPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "remainUnit": {
+            "type": "number",
+            "format": "double"
+          },
+          "marketValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "costValue": {
+            "type": "number",
+            "format": "double"
+          },
+          "upnl": {
+            "type": "number",
+            "format": "double"
+          },
+          "upnlPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "friendlyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "instrumentCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitHolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "averageCostPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "asOfDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "symbol": {
+            "type": "string",
+            "nullable": true
+          },
+          "logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "remainAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "availableVolume": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponse": {
+        "required": [
+          "account",
+          "accountType",
+          "amount",
+          "bankAccount",
+          "bankCode",
+          "bankShortName",
+          "channel",
+          "effectiveDate",
+          "fundCode",
+          "nav",
+          "orderId",
+          "orderType",
+          "paymentMethod",
+          "status",
+          "transactionDateTime",
+          "unit",
+          "unitHolderId"
+        ],
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "number",
+            "format": "double"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "fundCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankShortName": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderType": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "enum": [
+              "processing",
+              "matched",
+              "pending",
+              "cancelled",
+              "rejected"
+            ],
+            "type": "string"
+          },
+          "nav": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "effectiveDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionDateTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitHolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "channel": {
+            "enum": [
+              "mob",
+              "onl",
+              "mkt"
+            ],
+            "type": "string"
+          },
+          "accountType": {
+            "enum": [
+              "seg",
+              "omn",
+              "seG_NT",
+              "seG_T",
+              "omN_NT",
+              "omN_T"
+            ],
+            "type": "string",
+            "nullable": true
+          },
+          "settlementDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionLastUpdated": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentStatus": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusFundOrderResponse": {
+        "required": [
+          "account",
+          "amount",
+          "bankAccount",
+          "bankCode",
+          "bankShortName",
+          "edd",
+          "effectiveDate",
+          "fundCode",
+          "nav",
+          "orderId",
+          "orderType",
+          "paymentMethod",
+          "status",
+          "switchIn",
+          "switchTo",
+          "transactionDateTime",
+          "transactionLastUpdated",
+          "unit"
+        ],
+        "type": "object",
+        "properties": {
+          "unit": {
+            "type": "number",
+            "format": "double"
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "edd": {
+            "type": "string",
+            "nullable": true
+          },
+          "switchIn": {
+            "type": "string",
+            "nullable": true
+          },
+          "switchTo": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankShortName": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "account": {
+            "type": "string",
+            "nullable": true
+          },
+          "fundCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderType": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "enum": [
+              "processing",
+              "matched",
+              "pending",
+              "cancelled",
+              "rejected"
+            ],
+            "type": "string"
+          },
+          "nav": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transactionLastUpdated": {
+            "type": "string",
+            "nullable": true
+          },
+          "effectiveDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "transactionDateTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "settlementDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "orderNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponse"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest": {
+        "required": [
+          "bankAccount",
+          "bankCode",
+          "effectiveDate",
+          "paymentMethod",
+          "quantity",
+          "symbol",
+          "tradingAccountNo"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "effectiveDate": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "paymentMethod": {
+            "enum": [
+              "ats",
+              "bankTransfer"
+            ],
+            "type": "string"
+          },
+          "bankAccount": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bankCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "unitHolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "recurring": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest": {
+        "required": [
+          "bankAccount",
+          "bankCode",
+          "effectiveDate",
+          "quantity",
+          "symbol",
+          "tradingAccountNo",
+          "unitHolderId",
+          "unitType"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "effectiveDate": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitType": {
+            "enum": [
+              "amount",
+              "unit"
+            ],
+            "type": "string"
+          },
+          "unitHolderId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bankAccount": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "bankCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sellAllFlag": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest": {
+        "required": [
+          "effectiveDate",
+          "quantity",
+          "symbol",
+          "targetSymbol",
+          "tradingAccountNo",
+          "unitHolderId",
+          "unitType"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "effectiveDate": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tradingAccountNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "targetSymbol": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "unitHolderId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "unitType": {
+            "enum": [
+              "amount",
+              "unit"
+            ],
+            "type": "string"
+          },
+          "sellAllFlag": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceApplicationModelsTradingSwitchInfo": {
+        "required": [
+          "minSwitchAmount",
+          "minSwitchUnit"
+        ],
+        "type": "object",
+        "properties": {
+          "minSwitchUnit": {
+            "type": "number",
+            "format": "double"
+          },
+          "minSwitchAmount": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus": {
+        "type": "object",
+        "properties": {
+          "custCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestReceivedTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "ndid": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "documentGenerationTicketId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "ndidRequestId": {
+            "type": "string",
+            "nullable": true
+          },
+          "ndidDateTime": {
+            "type": "string",
+            "nullable": true
+          },
+          "failedReason": {
+            "type": "string",
+            "nullable": true
+          },
+          "isOpenSegregateAccount": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "openAccountRegisterUid": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemBooleanApiResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

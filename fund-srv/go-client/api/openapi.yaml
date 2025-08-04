@@ -1,0 +1,3510 @@
+openapi: 3.0.1
+info:
+  title: "Pi.Financial.FundService.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /fund-account:
+    post:
+      operationId: OpenFundAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+        description: ""
+      responses:
+        "202":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket'
+          description: Accepted
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+      summary: Open Fund Account
+      tags:
+      - FundAccount
+  /ndid:
+    get:
+      operationId: Ndid
+      parameters:
+      - description: ""
+        explode: true
+        in: query
+        name: custCode
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+      summary: Open Fund Account
+      tags:
+      - FundAccount
+  /fund-account/document:
+    post:
+      operationId: GenerateDocument
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+      responses:
+        "202":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsGeneratedDocument'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsGeneratedDocument'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsGeneratedDocument'
+                type: array
+          description: Accepted
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+      tags:
+      - FundAccount
+  /fund-accounts:
+    post:
+      operationId: OpenFundAccounts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+              type: array
+          text/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+              type: array
+          application/*+json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsOpenFundAccountDto'
+              type: array
+      responses:
+        "202":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountOpeningTicket'
+                type: array
+          description: Accepted
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+      tags:
+      - FundAccount
+  /fund-accounts/opening-state:
+    get:
+      operationId: GetAccountOpeningState
+      parameters:
+      - explode: true
+        in: query
+        name: requestReceivedDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: ndid
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus'
+                type: array
+          description: OK
+      tags:
+      - FundAccount
+  /internal/fund-accounts/opening-state/{CustCode}:
+    get:
+      operationId: InternalGetAccountOpeningStateByCustCode
+      parameters:
+      - explode: false
+        in: path
+        name: CustCode
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse'
+          description: OK
+        "404":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Not Found
+      tags:
+      - FundAccount
+  /debug/fund-customer/update:
+    put:
+      operationId: UpdateFundCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5'
+        required: true
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+      tags:
+      - FundAccount
+  /fund-account/existence:
+    post:
+      operationId: IsFundAccountExist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountExistenceRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountExistenceRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundAccountExistenceRequest'
+        description: ""
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SystemBooleanApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemBooleanApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SystemBooleanApiResponse'
+          description: OK
+      summary: Is Fund Account Exist
+      tags:
+      - FundAccount
+  /internal/accounts/summaries:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /secure/accounts/assets:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /internal/accounts/assets:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /internal/orders/delete:
+    delete:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsDeleteOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsDeleteOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsDeleteOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrderApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrderApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrderApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /secure/accounts/openorders:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: effectiveDateFrom
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: effectiveDateTo
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /secure/orders/histories:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: tradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: beginEffectiveDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: endEffectiveDate
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: orderType
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /internal/orders/histories/orderno:
+    get:
+      parameters:
+      - description: saOrderReferenceNo
+        example: "FOSW202411260004,FOSUB202403230022"
+        explode: true
+        in: query
+        name: orderNumbers
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      summary: Get orders history by saOrderReferenceNo
+      tags:
+      - FundTrading
+  /secure/orders/switch/info:
+    get:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: TradingAccountNo
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: Symbol
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: TargetSymbol
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /trading/orders/buy:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /secure/orders/buy:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /internal/orders/buy:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      summary: "Subscribes to a fund order from internal DCA, which will contain the\
+        \ full error message."
+      tags:
+      - FundTrading
+  /trading/orders/sell:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /secure/orders/sell:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /trading/orders/switch:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /secure/orders/switch:
+    post:
+      parameters:
+      - explode: false
+        in: header
+        name: user-id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest'
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse'
+          description: OK
+        "400":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Bad Request
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /internal/orders/raw-orders:
+    get:
+      parameters:
+      - explode: true
+        in: query
+        name: effectiveDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PiFinancialClientFundConnextModelFundOrderArrayApiResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialClientFundConnextModelFundOrderArrayApiResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PiFinancialClientFundConnextModelFundOrderArrayApiResponse'
+          description: OK
+        "422":
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MicrosoftAspNetCoreMvcProblemDetails'
+          description: Unprocessable Content
+        "500":
+          description: Internal Server Error
+      tags:
+      - FundTrading
+  /internal/sync/unitholders:
+    post:
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Sync
+  /internal/sync/fundorders:
+    post:
+      parameters:
+      - explode: true
+        in: query
+        name: effectiveDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: forceCreateOffline
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          description: OK
+      tags:
+      - Sync
+  /internal/sync/customer-data:
+    post:
+      parameters:
+      - explode: true
+        in: query
+        name: customerCode
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: correlationId
+        required: false
+        schema:
+          format: uuid
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: bankAccountNo
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "202":
+          description: Accepted
+      tags:
+      - Sync
+components:
+  schemas:
+    MicrosoftAspNetCoreMvcProblemDetails:
+      additionalProperties: {}
+      example:
+        instance: instance
+        detail: detail
+        type: type
+        title: title
+        status: 0
+      properties:
+        type:
+          nullable: true
+          type: string
+        title:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialClientFundConnextModelAddressForProfileV5:
+      additionalProperties: false
+      example:
+        "no": "no"
+        country: country
+        roomNo: roomNo
+        province: province
+        road: road
+        subdistrict: subdistrict
+        district: district
+        postalCode: postalCode
+        floor: floor
+        soi: soi
+        moo: moo
+        building: building
+      properties:
+        "no":
+          nullable: true
+          type: string
+        floor:
+          nullable: true
+          type: string
+        building:
+          nullable: true
+          type: string
+        roomNo:
+          nullable: true
+          type: string
+        soi:
+          nullable: true
+          type: string
+        road:
+          nullable: true
+          type: string
+        moo:
+          nullable: true
+          type: string
+        subdistrict:
+          nullable: true
+          type: string
+        district:
+          nullable: true
+          type: string
+        province:
+          nullable: true
+          type: string
+        postalCode:
+          nullable: true
+          type: string
+        country:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5:
+      additionalProperties: false
+      example:
+        mobileNumber: mobileNumber
+        companyName: companyName
+        openChannel: _1
+        assetValue: 0.8008281904610115
+        spouse:
+          enLastName: enLastName
+          thFirstName: thFirstName
+          enFirstName: enFirstName
+          thLastName: thLastName
+        crsDeclarationDate: crsDeclarationDate
+        approved: true
+        identificationDocument:
+          "no": "no"
+          country: country
+          roomNo: roomNo
+          province: province
+          road: road
+          subdistrict: subdistrict
+          district: district
+          postalCode: postalCode
+          floor: floor
+          soi: soi
+          moo: moo
+          building: building
+        enFirstName: enFirstName
+        thFirstName: thFirstName
+        occupationId: numbeR_20
+        incomeSourceCountry: incomeSourceCountry
+        occupationOther: occupationOther
+        fax: fax
+        relatedPoliticalPerson: true
+        openFundConnextFormFlag: "y"
+        ndidFlag: true
+        workPosition: workPosition
+        work:
+          "no": "no"
+          country: country
+          roomNo: roomNo
+          province: province
+          road: road
+          subdistrict: subdistrict
+          district: district
+          postalCode: postalCode
+          floor: floor
+          soi: soi
+          moo: moo
+          building: building
+        crsDetails:
+        - reason: a
+          tin: tin
+          countryOfTaxResidence: countryOfTaxResidence
+          reasonDesc: reasonDesc
+        - reason: a
+          tin: tin
+          countryOfTaxResidence: countryOfTaxResidence
+          reasonDesc: reasonDesc
+        identificationCardType: passport
+        enLastName: enLastName
+        knowledgeAssessmentResult: true
+        referralPerson: referralPerson
+        nationality: nationality
+        phone: phone
+        thLastName: thLastName
+        investorClass: _1
+        acceptedBy: acceptedBy
+        maritalStatus: single
+        cardNumber: cardNumber
+        cddDate: cddDate
+        applicationDate: applicationDate
+        vulnerableDetail: vulnerableDetail
+        ndidRequestId: ndidRequestId
+        suitabilityRiskLevel: numbeR_1
+        cddScore: numbeR_1
+        suitabilityEvaluationDate: suitabilityEvaluationDate
+        businessTypeOther: businessTypeOther
+        suitabilityForm:
+          suitNo1: numbeR_1
+          suitNo3: numbeR_1
+          suitNo2: numbeR_1
+          suitNo5: numbeR_1
+          suitNo4:
+          - numbeR_1
+          - numbeR_1
+          suitNo7: numbeR_1
+          suitNo6: numbeR_1
+          suitNo10: numbeR_1
+          suitNo9: numbeR_1
+          suitNo11: numbeR_1
+          suitNo8: numbeR_1
+          suitNo12: numbeR_1
+        fatcaDeclarationDate: fatcaDeclarationDate
+        title: mr
+        passportCountry: passportCountry
+        cardExpiryDate: cardExpiryDate
+        current:
+          "no": "no"
+          country: country
+          roomNo: roomNo
+          province: province
+          road: road
+          subdistrict: subdistrict
+          district: district
+          postalCode: postalCode
+          floor: floor
+          soi: soi
+          moo: moo
+          building: building
+        crsPlaceOfBirthCountry: crsPlaceOfBirthCountry
+        monthlyIncomeLevel: leveL1
+        politicalRelatedPersonPosition: politicalRelatedPersonPosition
+        email: email
+        currentAddressSameAsFlag: idDocument
+        vulnerableFlag: true
+        accompanyingDocument: citizencard
+        knowledgeAssessmentForm:
+          no2: true
+          no1: true
+          no3: true
+        birthDate: birthDate
+        businessTypeId: numbeR_20
+        crsPlaceOfBirthCity: crsPlaceOfBirthCity
+        titleOther: titleOther
+        incomeSourceOther: incomeSourceOther
+        canAcceptDerivativeInvestment: true
+        canAcceptFxRisk: true
+        crsTaxResidenceInCountriesOtherThanTheUS: true
+        incomeSource: incomeSource
+        fatca: true
+      properties:
+        identificationCardType:
+          enum:
+          - passport
+          - citizencard
+          type: string
+        accompanyingDocument:
+          enum:
+          - citizencard
+          - aliencard
+          nullable: true
+          type: string
+        title:
+          enum:
+          - mr
+          - mrs
+          - miss
+          - other
+          type: string
+        maritalStatus:
+          enum:
+          - single
+          - married
+          type: string
+        occupationId:
+          enum:
+          - numbeR_20
+          - numbeR_25
+          - numbeR_30
+          - numbeR_40
+          - numbeR_50
+          - numbeR_60
+          - numbeR_70
+          - numbeR_80
+          - numbeR_90
+          - numbeR_110
+          - numbeR_120
+          - numbeR_130
+          - numbeR_140
+          - numbeR_150
+          - numbeR_160
+          - numbeR_170
+          type: string
+        businessTypeId:
+          enum:
+          - numbeR_20
+          - numbeR_30
+          - numbeR_40
+          - numbeR_60
+          - numbeR_70
+          - numbeR_80
+          - numbeR_90
+          - numbeR_110
+          - numbeR_120
+          - numbeR_130
+          - numbeR_140
+          - numbeR_150
+          - numbeR_155
+          - numbeR_160
+          - numbeR_170
+          - numbeR_180
+          nullable: true
+          type: string
+        monthlyIncomeLevel:
+          enum:
+          - leveL1
+          - leveL2
+          - leveL3
+          - leveL4
+          - leveL5
+          - leveL6
+          - leveL7
+          - leveL8
+          - leveL9
+          type: string
+        currentAddressSameAsFlag:
+          enum:
+          - idDocument
+          nullable: true
+          type: string
+        suitabilityRiskLevel:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          - numbeR_5
+          type: string
+        cddScore:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          nullable: true
+          type: string
+        openFundConnextFormFlag:
+          enum:
+          - "y"
+          - "n"
+          - s
+          type: string
+        openChannel:
+          enum:
+          - _1
+          - _2
+          type: string
+        investorClass:
+          enum:
+          - _1
+          - _2
+          - _3
+          - _4
+          nullable: true
+          type: string
+        passportCountry:
+          nullable: true
+          type: string
+        cardNumber:
+          nullable: true
+          type: string
+        cardExpiryDate:
+          nullable: true
+          type: string
+        titleOther:
+          nullable: true
+          type: string
+        enFirstName:
+          nullable: true
+          type: string
+        enLastName:
+          nullable: true
+          type: string
+        thFirstName:
+          nullable: true
+          type: string
+        thLastName:
+          nullable: true
+          type: string
+        birthDate:
+          nullable: true
+          type: string
+        nationality:
+          nullable: true
+          type: string
+        mobileNumber:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        phone:
+          nullable: true
+          type: string
+        fax:
+          nullable: true
+          type: string
+        spouse:
+          $ref: '#/components/schemas/PiFinancialClientFundConnextModelSpouse'
+        occupationOther:
+          nullable: true
+          type: string
+        businessTypeOther:
+          nullable: true
+          type: string
+        assetValue:
+          format: double
+          nullable: true
+          type: number
+        incomeSource:
+          nullable: true
+          type: string
+        incomeSourceOther:
+          nullable: true
+          type: string
+        identificationDocument:
+          $ref: '#/components/schemas/PiFinancialClientFundConnextModelAddressForProfileV5'
+        current:
+          $ref: '#/components/schemas/PiFinancialClientFundConnextModelAddressForProfileV5'
+        companyName:
+          nullable: true
+          type: string
+        work:
+          $ref: '#/components/schemas/PiFinancialClientFundConnextModelAddressForProfileV5'
+        workPosition:
+          nullable: true
+          type: string
+        relatedPoliticalPerson:
+          nullable: true
+          type: boolean
+        politicalRelatedPersonPosition:
+          nullable: true
+          type: string
+        canAcceptFxRisk:
+          type: boolean
+        canAcceptDerivativeInvestment:
+          type: boolean
+        suitabilityEvaluationDate:
+          nullable: true
+          type: string
+        fatca:
+          type: boolean
+        fatcaDeclarationDate:
+          nullable: true
+          type: string
+        crsPlaceOfBirthCountry:
+          nullable: true
+          type: string
+        crsPlaceOfBirthCity:
+          nullable: true
+          type: string
+        crsTaxResidenceInCountriesOtherThanTheUS:
+          nullable: true
+          type: boolean
+        crsDetails:
+          items:
+            $ref: '#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5CrsDetailsInner'
+          nullable: true
+          type: array
+        crsDeclarationDate:
+          nullable: true
+          type: string
+        cddDate:
+          nullable: true
+          type: string
+        referralPerson:
+          nullable: true
+          type: string
+        applicationDate:
+          nullable: true
+          type: string
+        incomeSourceCountry:
+          nullable: true
+          type: string
+        acceptedBy:
+          nullable: true
+          type: string
+        approved:
+          type: boolean
+        vulnerableFlag:
+          nullable: true
+          type: boolean
+        vulnerableDetail:
+          nullable: true
+          type: string
+        ndidFlag:
+          nullable: true
+          type: boolean
+        ndidRequestId:
+          nullable: true
+          type: string
+        suitabilityForm:
+          $ref: '#/components/schemas/PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5SuitabilityForm'
+        knowledgeAssessmentResult:
+          nullable: true
+          type: boolean
+        knowledgeAssessmentForm:
+          $ref: '#/components/schemas/PiFinancialClientFundConnextModelIndividualInvestorV5ResponseKnowledgeAssessmentForm'
+      type: object
+    PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5CrsDetailsInner:
+      additionalProperties: false
+      example:
+        reason: a
+        tin: tin
+        countryOfTaxResidence: countryOfTaxResidence
+        reasonDesc: reasonDesc
+      properties:
+        reason:
+          enum:
+          - a
+          - b
+          - c
+          nullable: true
+          type: string
+        countryOfTaxResidence:
+          nullable: true
+          type: string
+        tin:
+          nullable: true
+          type: string
+        reasonDesc:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialClientFundConnextModelCustomerAccountCreateRequestV5SuitabilityForm:
+      additionalProperties: false
+      example:
+        suitNo1: numbeR_1
+        suitNo3: numbeR_1
+        suitNo2: numbeR_1
+        suitNo5: numbeR_1
+        suitNo4:
+        - numbeR_1
+        - numbeR_1
+        suitNo7: numbeR_1
+        suitNo6: numbeR_1
+        suitNo10: numbeR_1
+        suitNo9: numbeR_1
+        suitNo11: numbeR_1
+        suitNo8: numbeR_1
+        suitNo12: numbeR_1
+      properties:
+        suitNo1:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo2:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo3:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo5:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo6:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo7:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo8:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo9:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo10:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          - numbeR_3
+          - numbeR_4
+          nullable: true
+          type: string
+        suitNo11:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          nullable: true
+          type: string
+        suitNo12:
+          enum:
+          - numbeR_1
+          - numbeR_2
+          nullable: true
+          type: string
+        suitNo4:
+          items:
+            enum:
+            - numbeR_1
+            - numbeR_2
+            - numbeR_3
+            - numbeR_4
+            type: string
+          nullable: true
+          type: array
+      type: object
+    PiFinancialClientFundConnextModelFundOrder:
+      additionalProperties: false
+      example:
+        settlementBankAccount: settlementBankAccount
+        orderType: orderType
+        sellAllUnitFlag: "y"
+        fee: 2.3021358869347655
+        channel: channel
+        icLicense: icLicense
+        unitholderId: unitholderId
+        chqBranch: chqBranch
+        lmtsLiquidityFee: lmtsLiquidityFee
+        paymentType: paymentType
+        forceEntry: forceEntry
+        rejectReason: rejectReason
+        transactionLastUpdated: transactionLastUpdated
+        settlementBankCode: settlementBankCode
+        originalTransactionId: originalTransactionId
+        fundCode: fundCode
+        xwtReferenceNo: xwtReferenceNo
+        paymentStatus: paymentStatus
+        allottedAmount: 5.962133916683182
+        counterFundCode: counterFundCode
+        allottedUnit: 1.4658129805029452
+        bankAccount: bankAccount
+        bankCode: bankCode
+        counterUnitholderId: counterUnitholderId
+        amount: 6.027456183070403
+        navDate: navDate
+        crcApprovalCode: crcApprovalCode
+        pointCode: pointCode
+        redemptionType: redemptionType
+        transactionDateTime: transactionDateTime
+        paymentProcessingType: paymentProcessingType
+        accountType: accountType
+        allotmentDate: allotmentDate
+        collateralAccount: collateralAccount
+        recurringOrderId: recurringOrderId
+        settlementDate: settlementDate
+        saRecurringOrderRefNo: saRecurringOrderRefNo
+        saOrderReferenceNo: saOrderReferenceNo
+        amcOrderReferenceNo: amcOrderReferenceNo
+        transactionId: transactionId
+        accountId: accountId
+        allottedNAV: 5.637376656633329
+        unit: 0.8008281904610115
+        lmtsAdlsFee: lmtsAdlsFee
+        effectiveDate: effectiveDate
+        status: allotted
+        branchNo: branchNo
+      properties:
+        sellAllUnitFlag:
+          enum:
+          - "y"
+          - "n"
+          nullable: true
+          type: string
+        status:
+          enum:
+          - allotted
+          - approved
+          - cancelled
+          - expired
+          - rejected
+          - submitted
+          - waiting
+          type: string
+        transactionId:
+          nullable: true
+          type: string
+        saOrderReferenceNo:
+          nullable: true
+          type: string
+        orderType:
+          nullable: true
+          type: string
+        accountId:
+          nullable: true
+          type: string
+        unitholderId:
+          nullable: true
+          type: string
+        fundCode:
+          nullable: true
+          type: string
+        redemptionType:
+          nullable: true
+          type: string
+        unit:
+          format: double
+          nullable: true
+          type: number
+        amount:
+          format: double
+          nullable: true
+          type: number
+        transactionDateTime:
+          nullable: true
+          type: string
+        effectiveDate:
+          nullable: true
+          type: string
+        settlementDate:
+          nullable: true
+          type: string
+        amcOrderReferenceNo:
+          nullable: true
+          type: string
+        allottedUnit:
+          format: double
+          nullable: true
+          type: number
+        allottedAmount:
+          format: double
+          nullable: true
+          type: number
+        allottedNAV:
+          format: double
+          nullable: true
+          type: number
+        allotmentDate:
+          nullable: true
+          type: string
+        fee:
+          format: double
+          nullable: true
+          type: number
+        transactionLastUpdated:
+          nullable: true
+          type: string
+        paymentType:
+          nullable: true
+          type: string
+        bankCode:
+          nullable: true
+          type: string
+        bankAccount:
+          nullable: true
+          type: string
+        channel:
+          nullable: true
+          type: string
+        icLicense:
+          nullable: true
+          type: string
+        branchNo:
+          nullable: true
+          type: string
+        forceEntry:
+          nullable: true
+          type: string
+        settlementBankCode:
+          nullable: true
+          type: string
+        settlementBankAccount:
+          nullable: true
+          type: string
+        chqBranch:
+          nullable: true
+          type: string
+        rejectReason:
+          nullable: true
+          type: string
+        navDate:
+          nullable: true
+          type: string
+        collateralAccount:
+          nullable: true
+          type: string
+        accountType:
+          nullable: true
+          type: string
+        recurringOrderId:
+          nullable: true
+          type: string
+        paymentStatus:
+          nullable: true
+          type: string
+        paymentProcessingType:
+          nullable: true
+          type: string
+        saRecurringOrderRefNo:
+          nullable: true
+          type: string
+        crcApprovalCode:
+          nullable: true
+          type: string
+        pointCode:
+          nullable: true
+          type: string
+        counterUnitholderId:
+          nullable: true
+          type: string
+        counterFundCode:
+          nullable: true
+          type: string
+        xwtReferenceNo:
+          nullable: true
+          type: string
+        originalTransactionId:
+          nullable: true
+          type: string
+        lmtsAdlsFee:
+          nullable: true
+          type: string
+        lmtsLiquidityFee:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialClientFundConnextModelFundOrderArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - settlementBankAccount: settlementBankAccount
+          orderType: orderType
+          sellAllUnitFlag: "y"
+          fee: 2.3021358869347655
+          channel: channel
+          icLicense: icLicense
+          unitholderId: unitholderId
+          chqBranch: chqBranch
+          lmtsLiquidityFee: lmtsLiquidityFee
+          paymentType: paymentType
+          forceEntry: forceEntry
+          rejectReason: rejectReason
+          transactionLastUpdated: transactionLastUpdated
+          settlementBankCode: settlementBankCode
+          originalTransactionId: originalTransactionId
+          fundCode: fundCode
+          xwtReferenceNo: xwtReferenceNo
+          paymentStatus: paymentStatus
+          allottedAmount: 5.962133916683182
+          counterFundCode: counterFundCode
+          allottedUnit: 1.4658129805029452
+          bankAccount: bankAccount
+          bankCode: bankCode
+          counterUnitholderId: counterUnitholderId
+          amount: 6.027456183070403
+          navDate: navDate
+          crcApprovalCode: crcApprovalCode
+          pointCode: pointCode
+          redemptionType: redemptionType
+          transactionDateTime: transactionDateTime
+          paymentProcessingType: paymentProcessingType
+          accountType: accountType
+          allotmentDate: allotmentDate
+          collateralAccount: collateralAccount
+          recurringOrderId: recurringOrderId
+          settlementDate: settlementDate
+          saRecurringOrderRefNo: saRecurringOrderRefNo
+          saOrderReferenceNo: saOrderReferenceNo
+          amcOrderReferenceNo: amcOrderReferenceNo
+          transactionId: transactionId
+          accountId: accountId
+          allottedNAV: 5.637376656633329
+          unit: 0.8008281904610115
+          lmtsAdlsFee: lmtsAdlsFee
+          effectiveDate: effectiveDate
+          status: allotted
+          branchNo: branchNo
+        - settlementBankAccount: settlementBankAccount
+          orderType: orderType
+          sellAllUnitFlag: "y"
+          fee: 2.3021358869347655
+          channel: channel
+          icLicense: icLicense
+          unitholderId: unitholderId
+          chqBranch: chqBranch
+          lmtsLiquidityFee: lmtsLiquidityFee
+          paymentType: paymentType
+          forceEntry: forceEntry
+          rejectReason: rejectReason
+          transactionLastUpdated: transactionLastUpdated
+          settlementBankCode: settlementBankCode
+          originalTransactionId: originalTransactionId
+          fundCode: fundCode
+          xwtReferenceNo: xwtReferenceNo
+          paymentStatus: paymentStatus
+          allottedAmount: 5.962133916683182
+          counterFundCode: counterFundCode
+          allottedUnit: 1.4658129805029452
+          bankAccount: bankAccount
+          bankCode: bankCode
+          counterUnitholderId: counterUnitholderId
+          amount: 6.027456183070403
+          navDate: navDate
+          crcApprovalCode: crcApprovalCode
+          pointCode: pointCode
+          redemptionType: redemptionType
+          transactionDateTime: transactionDateTime
+          paymentProcessingType: paymentProcessingType
+          accountType: accountType
+          allotmentDate: allotmentDate
+          collateralAccount: collateralAccount
+          recurringOrderId: recurringOrderId
+          settlementDate: settlementDate
+          saRecurringOrderRefNo: saRecurringOrderRefNo
+          saOrderReferenceNo: saOrderReferenceNo
+          amcOrderReferenceNo: amcOrderReferenceNo
+          transactionId: transactionId
+          accountId: accountId
+          allottedNAV: 5.637376656633329
+          unit: 0.8008281904610115
+          lmtsAdlsFee: lmtsAdlsFee
+          effectiveDate: effectiveDate
+          status: allotted
+          branchNo: branchNo
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialClientFundConnextModelFundOrder'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialClientFundConnextModelIndividualInvestorV5ResponseKnowledgeAssessmentForm:
+      additionalProperties: false
+      example:
+        no2: true
+        no1: true
+        no3: true
+      properties:
+        no1:
+          nullable: true
+          type: boolean
+        no2:
+          nullable: true
+          type: boolean
+        no3:
+          nullable: true
+          type: boolean
+      type: object
+    PiFinancialClientFundConnextModelSpouse:
+      additionalProperties: false
+      example:
+        enLastName: enLastName
+        thFirstName: thFirstName
+        enFirstName: enFirstName
+        thLastName: thLastName
+      properties:
+        thFirstName:
+          nullable: true
+          type: string
+        thLastName:
+          nullable: true
+          type: string
+        enFirstName:
+          nullable: true
+          type: string
+        enLastName:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialFundServiceAPIModelsAccountSummaryResponse:
+      additionalProperties: false
+      example:
+        tradingAccountNo: tradingAccountNo
+        assets:
+        - symbol: symbol
+          marketPrice: 5.962133916683182
+          remainUnit: 5.637376656633329
+          costValue: 7.061401241503109
+          availableVolume: 7.386281948385884
+          marketValue: 2.3021358869347655
+          averageCostPrice: 2.027123023002322
+          custCode: custCode
+          upnl: 9.301444243932576
+          unitHolderId: unitHolderId
+          instrumentCategory: instrumentCategory
+          upnlPercentage: 3.616076749251911
+          remainAmount: 4.145608029883936
+          logo: logo
+          asOfDate: asOfDate
+          friendlyName: friendlyName
+        - symbol: symbol
+          marketPrice: 5.962133916683182
+          remainUnit: 5.637376656633329
+          costValue: 7.061401241503109
+          availableVolume: 7.386281948385884
+          marketValue: 2.3021358869347655
+          averageCostPrice: 2.027123023002322
+          custCode: custCode
+          upnl: 9.301444243932576
+          unitHolderId: unitHolderId
+          instrumentCategory: instrumentCategory
+          upnlPercentage: 3.616076749251911
+          remainAmount: 4.145608029883936
+          logo: logo
+          asOfDate: asOfDate
+          friendlyName: friendlyName
+        totalCostValue: 6.027456183070403
+        customerCode: customerCode
+        totalMarketValue: 0.8008281904610115
+        totalUpnl: 1.4658129805029452
+        asOfDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        customerCode:
+          nullable: true
+          type: string
+        tradingAccountNo:
+          nullable: true
+          type: string
+        asOfDate:
+          format: date-time
+          type: string
+        totalMarketValue:
+          format: double
+          type: number
+        totalCostValue:
+          format: double
+          type: number
+        totalUpnl:
+          format: double
+          type: number
+        assets:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponse'
+          nullable: true
+          type: array
+      required:
+      - asOfDate
+      - assets
+      - customerCode
+      - totalCostValue
+      - totalMarketValue
+      - totalUpnl
+      - tradingAccountNo
+      type: object
+    PiFinancialFundServiceAPIModelsAccountSummaryResponseArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - tradingAccountNo: tradingAccountNo
+          assets:
+          - symbol: symbol
+            marketPrice: 5.962133916683182
+            remainUnit: 5.637376656633329
+            costValue: 7.061401241503109
+            availableVolume: 7.386281948385884
+            marketValue: 2.3021358869347655
+            averageCostPrice: 2.027123023002322
+            custCode: custCode
+            upnl: 9.301444243932576
+            unitHolderId: unitHolderId
+            instrumentCategory: instrumentCategory
+            upnlPercentage: 3.616076749251911
+            remainAmount: 4.145608029883936
+            logo: logo
+            asOfDate: asOfDate
+            friendlyName: friendlyName
+          - symbol: symbol
+            marketPrice: 5.962133916683182
+            remainUnit: 5.637376656633329
+            costValue: 7.061401241503109
+            availableVolume: 7.386281948385884
+            marketValue: 2.3021358869347655
+            averageCostPrice: 2.027123023002322
+            custCode: custCode
+            upnl: 9.301444243932576
+            unitHolderId: unitHolderId
+            instrumentCategory: instrumentCategory
+            upnlPercentage: 3.616076749251911
+            remainAmount: 4.145608029883936
+            logo: logo
+            asOfDate: asOfDate
+            friendlyName: friendlyName
+          totalCostValue: 6.027456183070403
+          customerCode: customerCode
+          totalMarketValue: 0.8008281904610115
+          totalUpnl: 1.4658129805029452
+          asOfDate: 2000-01-23T04:56:07.000+00:00
+        - tradingAccountNo: tradingAccountNo
+          assets:
+          - symbol: symbol
+            marketPrice: 5.962133916683182
+            remainUnit: 5.637376656633329
+            costValue: 7.061401241503109
+            availableVolume: 7.386281948385884
+            marketValue: 2.3021358869347655
+            averageCostPrice: 2.027123023002322
+            custCode: custCode
+            upnl: 9.301444243932576
+            unitHolderId: unitHolderId
+            instrumentCategory: instrumentCategory
+            upnlPercentage: 3.616076749251911
+            remainAmount: 4.145608029883936
+            logo: logo
+            asOfDate: asOfDate
+            friendlyName: friendlyName
+          - symbol: symbol
+            marketPrice: 5.962133916683182
+            remainUnit: 5.637376656633329
+            costValue: 7.061401241503109
+            availableVolume: 7.386281948385884
+            marketValue: 2.3021358869347655
+            averageCostPrice: 2.027123023002322
+            custCode: custCode
+            upnl: 9.301444243932576
+            unitHolderId: unitHolderId
+            instrumentCategory: instrumentCategory
+            upnlPercentage: 3.616076749251911
+            remainAmount: 4.145608029883936
+            logo: logo
+            asOfDate: asOfDate
+            friendlyName: friendlyName
+          totalCostValue: 6.027456183070403
+          customerCode: customerCode
+          totalMarketValue: 0.8008281904610115
+          totalUpnl: 1.4658129805029452
+          asOfDate: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsAccountSummaryResponse'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialFundServiceAPIModelsBrokerOrder:
+      additionalProperties: false
+      example:
+        brokerOrderId: brokerOrderId
+      properties:
+        brokerOrderId:
+          nullable: true
+          type: string
+      required:
+      - brokerOrderId
+      type: object
+    PiFinancialFundServiceAPIModelsBrokerOrderApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          brokerOrderId: brokerOrderId
+      properties:
+        data:
+          $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsBrokerOrder'
+      type: object
+    PiFinancialFundServiceAPIModelsDeleteOrderRequest:
+      additionalProperties: false
+      example:
+        tradingAccountNo: tradingAccountNo
+        force: true
+        brokerOrderId: brokerOrderId
+        orderSide: buy
+      properties:
+        brokerOrderId:
+          nullable: true
+          type: string
+        orderSide:
+          enum:
+          - buy
+          - sell
+          - switch
+          - crossSwitch
+          - transfer
+          type: string
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        force:
+          nullable: true
+          type: boolean
+      required:
+      - brokerOrderId
+      - orderSide
+      - tradingAccountNo
+      type: object
+    PiFinancialFundServiceAPIModelsDocument:
+      additionalProperties: false
+      example:
+        documentType: documentType
+        preSignedUrl: preSignedUrl
+      properties:
+        documentType:
+          nullable: true
+          type: string
+        preSignedUrl:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialFundServiceAPIModelsFundAccountExistenceRequest:
+      additionalProperties: false
+      example:
+        identificationCardNo: identificationCardNo
+        passportCountry: passportCountry
+      properties:
+        identificationCardNo:
+          minLength: 1
+          type: string
+        passportCountry:
+          nullable: true
+          type: string
+      required:
+      - identificationCardNo
+      type: object
+    PiFinancialFundServiceAPIModelsFundAccountOpeningTicket:
+      additionalProperties: false
+      example:
+        customerCode: customerCode
+        ticketId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        customerCode:
+          nullable: true
+          type: string
+        ticketId:
+          format: uuid
+          nullable: true
+          type: string
+      type: object
+    PiFinancialFundServiceAPIModelsFundOrderPlaced:
+      additionalProperties: false
+      example:
+        unitHolderId: unitHolderId
+        orderNo: orderNo
+        brokerOrderId: brokerOrderId
+        settlementDate: settlementDate
+      properties:
+        brokerOrderId:
+          nullable: true
+          type: string
+        orderNo:
+          nullable: true
+          type: string
+        unitHolderId:
+          nullable: true
+          type: string
+        settlementDate:
+          nullable: true
+          type: string
+      required:
+      - brokerOrderId
+      - orderNo
+      - unitHolderId
+      type: object
+    PiFinancialFundServiceAPIModelsFundOrderPlacedApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          unitHolderId: unitHolderId
+          orderNo: orderNo
+          brokerOrderId: brokerOrderId
+          settlementDate: settlementDate
+      properties:
+        data:
+          $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsFundOrderPlaced'
+      type: object
+    PiFinancialFundServiceAPIModelsGeneratedDocument:
+      additionalProperties: false
+      example:
+        documents:
+        - documentType: documentType
+          preSignedUrl: preSignedUrl
+        - documentType: documentType
+          preSignedUrl: preSignedUrl
+        ticketId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+      properties:
+        ticketId:
+          format: uuid
+          nullable: true
+          type: string
+        documents:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsDocument'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialFundServiceAPIModelsInternalFundAssetResponse:
+      additionalProperties: false
+      example:
+        marketPrice: 0.8008281904610115
+        remainUnit: 6.027456183070403
+        costValue: 5.962133916683182
+        avgCostPrice: 9.301444243932576
+        pendingUnit: 4.145608029883936
+        marketValue: 1.4658129805029452
+        custCode: custCode
+        upnl: 5.637376656633329
+        unitHolderId: unitHolderId
+        instrumentCategory: instrumentCategory
+        tradingAccountNo: tradingAccountNo
+        unit: 7.061401241503109
+        upnlPercentage: 2.3021358869347655
+        fundCode: fundCode
+        remainAmount: 3.616076749251911
+        asOfDate: 2000-01-23
+        friendlyName: friendlyName
+        pendingAmount: 2.027123023002322
+      properties:
+        custCode:
+          nullable: true
+          type: string
+        marketPrice:
+          format: double
+          type: number
+        remainUnit:
+          format: double
+          type: number
+        marketValue:
+          format: double
+          type: number
+        costValue:
+          format: double
+          type: number
+        upnl:
+          format: double
+          type: number
+        upnlPercentage:
+          format: double
+          type: number
+        friendlyName:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+        unitHolderId:
+          nullable: true
+          type: string
+        asOfDate:
+          format: date
+          type: string
+        fundCode:
+          nullable: true
+          type: string
+        tradingAccountNo:
+          nullable: true
+          type: string
+        unit:
+          format: double
+          type: number
+        avgCostPrice:
+          format: double
+          type: number
+        remainAmount:
+          format: double
+          type: number
+        pendingAmount:
+          format: double
+          type: number
+        pendingUnit:
+          format: double
+          type: number
+      required:
+      - asOfDate
+      - avgCostPrice
+      - costValue
+      - custCode
+      - fundCode
+      - marketPrice
+      - marketValue
+      - pendingAmount
+      - pendingUnit
+      - remainAmount
+      - remainUnit
+      - tradingAccountNo
+      - unit
+      - unitHolderId
+      - upnl
+      - upnlPercentage
+      type: object
+    PiFinancialFundServiceAPIModelsInternalFundAssetResponseListApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - marketPrice: 0.8008281904610115
+          remainUnit: 6.027456183070403
+          costValue: 5.962133916683182
+          avgCostPrice: 9.301444243932576
+          pendingUnit: 4.145608029883936
+          marketValue: 1.4658129805029452
+          custCode: custCode
+          upnl: 5.637376656633329
+          unitHolderId: unitHolderId
+          instrumentCategory: instrumentCategory
+          tradingAccountNo: tradingAccountNo
+          unit: 7.061401241503109
+          upnlPercentage: 2.3021358869347655
+          fundCode: fundCode
+          remainAmount: 3.616076749251911
+          asOfDate: 2000-01-23
+          friendlyName: friendlyName
+          pendingAmount: 2.027123023002322
+        - marketPrice: 0.8008281904610115
+          remainUnit: 6.027456183070403
+          costValue: 5.962133916683182
+          avgCostPrice: 9.301444243932576
+          pendingUnit: 4.145608029883936
+          marketValue: 1.4658129805029452
+          custCode: custCode
+          upnl: 5.637376656633329
+          unitHolderId: unitHolderId
+          instrumentCategory: instrumentCategory
+          tradingAccountNo: tradingAccountNo
+          unit: 7.061401241503109
+          upnlPercentage: 2.3021358869347655
+          fundCode: fundCode
+          remainAmount: 3.616076749251911
+          asOfDate: 2000-01-23
+          friendlyName: friendlyName
+          pendingAmount: 2.027123023002322
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsInternalFundAssetResponse'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialFundServiceAPIModelsNdidInfo:
+      additionalProperties: false
+      example:
+        approvedDateTime: 2000-01-23T04:56:07.000+00:00
+        requestId: requestId
+      properties:
+        approvedDateTime:
+          format: date-time
+          type: string
+        requestId:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialFundServiceAPIModelsOpenFundAccountDto:
+      additionalProperties: false
+      example:
+        ndid: true
+        openAccountRegisterUid: openAccountRegisterUid
+        isOpenSegregateAccount: true
+        customerId: 0
+        customerCode: customerCode
+        ndidInfo:
+          approvedDateTime: 2000-01-23T04:56:07.000+00:00
+          requestId: requestId
+      properties:
+        customerCode:
+          maxLength: 7
+          minLength: 7
+          type: string
+        ndid:
+          type: boolean
+        ndidInfo:
+          $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsNdidInfo'
+        isOpenSegregateAccount:
+          nullable: true
+          type: boolean
+        openAccountRegisterUid:
+          nullable: true
+          type: string
+        customerId:
+          format: int64
+          nullable: true
+          readOnly: true
+          type: integer
+      required:
+      - customerCode
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusFundAssetResponse:
+      additionalProperties: false
+      example:
+        symbol: symbol
+        marketPrice: 5.962133916683182
+        remainUnit: 5.637376656633329
+        costValue: 7.061401241503109
+        availableVolume: 7.386281948385884
+        marketValue: 2.3021358869347655
+        averageCostPrice: 2.027123023002322
+        custCode: custCode
+        upnl: 9.301444243932576
+        unitHolderId: unitHolderId
+        instrumentCategory: instrumentCategory
+        upnlPercentage: 3.616076749251911
+        remainAmount: 4.145608029883936
+        logo: logo
+        asOfDate: asOfDate
+        friendlyName: friendlyName
+      properties:
+        custCode:
+          nullable: true
+          type: string
+        marketPrice:
+          format: double
+          type: number
+        remainUnit:
+          format: double
+          type: number
+        marketValue:
+          format: double
+          type: number
+        costValue:
+          format: double
+          type: number
+        upnl:
+          format: double
+          type: number
+        upnlPercentage:
+          format: double
+          type: number
+        friendlyName:
+          nullable: true
+          type: string
+        instrumentCategory:
+          nullable: true
+          type: string
+        unitHolderId:
+          nullable: true
+          type: string
+        averageCostPrice:
+          format: double
+          type: number
+        asOfDate:
+          nullable: true
+          type: string
+        symbol:
+          nullable: true
+          type: string
+        logo:
+          nullable: true
+          type: string
+        remainAmount:
+          format: double
+          type: number
+        availableVolume:
+          format: double
+          type: number
+      required:
+      - asOfDate
+      - availableVolume
+      - averageCostPrice
+      - costValue
+      - custCode
+      - logo
+      - marketPrice
+      - marketValue
+      - remainAmount
+      - remainUnit
+      - symbol
+      - unitHolderId
+      - upnl
+      - upnlPercentage
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusFundAssetResponseArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - symbol: symbol
+          marketPrice: 5.962133916683182
+          remainUnit: 5.637376656633329
+          costValue: 7.061401241503109
+          availableVolume: 7.386281948385884
+          marketValue: 2.3021358869347655
+          averageCostPrice: 2.027123023002322
+          custCode: custCode
+          upnl: 9.301444243932576
+          unitHolderId: unitHolderId
+          instrumentCategory: instrumentCategory
+          upnlPercentage: 3.616076749251911
+          remainAmount: 4.145608029883936
+          logo: logo
+          asOfDate: asOfDate
+          friendlyName: friendlyName
+        - symbol: symbol
+          marketPrice: 5.962133916683182
+          remainUnit: 5.637376656633329
+          costValue: 7.061401241503109
+          availableVolume: 7.386281948385884
+          marketValue: 2.3021358869347655
+          averageCostPrice: 2.027123023002322
+          custCode: custCode
+          upnl: 9.301444243932576
+          unitHolderId: unitHolderId
+          instrumentCategory: instrumentCategory
+          upnlPercentage: 3.616076749251911
+          remainAmount: 4.145608029883936
+          logo: logo
+          asOfDate: asOfDate
+          friendlyName: friendlyName
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundAssetResponse'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponse:
+      additionalProperties: false
+      example:
+        bankAccount: bankAccount
+        bankCode: bankCode
+        orderType: orderType
+        amount: 6.027456183070403
+        nav: 1.4658129805029452
+        orderNo: orderNo
+        orderId: orderId
+        transactionDateTime: transactionDateTime
+        accountType: seg
+        channel: mob
+        settlementDate: settlementDate
+        unitHolderId: unitHolderId
+        unit: 0.8008281904610115
+        rejectReason: rejectReason
+        transactionLastUpdated: transactionLastUpdated
+        fundCode: fundCode
+        bankShortName: bankShortName
+        paymentMethod: paymentMethod
+        account: account
+        effectiveDate: effectiveDate
+        paymentStatus: paymentStatus
+        status: processing
+      properties:
+        unit:
+          format: double
+          type: number
+        amount:
+          format: double
+          type: number
+        fundCode:
+          nullable: true
+          type: string
+        paymentMethod:
+          nullable: true
+          type: string
+        bankCode:
+          nullable: true
+          type: string
+        bankShortName:
+          nullable: true
+          type: string
+        bankAccount:
+          nullable: true
+          type: string
+        orderId:
+          nullable: true
+          type: string
+        account:
+          nullable: true
+          type: string
+        orderType:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - processing
+          - matched
+          - pending
+          - cancelled
+          - rejected
+          type: string
+        nav:
+          format: double
+          nullable: true
+          type: number
+        effectiveDate:
+          nullable: true
+          type: string
+        transactionDateTime:
+          nullable: true
+          type: string
+        unitHolderId:
+          nullable: true
+          type: string
+        channel:
+          enum:
+          - mob
+          - onl
+          - mkt
+          type: string
+        accountType:
+          enum:
+          - seg
+          - omn
+          - seG_NT
+          - seG_T
+          - omN_NT
+          - omN_T
+          nullable: true
+          type: string
+        settlementDate:
+          nullable: true
+          type: string
+        orderNo:
+          nullable: true
+          type: string
+        rejectReason:
+          nullable: true
+          type: string
+        transactionLastUpdated:
+          nullable: true
+          type: string
+        paymentStatus:
+          nullable: true
+          type: string
+      required:
+      - account
+      - accountType
+      - amount
+      - bankAccount
+      - bankCode
+      - bankShortName
+      - channel
+      - effectiveDate
+      - fundCode
+      - nav
+      - orderId
+      - orderType
+      - paymentMethod
+      - status
+      - transactionDateTime
+      - unit
+      - unitHolderId
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponseArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - bankAccount: bankAccount
+          bankCode: bankCode
+          orderType: orderType
+          amount: 6.027456183070403
+          nav: 1.4658129805029452
+          orderNo: orderNo
+          orderId: orderId
+          transactionDateTime: transactionDateTime
+          accountType: seg
+          channel: mob
+          settlementDate: settlementDate
+          unitHolderId: unitHolderId
+          unit: 0.8008281904610115
+          rejectReason: rejectReason
+          transactionLastUpdated: transactionLastUpdated
+          fundCode: fundCode
+          bankShortName: bankShortName
+          paymentMethod: paymentMethod
+          account: account
+          effectiveDate: effectiveDate
+          paymentStatus: paymentStatus
+          status: processing
+        - bankAccount: bankAccount
+          bankCode: bankCode
+          orderType: orderType
+          amount: 6.027456183070403
+          nav: 1.4658129805029452
+          orderNo: orderNo
+          orderId: orderId
+          transactionDateTime: transactionDateTime
+          accountType: seg
+          channel: mob
+          settlementDate: settlementDate
+          unitHolderId: unitHolderId
+          unit: 0.8008281904610115
+          rejectReason: rejectReason
+          transactionLastUpdated: transactionLastUpdated
+          fundCode: fundCode
+          bankShortName: bankShortName
+          paymentMethod: paymentMethod
+          account: account
+          effectiveDate: effectiveDate
+          paymentStatus: paymentStatus
+          status: processing
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderHistoryResponse'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusFundOrderResponse:
+      additionalProperties: false
+      example:
+        bankAccount: bankAccount
+        bankCode: bankCode
+        orderType: orderType
+        amount: 6.027456183070403
+        nav: 1.4658129805029452
+        orderNo: orderNo
+        edd: edd
+        switchTo: switchTo
+        orderId: orderId
+        transactionDateTime: transactionDateTime
+        settlementDate: settlementDate
+        unit: 0.8008281904610115
+        switchIn: switchIn
+        transactionLastUpdated: transactionLastUpdated
+        fundCode: fundCode
+        bankShortName: bankShortName
+        paymentMethod: paymentMethod
+        account: account
+        effectiveDate: effectiveDate
+        status: processing
+      properties:
+        unit:
+          format: double
+          type: number
+        amount:
+          format: double
+          type: number
+        paymentMethod:
+          nullable: true
+          type: string
+        bankAccount:
+          nullable: true
+          type: string
+        edd:
+          nullable: true
+          type: string
+        switchIn:
+          nullable: true
+          type: string
+        switchTo:
+          nullable: true
+          type: string
+        bankCode:
+          nullable: true
+          type: string
+        bankShortName:
+          nullable: true
+          type: string
+        orderId:
+          nullable: true
+          type: string
+        account:
+          nullable: true
+          type: string
+        fundCode:
+          nullable: true
+          type: string
+        orderType:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - processing
+          - matched
+          - pending
+          - cancelled
+          - rejected
+          type: string
+        nav:
+          format: double
+          nullable: true
+          type: number
+        transactionLastUpdated:
+          nullable: true
+          type: string
+        effectiveDate:
+          nullable: true
+          type: string
+        transactionDateTime:
+          nullable: true
+          type: string
+        settlementDate:
+          nullable: true
+          type: string
+        orderNo:
+          nullable: true
+          type: string
+      required:
+      - account
+      - amount
+      - bankAccount
+      - bankCode
+      - bankShortName
+      - edd
+      - effectiveDate
+      - fundCode
+      - nav
+      - orderId
+      - orderType
+      - paymentMethod
+      - status
+      - switchIn
+      - switchTo
+      - transactionDateTime
+      - transactionLastUpdated
+      - unit
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusFundOrderResponseArrayApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - bankAccount: bankAccount
+          bankCode: bankCode
+          orderType: orderType
+          amount: 6.027456183070403
+          nav: 1.4658129805029452
+          orderNo: orderNo
+          edd: edd
+          switchTo: switchTo
+          orderId: orderId
+          transactionDateTime: transactionDateTime
+          settlementDate: settlementDate
+          unit: 0.8008281904610115
+          switchIn: switchIn
+          transactionLastUpdated: transactionLastUpdated
+          fundCode: fundCode
+          bankShortName: bankShortName
+          paymentMethod: paymentMethod
+          account: account
+          effectiveDate: effectiveDate
+          status: processing
+        - bankAccount: bankAccount
+          bankCode: bankCode
+          orderType: orderType
+          amount: 6.027456183070403
+          nav: 1.4658129805029452
+          orderNo: orderNo
+          edd: edd
+          switchTo: switchTo
+          orderId: orderId
+          transactionDateTime: transactionDateTime
+          settlementDate: settlementDate
+          unit: 0.8008281904610115
+          switchIn: switchIn
+          transactionLastUpdated: transactionLastUpdated
+          fundCode: fundCode
+          bankShortName: bankShortName
+          paymentMethod: paymentMethod
+          account: account
+          effectiveDate: effectiveDate
+          status: processing
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceAPIModelsSiriusFundOrderResponse'
+          nullable: true
+          type: array
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusPlaceBuyOrderRequest:
+      additionalProperties: false
+      example:
+        bankAccount: bankAccount
+        unitHolderId: unitHolderId
+        symbol: symbol
+        bankCode: bankCode
+        tradingAccountNo: tradingAccountNo
+        quantity: 0.8008281904610115
+        recurring: true
+        paymentMethod: ats
+        effectiveDate: effectiveDate
+      properties:
+        symbol:
+          minLength: 1
+          type: string
+        effectiveDate:
+          minLength: 1
+          type: string
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        quantity:
+          format: double
+          type: number
+        paymentMethod:
+          enum:
+          - ats
+          - bankTransfer
+          type: string
+        bankAccount:
+          minLength: 1
+          type: string
+        bankCode:
+          minLength: 1
+          type: string
+        unitHolderId:
+          nullable: true
+          type: string
+        recurring:
+          nullable: true
+          type: boolean
+      required:
+      - bankAccount
+      - bankCode
+      - effectiveDate
+      - paymentMethod
+      - quantity
+      - symbol
+      - tradingAccountNo
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusPlaceSellOrderRequest:
+      additionalProperties: false
+      example:
+        unitType: amount
+        unitHolderId: unitHolderId
+        bankAccount: bankAccount
+        symbol: symbol
+        bankCode: bankCode
+        tradingAccountNo: tradingAccountNo
+        quantity: 0.8008281904610115
+        sellAllFlag: true
+        effectiveDate: effectiveDate
+      properties:
+        symbol:
+          minLength: 1
+          type: string
+        effectiveDate:
+          minLength: 1
+          type: string
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        quantity:
+          format: double
+          type: number
+        unitType:
+          enum:
+          - amount
+          - unit
+          type: string
+        unitHolderId:
+          minLength: 1
+          type: string
+        bankAccount:
+          minLength: 1
+          type: string
+        bankCode:
+          minLength: 1
+          type: string
+        sellAllFlag:
+          nullable: true
+          type: boolean
+      required:
+      - bankAccount
+      - bankCode
+      - effectiveDate
+      - quantity
+      - symbol
+      - tradingAccountNo
+      - unitHolderId
+      - unitType
+      type: object
+    PiFinancialFundServiceAPIModelsSiriusPlaceSwitchOrderRequest:
+      additionalProperties: false
+      example:
+        unitHolderId: unitHolderId
+        unitType: amount
+        symbol: symbol
+        tradingAccountNo: tradingAccountNo
+        targetSymbol: targetSymbol
+        quantity: 0.8008281904610115
+        sellAllFlag: true
+        effectiveDate: effectiveDate
+      properties:
+        symbol:
+          minLength: 1
+          type: string
+        effectiveDate:
+          minLength: 1
+          type: string
+        tradingAccountNo:
+          minLength: 1
+          type: string
+        quantity:
+          format: double
+          type: number
+        targetSymbol:
+          minLength: 1
+          type: string
+        unitHolderId:
+          minLength: 1
+          type: string
+        unitType:
+          enum:
+          - amount
+          - unit
+          type: string
+        sellAllFlag:
+          nullable: true
+          type: boolean
+      required:
+      - effectiveDate
+      - quantity
+      - symbol
+      - targetSymbol
+      - tradingAccountNo
+      - unitHolderId
+      - unitType
+      type: object
+    PiFinancialFundServiceApplicationModelsTradingSwitchInfo:
+      additionalProperties: false
+      example:
+        minSwitchUnit: 0.8008281904610115
+        minSwitchAmount: 6.027456183070403
+      properties:
+        minSwitchUnit:
+          format: double
+          type: number
+        minSwitchAmount:
+          format: double
+          type: number
+      required:
+      - minSwitchAmount
+      - minSwitchUnit
+      type: object
+    PiFinancialFundServiceApplicationModelsTradingSwitchInfoApiResponse:
+      additionalProperties: false
+      example:
+        data:
+          minSwitchUnit: 0.8008281904610115
+          minSwitchAmount: 6.027456183070403
+      properties:
+        data:
+          $ref: '#/components/schemas/PiFinancialFundServiceApplicationModelsTradingSwitchInfo'
+      type: object
+    PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus:
+      additionalProperties: false
+      example:
+        ndid: true
+        openAccountRegisterUid: openAccountRegisterUid
+        requestReceivedTime: requestReceivedTime
+        ndidRequestId: ndidRequestId
+        isOpenSegregateAccount: true
+        ndidDateTime: ndidDateTime
+        customerId: 0
+        custCode: custCode
+        userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        documentGenerationTicketId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        status: status
+        failedReason: failedReason
+      properties:
+        custCode:
+          nullable: true
+          type: string
+        requestReceivedTime:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        ndid:
+          nullable: true
+          type: boolean
+        documentGenerationTicketId:
+          format: uuid
+          nullable: true
+          type: string
+        ndidRequestId:
+          nullable: true
+          type: string
+        ndidDateTime:
+          nullable: true
+          type: string
+        failedReason:
+          nullable: true
+          type: string
+        isOpenSegregateAccount:
+          nullable: true
+          type: boolean
+        customerId:
+          format: int64
+          nullable: true
+          type: integer
+        userId:
+          format: uuid
+          nullable: true
+          type: string
+        openAccountRegisterUid:
+          nullable: true
+          type: string
+      type: object
+    PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatusIEnumerableApiResponse:
+      additionalProperties: false
+      example:
+        data:
+        - ndid: true
+          openAccountRegisterUid: openAccountRegisterUid
+          requestReceivedTime: requestReceivedTime
+          ndidRequestId: ndidRequestId
+          isOpenSegregateAccount: true
+          ndidDateTime: ndidDateTime
+          customerId: 0
+          custCode: custCode
+          userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          documentGenerationTicketId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: status
+          failedReason: failedReason
+        - ndid: true
+          openAccountRegisterUid: openAccountRegisterUid
+          requestReceivedTime: requestReceivedTime
+          ndidRequestId: ndidRequestId
+          isOpenSegregateAccount: true
+          ndidDateTime: ndidDateTime
+          customerId: 0
+          custCode: custCode
+          userId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          documentGenerationTicketId: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          status: status
+          failedReason: failedReason
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/PiFinancialFundServiceApplicationQueriesFundAccountOpeningStatus'
+          nullable: true
+          type: array
+      type: object
+    SystemBooleanApiResponse:
+      additionalProperties: false
+      example:
+        data: true
+      properties:
+        data:
+          type: boolean
+      type: object

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pi.Financial.Client.PiItBackoffice\Pi.Financial.Client.PiItBackoffice.csproj" />
+    <ProjectReference Include="..\Pi.Financial.FundService.Application\Pi.Financial.FundService.Application.csproj" />
+    <ProjectReference Include="..\Pi.Financial.Client.FundConnext\Pi.Financial.Client.FundConnext.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFrameworkCore.DataEncryption" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Pi.Client.OnboardService" Version="1.0.61" />
+    <PackageReference Include="Pi.Client.UserService" Version="1.0.66" />
+    <PackageReference Include="Pi.Client.FundMarketData" Version="1.0.11" />
+    <PackageReference Include="Pi.Client.UserSrvV2" Version="1.0.131" />
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+    <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Pi.Financial.Client.Freewill" Version="1.0.79" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Microsoft.EntityFrameworkCore.Relational" />
+    <None Remove="EntityConfigs\" />
+    <None Remove="Repositories\" />
+    <None Remove="Pi.Financial.Client.Freewill" />
+    <None Remove="Pi.Financial.Client.PdfService" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+    "apiName": "FundConnext",
+      "targetFramework": "net7.0",
+      "netCoreProjectFile": true,
+      "sourceFolder": "/",
+      "packageName": "Pi.Financial.Client.FundConnext",
+      "library": "httpclient"
+  }
